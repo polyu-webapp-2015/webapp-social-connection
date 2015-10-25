@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="geotrellis-tutorial-project"
+		module="geotrellis-tutorial-project_2.10"
+		revision="0.1-SNAPSHOT"
+		conf="runtime"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+		date="20151026013736"/>
+	<dependencies>
+		<module organisation="org.json4s" name="json4s-ext_2.10">
+			<revision name="3.2.11" status="release" pubdate="20141024090904" resolver="public" artresolver="public" homepage="https://github.com/json4s/json4s" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="37">
+				<license name="ASL" url="http://github.com/json4s/json4s/raw/HEAD/LICENSE"/>
+				<metadata-artifact status="successful" details="" size="2558" time="715" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ext_2.10/ivy-3.2.11.xml" searched="true" original-local-location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ext_2.10/ivy-3.2.11.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/json4s/json4s-ext_2.10/3.2.11/json4s-ext_2.10-3.2.11.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project_2.10" conf="compile, runtime" rev="3.2.11" rev-constraint-default="3.2.11" rev-constraint-dynamic="3.2.11" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="json4s-ext_2.10" type="jar" ext="jar" status="successful" details="" size="82097" time="864" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ext_2.10/jars/json4s-ext_2.10-3.2.11.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-ext_2.10/3.2.11/json4s-ext_2.10-3.2.11.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.joda" name="joda-convert">
+			<revision name="1.6" status="release" pubdate="20140128023743" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.joda.org/joda-convert/" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="39">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="6116" time="0" location="/home/beenotung/.ivy2/cache/org.joda/joda-convert/ivy-1.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/joda/joda-convert/1.6/joda-convert-1.6.pom"/>
+				<caller organisation="org.json4s" name="json4s-ext_2.10" conf="default, compile, runtime, master" rev="1.6" rev-constraint-default="1.6" rev-constraint-dynamic="1.6" callerrev="3.2.11"/>
+				<artifacts>
+					<artifact name="joda-convert" type="jar" ext="jar" status="no" details="" size="98818" time="0" location="/home/beenotung/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-1.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/joda/joda-convert/1.6/joda-convert-1.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="joda-time" name="joda-time">
+			<revision name="2.3" status="release" pubdate="20130817013125" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.joda.org/joda-time/" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="38">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="6364" time="0" location="/home/beenotung/.ivy2/cache/joda-time/joda-time/ivy-2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/joda-time/joda-time/2.3/joda-time-2.3.pom"/>
+				<caller organisation="org.json4s" name="json4s-ext_2.10" conf="default, compile, runtime, master" rev="2.3" rev-constraint-default="2.3" rev-constraint-dynamic="2.3" callerrev="3.2.11"/>
+				<artifacts>
+					<artifact name="joda-time" type="jar" ext="jar" status="no" details="" size="581571" time="0" location="/home/beenotung/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/joda-time/joda-time/2.3/joda-time-2.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.json4s" name="json4s-jackson_2.10">
+			<revision name="3.2.11" status="release" pubdate="20141024090915" resolver="public" artresolver="public" homepage="https://github.com/json4s/json4s" downloaded="true" searched="true" default="false" conf="default, compile, runtime, default(compile), master" position="28">
+				<license name="ASL" url="http://github.com/json4s/json4s/raw/HEAD/LICENSE"/>
+				<metadata-artifact status="successful" details="" size="2394" time="637" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-jackson_2.10/ivy-3.2.11.xml" searched="true" original-local-location="/home/beenotung/.ivy2/cache/org.json4s/json4s-jackson_2.10/ivy-3.2.11.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/json4s/json4s-jackson_2.10/3.2.11/json4s-jackson_2.10-3.2.11.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project_2.10" conf="compile, runtime" rev="3.2.11" rev-constraint-default="3.2.11" rev-constraint-dynamic="3.2.11" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="json4s-jackson_2.10" type="jar" ext="jar" status="successful" details="" size="41058" time="794" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-jackson_2.10/jars/json4s-jackson_2.10-3.2.11.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-jackson_2.10/3.2.11/json4s-jackson_2.10-3.2.11.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-databind">
+			<revision name="2.3.1" status="release" pubdate="20131228102912" resolver="public" artresolver="public" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="true" searched="true" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="34">
+				<metadata-artifact status="successful" details="" size="5928" time="634" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/ivy-2.3.1.xml" searched="true" original-local-location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/ivy-2.3.1.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.3.1/jackson-databind-2.3.1.pom"/>
+				<caller organisation="org.json4s" name="json4s-jackson_2.10" conf="default, compile, runtime, master" rev="2.3.1" rev-constraint-default="2.3.1" rev-constraint-dynamic="2.3.1" callerrev="3.2.11"/>
+				<artifacts>
+					<artifact name="jackson-databind" type="bundle" ext="jar" status="successful" details="" size="914311" time="1135" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/bundles/jackson-databind-2.3.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.3.1/jackson-databind-2.3.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-core">
+			<revision name="2.3.1" status="release" pubdate="20131228090124" resolver="public" artresolver="public" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="true" searched="true" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="36">
+				<metadata-artifact status="successful" details="" size="5965" time="635" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/ivy-2.3.1.xml" searched="true" original-local-location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/ivy-2.3.1.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.3.1/jackson-core-2.3.1.pom"/>
+				<caller organisation="com.fasterxml.jackson.core" name="jackson-databind" conf="compile, runtime" rev="2.3.1" rev-constraint-default="2.3.1" rev-constraint-dynamic="2.3.1" callerrev="2.3.1"/>
+				<artifacts>
+					<artifact name="jackson-core" type="bundle" ext="jar" status="successful" details="" size="197986" time="655" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/bundles/jackson-core-2.3.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.3.1/jackson-core-2.3.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-annotations">
+			<revision name="2.3.0" status="release" pubdate="20131114125645" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="35">
+				<metadata-artifact status="no" details="" size="4805" time="0" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/ivy-2.3.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0.pom"/>
+				<caller organisation="com.fasterxml.jackson.core" name="jackson-databind" conf="compile, runtime" rev="2.3.0" rev-constraint-default="2.3.0" rev-constraint-dynamic="2.3.0" callerrev="2.3.1"/>
+				<artifacts>
+					<artifact name="jackson-annotations" type="bundle" ext="jar" status="no" details="" size="35058" time="0" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/bundles/jackson-annotations-2.3.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.json4s" name="json4s-core_2.10">
+			<revision name="3.2.11" status="release" pubdate="20141024090933" resolver="public" artresolver="public" homepage="https://github.com/json4s/json4s" downloaded="true" searched="true" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="29">
+				<license name="ASL" url="http://github.com/json4s/json4s/raw/HEAD/LICENSE"/>
+				<metadata-artifact status="successful" details="" size="2546" time="634" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-core_2.10/ivy-3.2.11.xml" searched="true" original-local-location="/home/beenotung/.ivy2/cache/org.json4s/json4s-core_2.10/ivy-3.2.11.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/json4s/json4s-core_2.10/3.2.11/json4s-core_2.10-3.2.11.pom"/>
+				<caller organisation="org.json4s" name="json4s-jackson_2.10" conf="default, compile, runtime, master" rev="3.2.11" rev-constraint-default="3.2.11" rev-constraint-dynamic="3.2.11" callerrev="3.2.11"/>
+				<artifacts>
+					<artifact name="json4s-core_2.10" type="jar" ext="jar" status="successful" details="" size="597252" time="1135" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-core_2.10/jars/json4s-core_2.10-3.2.11.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-core_2.10/3.2.11/json4s-core_2.10-3.2.11.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scalap">
+			<revision name="2.10.0" status="release" pubdate="20121220153017" resolver="public" artresolver="public" homepage="http://www.scala-lang.org/" downloaded="true" searched="true" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="32">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html
+			"/>
+				<metadata-artifact status="successful" details="" size="1805" time="635" location="/home/beenotung/.ivy2/cache/org.scala-lang/scalap/ivy-2.10.0.xml" searched="true" original-local-location="/home/beenotung/.ivy2/cache/org.scala-lang/scalap/ivy-2.10.0.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scalap/2.10.0/scalap-2.10.0.pom"/>
+				<caller organisation="org.json4s" name="json4s-core_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<artifacts>
+					<artifact name="scalap" type="jar" ext="jar" status="successful" details="" size="855012" time="1123" location="/home/beenotung/.ivy2/cache/org.scala-lang/scalap/jars/scalap-2.10.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scalap/2.10.0/scalap-2.10.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-compiler">
+			<revision name="2.10.0" status="release" pubdate="20121220152948" resolver="public" artresolver="public" homepage="http://www.scala-lang.org/" downloaded="true" searched="true" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="33">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html
+			"/>
+				<metadata-artifact status="successful" details="" size="2156" time="635" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-compiler/ivy-2.10.0.xml" searched="true" original-local-location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-compiler/ivy-2.10.0.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.10.0/scala-compiler-2.10.0.pom"/>
+				<caller organisation="org.scala-lang" name="scalap" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
+				<artifacts>
+					<artifact name="scala-compiler" type="jar" ext="jar" status="successful" details="" size="14149435" time="10826" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.10.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.10.0/scala-compiler-2.10.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.thoughtworks.paranamer" name="paranamer">
+			<revision name="2.6" status="release" pubdate="20131009115654" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="31">
+				<metadata-artifact status="no" details="" size="4124" time="0" location="/home/beenotung/.ivy2/cache/com.thoughtworks.paranamer/paranamer/ivy-2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6.pom"/>
+				<caller organisation="org.json4s" name="json4s-core_2.10" conf="compile, runtime" rev="2.6" rev-constraint-default="2.6" rev-constraint-dynamic="2.6" callerrev="3.2.11"/>
+				<artifacts>
+					<artifact name="paranamer" type="jar" ext="jar" status="no" details="" size="32806" time="0" location="/home/beenotung/.ivy2/cache/com.thoughtworks.paranamer/paranamer/jars/paranamer-2.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.json4s" name="json4s-ast_2.10">
+			<revision name="3.2.11" status="release" pubdate="20141024090823" resolver="public" artresolver="public" homepage="https://github.com/json4s/json4s" downloaded="true" searched="true" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="30">
+				<license name="ASL" url="http://github.com/json4s/json4s/raw/HEAD/LICENSE"/>
+				<metadata-artifact status="successful" details="" size="2013" time="633" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ast_2.10/ivy-3.2.11.xml" searched="true" original-local-location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ast_2.10/ivy-3.2.11.xml.original" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/json4s/json4s-ast_2.10/3.2.11/json4s-ast_2.10-3.2.11.pom"/>
+				<caller organisation="org.json4s" name="json4s-core_2.10" conf="compile, runtime" rev="3.2.11" rev-constraint-default="3.2.11" rev-constraint-dynamic="3.2.11" callerrev="3.2.11"/>
+				<artifacts>
+					<artifact name="json4s-ast_2.10" type="jar" ext="jar" status="successful" details="" size="84053" time="643" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ast_2.10/jars/json4s-ast_2.10-3.2.11.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-ast_2.10/3.2.11/json4s-ast_2.10-3.2.11.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.azavea.geotrellis" name="geotrellis_2.10">
+			<revision name="0.9.0" status="release" pubdate="20140213031727" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://geotrellis.github.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
+				<license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="4644" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis_2.10/ivy-0.9.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis_2.10/0.9.0/geotrellis_2.10-0.9.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project_2.10" conf="compile, runtime" rev="0.9.0" rev-constraint-default="0.9.0" rev-constraint-dynamic="0.9.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="geotrellis_2.10" type="jar" ext="jar" status="no" details="" size="3189971" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis_2.10/jars/geotrellis_2.10-0.9.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis_2.10/0.9.0/geotrellis_2.10-0.9.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.commons" name="commons-math3">
+			<revision name="3.2" status="release" pubdate="20130403033128" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/proper/commons-math/" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="27">
+				<metadata-artifact status="no" details="" size="9429" time="0" location="/home/beenotung/.ivy2/cache/org.apache.commons/commons-math3/ivy-3.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.2/commons-math3-3.2.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="3.2" rev-constraint-default="3.2" rev-constraint-dynamic="3.2" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="commons-math3" type="jar" ext="jar" status="no" details="" size="1692782" time="0" location="/home/beenotung/.ivy2/cache/org.apache.commons/commons-math3/jars/commons-math3-3.2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.2/commons-math3-3.2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-routing">
+			<revision name="1.2.0" status="release" pubdate="20131213232939" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="40">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3541" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-routing/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-routing/1.2.0/spray-routing-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-routing" type="bundle" ext="jar" status="no" details="" size="1027828" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-routing/bundles/spray-routing-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-routing/1.2.0/spray-routing-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.chuusai" name="shapeless_2.10">
+			<revision name="1.2.4" status="release" pubdate="20130227035121" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/milessabin/shapeless" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="41">
+				<license name="Apache License" url="http://www.apache.org/licenses/"/>
+				<metadata-artifact status="no" details="" size="2634" time="0" location="/home/beenotung/.ivy2/cache/com.chuusai/shapeless_2.10/ivy-1.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/chuusai/shapeless_2.10/1.2.4/shapeless_2.10-1.2.4.pom"/>
+				<caller organisation="io.spray" name="spray-routing" conf="default, compile, runtime, master" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="1.2.0"/>
+				<artifacts>
+					<artifact name="shapeless_2.10" type="jar" ext="jar" status="no" details="" size="1280423" time="0" location="/home/beenotung/.ivy2/cache/com.chuusai/shapeless_2.10/jars/shapeless_2.10-1.2.4.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/chuusai/shapeless_2.10/1.2.4/shapeless_2.10-1.2.4.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-client">
+			<revision name="1.2.0" status="release" pubdate="20131213233153" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="18">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3494" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-client/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-client/1.2.0/spray-client-1.2.0.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="spray-client" type="bundle" ext="jar" status="no" details="" size="44966" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-client/bundles/spray-client-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-client/1.2.0/spray-client-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-httpx">
+			<revision name="1.2.0" status="release" pubdate="20131213233101" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="25">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="4105" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-httpx/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-httpx/1.2.0/spray-httpx-1.2.0.pom"/>
+				<caller organisation="io.spray" name="spray-client" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-routing" conf="default, compile, runtime, master" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<artifacts>
+					<artifact name="spray-httpx" type="bundle" ext="jar" status="no" details="" size="456464" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-httpx/bundles/spray-httpx-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-httpx/1.2.0/spray-httpx-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.jvnet.mimepull" name="mimepull">
+			<revision name="1.9.3" status="release" pubdate="20130419174423" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://mimepull.java.net" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="26">
+				<license name="CDDL 1.1" url="https://glassfish.java.net/public/CDDL+GPL_1_1.html"/>
+				<license name="GPL2 w/ CPE" url="https://glassfish.java.net/public/CDDL+GPL_1_1.html"/>
+				<metadata-artifact status="no" details="" size="3786" time="0" location="/home/beenotung/.ivy2/cache/org.jvnet.mimepull/mimepull/ivy-1.9.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/jvnet/mimepull/mimepull/1.9.3/mimepull-1.9.3.pom"/>
+				<caller organisation="io.spray" name="spray-httpx" conf="compile, runtime" rev="1.9.3" rev-constraint-default="1.9.3" rev-constraint-dynamic="1.9.3" callerrev="1.2.0"/>
+				<artifacts>
+					<artifact name="mimepull" type="jar" ext="jar" status="no" details="" size="62135" time="0" location="/home/beenotung/.ivy2/cache/org.jvnet.mimepull/mimepull/jars/mimepull-1.9.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/jvnet/mimepull/mimepull/1.9.3/mimepull-1.9.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-can">
+			<revision name="1.2.0" status="release" pubdate="20131213232854" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="master(*), default, compile, runtime(*), runtime, default(compile), compile(*), master" position="19">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3355" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-can/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-can/1.2.0/spray-can-1.2.0.pom"/>
+				<caller organisation="io.spray" name="spray-client" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-can" type="bundle" ext="jar" status="no" details="" size="711450" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-can/bundles/spray-can-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-can/1.2.0/spray-can-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-io">
+			<revision name="1.2.0" status="release" pubdate="20131213233217" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="20">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3134" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-io/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-io/1.2.0/spray-io-1.2.0.pom"/>
+				<caller organisation="io.spray" name="spray-can" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<artifacts>
+					<artifact name="spray-io" type="bundle" ext="jar" status="no" details="" size="193565" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-io/bundles/spray-io-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-io/1.2.0/spray-io-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-http">
+			<revision name="1.2.0" status="release" pubdate="20131213233038" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="22">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3119" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-http/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-http/1.2.0/spray-http-1.2.0.pom"/>
+				<caller organisation="io.spray" name="spray-client" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-can" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-io" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-routing" conf="default, compile, runtime, master" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-httpx" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<artifacts>
+					<artifact name="spray-http" type="bundle" ext="jar" status="no" details="" size="1282343" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-http/bundles/spray-http-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-http/1.2.0/spray-http-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.parboiled" name="parboiled-scala_2.10">
+			<revision name="1.1.6" status="release" pubdate="20130826185413" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://parboiled.org" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="23">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2946" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-scala_2.10/ivy-1.1.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/parboiled/parboiled-scala_2.10/1.1.6/parboiled-scala_2.10-1.1.6.pom"/>
+				<caller organisation="io.spray" name="spray-http" conf="compile, runtime" rev="1.1.6" rev-constraint-default="1.1.6" rev-constraint-dynamic="1.1.6" callerrev="1.2.0"/>
+				<artifacts>
+					<artifact name="parboiled-scala_2.10" type="bundle" ext="jar" status="no" details="" size="237780" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-scala_2.10/bundles/parboiled-scala_2.10-1.1.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/parboiled/parboiled-scala_2.10/1.1.6/parboiled-scala_2.10-1.1.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.parboiled" name="parboiled-core">
+			<revision name="1.1.6" status="release" pubdate="20130822233221" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://parboiled.org" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="24">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2654" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-core/ivy-1.1.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/parboiled/parboiled-core/1.1.6/parboiled-core-1.1.6.pom"/>
+				<caller organisation="org.parboiled" name="parboiled-scala_2.10" conf="compile, runtime" rev="1.1.6" rev-constraint-default="1.1.6" rev-constraint-dynamic="1.1.6" callerrev="1.1.6"/>
+				<artifacts>
+					<artifact name="parboiled-core" type="bundle" ext="jar" status="no" details="" size="187091" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-core/bundles/parboiled-core-1.1.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/parboiled/parboiled-core/1.1.6/parboiled-core-1.1.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-util">
+			<revision name="1.2.0" status="release" pubdate="20131213232915" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="21">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3111" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-util/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-util/1.2.0/spray-util-1.2.0.pom"/>
+				<caller organisation="io.spray" name="spray-client" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-can" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-http" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-io" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-routing" conf="default, compile, runtime, master" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-httpx" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="1.2.0"/>
+				<artifacts>
+					<artifact name="spray-util" type="bundle" ext="jar" status="no" details="" size="128707" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-util/bundles/spray-util-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-util/1.2.0/spray-util-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.spire-math" name="spire_2.10">
+			<revision name="0.4.0" status="release" pubdate="20130512122123" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spire-math.org" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="17">
+				<license name="BSD-style" url="http://opensource.org/licenses/MIT"/>
+				<metadata-artifact status="no" details="" size="2863" time="0" location="/home/beenotung/.ivy2/cache/org.spire-math/spire_2.10/ivy-0.4.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/spire-math/spire_2.10/0.4.0/spire_2.10-0.4.0.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="0.4.0" rev-constraint-default="0.4.0" rev-constraint-dynamic="0.4.0" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="spire_2.10" type="jar" ext="jar" status="no" details="" size="7009290" time="0" location="/home/beenotung/.ivy2/cache/org.spire-math/spire_2.10/jars/spire_2.10-0.4.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/spire-math/spire_2.10/0.4.0/spire_2.10-0.4.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.jackson" name="jackson-mapper-asl">
+			<revision name="1.6.1" status="release" pubdate="20101007123514" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jackson.codehaus.org" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="16">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2653" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-mapper-asl/ivy-1.6.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.6.1/jackson-mapper-asl-1.6.1.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="jackson-mapper-asl" type="jar" ext="jar" status="no" details="" size="542255" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-mapper-asl/jars/jackson-mapper-asl-1.6.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.6.1/jackson-mapper-asl-1.6.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.jackson" name="jackson-core-asl">
+			<revision name="1.6.1" status="release" pubdate="20101007123501" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jackson.codehaus.org" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="15">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2437" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-core-asl/ivy-1.6.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.6.1/jackson-core-asl-1.6.1.pom"/>
+				<caller organisation="org.codehaus.jackson" name="jackson-mapper-asl" conf="compile, runtime" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="1.6.1"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="jackson-core-asl" type="jar" ext="jar" status="no" details="" size="200979" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-core-asl/jars/jackson-core-asl-1.6.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.6.1/jackson-core-asl-1.6.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-cluster_2.10">
+			<revision name="2.2.3" status="release" pubdate="20131023164049" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="13">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3283" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-cluster_2.10/ivy-2.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-cluster_2.10/2.2.3/akka-cluster_2.10-2.2.3.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="akka-cluster_2.10" type="bundle" ext="jar" status="no" details="" size="962015" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-cluster_2.10/bundles/akka-cluster_2.10-2.2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-cluster_2.10/2.2.3/akka-cluster_2.10-2.2.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="net.sandrogrzicic" name="scalabuff-runtime_2.10">
+			<revision name="1.2.0" status="release" pubdate="20130507034930" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/SandroGrzicic/ScalaBuff" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="14">
+				<license name="Apache" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2812" time="0" location="/home/beenotung/.ivy2/cache/net.sandrogrzicic/scalabuff-runtime_2.10/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/net/sandrogrzicic/scalabuff-runtime_2.10/1.2.0/scalabuff-runtime_2.10-1.2.0.pom"/>
+				<caller organisation="com.typesafe.akka" name="akka-cluster_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="2.2.3"/>
+				<artifacts>
+					<artifact name="scalabuff-runtime_2.10" type="jar" ext="jar" status="no" details="" size="19948" time="0" location="/home/beenotung/.ivy2/cache/net.sandrogrzicic/scalabuff-runtime_2.10/jars/scalabuff-runtime_2.10-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/sandrogrzicic/scalabuff-runtime_2.10/1.2.0/scalabuff-runtime_2.10-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-remote_2.10">
+			<revision name="2.2.3" status="release" pubdate="20131023163831" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="9">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3755" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-remote_2.10/ivy-2.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.10/2.2.3/akka-remote_2.10-2.2.3.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="0.9.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-cluster_2.10" conf="compile, runtime" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="2.2.3"/>
+				<artifacts>
+					<artifact name="akka-remote_2.10" type="bundle" ext="jar" status="no" details="" size="1277288" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-remote_2.10/bundles/akka-remote_2.10-2.2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.10/2.2.3/akka-remote_2.10-2.2.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.uncommons.maths" name="uncommons-maths">
+			<revision name="1.2.2a" status="release" pubdate="20110408215605" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://maths.uncommons.org/" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="12">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2738" time="0" location="/home/beenotung/.ivy2/cache/org.uncommons.maths/uncommons-maths/ivy-1.2.2a.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/uncommons/maths/uncommons-maths/1.2.2a/uncommons-maths-1.2.2a.pom"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="1.2.2a" rev-constraint-default="1.2.2a" rev-constraint-dynamic="1.2.2a" callerrev="2.2.3"/>
+				<artifacts>
+					<artifact name="uncommons-maths" type="jar" ext="jar" status="no" details="" size="49019" time="0" location="/home/beenotung/.ivy2/cache/org.uncommons.maths/uncommons-maths/jars/uncommons-maths-1.2.2a.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/uncommons/maths/uncommons-maths/1.2.2a/uncommons-maths-1.2.2a.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.google.protobuf" name="protobuf-java">
+			<revision name="2.4.1" status="release" pubdate="20110707033342" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/protobuf" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="11">
+				<license name="New BSD license" url="http://www.opensource.org/licenses/bsd-license.php"/>
+				<metadata-artifact status="no" details="" size="2948" time="0" location="/home/beenotung/.ivy2/cache/com.google.protobuf/protobuf-java/ivy-2.4.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1.pom"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="2.4.1" rev-constraint-default="2.4.1" rev-constraint-dynamic="2.4.1" callerrev="2.2.3"/>
+				<caller organisation="net.sandrogrzicic" name="scalabuff-runtime_2.10" conf="compile, runtime" rev="2.4.1" rev-constraint-default="2.4.1" rev-constraint-dynamic="2.4.1" callerrev="1.2.0"/>
+				<artifacts>
+					<artifact name="protobuf-java" type="jar" ext="jar" status="no" details="" size="450279" time="0" location="/home/beenotung/.ivy2/cache/com.google.protobuf/protobuf-java/jars/protobuf-java-2.4.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.netty" name="netty">
+			<revision name="3.6.6.Final" status="release" pubdate="20130515142624" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://netty.io/" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="10">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="6425" time="0" location="/home/beenotung/.ivy2/cache/io.netty/netty/ivy-3.6.6.Final.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/netty/netty/3.6.6.Final/netty-3.6.6.Final.pom"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="3.6.6.Final" rev-constraint-default="3.6.6.Final" rev-constraint-dynamic="3.6.6.Final" callerrev="2.2.3"/>
+				<artifacts>
+					<artifact name="netty" type="bundle" ext="jar" status="no" details="" size="1206119" time="0" location="/home/beenotung/.ivy2/cache/io.netty/netty/bundles/netty-3.6.6.Final.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/netty/netty/3.6.6.Final/netty-3.6.6.Final.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-kernel_2.10">
+			<revision name="2.2.3" status="release" pubdate="20131023163700" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="6">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2995" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-kernel_2.10/ivy-2.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-kernel_2.10/2.2.3/akka-kernel_2.10-2.2.3.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="akka-kernel_2.10" type="jar" ext="jar" status="no" details="" size="14419" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-kernel_2.10/jars/akka-kernel_2.10-2.2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-kernel_2.10/2.2.3/akka-kernel_2.10-2.2.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-actor_2.10">
+			<revision name="2.2.3" status="release" pubdate="20131023163548" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="7">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2638" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/ivy-2.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.10/2.2.3/akka-actor_2.10-2.2.3.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="0.9.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-kernel_2.10" conf="compile, runtime" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="2.2.3"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="2.2.3"/>
+				<artifacts>
+					<artifact name="akka-actor_2.10" type="jar" ext="jar" status="no" details="" size="2669443" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/jars/akka-actor_2.10-2.2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.10/2.2.3/akka-actor_2.10-2.2.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe" name="config">
+			<revision name="1.0.2" status="release" pubdate="20130703210814" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/typesafehub/config" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="8">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2723" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe/config/ivy-1.0.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/config/1.0.2/config-1.0.2.pom"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="compile, runtime" rev="1.0.2" rev-constraint-default="1.0.2" rev-constraint-dynamic="1.0.2" callerrev="2.2.3"/>
+				<artifacts>
+					<artifact name="config" type="bundle" ext="jar" status="no" details="" size="187497" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe/config/bundles/config-1.0.2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/config/1.0.2/config-1.0.2.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.vividsolutions" name="jts">
+			<revision name="1.12" status="release" pubdate="20110626171209" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://sourceforge.net/projects/jts-topo-suite" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="4">
+				<license name="Lesser General Public License (LGPL)" url="http://www.gnu.org/copyleft/lesser.txt"/>
+				<metadata-artifact status="no" details="" size="3095" time="0" location="/home/beenotung/.ivy2/cache/com.vividsolutions/jts/ivy-1.12.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/vividsolutions/jts/1.12/jts-1.12.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="1.12" rev-constraint-default="1.12" rev-constraint-dynamic="1.12" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="jts" type="jar" ext="jar" status="no" details="" size="770462" time="0" location="/home/beenotung/.ivy2/cache/com.vividsolutions/jts/jars/jts-1.12.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/vividsolutions/jts/1.12/jts-1.12.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="xerces" name="xercesImpl">
+			<revision name="2.4.0" status="release" pubdate="20051109055132" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="5">
+				<metadata-artifact status="no" details="" size="2187" time="0" location="/home/beenotung/.ivy2/cache/xerces/xercesImpl/ivy-2.4.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0.pom"/>
+				<caller organisation="com.vividsolutions" name="jts" conf="compile, runtime" rev="2.4.0" rev-constraint-default="2.4.0" rev-constraint-dynamic="2.4.0" callerrev="1.12"/>
+				<artifacts>
+					<artifact name="xercesImpl" type="jar" ext="jar" status="no" details="" size="895924" time="0" location="/home/beenotung/.ivy2/cache/xerces/xercesImpl/jars/xercesImpl-2.4.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.azavea.geotrellis" name="geotrellis-macros_2.10">
+			<revision name="0.9.0" status="release" pubdate="20140213031654" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://geotrellis.github.io" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="2">
+				<license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2689" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis-macros_2.10/ivy-0.9.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis-macros_2.10/0.9.0/geotrellis-macros_2.10-0.9.0.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="0.9.0" rev-constraint-default="0.9.0" rev-constraint-dynamic="0.9.0" callerrev="0.9.0"/>
+				<artifacts>
+					<artifact name="geotrellis-macros_2.10" type="jar" ext="jar" status="no" details="" size="3536" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis-macros_2.10/jars/geotrellis-macros_2.10-0.9.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis-macros_2.10/0.9.0/geotrellis-macros_2.10-0.9.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-reflect">
+			<revision name="2.10.2" status="release" pubdate="20130607020608" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.2/" downloaded="false" searched="false" default="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="3">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
+				<metadata-artifact status="no" details="" size="2647" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-reflect/ivy-2.10.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.10.2/scala-reflect-2.10.2.pom"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="0.9.0"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis-macros_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="0.9.0"/>
+				<caller organisation="org.spire-math" name="spire_2.10" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="0.4.0"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
+				<artifacts>
+					<artifact name="scala-reflect" type="jar" ext="jar" status="no" details="" size="3171168" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.2.jar">
+						<origin-location is-local="false" location="UNKNOWN"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="2.10.0" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="-1">
+				<evicted-by rev="2.10.2"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="2.10.1" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="-1">
+				<evicted-by rev="2.10.2"/>
+				<caller organisation="org.spire-math" name="spire_2.10" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="0.4.0"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.10.3" status="release" pubdate="20130927174454" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.3/" downloaded="false" searched="false" default="false" conf="default, master(*), compile, runtime(*), runtime, default(compile), compile(*), master" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2669" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-library/ivy-2.10.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.3/scala-library-2.10.3.pom"/>
+				<caller organisation="org.parboiled" name="parboiled-scala_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="1.1.6"/>
+				<caller organisation="org.json4s" name="json4s-ast_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<caller organisation="io.spray" name="spray-util" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="1.2.0"/>
+				<caller organisation="org.spire-math" name="spire_2.10" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="0.4.0"/>
+				<caller organisation="org.json4s" name="json4s-core_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<caller organisation="io.spray" name="spray-can" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="1.2.0"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
+				<caller organisation="org.json4s" name="json4s-ext_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project_2.10" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="0.1-SNAPSHOT"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.2.3"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis_2.10" conf="default, compile, runtime, master" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="0.9.0"/>
+				<caller organisation="com.azavea.geotrellis" name="geotrellis-macros_2.10" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="0.9.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-kernel_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.2.3"/>
+				<caller organisation="io.spray" name="spray-client" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="1.2.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.2.3"/>
+				<caller organisation="com.chuusai" name="shapeless_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="1.2.4"/>
+				<caller organisation="org.json4s" name="json4s-jackson_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.10.2"/>
+				<caller organisation="io.spray" name="spray-http" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-io" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-routing" conf="default, compile, runtime, master" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="1.2.0"/>
+				<caller organisation="io.spray" name="spray-httpx" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="1.2.0"/>
+				<caller organisation="net.sandrogrzicic" name="scalabuff-runtime_2.10" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="1.2.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-cluster_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.2.3"/>
+				<artifacts>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="7126003" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.3/scala-library-2.10.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+			<revision name="2.10.0" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="-1">
+				<evicted-by rev="2.10.3"/>
+				<caller organisation="org.json4s" name="json4s-ast_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<caller organisation="org.json4s" name="json4s-core_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<caller organisation="com.chuusai" name="shapeless_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="1.2.4"/>
+				<caller organisation="org.json4s" name="json4s-jackson_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<caller organisation="org.scala-lang" name="scala-compiler" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="2.10.0"/>
+				<caller organisation="org.json4s" name="json4s-ext_2.10" conf="default, compile, runtime, master" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="3.2.11"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="2.10.1" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="-1">
+				<evicted-by rev="2.10.3"/>
+				<caller organisation="org.spire-math" name="spire_2.10" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="0.4.0"/>
+				<caller organisation="net.sandrogrzicic" name="scalabuff-runtime_2.10" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="1.2.0"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+			<revision name="2.10.2" evicted="latest-revision" evicted-reason="" downloaded="false" searched="false" conf="master(*), compile, runtime(*), runtime, compile(*), master" position="-1">
+				<evicted-by rev="2.10.3"/>
+				<caller organisation="com.typesafe.akka" name="akka-actor_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.2.3"/>
+				<caller organisation="org.parboiled" name="parboiled-scala_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="1.1.6"/>
+				<caller organisation="com.typesafe.akka" name="akka-kernel_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.2.3"/>
+				<caller organisation="com.typesafe.akka" name="akka-remote_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.2.3"/>
+				<caller organisation="org.scala-lang" name="scala-reflect" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.10.2"/>
+				<caller organisation="net.sandrogrzicic" name="scalabuff-runtime_2.10" conf="compile, runtime" rev="2.10.1" rev-constraint-default="2.10.1" rev-constraint-dynamic="2.10.1" callerrev="1.2.0"/>
+				<caller organisation="com.typesafe.akka" name="akka-cluster_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="2.2.3"/>
+				<artifacts>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>

@@ -37,19 +37,52 @@ object Application extends Controller with IpAddress {
   case class Greet(name: String, `type`: String)
 
   def hello = Action { request =>
-    val greet = request.body.asJson
-    println(greet)
-    Ok("Hello too" + greet)
-
+    //   val greet = request.body.asJson
+    // println(greet)
+    Ok("hello")
   }
 
   def api = Action(parse.json) { request =>
     Ok("Building")
   }
 
-  object Account {
-    def getSessionId = Action {
-      Ok("123")
+  def calc = Action(parse.json) { request =>
+    (request.body \ "name").asOpt[String].map { name =>
+      Ok(toJson(
+        Map("status" -> "OK", "message" -> ("Hello " + name))
+      ))
+    }.getOrElse {
+      BadRequest(toJson(
+        Map("status" -> "KO", "message" -> "Missing parameter [name]")
+      ))
+    }
+    Ok("c")
+      .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
+  }
+
+  case class WithCors(httpVerbs: String*)(action: EssentialAction) extends EssentialAction with Results {
+    def apply(request: RequestHeader) = {
+      implicit val executionContext: ExecutionContext = play.api.libs.concurrent.Execution.defaultContext
+      var origin = request.headers.get(ORIGIN).getOrElse("*")
+      if (request.method == "OPTIONS") {
+        //preflight
+        val corsAction = Action {
+          request =>
+            Ok("").withHeaders(
+              ACCESS_CONTROL_ALLOW_ORIGIN -> origin,
+              ACCESS_CONTROL_ALLOW_METHODS -> (httpVerbs.toSet + "OPTIONS").mkString(", "),
+              ACCESS_CONTROL_MAX_AGE -> "3600",
+              ACCESS_CONTROL_ALLOW_HEADERS -> s"$ORIGIN, X-Requested-With, $CONTENT_TYPE, $ACCEPT, $AUTHORIZATION, X-Auth-Token",
+              ACCESS_CONTROL_ALLOW_CREDENTIALS -> "true")
+        }
+        corsAction(request)
+      } else {
+        //actual request
+        action(request).map(res => res.withHeaders(
+          ACCESS_CONTROL_ALLOW_ORIGIN -> origin,
+          ACCESS_CONTROL_ALLOW_CREDENTIALS -> "true"
+        ))
+      }
     }
   }
 

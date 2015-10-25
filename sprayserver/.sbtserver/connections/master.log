@@ -1,0 +1,25 @@
+New log file opened at Mon Oct 26 01:18:04 HKT 2015 by 4465@BeenoTung-Archlinux-Home
+Taking next connection to: 38470
+New client attempting to connect on port: 39776-38470
+  Address = /192.168.1.3:38470
+This client on port 39776 has uuid 29301c02-d153-4e68-bc10-6aa8e01b2ed8 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-29301c02-d153-4e68-bc10-6aa8e01b2ed8
+Taking next connection to: 38470
+New client attempting to connect on port: 39778-38470
+  Address = /192.168.1.3:38470
+Handshake exception on socket: 39778
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 38470
+New client attempting to connect on port: 39780-38470
+  Address = /192.168.1.3:38470
+This client on port 39780 has uuid aa1c65b9-8868-401a-be94-cf609929a656 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-29301c02-d153-4e68-bc10-6aa8e01b2ed8, activator-aa1c65b9-8868-401a-be94-cf609929a656
+Taking next connection to: 38470

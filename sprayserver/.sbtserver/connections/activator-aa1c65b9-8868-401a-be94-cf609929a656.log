@@ -1,0 +1,47 @@
+New log file opened at Mon Oct 26 01:18:26 HKT 2015 by 4465@BeenoTung-Archlinux-Home
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,sbt server socket logs are in: /home/beenotung/.git/workspace/webapp-social-connection/sprayserver/.sbtserver/connections/master.log))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,sbt client logs are in: /home/beenotung/.git/workspace/webapp-social-connection/sprayserver/.sbtserver/connections/activator-aa1c65b9-8868-401a-be94-cf609929a656.log))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,sbt general server logs are in: /home/beenotung/.git/workspace/webapp-social-connection/sprayserver/.sbtserver/master.log))
+Reading next message from client.
+Got request: ListenToEvents()
+Reading next message from client.
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: (3,ReceivedResponse())
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,[Loading] Found non-root projects ))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,[Loading] Done in /home/beenotung/.git/workspace/webapp-social-connection/sprayserver, returning: ()))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(List(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))))))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,  :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.JUnitXmlReportPlugin)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,sorting: ns: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,  :: sorting:: found: List(sbt.plugins.CorePlugin) not found List(sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin) not found List(sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin) not found List(sbt.plugins.JUnitXmlReportPlugin)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,  :: sorting:: found: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin) not found List()))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,  :: sorted deduced result: List(sbt.plugins.CorePlugin, sbt.plugins.IvyPlugin, sbt.plugins.JvmPlugin, sbt.plugins.JUnitXmlReportPlugin)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,[Loading] Done in /home/beenotung/.git/workspace/webapp-social-connection/sprayserver, returning: (sprayserver)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(info,Set current project to GeoTrellis Tutorial Project (in build file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(info,Reapplying settings...))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(info,Set current project to GeoTrellis Tutorial Project (in build file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,> iflast shell))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,> server-send-ready-for-request))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: BuildLoaded()
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: DetachedLogEvent(LogMessage(debug,> server-handle-next-server-request))
+Got request: KeyLookupRequest(name)
+Reading next message from client.
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: (4,KeyLookupResponse(name,Vector(AttributeKey[java.lang.String]("name") in Scope(Build: file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/, , Project: ProjectReference(file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/,sprayserver)))))
+Got request: ListenToValue(AttributeKey[java.lang.String]("name") in Scope(Build: file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/, , Project: ProjectReference(file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/,sprayserver)))
+Reading next message from client.
+Got request: SendSyntheticValueChanged(AttributeKey[java.lang.String]("name") in Scope(Build: file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/, , Project: ProjectReference(file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/,sprayserver)))
+Reading next message from client.
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: ValueChanged(AttributeKey[java.lang.String]("name") in Scope(Build: file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/, , Project: ProjectReference(file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/,sprayserver)),TaskSuccess(BuildValue(LazyValue(GeoTrellis Tutorial Project,scala.pickling.PicklerUnpickler$DelegatingPicklerUnpickler@6b3c82a7),GeoTrellis Tutorial Project)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: (5,ReceivedResponse())
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: ValueChanged(AttributeKey[java.lang.String]("name") in Scope(Build: file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/, , Project: ProjectReference(file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/,sprayserver)),TaskSuccess(BuildValue(LazyValue(GeoTrellis Tutorial Project,scala.pickling.PicklerUnpickler$DelegatingPicklerUnpickler@6b3c82a7),GeoTrellis Tutorial Project)))
+Sending msg to client activator-aa1c65b9-8868-401a-be94-cf609929a656: (6,ReceivedResponse())
+Got request: UnlistenToValue(AttributeKey[java.lang.String]("name") in Scope(Build: file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/, , Project: ProjectReference(file:/home/beenotung/.git/workspace/webapp-social-connection/sprayserver/,sprayserver)))
+Reading next message from client.
+Got request: UnlistenToEvents()
+Reading next message from client.
+Client activator-aa1c65b9-8868-401a-be94-cf609929a656 EOF, shutting down.
+Stopping client.
+Dropping message (7,ReceivedResponse()) to dead client activator-aa1c65b9-8868-401a-be94-cf609929a656
+Dropping message (8,ReceivedResponse()) to dead client activator-aa1c65b9-8868-401a-be94-cf609929a656
+Dropping message (0,ReceivedResponse()) to dead client activator-aa1c65b9-8868-401a-be94-cf609929a656
+Client activator-aa1c65b9-8868-401a-be94-cf609929a656 thread exiting.
