@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="ivy-report.xsl"?>
+<ivy-report version="1.0">
+	<info
+		organisation="geotrellis-tutorial-project"
+		module="geotrellis-tutorial-project$sources_javadoc_2.10"
+		revision="0.1-SNAPSHOT"
+		conf="runtime"
+		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, sources, docs, pom, scala-tool"
+		date="20151026013818"/>
+	<dependencies>
+		<module organisation="org.json4s" name="json4s-ext_2.10">
+			<revision name="3.2.11" status="release" pubdate="20141024090904" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/json4s/json4s" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="37">
+				<license name="ASL" url="http://github.com/json4s/json4s/raw/HEAD/LICENSE"/>
+				<metadata-artifact status="no" details="" size="2895" time="0" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ext_2.10/ivy-3.2.11.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/json4s/json4s-ext_2.10/3.2.11/json4s-ext_2.10-3.2.11.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="3.2.11" rev-constraint-default="3.2.11" rev-constraint-dynamic="3.2.11" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="json4s-ext_2.10" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="3958" time="936" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ext_2.10/srcs/json4s-ext_2.10-3.2.11-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-ext_2.10/3.2.11/json4s-ext_2.10-3.2.11-sources.jar"/>
+					</artifact>
+					<artifact name="json4s-ext_2.10" type="jar" ext="jar" status="no" details="" size="82097" time="0" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ext_2.10/jars/json4s-ext_2.10-3.2.11.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-ext_2.10/3.2.11/json4s-ext_2.10-3.2.11.jar"/>
+					</artifact>
+					<artifact name="json4s-ext_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="398833" time="4185" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ext_2.10/docs/json4s-ext_2.10-3.2.11-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-ext_2.10/3.2.11/json4s-ext_2.10-3.2.11-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.joda" name="joda-convert">
+			<revision name="1.6" status="release" pubdate="20140128023743" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.joda.org/joda-convert/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="39">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="6116" time="0" location="/home/beenotung/.ivy2/cache/org.joda/joda-convert/ivy-1.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/joda/joda-convert/1.6/joda-convert-1.6.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.6" rev-constraint-default="1.6" rev-constraint-dynamic="1.6" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="joda-convert" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="95975" time="802" location="/home/beenotung/.ivy2/cache/org.joda/joda-convert/docs/joda-convert-1.6-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/joda/joda-convert/1.6/joda-convert-1.6-javadoc.jar"/>
+					</artifact>
+					<artifact name="joda-convert" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="36436" time="795" location="/home/beenotung/.ivy2/cache/org.joda/joda-convert/srcs/joda-convert-1.6-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/joda/joda-convert/1.6/joda-convert-1.6-sources.jar"/>
+					</artifact>
+					<artifact name="joda-convert" type="jar" ext="jar" status="no" details="" size="98818" time="0" location="/home/beenotung/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-1.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/joda/joda-convert/1.6/joda-convert-1.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="joda-time" name="joda-time">
+			<revision name="2.3" status="release" pubdate="20130817013125" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.joda.org/joda-time/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="38">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="6364" time="0" location="/home/beenotung/.ivy2/cache/joda-time/joda-time/ivy-2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/joda-time/joda-time/2.3/joda-time-2.3.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.3" rev-constraint-default="2.3" rev-constraint-dynamic="2.3" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="joda-time" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="718287" time="1275" location="/home/beenotung/.ivy2/cache/joda-time/joda-time/srcs/joda-time-2.3-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/joda-time/joda-time/2.3/joda-time-2.3-sources.jar"/>
+					</artifact>
+					<artifact name="joda-time" type="jar" ext="jar" status="no" details="" size="581571" time="0" location="/home/beenotung/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/joda-time/joda-time/2.3/joda-time-2.3.jar"/>
+					</artifact>
+					<artifact name="joda-time" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="1301413" time="1613" location="/home/beenotung/.ivy2/cache/joda-time/joda-time/docs/joda-time-2.3-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/joda-time/joda-time/2.3/joda-time-2.3-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.json4s" name="json4s-jackson_2.10">
+			<revision name="3.2.11" status="release" pubdate="20141024090915" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/json4s/json4s" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="28">
+				<license name="ASL" url="http://github.com/json4s/json4s/raw/HEAD/LICENSE"/>
+				<metadata-artifact status="no" details="" size="2823" time="0" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-jackson_2.10/ivy-3.2.11.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/json4s/json4s-jackson_2.10/3.2.11/json4s-jackson_2.10-3.2.11.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="3.2.11" rev-constraint-default="3.2.11" rev-constraint-dynamic="3.2.11" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="json4s-jackson_2.10" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="7083" time="862" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-jackson_2.10/srcs/json4s-jackson_2.10-3.2.11-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-jackson_2.10/3.2.11/json4s-jackson_2.10-3.2.11-sources.jar"/>
+					</artifact>
+					<artifact name="json4s-jackson_2.10" type="jar" ext="jar" status="no" details="" size="41058" time="0" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-jackson_2.10/jars/json4s-jackson_2.10-3.2.11.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-jackson_2.10/3.2.11/json4s-jackson_2.10-3.2.11.jar"/>
+					</artifact>
+					<artifact name="json4s-jackson_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="388579" time="1188" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-jackson_2.10/docs/json4s-jackson_2.10-3.2.11-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-jackson_2.10/3.2.11/json4s-jackson_2.10-3.2.11-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-databind">
+			<revision name="2.3.1" status="release" pubdate="20131228102912" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="34">
+				<metadata-artifact status="no" details="" size="7223" time="0" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/ivy-2.3.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.3.1/jackson-databind-2.3.1.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.3.1" rev-constraint-default="2.3.1" rev-constraint-dynamic="2.3.1" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="jackson-databind" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="4028516" time="2868" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/docs/jackson-databind-2.3.1-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.3.1/jackson-databind-2.3.1-javadoc.jar"/>
+					</artifact>
+					<artifact name="jackson-databind" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="752437" time="1154" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.3.1-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.3.1/jackson-databind-2.3.1-sources.jar"/>
+					</artifact>
+					<artifact name="jackson-databind" type="jar" ext="jar" status="successful" details="" size="914311" time="1483" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/jars/jackson-databind-2.3.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-databind/2.3.1/jackson-databind-2.3.1.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-core">
+			<revision name="2.3.1" status="release" pubdate="20131228090124" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="36">
+				<metadata-artifact status="no" details="" size="5473" time="0" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/ivy-2.3.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.3.1/jackson-core-2.3.1.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.3.1" rev-constraint-default="2.3.1" rev-constraint-dynamic="2.3.1" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="jackson-core" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="814553" time="1601" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/docs/jackson-core-2.3.1-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.3.1/jackson-core-2.3.1-javadoc.jar"/>
+					</artifact>
+					<artifact name="jackson-core" type="jar" ext="jar" status="successful" details="" size="197986" time="957" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/jars/jackson-core-2.3.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.3.1/jackson-core-2.3.1.jar"/>
+					</artifact>
+					<artifact name="jackson-core" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="232233" time="1325" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/srcs/jackson-core-2.3.1-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.3.1/jackson-core-2.3.1-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.fasterxml.jackson.core" name="jackson-annotations">
+			<revision name="2.3.0" status="release" pubdate="20131114125645" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://wiki.fasterxml.com/JacksonHome" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="35">
+				<metadata-artifact status="no" details="" size="4805" time="0" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/ivy-2.3.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.3.0" rev-constraint-default="2.3.0" rev-constraint-dynamic="2.3.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="jackson-annotations" type="jar" ext="jar" status="successful" details="" size="35058" time="795" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/jars/jackson-annotations-2.3.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0.jar"/>
+					</artifact>
+					<artifact name="jackson-annotations" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="39607" time="798" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/srcs/jackson-annotations-2.3.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0-sources.jar"/>
+					</artifact>
+					<artifact name="jackson-annotations" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="255445" time="1105" location="/home/beenotung/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/docs/jackson-annotations-2.3.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.3.0/jackson-annotations-2.3.0-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.json4s" name="json4s-core_2.10">
+			<revision name="3.2.11" status="release" pubdate="20141024090933" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/json4s/json4s" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="29">
+				<license name="ASL" url="http://github.com/json4s/json4s/raw/HEAD/LICENSE"/>
+				<metadata-artifact status="no" details="" size="2938" time="0" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-core_2.10/ivy-3.2.11.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/json4s/json4s-core_2.10/3.2.11/json4s-core_2.10-3.2.11.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="3.2.11" rev-constraint-default="3.2.11" rev-constraint-dynamic="3.2.11" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="json4s-core_2.10" type="jar" ext="jar" status="no" details="" size="597252" time="0" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-core_2.10/jars/json4s-core_2.10-3.2.11.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-core_2.10/3.2.11/json4s-core_2.10-3.2.11.jar"/>
+					</artifact>
+					<artifact name="json4s-core_2.10" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="39377" time="943" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-core_2.10/srcs/json4s-core_2.10-3.2.11-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-core_2.10/3.2.11/json4s-core_2.10-3.2.11-sources.jar"/>
+					</artifact>
+					<artifact name="json4s-core_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="704296" time="1527" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-core_2.10/docs/json4s-core_2.10-3.2.11-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-core_2.10/3.2.11/json4s-core_2.10-3.2.11-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scalap">
+			<revision name="2.10.0" status="release" pubdate="20121220153017" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="32">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
+				<metadata-artifact status="no" details="" size="2518" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scalap/ivy-2.10.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scalap/2.10.0/scalap-2.10.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="scalap" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="40814" time="796" location="/home/beenotung/.ivy2/cache/org.scala-lang/scalap/srcs/scalap-2.10.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scalap/2.10.0/scalap-2.10.0-sources.jar"/>
+					</artifact>
+					<artifact name="scalap" type="jar" ext="jar" status="no" details="" size="855012" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scalap/jars/scalap-2.10.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scalap/2.10.0/scalap-2.10.0.jar"/>
+					</artifact>
+					<artifact name="scalap" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="1234075" time="2612" location="/home/beenotung/.ivy2/cache/org.scala-lang/scalap/docs/scalap-2.10.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scalap/2.10.0/scalap-2.10.0-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-compiler">
+			<revision name="2.10.0" status="release" pubdate="20121220152948" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="33">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
+				<metadata-artifact status="no" details="" size="2809" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-compiler/ivy-2.10.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.10.0/scala-compiler-2.10.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.10.0" rev-constraint-default="2.10.0" rev-constraint-dynamic="2.10.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="scala-compiler" type="jar" ext="jar" status="no" details="" size="14149435" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.10.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.10.0/scala-compiler-2.10.0.jar"/>
+					</artifact>
+					<artifact name="scala-compiler" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="12021231" time="10632" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-compiler/docs/scala-compiler-2.10.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.10.0/scala-compiler-2.10.0-javadoc.jar"/>
+					</artifact>
+					<artifact name="scala-compiler" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="2007189" time="1967" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-compiler/srcs/scala-compiler-2.10.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.10.0/scala-compiler-2.10.0-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.thoughtworks.paranamer" name="paranamer">
+			<revision name="2.6" status="release" pubdate="20131009115654" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="31">
+				<metadata-artifact status="no" details="" size="4124" time="0" location="/home/beenotung/.ivy2/cache/com.thoughtworks.paranamer/paranamer/ivy-2.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.6" rev-constraint-default="2.6" rev-constraint-dynamic="2.6" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="paranamer" type="jar" ext="jar" status="no" details="" size="32806" time="0" location="/home/beenotung/.ivy2/cache/com.thoughtworks.paranamer/paranamer/jars/paranamer-2.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6.jar"/>
+					</artifact>
+					<artifact name="paranamer" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="26517" time="0" location="/home/beenotung/.ivy2/cache/com.thoughtworks.paranamer/paranamer/srcs/paranamer-2.6-sources.jar">
+						<origin-location is-local="false" location="https://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6-sources.jar"/>
+					</artifact>
+					<artifact name="paranamer" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="90529" time="802" location="/home/beenotung/.ivy2/cache/com.thoughtworks.paranamer/paranamer/docs/paranamer-2.6-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/thoughtworks/paranamer/paranamer/2.6/paranamer-2.6-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.json4s" name="json4s-ast_2.10">
+			<revision name="3.2.11" status="release" pubdate="20141024090823" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/json4s/json4s" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="30">
+				<license name="ASL" url="http://github.com/json4s/json4s/raw/HEAD/LICENSE"/>
+				<metadata-artifact status="no" details="" size="2516" time="0" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ast_2.10/ivy-3.2.11.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/json4s/json4s-ast_2.10/3.2.11/json4s-ast_2.10-3.2.11.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="3.2.11" rev-constraint-default="3.2.11" rev-constraint-dynamic="3.2.11" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="json4s-ast_2.10" type="src" ext="jar" extra-classifier="sources" status="successful" details="" size="7279" time="2316" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ast_2.10/srcs/json4s-ast_2.10-3.2.11-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-ast_2.10/3.2.11/json4s-ast_2.10-3.2.11-sources.jar"/>
+					</artifact>
+					<artifact name="json4s-ast_2.10" type="jar" ext="jar" status="no" details="" size="84053" time="0" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ast_2.10/jars/json4s-ast_2.10-3.2.11.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-ast_2.10/3.2.11/json4s-ast_2.10-3.2.11.jar"/>
+					</artifact>
+					<artifact name="json4s-ast_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="successful" details="" size="457045" time="1457" location="/home/beenotung/.ivy2/cache/org.json4s/json4s-ast_2.10/docs/json4s-ast_2.10-3.2.11-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/json4s/json4s-ast_2.10/3.2.11/json4s-ast_2.10-3.2.11-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.azavea.geotrellis" name="geotrellis_2.10">
+			<revision name="0.9.0" status="release" pubdate="20140213031727" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://geotrellis.github.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="1">
+				<license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="4644" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis_2.10/ivy-0.9.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis_2.10/0.9.0/geotrellis_2.10-0.9.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="0.9.0" rev-constraint-default="0.9.0" rev-constraint-dynamic="0.9.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="geotrellis_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="266287" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis_2.10/srcs/geotrellis_2.10-0.9.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis_2.10/0.9.0/geotrellis_2.10-0.9.0-sources.jar"/>
+					</artifact>
+					<artifact name="geotrellis_2.10" type="jar" ext="jar" status="no" details="" size="3189971" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis_2.10/jars/geotrellis_2.10-0.9.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis_2.10/0.9.0/geotrellis_2.10-0.9.0.jar"/>
+					</artifact>
+					<artifact name="geotrellis_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="2995345" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis_2.10/docs/geotrellis_2.10-0.9.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis_2.10/0.9.0/geotrellis_2.10-0.9.0-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.apache.commons" name="commons-math3">
+			<revision name="3.2" status="release" pubdate="20130403033128" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://commons.apache.org/proper/commons-math/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="27">
+				<metadata-artifact status="no" details="" size="9429" time="0" location="/home/beenotung/.ivy2/cache/org.apache.commons/commons-math3/ivy-3.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.2/commons-math3-3.2.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="3.2" rev-constraint-default="3.2" rev-constraint-dynamic="3.2" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="commons-math3" type="jar" ext="jar" status="no" details="" size="1692782" time="0" location="/home/beenotung/.ivy2/cache/org.apache.commons/commons-math3/jars/commons-math3-3.2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.2/commons-math3-3.2.jar"/>
+					</artifact>
+					<artifact name="commons-math3" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="2005074" time="0" location="/home/beenotung/.ivy2/cache/org.apache.commons/commons-math3/srcs/commons-math3-3.2-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.2/commons-math3-3.2-sources.jar"/>
+					</artifact>
+					<artifact name="commons-math3" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="5393423" time="0" location="/home/beenotung/.ivy2/cache/org.apache.commons/commons-math3/docs/commons-math3-3.2-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/apache/commons/commons-math3/3.2/commons-math3-3.2-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-routing">
+			<revision name="1.2.0" status="release" pubdate="20131213232939" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="40">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3541" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-routing/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-routing/1.2.0/spray-routing-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-routing" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="1211319" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-routing/docs/spray-routing-1.2.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-routing/1.2.0/spray-routing-1.2.0-javadoc.jar"/>
+					</artifact>
+					<artifact name="spray-routing" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="73955" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-routing/srcs/spray-routing-1.2.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-routing/1.2.0/spray-routing-1.2.0-sources.jar"/>
+					</artifact>
+					<artifact name="spray-routing" type="jar" ext="jar" status="no" details="" size="1027828" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-routing/jars/spray-routing-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-routing/1.2.0/spray-routing-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.chuusai" name="shapeless_2.10">
+			<revision name="1.2.4" status="release" pubdate="20130227035121" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/milessabin/shapeless" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="41">
+				<license name="Apache License" url="http://www.apache.org/licenses/"/>
+				<metadata-artifact status="no" details="" size="2634" time="0" location="/home/beenotung/.ivy2/cache/com.chuusai/shapeless_2.10/ivy-1.2.4.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/chuusai/shapeless_2.10/1.2.4/shapeless_2.10-1.2.4.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.4" rev-constraint-default="1.2.4" rev-constraint-dynamic="1.2.4" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="shapeless_2.10" type="jar" ext="jar" status="no" details="" size="1280423" time="0" location="/home/beenotung/.ivy2/cache/com.chuusai/shapeless_2.10/jars/shapeless_2.10-1.2.4.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/chuusai/shapeless_2.10/1.2.4/shapeless_2.10-1.2.4.jar"/>
+					</artifact>
+					<artifact name="shapeless_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="1560847" time="0" location="/home/beenotung/.ivy2/cache/com.chuusai/shapeless_2.10/docs/shapeless_2.10-1.2.4-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/chuusai/shapeless_2.10/1.2.4/shapeless_2.10-1.2.4-javadoc.jar"/>
+					</artifact>
+					<artifact name="shapeless_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="74241" time="0" location="/home/beenotung/.ivy2/cache/com.chuusai/shapeless_2.10/srcs/shapeless_2.10-1.2.4-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/chuusai/shapeless_2.10/1.2.4/shapeless_2.10-1.2.4-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-client">
+			<revision name="1.2.0" status="release" pubdate="20131213233153" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="18">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3494" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-client/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-client/1.2.0/spray-client-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-client" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="383100" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-client/docs/spray-client-1.2.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-client/1.2.0/spray-client-1.2.0-javadoc.jar"/>
+					</artifact>
+					<artifact name="spray-client" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="3908" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-client/srcs/spray-client-1.2.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-client/1.2.0/spray-client-1.2.0-sources.jar"/>
+					</artifact>
+					<artifact name="spray-client" type="jar" ext="jar" status="no" details="" size="44966" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-client/jars/spray-client-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-client/1.2.0/spray-client-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-httpx">
+			<revision name="1.2.0" status="release" pubdate="20131213233101" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="25">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="4105" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-httpx/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-httpx/1.2.0/spray-httpx-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-httpx" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="707649" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-httpx/docs/spray-httpx-1.2.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-httpx/1.2.0/spray-httpx-1.2.0-javadoc.jar"/>
+					</artifact>
+					<artifact name="spray-httpx" type="jar" ext="jar" status="no" details="" size="456464" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-httpx/jars/spray-httpx-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-httpx/1.2.0/spray-httpx-1.2.0.jar"/>
+					</artifact>
+					<artifact name="spray-httpx" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="43983" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-httpx/srcs/spray-httpx-1.2.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-httpx/1.2.0/spray-httpx-1.2.0-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.jvnet.mimepull" name="mimepull">
+			<revision name="1.9.3" status="release" pubdate="20130419174423" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://mimepull.java.net" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="26">
+				<license name="CDDL 1.1" url="https://glassfish.java.net/public/CDDL+GPL_1_1.html"/>
+				<license name="GPL2 w/ CPE" url="https://glassfish.java.net/public/CDDL+GPL_1_1.html"/>
+				<metadata-artifact status="no" details="" size="3786" time="0" location="/home/beenotung/.ivy2/cache/org.jvnet.mimepull/mimepull/ivy-1.9.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/jvnet/mimepull/mimepull/1.9.3/mimepull-1.9.3.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.9.3" rev-constraint-default="1.9.3" rev-constraint-dynamic="1.9.3" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="mimepull" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="53506" time="0" location="/home/beenotung/.ivy2/cache/org.jvnet.mimepull/mimepull/docs/mimepull-1.9.3-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/jvnet/mimepull/mimepull/1.9.3/mimepull-1.9.3-javadoc.jar"/>
+					</artifact>
+					<artifact name="mimepull" type="jar" ext="jar" status="no" details="" size="62135" time="0" location="/home/beenotung/.ivy2/cache/org.jvnet.mimepull/mimepull/jars/mimepull-1.9.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/jvnet/mimepull/mimepull/1.9.3/mimepull-1.9.3.jar"/>
+					</artifact>
+					<artifact name="mimepull" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="67530" time="0" location="/home/beenotung/.ivy2/cache/org.jvnet.mimepull/mimepull/srcs/mimepull-1.9.3-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/jvnet/mimepull/mimepull/1.9.3/mimepull-1.9.3-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-can">
+			<revision name="1.2.0" status="release" pubdate="20131213232854" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="19">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3355" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-can/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-can/1.2.0/spray-can-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-can" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="83321" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-can/srcs/spray-can-1.2.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-can/1.2.0/spray-can-1.2.0-sources.jar"/>
+					</artifact>
+					<artifact name="spray-can" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="510219" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-can/docs/spray-can-1.2.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-can/1.2.0/spray-can-1.2.0-javadoc.jar"/>
+					</artifact>
+					<artifact name="spray-can" type="jar" ext="jar" status="no" details="" size="711450" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-can/jars/spray-can-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-can/1.2.0/spray-can-1.2.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-io">
+			<revision name="1.2.0" status="release" pubdate="20131213233217" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="20">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3134" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-io/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-io/1.2.0/spray-io-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-io" type="jar" ext="jar" status="no" details="" size="193565" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-io/jars/spray-io-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-io/1.2.0/spray-io-1.2.0.jar"/>
+					</artifact>
+					<artifact name="spray-io" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="20315" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-io/srcs/spray-io-1.2.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-io/1.2.0/spray-io-1.2.0-sources.jar"/>
+					</artifact>
+					<artifact name="spray-io" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="486779" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-io/docs/spray-io-1.2.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-io/1.2.0/spray-io-1.2.0-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-http">
+			<revision name="1.2.0" status="release" pubdate="20131213233038" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="22">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3119" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-http/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-http/1.2.0/spray-http-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-http" type="jar" ext="jar" status="no" details="" size="1282343" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-http/jars/spray-http-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-http/1.2.0/spray-http-1.2.0.jar"/>
+					</artifact>
+					<artifact name="spray-http" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="89255" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-http/srcs/spray-http-1.2.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-http/1.2.0/spray-http-1.2.0-sources.jar"/>
+					</artifact>
+					<artifact name="spray-http" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="1432624" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-http/docs/spray-http-1.2.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-http/1.2.0/spray-http-1.2.0-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.parboiled" name="parboiled-scala_2.10">
+			<revision name="1.1.6" status="release" pubdate="20130826185413" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://parboiled.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="23">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2946" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-scala_2.10/ivy-1.1.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/parboiled/parboiled-scala_2.10/1.1.6/parboiled-scala_2.10-1.1.6.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.1.6" rev-constraint-default="1.1.6" rev-constraint-dynamic="1.1.6" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="parboiled-scala_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="591551" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-scala_2.10/docs/parboiled-scala_2.10-1.1.6-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/parboiled/parboiled-scala_2.10/1.1.6/parboiled-scala_2.10-1.1.6-javadoc.jar"/>
+					</artifact>
+					<artifact name="parboiled-scala_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="28671" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-scala_2.10/srcs/parboiled-scala_2.10-1.1.6-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/parboiled/parboiled-scala_2.10/1.1.6/parboiled-scala_2.10-1.1.6-sources.jar"/>
+					</artifact>
+					<artifact name="parboiled-scala_2.10" type="jar" ext="jar" status="no" details="" size="237780" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-scala_2.10/jars/parboiled-scala_2.10-1.1.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/parboiled/parboiled-scala_2.10/1.1.6/parboiled-scala_2.10-1.1.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.parboiled" name="parboiled-core">
+			<revision name="1.1.6" status="release" pubdate="20130822233221" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://parboiled.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="24">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2654" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-core/ivy-1.1.6.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/parboiled/parboiled-core/1.1.6/parboiled-core-1.1.6.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.1.6" rev-constraint-default="1.1.6" rev-constraint-dynamic="1.1.6" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="parboiled-core" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="457802" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-core/docs/parboiled-core-1.1.6-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/parboiled/parboiled-core/1.1.6/parboiled-core-1.1.6-javadoc.jar"/>
+					</artifact>
+					<artifact name="parboiled-core" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="166648" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-core/srcs/parboiled-core-1.1.6-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/parboiled/parboiled-core/1.1.6/parboiled-core-1.1.6-sources.jar"/>
+					</artifact>
+					<artifact name="parboiled-core" type="jar" ext="jar" status="no" details="" size="187091" time="0" location="/home/beenotung/.ivy2/cache/org.parboiled/parboiled-core/jars/parboiled-core-1.1.6.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/parboiled/parboiled-core/1.1.6/parboiled-core-1.1.6.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.spray" name="spray-util">
+			<revision name="1.2.0" status="release" pubdate="20131213232915" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spray.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="21">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3111" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-util/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/spray/spray-util/1.2.0/spray-util-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spray-util" type="jar" ext="jar" status="no" details="" size="128707" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-util/jars/spray-util-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-util/1.2.0/spray-util-1.2.0.jar"/>
+					</artifact>
+					<artifact name="spray-util" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="29878" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-util/srcs/spray-util-1.2.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-util/1.2.0/spray-util-1.2.0-sources.jar"/>
+					</artifact>
+					<artifact name="spray-util" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="478948" time="0" location="/home/beenotung/.ivy2/cache/io.spray/spray-util/docs/spray-util-1.2.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/spray/spray-util/1.2.0/spray-util-1.2.0-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.spire-math" name="spire_2.10">
+			<revision name="0.4.0" status="release" pubdate="20130512122123" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://spire-math.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="17">
+				<license name="BSD-style" url="http://opensource.org/licenses/MIT"/>
+				<metadata-artifact status="no" details="" size="2863" time="0" location="/home/beenotung/.ivy2/cache/org.spire-math/spire_2.10/ivy-0.4.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/spire-math/spire_2.10/0.4.0/spire_2.10-0.4.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="0.4.0" rev-constraint-default="0.4.0" rev-constraint-dynamic="0.4.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="spire_2.10" type="jar" ext="jar" status="no" details="" size="7009290" time="0" location="/home/beenotung/.ivy2/cache/org.spire-math/spire_2.10/jars/spire_2.10-0.4.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/spire-math/spire_2.10/0.4.0/spire_2.10-0.4.0.jar"/>
+					</artifact>
+					<artifact name="spire_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="4272327" time="0" location="/home/beenotung/.ivy2/cache/org.spire-math/spire_2.10/docs/spire_2.10-0.4.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/spire-math/spire_2.10/0.4.0/spire_2.10-0.4.0-javadoc.jar"/>
+					</artifact>
+					<artifact name="spire_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="127663" time="0" location="/home/beenotung/.ivy2/cache/org.spire-math/spire_2.10/srcs/spire_2.10-0.4.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/spire-math/spire_2.10/0.4.0/spire_2.10-0.4.0-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.jackson" name="jackson-mapper-asl">
+			<revision name="1.6.1" status="release" pubdate="20101007123514" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jackson.codehaus.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="16">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2653" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-mapper-asl/ivy-1.6.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.6.1/jackson-mapper-asl-1.6.1.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="jackson-mapper-asl" type="jar" ext="jar" status="no" details="" size="542255" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-mapper-asl/jars/jackson-mapper-asl-1.6.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.6.1/jackson-mapper-asl-1.6.1.jar"/>
+					</artifact>
+					<artifact name="jackson-mapper-asl" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="356357" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-mapper-asl/srcs/jackson-mapper-asl-1.6.1-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-mapper-asl/1.6.1/jackson-mapper-asl-1.6.1-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.codehaus.jackson" name="jackson-core-asl">
+			<revision name="1.6.1" status="release" pubdate="20101007123501" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://jackson.codehaus.org" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="15">
+				<license name="The Apache Software License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2437" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-core-asl/ivy-1.6.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.6.1/jackson-core-asl-1.6.1.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.6.1" rev-constraint-default="1.6.1" rev-constraint-dynamic="1.6.1" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="jackson-core-asl" type="jar" ext="jar" status="no" details="" size="200979" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-core-asl/jars/jackson-core-asl-1.6.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.6.1/jackson-core-asl-1.6.1.jar"/>
+					</artifact>
+					<artifact name="jackson-core-asl" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="200752" time="0" location="/home/beenotung/.ivy2/cache/org.codehaus.jackson/jackson-core-asl/srcs/jackson-core-asl-1.6.1-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/codehaus/jackson/jackson-core-asl/1.6.1/jackson-core-asl-1.6.1-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-cluster_2.10">
+			<revision name="2.2.3" status="release" pubdate="20131023164049" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="13">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3283" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-cluster_2.10/ivy-2.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-cluster_2.10/2.2.3/akka-cluster_2.10-2.2.3.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="akka-cluster_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="404446" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-cluster_2.10/docs/akka-cluster_2.10-2.2.3-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-cluster_2.10/2.2.3/akka-cluster_2.10-2.2.3-javadoc.jar"/>
+					</artifact>
+					<artifact name="akka-cluster_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="64783" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-cluster_2.10/srcs/akka-cluster_2.10-2.2.3-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-cluster_2.10/2.2.3/akka-cluster_2.10-2.2.3-sources.jar"/>
+					</artifact>
+					<artifact name="akka-cluster_2.10" type="jar" ext="jar" status="no" details="" size="962015" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-cluster_2.10/jars/akka-cluster_2.10-2.2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-cluster_2.10/2.2.3/akka-cluster_2.10-2.2.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="net.sandrogrzicic" name="scalabuff-runtime_2.10">
+			<revision name="1.2.0" status="release" pubdate="20130507034930" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/SandroGrzicic/ScalaBuff" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="14">
+				<license name="Apache" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2812" time="0" location="/home/beenotung/.ivy2/cache/net.sandrogrzicic/scalabuff-runtime_2.10/ivy-1.2.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/net/sandrogrzicic/scalabuff-runtime_2.10/1.2.0/scalabuff-runtime_2.10-1.2.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.0" rev-constraint-default="1.2.0" rev-constraint-dynamic="1.2.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="scalabuff-runtime_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="373532" time="0" location="/home/beenotung/.ivy2/cache/net.sandrogrzicic/scalabuff-runtime_2.10/docs/scalabuff-runtime_2.10-1.2.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/sandrogrzicic/scalabuff-runtime_2.10/1.2.0/scalabuff-runtime_2.10-1.2.0-javadoc.jar"/>
+					</artifact>
+					<artifact name="scalabuff-runtime_2.10" type="jar" ext="jar" status="no" details="" size="19948" time="0" location="/home/beenotung/.ivy2/cache/net.sandrogrzicic/scalabuff-runtime_2.10/jars/scalabuff-runtime_2.10-1.2.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/sandrogrzicic/scalabuff-runtime_2.10/1.2.0/scalabuff-runtime_2.10-1.2.0.jar"/>
+					</artifact>
+					<artifact name="scalabuff-runtime_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="4867" time="0" location="/home/beenotung/.ivy2/cache/net.sandrogrzicic/scalabuff-runtime_2.10/srcs/scalabuff-runtime_2.10-1.2.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/net/sandrogrzicic/scalabuff-runtime_2.10/1.2.0/scalabuff-runtime_2.10-1.2.0-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-remote_2.10">
+			<revision name="2.2.3" status="release" pubdate="20131023163831" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="9">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="3755" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-remote_2.10/ivy-2.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.10/2.2.3/akka-remote_2.10-2.2.3.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="akka-remote_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="640603" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-remote_2.10/docs/akka-remote_2.10-2.2.3-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.10/2.2.3/akka-remote_2.10-2.2.3-javadoc.jar"/>
+					</artifact>
+					<artifact name="akka-remote_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="129040" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-remote_2.10/srcs/akka-remote_2.10-2.2.3-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.10/2.2.3/akka-remote_2.10-2.2.3-sources.jar"/>
+					</artifact>
+					<artifact name="akka-remote_2.10" type="jar" ext="jar" status="no" details="" size="1277288" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-remote_2.10/jars/akka-remote_2.10-2.2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-remote_2.10/2.2.3/akka-remote_2.10-2.2.3.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.uncommons.maths" name="uncommons-maths">
+			<revision name="1.2.2a" status="release" pubdate="20110408215605" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://maths.uncommons.org/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="12">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2738" time="0" location="/home/beenotung/.ivy2/cache/org.uncommons.maths/uncommons-maths/ivy-1.2.2a.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/uncommons/maths/uncommons-maths/1.2.2a/uncommons-maths-1.2.2a.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.2.2a" rev-constraint-default="1.2.2a" rev-constraint-dynamic="1.2.2a" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="uncommons-maths" type="jar" ext="jar" status="no" details="" size="49019" time="0" location="/home/beenotung/.ivy2/cache/org.uncommons.maths/uncommons-maths/jars/uncommons-maths-1.2.2a.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/uncommons/maths/uncommons-maths/1.2.2a/uncommons-maths-1.2.2a.jar"/>
+					</artifact>
+					<artifact name="uncommons-maths" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="61093" time="0" location="/home/beenotung/.ivy2/cache/org.uncommons.maths/uncommons-maths/srcs/uncommons-maths-1.2.2a-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/uncommons/maths/uncommons-maths/1.2.2a/uncommons-maths-1.2.2a-sources.jar"/>
+					</artifact>
+					<artifact name="uncommons-maths" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="158263" time="0" location="/home/beenotung/.ivy2/cache/org.uncommons.maths/uncommons-maths/docs/uncommons-maths-1.2.2a-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/uncommons/maths/uncommons-maths/1.2.2a/uncommons-maths-1.2.2a-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.google.protobuf" name="protobuf-java">
+			<revision name="2.4.1" status="release" pubdate="20110707033342" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://code.google.com/p/protobuf" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="11">
+				<license name="New BSD license" url="http://www.opensource.org/licenses/bsd-license.php"/>
+				<metadata-artifact status="no" details="" size="2948" time="0" location="/home/beenotung/.ivy2/cache/com.google.protobuf/protobuf-java/ivy-2.4.1.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.4.1" rev-constraint-default="2.4.1" rev-constraint-dynamic="2.4.1" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="protobuf-java" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="1070255" time="0" location="/home/beenotung/.ivy2/cache/com.google.protobuf/protobuf-java/docs/protobuf-java-2.4.1-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1-javadoc.jar"/>
+					</artifact>
+					<artifact name="protobuf-java" type="jar" ext="jar" status="no" details="" size="450279" time="0" location="/home/beenotung/.ivy2/cache/com.google.protobuf/protobuf-java/jars/protobuf-java-2.4.1.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1.jar"/>
+					</artifact>
+					<artifact name="protobuf-java" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="200142" time="0" location="/home/beenotung/.ivy2/cache/com.google.protobuf/protobuf-java/srcs/protobuf-java-2.4.1-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/google/protobuf/protobuf-java/2.4.1/protobuf-java-2.4.1-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="io.netty" name="netty">
+			<revision name="3.6.6.Final" status="release" pubdate="20130515142624" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://netty.io/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="10">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="6425" time="0" location="/home/beenotung/.ivy2/cache/io.netty/netty/ivy-3.6.6.Final.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/io/netty/netty/3.6.6.Final/netty-3.6.6.Final.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="3.6.6.Final" rev-constraint-default="3.6.6.Final" rev-constraint-dynamic="3.6.6.Final" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="netty" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="1065495" time="0" location="/home/beenotung/.ivy2/cache/io.netty/netty/srcs/netty-3.6.6.Final-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/netty/netty/3.6.6.Final/netty-3.6.6.Final-sources.jar"/>
+					</artifact>
+					<artifact name="netty" type="jar" ext="jar" status="no" details="" size="1206119" time="0" location="/home/beenotung/.ivy2/cache/io.netty/netty/jars/netty-3.6.6.Final.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/netty/netty/3.6.6.Final/netty-3.6.6.Final.jar"/>
+					</artifact>
+					<artifact name="netty" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="10815376" time="0" location="/home/beenotung/.ivy2/cache/io.netty/netty/docs/netty-3.6.6.Final-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/io/netty/netty/3.6.6.Final/netty-3.6.6.Final-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-kernel_2.10">
+			<revision name="2.2.3" status="release" pubdate="20131023163700" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="6">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2995" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-kernel_2.10/ivy-2.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-kernel_2.10/2.2.3/akka-kernel_2.10-2.2.3.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="akka-kernel_2.10" type="jar" ext="jar" status="no" details="" size="14419" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-kernel_2.10/jars/akka-kernel_2.10-2.2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-kernel_2.10/2.2.3/akka-kernel_2.10-2.2.3.jar"/>
+					</artifact>
+					<artifact name="akka-kernel_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="2528" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-kernel_2.10/srcs/akka-kernel_2.10-2.2.3-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-kernel_2.10/2.2.3/akka-kernel_2.10-2.2.3-sources.jar"/>
+					</artifact>
+					<artifact name="akka-kernel_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="23257" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-kernel_2.10/docs/akka-kernel_2.10-2.2.3-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-kernel_2.10/2.2.3/akka-kernel_2.10-2.2.3-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe.akka" name="akka-actor_2.10">
+			<revision name="2.2.3" status="release" pubdate="20131023163548" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://akka.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="7">
+				<license name="Apache 2" url="http://www.apache.org/licenses/LICENSE-2.0.txt"/>
+				<metadata-artifact status="no" details="" size="2638" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/ivy-2.2.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.10/2.2.3/akka-actor_2.10-2.2.3.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.2.3" rev-constraint-default="2.2.3" rev-constraint-dynamic="2.2.3" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="akka-actor_2.10" type="jar" ext="jar" status="no" details="" size="2669443" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/jars/akka-actor_2.10-2.2.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.10/2.2.3/akka-actor_2.10-2.2.3.jar"/>
+					</artifact>
+					<artifact name="akka-actor_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="2229531" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/docs/akka-actor_2.10-2.2.3-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.10/2.2.3/akka-actor_2.10-2.2.3-javadoc.jar"/>
+					</artifact>
+					<artifact name="akka-actor_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="321821" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe.akka/akka-actor_2.10/srcs/akka-actor_2.10-2.2.3-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/akka/akka-actor_2.10/2.2.3/akka-actor_2.10-2.2.3-sources.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.typesafe" name="config">
+			<revision name="1.0.2" status="release" pubdate="20130703210814" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/typesafehub/config" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="8">
+				<license name="Apache License, Version 2.0" url="http://www.apache.org/licenses/LICENSE-2.0"/>
+				<metadata-artifact status="no" details="" size="2723" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe/config/ivy-1.0.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/typesafe/config/1.0.2/config-1.0.2.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.0.2" rev-constraint-default="1.0.2" rev-constraint-dynamic="1.0.2" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="config" type="jar" ext="jar" status="no" details="" size="187497" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe/config/jars/config-1.0.2.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/config/1.0.2/config-1.0.2.jar"/>
+					</artifact>
+					<artifact name="config" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="126063" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe/config/srcs/config-1.0.2-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/config/1.0.2/config-1.0.2-sources.jar"/>
+					</artifact>
+					<artifact name="config" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="160436" time="0" location="/home/beenotung/.ivy2/cache/com.typesafe/config/docs/config-1.0.2-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/typesafe/config/1.0.2/config-1.0.2-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.vividsolutions" name="jts">
+			<revision name="1.12" status="release" pubdate="20110626171209" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://sourceforge.net/projects/jts-topo-suite" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="4">
+				<license name="Lesser General Public License (LGPL)" url="http://www.gnu.org/copyleft/lesser.txt"/>
+				<metadata-artifact status="no" details="" size="3095" time="0" location="/home/beenotung/.ivy2/cache/com.vividsolutions/jts/ivy-1.12.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/vividsolutions/jts/1.12/jts-1.12.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="1.12" rev-constraint-default="1.12" rev-constraint-dynamic="1.12" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="jts" type="jar" ext="jar" status="no" details="" size="770462" time="0" location="/home/beenotung/.ivy2/cache/com.vividsolutions/jts/jars/jts-1.12.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/vividsolutions/jts/1.12/jts-1.12.jar"/>
+					</artifact>
+					<artifact name="jts" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="889836" time="0" location="/home/beenotung/.ivy2/cache/com.vividsolutions/jts/srcs/jts-1.12-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/vividsolutions/jts/1.12/jts-1.12-sources.jar"/>
+					</artifact>
+					<artifact name="jts" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="2867405" time="0" location="/home/beenotung/.ivy2/cache/com.vividsolutions/jts/docs/jts-1.12-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/vividsolutions/jts/1.12/jts-1.12-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="xerces" name="xercesImpl">
+			<revision name="2.4.0" status="release" pubdate="20051109055132" resolver="sbt-chain" artresolver="sbt-chain" homepage="" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="5">
+				<metadata-artifact status="no" details="" size="2187" time="0" location="/home/beenotung/.ivy2/cache/xerces/xercesImpl/ivy-2.4.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.4.0" rev-constraint-default="2.4.0" rev-constraint-dynamic="2.4.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="xercesImpl" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="1856526" time="0" location="/home/beenotung/.ivy2/cache/xerces/xercesImpl/srcs/xercesImpl-2.4.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0-sources.jar"/>
+					</artifact>
+					<artifact name="xercesImpl" type="jar" ext="jar" status="no" details="" size="895924" time="0" location="/home/beenotung/.ivy2/cache/xerces/xercesImpl/jars/xercesImpl-2.4.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/xerces/xercesImpl/2.4.0/xercesImpl-2.4.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="com.azavea.geotrellis" name="geotrellis-macros_2.10">
+			<revision name="0.9.0" status="release" pubdate="20140213031654" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://geotrellis.github.io" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="2">
+				<license name="Apache 2.0" url="http://www.apache.org/licenses/LICENSE-2.0.html"/>
+				<metadata-artifact status="no" details="" size="2689" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis-macros_2.10/ivy-0.9.0.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis-macros_2.10/0.9.0/geotrellis-macros_2.10-0.9.0.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="0.9.0" rev-constraint-default="0.9.0" rev-constraint-dynamic="0.9.0" callerrev="0.1-SNAPSHOT"/>
+				<artifacts>
+					<artifact name="geotrellis-macros_2.10" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="346316" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis-macros_2.10/docs/geotrellis-macros_2.10-0.9.0-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis-macros_2.10/0.9.0/geotrellis-macros_2.10-0.9.0-javadoc.jar"/>
+					</artifact>
+					<artifact name="geotrellis-macros_2.10" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="801" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis-macros_2.10/srcs/geotrellis-macros_2.10-0.9.0-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis-macros_2.10/0.9.0/geotrellis-macros_2.10-0.9.0-sources.jar"/>
+					</artifact>
+					<artifact name="geotrellis-macros_2.10" type="jar" ext="jar" status="no" details="" size="3536" time="0" location="/home/beenotung/.ivy2/cache/com.azavea.geotrellis/geotrellis-macros_2.10/jars/geotrellis-macros_2.10-0.9.0.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/com/azavea/geotrellis/geotrellis-macros_2.10/0.9.0/geotrellis-macros_2.10-0.9.0.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-reflect">
+			<revision name="2.10.2" status="release" pubdate="20130607020608" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.2/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="3">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html    "/>
+				<metadata-artifact status="no" details="" size="2647" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-reflect/ivy-2.10.2.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.10.2/scala-reflect-2.10.2.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.10.2" rev-constraint-default="2.10.2" rev-constraint-dynamic="2.10.2" callerrev="0.1-SNAPSHOT" extra-info.apiURL="http://www.scala-lang.org/api/2.10.2/"/>
+				<artifacts>
+					<artifact name="scala-reflect" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="429994" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.10.2-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.10.2/scala-reflect-2.10.2-sources.jar"/>
+					</artifact>
+					<artifact name="scala-reflect" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="33909258" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-reflect/docs/scala-reflect-2.10.2-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.10.2/scala-reflect-2.10.2-javadoc.jar"/>
+					</artifact>
+					<artifact name="scala-reflect" type="jar" ext="jar" status="no" details="" size="3171168" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.10.2.jar">
+						<origin-location is-local="false" location="UNKNOWN"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+		<module organisation="org.scala-lang" name="scala-library">
+			<revision name="2.10.3" status="release" pubdate="20130927174454" resolver="sbt-chain" artresolver="sbt-chain" homepage="http://www.scala-lang.org/" extra-info.apiURL="http://www.scala-lang.org/api/2.10.3/" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="0">
+				<license name="BSD-like" url="http://www.scala-lang.org/downloads/license.html          "/>
+				<metadata-artifact status="no" details="" size="2669" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-library/ivy-2.10.3.xml" searched="false" origin-is-local="false" origin-location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.3/scala-library-2.10.3.pom"/>
+				<caller organisation="geotrellis-tutorial-project" name="geotrellis-tutorial-project$sources_javadoc_2.10" conf="compile, runtime" rev="2.10.3" rev-constraint-default="2.10.3" rev-constraint-dynamic="2.10.3" callerrev="0.1-SNAPSHOT" extra-info.apiURL="http://www.scala-lang.org/api/2.10.3/"/>
+				<artifacts>
+					<artifact name="scala-library" type="jar" ext="jar" status="no" details="" size="7126003" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.10.3.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.3/scala-library-2.10.3.jar"/>
+					</artifact>
+					<artifact name="scala-library" type="src" ext="jar" extra-classifier="sources" status="no" details="" size="1062304" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.10.3-sources.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.3/scala-library-2.10.3-sources.jar"/>
+					</artifact>
+					<artifact name="scala-library" type="doc" ext="jar" extra-classifier="javadoc" status="no" details="" size="33911475" time="0" location="/home/beenotung/.ivy2/cache/org.scala-lang/scala-library/docs/scala-library-2.10.3-javadoc.jar">
+						<origin-location is-local="false" location="http://repo1.maven.org/maven2/org/scala-lang/scala-library/2.10.3/scala-library-2.10.3-javadoc.jar"/>
+					</artifact>
+				</artifacts>
+			</revision>
+		</module>
+	</dependencies>
+</ivy-report>
