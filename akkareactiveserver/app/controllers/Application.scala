@@ -39,12 +39,18 @@ object Application extends Controller with IpAddress {
   def hello = Action { request =>
     val greet = request.body.asJson
     println(greet)
-    Ok("Hello too"+greet)
+    Ok("Hello too" + greet)
 
   }
 
   def api = Action(parse.json) { request =>
     Ok("Building")
+  }
+
+  object Account {
+    def getSessionId = Action {
+      Ok("123")
+    }
   }
 
 }
