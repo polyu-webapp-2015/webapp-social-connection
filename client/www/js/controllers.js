@@ -53,12 +53,13 @@ angular.module('register', [])
             return msgHolder.content == '';
         };
 		$scope.sendRegisterRequest = function() {
-			$http.post(site_join('/hello'), {data:JSON.stringify({})})
+			$http.get(site_join('/hello/'))
 				.success(function(data, status, headers, config) {
 					alert("success!");
 				})
 				.error(function(data, status, header, config) {
-					alert("failed!");
+					console.log(status);
+					alert(status);
 				});
 
 		}

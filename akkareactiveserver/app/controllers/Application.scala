@@ -8,6 +8,8 @@ import json.JsonFormats._
 import play.api.Play.current
 import play.api.libs.iteratee.{Concurrent, Iteratee}
 import play.api.libs.json.JsValue
+import play.api.libs.json.Json
+import play.api.libs.json.Json._
 import play.api.mvc._
 import utils.IpAddress
 
@@ -37,10 +39,11 @@ object Application extends Controller with IpAddress {
   case class Greet(name: String, `type`: String)
 
   def hello = Action { request =>
-    val greet = request.body.asJson
-    println(greet)
-    Ok("Hello too"+greet)
-
+ //   val greet = request.body.asJson
+   // println(greet)
+   val res=Json.newObject();
+   res.put("re","ewe");
+    Ok(res)
   }
 
   def api = Action(parse.json) { request =>
