@@ -149,7 +149,7 @@ function dictToString(dict) {
 var MODE_WEBSOCKET = "websocket";
 var MODE_JSONP = "jsonp";
 var MODE_AJAX = "ajax";
-var MODE = MODE_AJAX;
+var MODE = MODE_WEBSOCKET;
 var TYPE_GET = "get";
 var TYPE_POST = "post";
 var TYPE_JSON = "application/json";
