@@ -55,7 +55,7 @@
         var port = "9000";
         function s1change() {
 //            var api = "wsWithActor";
-            var api = "httpEcho2";
+            var api = "httpEcho";
             var data = {
                 sessionId: s1.value,
                 groupList: [1, 2, 3, 4, 5, 6]
@@ -74,7 +74,8 @@
                 event=JSON.pruned(event);
                 s2.value = event;
             };
-            apiCall(host, port, api, data, succ, fail);
+            MODE=MODE_AJAX;
+            apiCall(host, port, api, data, succ, fail,true);
         }
         function s2change() {
         }

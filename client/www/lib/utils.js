@@ -217,7 +217,7 @@ function onceWebSocketCall(host, port, api, data, succ, fail) {
  @param {function} succ : callback when request success
  @param {function} fail : callback when request failed
  */
-function apiCall(host, port, api, data, succ, fail) {
+function apiCall(host, port, api, data, succ, fail, preferGet) {
     switch (MODE) {
         case MODE_WEBSOCKET:
             return onceWebSocketCall(host, port, api, data, succ, fail);
@@ -234,6 +234,8 @@ function apiCall(host, port, api, data, succ, fail) {
                     requestMethod: TYPE_POST,
                     params: data
                 };
+                if (preferGet)
+                    data.requestMethod = TYPE_GET;
             }
             if (data.requestMethod == TYPE_GET)
                 data.params = dictToString(data.params);
