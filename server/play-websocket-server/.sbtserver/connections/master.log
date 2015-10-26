@@ -1,0 +1,25 @@
+New log file opened at Mon Oct 26 10:53:39 HKT 2015 by 7480@BeenoTung-Archlinux-Home
+Taking next connection to: 42108
+New client attempting to connect on port: 36938-42108
+  Address = /192.168.1.3:42108
+This client on port 36938 has uuid e14cff29-97ec-4ce0-ae44-32fd89b3984c configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-e14cff29-97ec-4ce0-ae44-32fd89b3984c
+Taking next connection to: 42108
+New client attempting to connect on port: 37024-42108
+  Address = /192.168.1.3:42108
+Handshake exception on socket: 37024
+sbt.impl.ipc.HandshakeException: Unable to perform handshake
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:46)
+	at sbt.impl.ipc.MultiClientServer.<init>(IPC.scala:150)
+	at sbt.server.SbtServerSocketHandler$$anon$1.run(SbtServerSocketHandler.scala:43)
+Caused by: java.io.EOFException
+	at java.io.DataInputStream.readInt(DataInputStream.java:392)
+	at sbt.impl.ipc.Peer.receive(IPC.scala:95)
+	at sbt.impl.ipc.Peer.handshake(IPC.scala:49)
+	... 2 more
+Taking next connection to: 42108
+New client attempting to connect on port: 37038-42108
+  Address = /192.168.1.3:42108
+This client on port 37038 has uuid a8c60401-a89d-4c4f-bd09-6c454905fc34 configName play-fork-run humanReadableName Play Fork Run protocolVersion 1 featureTags Vector()
+Connected Clients: activator-e14cff29-97ec-4ce0-ae44-32fd89b3984c, play-fork-run-a8c60401-a89d-4c4f-bd09-6c454905fc34
+Taking next connection to: 42108
