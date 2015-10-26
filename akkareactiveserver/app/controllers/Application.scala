@@ -11,7 +11,6 @@ import play.api.libs.json.JsValue
 import play.api.mvc._
 import utils.IpAddress
 
-import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
 object Application extends Controller with IpAddress {
