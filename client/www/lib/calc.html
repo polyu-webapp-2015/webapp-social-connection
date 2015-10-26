@@ -56,6 +56,7 @@
         function s1change() {
 //            var api = "wsWithActor";
             var api = "httpEcho";
+            MODE=MODE_AJAX;
             var data = {
                 sessionId: s1.value,
                 groupList: [1, 2, 3, 4, 5, 6]
@@ -74,8 +75,8 @@
                 event=JSON.pruned(event);
                 s2.value = event;
             };
-            MODE=MODE_AJAX;
-            apiCall(host, port, api, data, succ, fail,true);
+//            apiCall(host, port, api, data, succ, fail,true);
+            apiCall(host, port, api, data, succ, fail);
         }
         function s2change() {
         }
