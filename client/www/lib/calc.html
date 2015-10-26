@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="utils.js"></script>
+    <script>
+        var server = "http://192.168.1.3:9000";
+        var host = "192.168.1.3";
+        var port = "9000";
+        function calc() {
+            var aa = parseInt(a.value);
+            var bb = parseInt(b.value);
+            var target = server + "/calc";
+            var options = {
+                "a": aa,
+                "b": bb
+            };
+//            target="http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+//            options = {
+//                tags: "mount rainier",
+//                tagmode: "any",
+//                format: "json"
+//            };
+            var ok = function (msg) {
+                c.value = msg;
+            };
+            var fail = function (msg) {
+                c.value = "failed " + Math.random();
+            };
+            ajaxCallJsonp(target, options, ok, fail);
+        }
+        function ajaxCallJsonp(target, options, ok, fail) {
+            var data = jQuery.post(target, options, null, "json");
+            data.success(ok);
+            data.error(fail);
+        }
+        var ws;
+        var ready = false;
+        function s1change_old() {
+            console.log(s1.value);
+//            if (ready)
+//                ws.send(s1.value);
+//            else
+//                s2.value = "socket not ready"
+            var timer = setInterval(function () {
+                if (ready) {
+                    ws.send(s1.value);
+                    clearInterval(timer);
+                }
+            });
+        }
+        var host = "58.96.176.223";
+        var port = "9000";
+        function s1change() {
+//            var api = "wsWithActor";
+            var api = "httpEcho";
+            var data = {
+                sessionId: s1.value,
+                groupList: [1, 2, 3, 4, 5, 6]
+            };
+            var succ = function (msg) {
+                try {
+                    msg = dictToString(msg);
+                } catch (e) {
+                }
+                s2.value = msg;
+            };
+            var fail = function (event) {
+                if (!event)
+                    event = "failed to call api";
+                else
+                event=JSON.pruned(event);
+                s2.value = event;
+            };
+            MODE=MODE_AJAX;
+            apiCall(host, port, api, data, succ, fail,true);
+        }
+        function s2change() {
+        }
+        function init() {
+            ws = new WebSocket("ws://58.96.176.223:9000/wsWithActor");
+            ws.onopen = function (event) {
+                console.log("onopen");
+                s2.value = "server ready";
+                ready = true;
+                if (event.data == undefined)
+                    return;
+                console.log(event.data);
+            };
+            ws.onmessage = function (event) {
+                console.log("onmessage");
+                s2.value = event.data;
+                s2change();
+            };
+            ws.onerror = function (event) {
+                s2.value = "server is not ready"
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="number" id="a"/>
++
+<input type="number" id="b"/>
+<button id="calc" value="=" onclick="calc()">=</button>
+<input type="number" id="c"/>
+<br/>
+<input type="text" id="s1" onchange="s1change()"/>
+<input type="text" id="s2" onchange="s2change()"/>
+</body>
+</html>
