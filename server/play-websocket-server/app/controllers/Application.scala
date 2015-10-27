@@ -136,4 +136,9 @@ class Application @Inject()(ws: WSClient) extends Controller {
 
       (Iteratee.ignore[String], outEnumerator)
   }
+
+  def httpEcho=Action{request=>
+    Ok(request.body.asText.getOrElse(""))
+    .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN->request.headers.get(ORIGIN).getOrElse("*"))
+  }
 }
