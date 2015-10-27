@@ -1,6 +1,7 @@
 package controllers
 
 import java.io.File
+import java.util.Date
 import javax.inject.Inject
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props}
@@ -135,5 +136,18 @@ class Application @Inject()(ws: WSClient) extends Controller {
       })
 
       (Iteratee.ignore[String], outEnumerator)
+  }
+
+  def httpTime = Action {
+    request =>
+      val now: String = s"${new Date()}"
+      Logger.info(s"httpTime, client connected. " + now)
+      Ok(now)
+  }
+
+  def httpEcho = Action { request =>
+    Logger.info(s"httpEcho, client connected.")
+    Ok(request.body.asText.getOrElse(""))
+      .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
   }
 }
