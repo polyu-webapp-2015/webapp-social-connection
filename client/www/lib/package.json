@@ -1,0 +1,25 @@
+{
+  "name": "social_connection_client",
+  "version": "1.0.0",
+  "description": "polyu webapp group project",
+  "main": "utils.js",
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "angular": "^1.4.6",
+    "jquery": "^2.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo Test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "repo_url"
+  },
+  "keywords": [
+    "social",
+    "connection"
+  ],
+  "author": "group14",
+  "license": "GPL-3.0"
+}
