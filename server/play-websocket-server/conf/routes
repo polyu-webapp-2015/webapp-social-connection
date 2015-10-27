@@ -16,6 +16,7 @@ GET     /wsWeather                  controllers.Application.wsWeatherProxy
 GET     /wsWeatherIntervals         controllers.Application.wsWeatherIntervals
 GET     /wsWithActor                controllers.Application.wsWithActor
 
+GET     /httpTime                   controllers.Application.httpTime
 GET     /httpEcho                   controllers.Application.httpEcho
 POST    /httpEcho                   controllers.Application.httpEcho
 
