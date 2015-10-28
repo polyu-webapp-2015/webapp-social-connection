@@ -1,0 +1,31 @@
+module SocialConnection{
+    /* element require to create a user */
+    struct UserAccount{
+        string name;
+        string email;
+        string phoneNum;
+        /*hash user id and password*/
+        string password;
+    };
+    struct UserGroup{
+        string groupId;
+        long long lastAccessTime;
+        long long joinTime;
+    };
+    typedef sequence<UserGroup> UserGroupSeq;
+    interface User{
+        attribute string id;
+        attribute UserAccount userAccount;
+        attribute UserGroupSeq userGroupSeq;
+    };
+    interface Server{
+        string newUserId();
+        /*return user id*/
+        string createUser(in UserAccount userAccount);
+        exception LoginException{
+            string err_msg;
+        };
+        /*login*/
+        string getSessionId(in string userId,in string password) raises(LoginException);
+    };
+};

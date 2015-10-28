@@ -1,0 +1,17 @@
+module Hospital{
+  interface Patient_Finder{
+    struct Patient{
+      string name;
+      char sex;
+      short age;
+      string diagnosis;
+      string room_no;
+    };
+    exception Cannot_admit{
+      string err_msg;
+    };
+    string admit(in Patient patient_info) raises(Cannot_admit);
+    typedef sequence<Patient>SequencePatient;
+    short search_patient(in string name, out SequencePatient patient_found);
+  };
+};

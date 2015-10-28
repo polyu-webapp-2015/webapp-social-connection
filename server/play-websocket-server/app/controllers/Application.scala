@@ -11,6 +11,7 @@ import play.api.libs.concurrent.Promise
 import play.api.libs.iteratee.{Concurrent, Enumerator, Iteratee}
 import play.api.libs.ws._
 import play.api.mvc._
+import play.libs.Json
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
@@ -147,7 +148,42 @@ class Application @Inject()(ws: WSClient) extends Controller {
 
   def httpEcho = Action { request =>
     Logger.info(s"httpEcho, client connected.")
-    Ok(request.body.asText.getOrElse(""))
+    val rawBody = request.body.asRaw
+    val bodyBytes = rawBody flatMap {
+      x: RawBuffer => x.asBytes(65536)
+    } getOrElse (Array.empty[Byte])
+    Logger.info("request: ")
+    Logger.info(request.body.asFormUrlEncoded.getOrElse("none" -> "none").toString())
+    Ok(request.body.asText.getOrElse("{}"))
       .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
+  }
+
+  def httpAdd = Action { request =>
+    Logger.info(s"httpEcho, client connected.")
+    val rawBody = request.body.asRaw
+    val bodyBytes = rawBody flatMap {
+      x: RawBuffer => x.asBytes(65536)
+    } getOrElse (Array.empty[Byte])
+    //    Logger.info("request: ")
+    var responseData = "[\"error\":\"wrong format\"]"
+    val requestData = request.body.asFormUrlEncoded
+    request.body.asFormUrlEncoded match {
+      case Some(data) =>
+        val dataParam = data.get("data")
+        Logger.info("dataParam=" + dataParam)
+        val str = dataParam.get.mkString
+        Logger.info("str=" + str)
+        val json = Json.parse(str)
+        val c = json.get("a").asDouble() + json.get("b").asDouble()
+        Ok(scala.util.parsing.json.JSONObject(Map("c" -> c)).toString())
+          .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
+      case None =>
+        Logger.info("dataParam=none")
+        BadRequest("wrong format")
+            .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
+    }
+    //    Logger.info(request.body.asFormUrlEncoded.getOrElse("error" -> "wrong request format").toString())
+//    Ok(request.body.asText.getOrElse("{}"))
+//      .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
   }
 }
