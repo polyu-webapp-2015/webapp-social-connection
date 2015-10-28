@@ -1,5 +1,5 @@
-angular.module('register', [])
-    .controller('RegisterController', function ($scope, $http) {
+
+app.controller('RegisterController', function ($scope, $http) {
         var rule = {
             username: {
                 min: 5
@@ -53,15 +53,15 @@ angular.module('register', [])
             return msgHolder.content == '';
         };
 		$scope.sendRegisterRequest = function() {
-			$http.get(site_join('/hello/'))
+			$http.post(site_join('/httpAdd'), {"data": JSON.stringify({"a": 456, "b": 4})})
 				.success(function(data, status, headers, config) {
 					alert("success!");
+                    console.log(data);
 				})
 				.error(function(data, status, header, config) {
 					console.log(status);
 					alert(status);
 				});
-
 		}
         $scope.isUsernameUnique = function (username) {
             //TODO require web service
