@@ -14,6 +14,9 @@ The .idl can generate stub and skeleton
  - stub is the "server" on the client, the method there are call by the client on the runtime
  - skeleton is the "client" on the server
 
+## remark
+work on main.idl directly, the user.idl and group.idl are deprecated
+
 ## to team member (from Beeno)
 If you do not know how to write IDL language, you and look at the demo .idl files under folder "demo".
 Or you can just write your input-output requirement in the google doc.

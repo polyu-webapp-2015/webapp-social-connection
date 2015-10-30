@@ -1,0 +1,46 @@
+module SocialConnection{
+  interface User;
+  interface Group;
+};
+
+module SocialConnection{
+
+  /*this struct store information for login*/
+  struct UserAccount{
+    string email;
+    string phoneNum;
+    string password;
+  };
+  interface User{
+    readonly attribute string user_id;
+    struct UserGroup{
+      Group group;
+      /*used for sorting in front-end*/
+      long long lastActionTime;
+      long long joinTime;
+    };
+  };
+  interface UserManager{
+    exception Exception_create_user{string err_msg;};
+    string create_user(in UserAccount new_user_account) raises (Exception_create_user);
+
+    exception Exception_get_session_id{
+      boolean user_exist;
+    };
+    /*login operation, return session if success, raise exception if failed*/
+    string get_session_id(in UserAccount user_account)raises (Exception_get_session_id);
+  };
+
+
+  interface Group{
+    readonly attribute string group_id;
+    struct GroupUser{
+      User user;
+    };
+
+  };
+
+  interface Conference{};
+
+  interface Exhibition{};
+};
