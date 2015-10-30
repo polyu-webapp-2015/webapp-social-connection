@@ -1,7 +1,7 @@
 
 serv_address = "http://175.159.10.118:9000"
 
-var app=angular.module('myApp', []);
+var app=angular.module('myApp', ['ui.bootstrap']);
 
 function site_join(path) {
 	return serv_address+path;

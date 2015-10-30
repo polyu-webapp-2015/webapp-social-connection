@@ -1,5 +1,5 @@
 
-app.controller('RegisterController', function ($scope, $http) {
+app.controller('MainCtrl', function ($scope, $http, $modal) {
         var rule = {
             username: {
                 min: 5
@@ -14,6 +14,18 @@ app.controller('RegisterController', function ($scope, $http) {
                 max: 256
                 , bannedDomain: ["junk.com", "junk.net"]
             }
+        };
+
+        $scope.logi = function() {
+            console.log("Hello World!");
+            $modal.open({
+            backdrop:true,
+            backdropClick: true,
+            dialogFade: false,
+            keyboard: true,
+            templateUrl: '/pages/register.html',
+        });
+
         };
         $scope.reset = function () {
             $scope.username = '';
@@ -144,4 +156,4 @@ app.controller('RegisterController', function ($scope, $http) {
         };
         $scope.reset();
     })
-;
+.controller("RegisterCtrl", function() {});
