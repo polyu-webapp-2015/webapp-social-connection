@@ -5,23 +5,29 @@ module SocialConnection{
 
 module SocialConnection{
 
-  interface ResultCode{
-    const short Success = 0;
-    const short Failed_To_Connect_To_Database = 1;
-    const short User_Not_Exist = 2;
-    const short Password_Wrong = 3;
-    const short No_Permission = 4;
+  enum ResultCodeEnum{
+    Success,
+    Failed_To_Connect_To_Database,
+    User_Not_Exist,
+    Password_Wrong,
+    No_Permission,
+    Name_Exist
   };
   exception GeneralException{short resultCode;};
 
-  /*this struct store information for login*/
+  enum SexEnum{M,F,Not_Given};
   struct UserAccount{
     string email;
     string phoneNum;
     string password;
+    string firstName;
+    string lastName;
+    string nickName;
+    SexEnum sex;
   };
   interface User{
     readonly attribute string userId;
+    readonly attribute string userIntro;
     struct UserGroup{
       string groupID;
       string groupName;
@@ -30,22 +36,30 @@ module SocialConnection{
       long long joinTime;
     };
     typedef sequence<UserGroup> UserGroupSeq;
-    void getUserGroupList(out UserGroupSeq userGroupSeq,out short numUserGroupSeq);
+    void getUserGroupList(out UserGroupSeq userGroupSeq,out short numUserGroup);
   };
   interface UserManager{
     void createUser(in UserAccount newUserAccount) raises (GeneralException);
 
     /*login operation, return session if success, raise exception if failed*/
-    string getSessionId(in UserAccount userAccount) raises (GeneralException);
+    string getSessionId(in string username,in string password) raises (GeneralException);
   };
 
-
   interface Group{
-    readonly attribute string group_id;
+    readonly attribute string groupId;
+    readonly attribute string groupName;
+    readonly attribute string groupIntro;
+    readonly attribute string hostUserId;
     struct GroupUser{
-      User user;
+      string userId;
+      long long lastActionTime;
+      long long joinTime;
     };
-
+    typedef sequence<GroupUser> GroupUserSeq;
+    void getGroupUserList(out GroupUserSeq groupUserSeq, out short numGroupUser);
+  };
+  interface GroupManager{
+    void createGroup(in string groupName, in string groupIntro) raises (GeneralException);
   };
 
   interface Conference{};
