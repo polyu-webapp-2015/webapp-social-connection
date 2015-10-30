@@ -1,2 +1,3 @@
 #!/bin/bash
-idlj -td out/ src/main.idl
+#idlj -td out/ src/main.idl
+idlj -fserver -td out/ src/main.idl

@@ -1,9 +1,12 @@
-module SocialConnection{
+module models{module idl{
+module social_connection{
   interface User;
   interface Group;
 };
 
-module SocialConnection{
+interface GeneralObject{};
+
+module social_connection{
 
   enum ResultCodeEnum{
     Success,
@@ -12,7 +15,9 @@ module SocialConnection{
     Password_Wrong,
     No_Permission,
     Name_Exist,
-    Group_Not_Exist
+    Group_Not_Exist,
+    Request_Param_Missing,
+    Request_Param_Wrong_Type
   };
   exception GeneralException{short resultCode;};
 
@@ -26,7 +31,7 @@ module SocialConnection{
     string nickName;
     SexEnum sex;
   };
-  interface User{
+  interface User:GeneralObject{
     readonly attribute string userId;
     readonly attribute string userIntro;
     struct UserGroup{
@@ -68,3 +73,4 @@ module SocialConnection{
 
   interface Exhibition{};
 };
+};};
