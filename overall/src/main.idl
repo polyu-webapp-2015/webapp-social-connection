@@ -5,6 +5,15 @@ module SocialConnection{
 
 module SocialConnection{
 
+  interface ResultCode{
+    const short Success = 0;
+    const short Failed_To_Connect_To_Database = 1;
+    const short User_Not_Exist = 2;
+    const short Password_Wrong = 3;
+    const short No_Permission = 4;
+  };
+  exception GeneralException{short resultCode;};
+
   /*this struct store information for login*/
   struct UserAccount{
     string email;
@@ -12,23 +21,22 @@ module SocialConnection{
     string password;
   };
   interface User{
-    readonly attribute string user_id;
+    readonly attribute string userId;
     struct UserGroup{
-      Group group;
+      string groupID;
+      string groupName;
       /*used for sorting in front-end*/
       long long lastActionTime;
       long long joinTime;
     };
+    typedef sequence<UserGroup> UserGroupSeq;
+    void getUserGroupList(out UserGroupSeq userGroupSeq,out short numUserGroupSeq);
   };
   interface UserManager{
-    exception Exception_create_user{string err_msg;};
-    string create_user(in UserAccount new_user_account) raises (Exception_create_user);
+    void createUser(in UserAccount newUserAccount) raises (GeneralException);
 
-    exception Exception_get_session_id{
-      boolean user_exist;
-    };
     /*login operation, return session if success, raise exception if failed*/
-    string get_session_id(in UserAccount user_account)raises (Exception_get_session_id);
+    string getSessionId(in UserAccount userAccount) raises (GeneralException);
   };
 
 
