@@ -11,7 +11,8 @@ module SocialConnection{
     User_Not_Exist,
     Password_Wrong,
     No_Permission,
-    Name_Exist
+    Name_Exist,
+    Group_Not_Exist
   };
   exception GeneralException{short resultCode;};
 
@@ -60,6 +61,7 @@ module SocialConnection{
   };
   interface GroupManager{
     void createGroup(in string groupName, in string groupIntro) raises (GeneralException);
+    Group getGroup(in string groupId) raises (GeneralException);
   };
 
   interface Conference{};
