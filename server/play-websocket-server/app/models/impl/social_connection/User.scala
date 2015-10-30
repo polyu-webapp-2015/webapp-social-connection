@@ -25,8 +25,8 @@ object User {
 
   @throws(classOf[GeneralException])
   def fromMap(map: Map[String, Any]): User = {
-    val userId = getParamValue(map, "userId")
-    val userInfo = getParamValue(map, "userInfo")
+    val userId = getParamValue[String](map, "userId")
+    val userInfo = getParamValue[String](map, "userInfo")
     newInstance(userId.asInstanceOf[String],userInfo)
   }
 }
