@@ -1,10 +1,9 @@
+module models{ module impl{ interface GeneralObject{}; }; };
 module models{module idl{
 module social_connection{
   interface User;
   interface Group;
 };
-
-interface GeneralObject{};
 
 module social_connection{
 
@@ -19,7 +18,7 @@ module social_connection{
     Request_Param_Missing,
     Request_Param_Wrong_Type
   };
-  exception GeneralException{short resultCode;};
+  exception GeneralException{long resultCode;};
 
   enum SexEnum{M,F,Not_Given};
   struct UserAccount{
@@ -31,7 +30,7 @@ module social_connection{
     string nickName;
     SexEnum sex;
   };
-  interface User:GeneralObject{
+  interface User:models::impl::GeneralObject{
     readonly attribute string userId;
     readonly attribute string userIntro;
     struct UserGroup{

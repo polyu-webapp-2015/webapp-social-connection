@@ -167,6 +167,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
     //    Logger.info("request: ")
     var responseData = "[\"error\":\"wrong format\"]"
     val requestData = request.body.asFormUrlEncoded
+    //    Logger.info(request.body.asFormUrlEncoded.getOrElse("error" -> "wrong request format").toString())
     request.body.asFormUrlEncoded match {
       case Some(data) =>
         val dataParam = data.get("data")
@@ -180,10 +181,9 @@ class Application @Inject()(ws: WSClient) extends Controller {
       case None =>
         Logger.info("dataParam=none")
         BadRequest("wrong format")
-            .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
+          .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
     }
-    //    Logger.info(request.body.asFormUrlEncoded.getOrElse("error" -> "wrong request format").toString())
-//    Ok(request.body.asText.getOrElse("{}"))
+    //    Ok(request.body.asText.getOrElse("{}"))
 //      .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
   }
 }
