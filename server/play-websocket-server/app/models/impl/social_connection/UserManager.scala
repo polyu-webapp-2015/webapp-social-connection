@@ -1,8 +1,7 @@
 package models.impl.social_connection
 
+import models.DatabaseHelper
 import models.idl.social_connection.UserManager
-import models.impl.GeneralObject
-import models.impl.GeneralObject.getParamValue
 
 import scala.util.Random
 
@@ -16,5 +15,7 @@ object UserManager extends UserManager{
 
   override def createUser(email: String, phoneNum: String, password: String): Unit = ???
 
-  override def getSessionId(username: String, password: String): String = ???
+  override def getSessionId(username: String, password: String): String = {
+    DatabaseHelper.
+  }
 }

@@ -5,6 +5,10 @@ import java.util.Date
 import javax.inject.Inject
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props}
+import config.Debug._
+import models.idl.social_connection.{GeneralException, ResultCodeEnum}
+import models.impl.GeneralObject.getParamValue
+import models.impl.social_connection.UserManager
 import play.api.Play.current
 import play.api._
 import play.api.libs.concurrent.Promise
@@ -14,6 +18,7 @@ import play.api.mvc._
 import play.libs.Json
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.util.parsing.json.JSONObject
 
 class Application @Inject()(ws: WSClient) extends Controller {
 
@@ -184,11 +189,45 @@ class Application @Inject()(ws: WSClient) extends Controller {
           .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
     }
     //    Ok(request.body.asText.getOrElse("{}"))
-//      .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
+    //      .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
   }
 
   /*-----------------real work start here--------------*/
-  def getSessionId=Action{request=>
+  def commonHeader(request: Request) = ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*")
 
+  def commonResponse(request: Request[AnyContent],
+                     sessionId: String,
+                     action: String,
+                     resultCode: Int = ResultCodeEnum.Success.value(),
+                     reason: String = "",
+                     params: Map[String, Any] = Map): Result = {
+    val responseBody = JSONObject(Map(
+      "sessionId" -> sessionId,
+      "action" -> action,
+      "resultCode" -> resultCode,
+      "reason" -> reason,
+      "params" -> JSONObject(params).toString()
+    )).toString()
+    if (resultCode.equals(ResultCodeEnum.Success.value()))
+      Ok(responseBody).withHeaders(commonHeader(request))
+    else
+      BadRequest(responseBody).withHeaders(commonHeader(request))
+  }
+
+  def actionEntryLog(action: String) = logInfo(action + ", client connected")
+
+  def getSessionId = Action { request =>
+    val action = "getSessionId"
+    actionEntryLog(action)
+    try {
+      val sessionId = UserManager.getSessionId(
+        getParamValue[String](request,"username"),
+        getParamValue[String](request,"password")
+      )
+      commonResponse(request,sessionId,action)
+    } catch {
+      case e: GeneralException =>
+        commonResponse(request,"0",action,e.resultCode,e.getMessage)
+    }
   }
 }

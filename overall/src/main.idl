@@ -1,4 +1,11 @@
-module models{ module impl{ interface GeneralObject{}; }; };
+module models{ module impl{
+  interface JsObject{};
+  interface GeneralObject{
+    readonly attribute JsObject jsObject;
+  };
+}; };
+
+
 module models{module idl{
 module social_connection{
   interface User;
@@ -10,13 +17,15 @@ module social_connection{
   enum ResultCodeEnum{
     Success,
     Failed_To_Connect_To_Database,
+    Database_Corrupt,
     User_Not_Exist,
     Password_Wrong,
     No_Permission,
     Name_Exist,
     Group_Not_Exist,
     Request_Param_Missing,
-    Request_Param_Wrong_Type
+    Request_Param_Wrong_Type,
+    Request_Wrong_Format
   };
   exception GeneralException{long resultCode;};
 

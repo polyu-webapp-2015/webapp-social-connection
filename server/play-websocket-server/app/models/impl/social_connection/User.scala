@@ -1,22 +1,25 @@
 package models.impl.social_connection
 
-import models.idl.social_connection.{SexEnum, ResultCodeEnum, GeneralException, User}
+import models.DatabaseHelper
 import models.idl.social_connection.UserPackage.UserGroupSeqHolder
+import models.idl.social_connection.{GeneralException, SexEnum, User}
 import models.impl.GeneralObject
 import models.impl.GeneralObject.getParamValue
 import org.omg.CORBA.ShortHolder
-import play.api.libs.openid.UserInfo
+import play.api.libs.json.{JsObject, JsString}
 
 /**
  * Created by beenotung on 10/30/15.
  */
 object User {
-  implicit def newInstance(_userId: String,_lastName:String, _userIntro: String): models.idl.social_connection.User = new User {
-    override def userId(): String = _userId
+  implicit def newInstance(jsObject: JsObject): models.idl.social_connection.User = new User {
+    def getString(key: String) = GeneralObject.getString(jsObject, key)
 
-    override def lastName(): String =_lastName
+    override def userId(): String = getString("userId")
 
-    override def lastName(newLastName: String): Unit = ???
+    override def lastName(): String = getString("lastName")
+
+    override def lastName(newLastName: String): Unit = DatabaseHelper.setUser(userId(), "lastName", JsString(newLastName))
 
     override def getUserGroupList(userGroupSeq: UserGroupSeqHolder, numUserGroup: ShortHolder): Unit = ???
 
@@ -47,12 +50,14 @@ object User {
     override def toMap: Map[String, Any] = ???
 
     override def fromMap(map: Map[String, Any]): GeneralObject = ???
+
+    override val jsObject: JsObject = _
   }
 
   @throws(classOf[GeneralException])
   def fromMap(map: Map[String, Any]): User = {
     val userId = getParamValue[String](map, "userId")
     val userInfo = getParamValue[String](map, "userInfo")
-    newInstance(userId.asInstanceOf[String],userInfo)
+    newInstance(userId.asInstanceOf[String], userInfo)
   }
 }
