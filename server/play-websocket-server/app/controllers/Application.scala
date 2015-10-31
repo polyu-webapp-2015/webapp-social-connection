@@ -186,4 +186,9 @@ class Application @Inject()(ws: WSClient) extends Controller {
     //    Ok(request.body.asText.getOrElse("{}"))
 //      .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
   }
+
+  /*-----------------real work start here--------------*/
+  def getSessionId=Action{request=>
+
+  }
 }

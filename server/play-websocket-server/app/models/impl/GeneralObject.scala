@@ -6,9 +6,10 @@ import models.idl.social_connection.{ResultCodeEnum, GeneralException}
  * Created by beenotung on 10/30/15.
  */
 trait GeneralObject {
+}
+trait GeneralObjectOperations {
   def toMap: Map[String, Any]
-
-  def fromMap(map: Map[String, Any]): GeneralObject = ???
+  def fromMap(map: Map[String, Any]): GeneralObject
 }
 
 object GeneralObject {

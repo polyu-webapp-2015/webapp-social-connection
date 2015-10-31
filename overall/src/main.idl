@@ -21,18 +21,15 @@ module social_connection{
   exception GeneralException{long resultCode;};
 
   enum SexEnum{M,F,Not_Given};
-  struct UserAccount{
-    string email;
-    string phoneNum;
-    string password;
-    string firstName;
-    string lastName;
-    string nickName;
-    SexEnum sex;
-  };
   interface User:models::impl::GeneralObject{
     readonly attribute string userId;
-    readonly attribute string userIntro;
+    attribute string userIntro;
+    attribute string email;
+    attribute string phoneNum;
+    attribute string firstName;
+    attribute string lastName;
+    attribute string nickName;
+    attribute SexEnum sex;
     struct UserGroup{
       string groupID;
       string groupName;
@@ -44,7 +41,7 @@ module social_connection{
     void getUserGroupList(out UserGroupSeq userGroupSeq,out short numUserGroup);
   };
   interface UserManager{
-    void createUser(in UserAccount newUserAccount) raises (GeneralException);
+    void createUser(in string email,in string phoneNum,in string password) raises (GeneralException);
 
     /*login operation, return session if success, raise exception if failed*/
     string getSessionId(in string username,in string password) raises (GeneralException);
