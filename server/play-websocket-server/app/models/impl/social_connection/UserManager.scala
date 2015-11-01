@@ -13,7 +13,7 @@ import scala.util.Random
 /**
  * Created by beenotung on 10/31/15.
  */
-object UserManager extends UserManager {
+object UserManager extends UserManagerOperations {
   def newUserId = {
     Random.nextInt()
   }
