@@ -1,12 +1,12 @@
 package models.impl.social_connection
 
 
-import java.security.MessageDigest
 import java.util.concurrent.ConcurrentHashMap
 
 import models.DatabaseHelper
-import models.idl.social_connection.{GeneralException, ResultCodeEnum, User, UserManager}
-import play.api.libs.json.JsString
+import models.Utils.messageDigest
+import models.idl.social_connection._
+import play.api.libs.json.{JsNumber, JsString, JsValue}
 
 import scala.util.Random
 
@@ -18,38 +18,49 @@ object UserManager extends UserManager {
     Random.nextInt()
   }
 
-  override def createUser(email: String, phoneNum: String, password: String): Unit = ???
 
   /**
-   * @param username : phoneNum or email
+   * @param emailOrPhoneNum : phoneNum or email
    * @param password : raw password from user
    **/
   @throws(classOf[GeneralException])
-  override def newSessionId(username: String, password: String): String = {
-    var user: User = null
-    try {
-      user = DatabaseHelper.findUser("phoneNum", JsString(username))
-    } catch {
-      case e: GeneralException =>
-        if (e.resultCode.equals(ResultCodeEnum.User_Not_Exist.value())) {
-          user = DatabaseHelper.findUser("email", JsString(username))
-        }
-        else throw e
+  override def newSessionId(emailOrPhoneNum: String, password: String): String = {
+    val user = DatabaseHelper.findUserByEmailOrPhoneNum(emailOrPhoneNum, throwUserNotFoundException = true).get
+    if (!user.isPasswordCorrect(password)) {
+      throw new GeneralException(ResultCodeEnum.Password_Wrong.value())
+    } else {
+      val userId = user.userId()
+      var sessionId = generateSessionId(userId)
+      sessionMap.synchronized {
+        while (sessionMap containsKey sessionId)
+          sessionId = generateSessionId(userId)
+        sessionMap put(sessionId, userId)
+      }
+      sessionId
     }
-    val userId = user.userId()
-    var sessionId = newSessionId(userId)
-    sessionMap.synchronized {
-      while (sessionMap containsKey sessionId)
-        sessionId = newSessionId(userId)
-      sessionMap put(sessionId, userId)
-    }
-    sessionId
   }
 
   /*return marshaled sessionId, without collision checking*/
-  def newSessionId(userId: String): String =
+  private def generateSessionId(userId: String): String =
     new String(messageDigest.digest(userId + System.currentTimeMillis() + System.nanoTime() getBytes()))
 
-  val messageDigest = MessageDigest.getInstance("SHA-256")
   val sessionMap = new ConcurrentHashMap[String, String]()
+
+  @throws(classOf[GeneralException])
+  override def createUser(emailOrPhoneNum: String, password: String, sex: SexEnum): String = {
+    val key: String = if (emailOrPhoneNum contains '@') "email" else "phoneNum"
+    DatabaseHelper.findUserByEmailOrPhoneNum(emailOrPhoneNum) match {
+      case None => /*new user*/
+        DatabaseHelper.newUser(Map[String,JsValue](
+          key -> JsString(emailOrPhoneNum),
+          "password" -> JsString(password),
+          "sex" -> JsNumber(sex.value())
+        )).userId()
+      case Some(user) => /*duplicated user*/
+        throw new GeneralException(key, ResultCodeEnum.Duplicated.value())
+    }
+  }
+
+  override def isEmailOrPhoneNumUnique(emailOrPhoneNum: String): Boolean =
+    DatabaseHelper.findUserByEmailOrPhoneNum(emailOrPhoneNum).isEmpty
 }

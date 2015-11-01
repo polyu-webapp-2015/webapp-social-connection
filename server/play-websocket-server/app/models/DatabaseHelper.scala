@@ -5,6 +5,7 @@ import java.io.{FileInputStream, FileNotFoundException}
 import java.util.concurrent.locks.ReentrantReadWriteLock
 
 import config.Debug._
+import models.Utils.messageDigest
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, User}
 import play.api.Logger
 import play.api.libs.json._
@@ -22,45 +23,72 @@ object DatabaseHelper {
   private var shouldRun = true
 
   def setUser(userId: String, key: String, value: JsValue) = {
-    val user = getUser(userId)
+    val user = getUser(userId, true)
     //TODO
     CachedDatabaseInstance.change()
   }
 
+  private def generateUserId: String = new String(messageDigest.digest("" + System.currentTimeMillis() + System.nanoTime() getBytes()))
+
+  def newUser(data: Map[String, JsValue]): User = CachedDatabaseInstance.forWrite[User](root=>  {
+    val userId = Utils.repeat[String](generateUserId) until (_userId=> getUser(userId=_userId,root = root) isEmpty)
+    root.value.get("users")match {
+    case None=> throw Failed_to_get_user_list_Exception
+    case Some(oldUsers)=>
+      try{
+        val newNode:JsObject = JsObject(
+          Map("userId"->JsString( userId))
+          ++ data
+        )
+        val newUserObject=models.impl.social_connection.User.newInstance(newNode)
+        val newUsers:JsArray = oldUsers.as[JsArray]:+ newNode
+        val newRoot=root + ("users"->newUsers)
+        (newRoot,newUserObject)
+      }catch {
+        case e:JsResultException=>throw Failed_to_parse_user_from_database_Exception
+      }
+    }
+  }
+  )
+
   @throws(classOf[GeneralException])
-  def getUser(userId: String): User = {
-    CachedDatabaseInstance.forRead[User](root => {
+  def getUser(userId: String, throwUserNotFoundException: Boolean = false, root: JsObject = null): Option[User] = {
+    if (root == null) {
+      CachedDatabaseInstance.forRead[Option[User]](root=> getUser(userId,throwUserNotFoundException,root))
+    } else {
       root.value.get("users")
       match {
-        case Some(jsValue) =>
+        case None => throw Failed_to_get_user_list_Exception
+        case Some(users) =>
           try {
-            jsValue.as[JsArray].value.find(jsValue => jsValue.as[JsObject].value.get("userId").get.as[JsString].value.equals(userId))
-            match {
-              case Some(value) =>
-                 models.impl.social_connection.User.newInstance(value.as[JsObject])
-              case None =>
-                throw User_Not_Exist_Exception("userId", userId)
+            users.as[JsObject].value.get(userId) match {
+              case None => /*user not found*/
+                if (throwUserNotFoundException) throw User_Not_Exist_Exception("userId", userId) else None
+              case Some(user) => Some(models.impl.social_connection.User.newInstance(user.as[JsObject]))
             }
           } catch {
-            case e: Exception =>
+            case e: JsResultException =>
               throw Failed_to_parse_user_from_database_Exception
           }
-        case None => throw Failed_to_get_user_list_Exception
       }
-    })
+    }
   }
 
   @throws(classOf[GeneralException])
-  def findUser(key: String, value: JsValue): User = {
-    CachedDatabaseInstance.forRead[User](root => {
+  def findUser(key: String, value: JsValue, throwUserNotFoundException: Boolean = false): Option[User] = {
+    CachedDatabaseInstance.forRead[Option[User]](root => {
       root.value.get("users") match {
         case None => throw Failed_to_get_user_list_Exception
         case Some(jsValue) =>
           try {
             jsValue.as[JsArray].value.find(x => x.as[JsObject].value.get(key).get.equals(value)) match {
-              case None => throw User_Not_Exist_Exception(key, value.toString())
+              case None =>
+                if(throwUserNotFoundException)
+                  throw User_Not_Exist_Exception(key,value.toString())
+                else
+                  None
               case Some(x) =>
-                models.impl.social_connection.User.newInstance(x.as[JsObject])
+                Some(models.impl.social_connection.User.newInstance(x.as[JsObject]))
             }
           }
           catch {
@@ -69,6 +97,15 @@ object DatabaseHelper {
       }
     }
     )
+  }
+
+  /**
+   * @param emailOrPhoneNum : phoneNum or email
+   **/
+  @throws(classOf[GeneralException])
+  def findUserByEmailOrPhoneNum(emailOrPhoneNum: String, throwUserNotFoundException: Boolean = false): Option[User] = {
+    val key = if (emailOrPhoneNum.contains('@')) "email" else "phoneNum"
+    findUser(key, JsString(emailOrPhoneNum), throwUserNotFoundException)
   }
 
   def User_Not_Exist_Exception(key: String, value: String): GeneralException = {
@@ -116,9 +153,10 @@ object DatabaseHelper {
       x
     }
 
-    def forWrite[A](apply: JsObject => A): A = {
+    def forWrite[A](apply: JsObject => (JsObject, A)): A = {
       readWriteLock.writeLock().lock()
-      val x = apply(cache)
+      val (newRoot, x) = apply(cache)
+      cache = newRoot
       changed = true
       readWriteLock.writeLock().unlock()
       x

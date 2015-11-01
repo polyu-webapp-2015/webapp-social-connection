@@ -51,6 +51,8 @@ object User {
     override def fromMap(map: Map[String, Any]): GeneralObject = ???
 
     override val jsObject: JsObject = _jsObject
+
+    override def isPasswordCorrect(password: String): Boolean = password.equals(getString("password"))
   }
 
   /*@Deprecated

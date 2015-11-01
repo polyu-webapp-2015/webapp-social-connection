@@ -22,6 +22,7 @@ POST    /httpEcho                   controllers.Application.httpEcho
 POST    /httpAdd                    controllers.Application.httpAdd
 
 # real work
+POST    /isEmailOrPhoneNumUnique    controllers.Application.isEmailOrPhoneNumUnique
 POST    /createUser                 controllers.Application.createUser
 POST    /newSessionId               controllers.Application.newSessionId
 
