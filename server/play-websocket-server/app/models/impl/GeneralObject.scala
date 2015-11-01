@@ -12,9 +12,6 @@ trait GeneralObject {
 }
 
 trait GeneralObjectOperations {
-  def toMap: Map[String, Any]
-
-  def fromMap(map: Map[String, Any]): GeneralObject
 }
 
 object GeneralObject {
