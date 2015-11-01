@@ -4,8 +4,9 @@ package models
 import java.io.{FileInputStream, FileNotFoundException}
 import java.util.concurrent.locks.ReentrantReadWriteLock
 
-import config.Debug._
-import models.Utils.messageDigest
+import utils.Debug._
+import utils.Utils
+import Utils.messageDigest
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, User}
 import play.api.Logger
 import play.api.libs.json._

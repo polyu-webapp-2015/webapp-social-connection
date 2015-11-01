@@ -4,7 +4,8 @@ package models.impl.social_connection
 import java.util.concurrent.ConcurrentHashMap
 
 import models.DatabaseHelper
-import models.Utils.messageDigest
+import utils.Utils
+import Utils.messageDigest
 import models.idl.social_connection._
 import play.api.libs.json.{JsNumber, JsString, JsValue}
 

@@ -5,7 +5,7 @@ import java.util.Date
 import javax.inject.Inject
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props}
-import config.Debug._
+import utils.Debug._
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, SexEnum}
 import models.impl.GeneralObject.getParamValue
 import models.impl.social_connection.UserManager
