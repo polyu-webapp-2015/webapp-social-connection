@@ -12,7 +12,7 @@ import play.api.libs.json.{JsObject, JsString}
  * Created by beenotung on 10/30/15.
  */
 object User {
-  implicit def newInstance(jsObject: JsObject): models.idl.social_connection.User = new User {
+  implicit def newInstance( _jsObject: JsObject): models.idl.social_connection.User = new User {
     def getString(key: String) = GeneralObject.getString(jsObject, key)
 
     override def userId(): String = getString("userId")
@@ -51,7 +51,7 @@ object User {
 
     override def fromMap(map: Map[String, Any]): GeneralObject = ???
 
-    override val jsObject: JsObject = _
+    override val jsObject: JsObject = _jsObject
   }
 
   @throws(classOf[GeneralException])

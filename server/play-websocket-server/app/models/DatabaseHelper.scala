@@ -39,7 +39,7 @@ object DatabaseHelper {
               case Some(value) =>
                  models.impl.social_connection.User.newInstance(value.as[JsObject])
               case None =>
-                throw Failed_to_find_user_Exception("userId", userId)
+                throw User_Not_Exist_Exception("userId", userId)
             }
           } catch {
             case e: Exception =>
@@ -50,6 +50,7 @@ object DatabaseHelper {
     })
   }
 
+  @throws(classOf[GeneralException])
   def findUser(key: String, value: JsValue): User = {
     CachedDatabaseInstance.forRead[User](root => {
       root.value.get("users") match {
@@ -57,7 +58,7 @@ object DatabaseHelper {
         case Some(jsValue) =>
           try {
             jsValue.as[JsArray].value.find(x => x.as[JsObject].value.get(key).get.equals(value)) match {
-              case None => throw Failed_to_find_user_Exception(key, value.toString())
+              case None => throw User_Not_Exist_Exception(key, value.toString())
               case Some(x) =>
                 models.impl.social_connection.User.newInstance(x.as[JsObject])
             }
@@ -70,7 +71,7 @@ object DatabaseHelper {
     )
   }
 
-  def Failed_to_find_user_Exception(key: String, value: String): GeneralException = {
+  def User_Not_Exist_Exception(key: String, value: String): GeneralException = {
     new GeneralException(key + "=" + value, ResultCodeEnum.User_Not_Exist.value())
   }
 
@@ -115,7 +116,7 @@ object DatabaseHelper {
       x
     }
 
-    def forWrite(apply: JsObject => ()) = {
+    def forWrite[A](apply: JsObject => A): A = {
       readWriteLock.writeLock().lock()
       apply(cache)
       changed = true

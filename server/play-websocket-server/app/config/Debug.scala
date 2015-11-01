@@ -15,9 +15,9 @@ object Debug {
   /*database verbose level*/
   val DatabaseVerbose = false
 
-  def logInfo(message: => String) = if (verbose) Logger.info(_)
+  def logInfo(message: => String) = if (verbose) Logger.info(message)
 
-  def logDatabase(message: => String) = if (DatabaseVerbose) Logger.info(_)
+  def logDatabase(message: => String) = if (DatabaseVerbose) Logger.info(message)
 
-  def logNetwork(message: => String) = if (NetworkVerbose) Logger.info(_)
+  def logNetwork(message: => String) = if (NetworkVerbose) Logger.info(message)
 }

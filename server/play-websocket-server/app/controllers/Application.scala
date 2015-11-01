@@ -193,7 +193,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
   }
 
   /*-----------------real work start here--------------*/
-  def commonHeader(request: Request) = ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*")
+  def commonHeader(request: Request[AnyContent]) = ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*")
 
   def commonResponse(request: Request[AnyContent],
                      sessionId: String,
