@@ -1,5 +1,5 @@
 
-serv_address = "http://175.159.10.118:9000"
+serv_address = "http://58.96.176.223:9000"
 
 var app=angular.module('myApp', ['ui.bootstrap']);
 
@@ -16,7 +16,7 @@ app.config(['$httpProvider', function($httpProvider) {
     // http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/
     // Rewrite POST body data
     $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-    //$httpProvider.defaults.withCredentials = true;
+    // $httpProvider.defaults.withCredentials = true;
     // Override $http service's default transformRequest
     $httpProvider.defaults.transformRequest = [function(data)
     {

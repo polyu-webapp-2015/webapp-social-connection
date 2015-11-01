@@ -1,5 +1,15 @@
 
-app.controller('MainCtrl', function ($scope, $http, $modal) {
+registerModal = {
+	backdrop:true,
+	backdropClick: true,
+	dialogFade: false,
+	keyboard: true,
+	templateUrl: '/pages/register.html',
+}
+
+modals = {};
+
+app.controller('MainCtrl', function ($scope, $http, $uibModal) {
         var rule = {
             username: {
                 min: 5
@@ -16,17 +26,12 @@ app.controller('MainCtrl', function ($scope, $http, $modal) {
             }
         };
 
-        $scope.logi = function() {
-            console.log("Hello World!");
-            $modal.open({
-            backdrop:true,
-            backdropClick: true,
-            dialogFade: false,
-            keyboard: true,
-            templateUrl: '/pages/register.html',
-        });
-
+        $scope.openRegisterModal = function() {
+            console.log("register");
+            modals['registerModal'] = $uibModal.open(registerModal);
         };
+
+
         $scope.reset = function () {
             $scope.username = '';
             $scope.username_res = '';
@@ -112,17 +117,8 @@ app.controller('MainCtrl', function ($scope, $http, $modal) {
                     }
                     $scope.username_res = "loading";
                 }
-            }
-            , onPasswordChanged: function () {
-                if ($scope.password.length > 0) {
-                    var msg = "This password is safe";
-                    //TODO check if reserved char is used
-                    //TODO check password security level
-                    $scope.password_res = msg;
-                    $scope.retype_password = '';
-                }
-            }
-            , onRetypePasswordChanged: function () {
+            },
+            onRetypePasswordChanged: function () {
                 var msg;
                 if ($scope.password.length == 0) {
                     msg = '';
@@ -156,4 +152,95 @@ app.controller('MainCtrl', function ($scope, $http, $modal) {
         };
         $scope.reset();
     })
-.controller("RegisterCtrl", function() {});
+.controller("RegisterCtrl", function ($scope, $http) {
+	$scope.re_password = '';
+	$scope.re_password_valid = false;
+	$scope.password = '';
+	$scope.password_valid = false;
+    $scope.submit = function() {
+        console.log("submit");
+    }
+
+	$scope.closeModal = function(modal) {
+		console.log("close");
+		modals[modal].close();
+		delete modals[modal]
+	};
+
+	$scope.checkUsername = function() {
+		console.log("focus out of field");
+		/*
+		$http.post(site_join('/checkUsername'), {"data": JSON.stringify({"username": $scope.username})})
+			.success(function(data, status, headers, config) {
+				alert("success!");
+				console.log(data);
+			})
+			.error(function(data, status, header, config) {
+				console.log(status);
+				alert(status);
+			});
+		*/
+	};
+	
+	$scope.checkPassword = function () {
+		console.log("checking password");
+		if (!$scope.registerForm.pwd.$dirty && !$scope.registerForm.re_pwd.$dirty) {
+			$scope.registerForm.pwd.$setUntouched();
+			$scope.registerForm.re_pwd.$setUntouched();
+		}
+		console.log($scope.registerForm.pwd.$touched);
+		if ($scope.password && $scope.password.length <= 15 && $scope.password.length >= 6)
+			$scope.password_valid = true;
+		else {
+			$scope.password_valid = false;
+		}
+		console.log("pwd_valid: "+$scope.password_valid);
+		console.log("pwd_touched: "+$scope.password_valid);
+		console.log("pwd_dirty: "+$scope.registerForm.pwd.$dirty);
+		console.log("display: "+(!$scope.password_valid && $scope.registerForm.pwd.$touched && $scope.registerForm.pwd.$dirty));
+		if (!$scope.registerForm.re_pwd.$dirty) return;
+		if ($scope.password == $scope.re_password && $scope.password_valid) {
+			$scope.re_password_valid = true;
+		}else {
+			$scope.re_password_valid = false;
+		}
+		console.log($scope.re_password);
+		console.log("re_valid: "+$scope.re_password_valid);
+		console.log("dirty: "+$scope.registerForm.re_pwd.$dirty);
+	};
+
+	$scope.onChangeRePwd = function() {
+		console.log("changing");
+		if (!$scope.registerForm.re_pwd.$touched) return;
+		$scope.checkPassword();
+	}
+
+	$scope.register = function() {
+		console.log("username"+$scope.username);
+
+		if (!$scope.password_valid || !$scope.re_password_valid)	return;
+		
+		$http.post(site_join('/register'), {"data": JSON.stringify({
+			username: $scope.username,
+			password: $scope.password,
+			gender: $scope.gender
+		})})
+			.success(function(data, status, headers, config) {
+				alert("success!");
+				console.log(data);
+			})
+			.error(function(data, status, header, config) {
+				console.log(status);
+				alert(status);
+			});
+	}
+
+	$scope.logi = function() {
+		$scope.registerForm.pwd.$setUntouched();
+		console.log("loging");
+		console.log("pwd_valid: "+$scope.password_valid);
+		console.log("pwd_dirty: "+$scope.registerForm.pwd.$dirty);
+		console.log("pwd_touched: "+$scope.registerForm.pwd.$touched);
+		console.log("display: "+(!$scope.password_valid && ($scope.registerForm.pwd.$touched && $scope.registerForm.pwd.$dirty)));
+	}
+});

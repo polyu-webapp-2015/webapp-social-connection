@@ -14,42 +14,10 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Register</h2>
+<h3>Home</h3>
 
 <div ng-controller="MainCtrl">
-    <table>
-        <tbody>
-        <tr>
-            <td><label>User Name</label></td>
-            <td><input type="text" ng-model="username" placeholder="unique username"
-                       ng-change="onChanged.onUsernameChanged()"></td>
-            <td><span ng-bind="username_res"></span></td>
-        </tr>
-        <tr>
-            <td><label>Password</label></td>
-            <td><input type="password" ng-model="password" placeholder="user password for login"
-                       ng-change="onChanged.onPasswordChanged()"></td>
-            <td><span ng-bind="password_res"></span></td>
-        </tr>
-        <tr>
-            <td><label>Retype Password</label></td>
-            <td><input type="password" ng-model="retype_password" placeholder="retype password again"
-                       ng-change="onChanged.onRetypePasswordChanged()"></td>
-            <td><span ng-bind="retype_password_res"></span></td>
-        </tr>
-        <tr>
-            <td><label>Email</label></td>
-            <td><input type="text" ng-model="email_str"
-                       placeholder="email for activation and password reset"
-                       ng-change="onChanged.onEmailChanged()"></td>
-            <td><span ng-bind="email_res"></span></td>
-        </tr>
-        <tr>
-            <td><input type="button" class="btn-primary" value="submit" ng-click="sendRegisterRequest()"></td>
-        </tr>
-        </tbody>
-    </table>
-	<button data-toggle="modal" class="btn btn-info" ng-click="logi()">Click me !</button>
+	<button data-toggle="modal fade" class="btn btn-info btn-sm" ng-click="openRegisterModal()">Register</button>
     <!-- Modal -->
 
 </div>
