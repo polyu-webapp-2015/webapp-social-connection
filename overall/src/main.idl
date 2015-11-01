@@ -1,34 +1,44 @@
-module SocialConnection{
+module models{ module impl{
+  interface JsObject{};
+  interface GeneralObject{
+    readonly attribute JsObject jsObject;
+  };
+}; };
+
+
+module models{module idl{
+module social_connection{
   interface User;
   interface Group;
 };
 
-module SocialConnection{
+module social_connection{
 
   enum ResultCodeEnum{
     Success,
     Failed_To_Connect_To_Database,
+    Database_Corrupt,
     User_Not_Exist,
     Password_Wrong,
     No_Permission,
     Name_Exist,
-    Group_Not_Exist
+    Group_Not_Exist,
+    Request_Param_Missing,
+    Request_Param_Wrong_Type,
+    Request_Wrong_Format
   };
-  exception GeneralException{short resultCode;};
+  exception GeneralException{long resultCode;};
 
   enum SexEnum{M,F,Not_Given};
-  struct UserAccount{
-    string email;
-    string phoneNum;
-    string password;
-    string firstName;
-    string lastName;
-    string nickName;
-    SexEnum sex;
-  };
-  interface User{
+  interface User:models::impl::GeneralObject{
     readonly attribute string userId;
-    readonly attribute string userIntro;
+    attribute string userIntro;
+    attribute string email;
+    attribute string phoneNum;
+    attribute string firstName;
+    attribute string lastName;
+    attribute string nickName;
+    attribute SexEnum sex;
     struct UserGroup{
       string groupID;
       string groupName;
@@ -40,10 +50,10 @@ module SocialConnection{
     void getUserGroupList(out UserGroupSeq userGroupSeq,out short numUserGroup);
   };
   interface UserManager{
-    void createUser(in UserAccount newUserAccount) raises (GeneralException);
+    void createUser(in string email,in string phoneNum,in string password) raises (GeneralException);
 
     /*login operation, return session if success, raise exception if failed*/
-    string getSessionId(in string username,in string password) raises (GeneralException);
+    string newSessionId(in string username,in string password) raises (GeneralException);
   };
 
   interface Group{
@@ -68,3 +78,4 @@ module SocialConnection{
 
   interface Exhibition{};
 };
+};};
