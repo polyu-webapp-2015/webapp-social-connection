@@ -46,10 +46,6 @@ object User {
 
     override def firstName(newFirstName: String): Unit = ???
 
-    override def toMap: Map[String, Any] = ???
-
-    override def fromMap(map: Map[String, Any]): GeneralObject = ???
-
     override val jsObject: JsObject = _jsObject
 
     override def isPasswordCorrect(password: String): Boolean = password.equals(getString("password"))
