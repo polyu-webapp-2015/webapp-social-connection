@@ -118,9 +118,10 @@ object DatabaseHelper {
 
     def forWrite[A](apply: JsObject => A): A = {
       readWriteLock.writeLock().lock()
-      apply(cache)
+      val x = apply(cache)
       changed = true
       readWriteLock.writeLock().unlock()
+      x
     }
 
     def save() = {

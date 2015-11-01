@@ -13,12 +13,12 @@ import play.api.Play.current
 import play.api._
 import play.api.libs.concurrent.Promise
 import play.api.libs.iteratee.{Concurrent, Enumerator, Iteratee}
+import play.api.libs.json.{JsNumber, JsObject, JsString, JsValue}
 import play.api.libs.ws._
 import play.api.mvc._
 import play.libs.Json
 
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.util.parsing.json.JSONObject
 
 class Application @Inject()(ws: WSClient) extends Controller {
 
@@ -193,21 +193,23 @@ class Application @Inject()(ws: WSClient) extends Controller {
   }
 
   /*-----------------real work start here--------------*/
-  def commonHeader(request: Request[AnyContent]) = ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*")
+  def commonHeader(request: Request[AnyContent]): (String, String) = (ACCESS_CONTROL_ALLOW_ORIGIN, (request.headers.get(ORIGIN).getOrElse("*")))
 
   def commonResponse(request: Request[AnyContent],
                      sessionId: String,
                      action: String,
                      resultCode: Int = ResultCodeEnum.Success.value(),
                      reason: String = "",
-                     params: Map[String, Any] = Map): Result = {
-    val responseBody = JSONObject(Map(
-      "sessionId" -> sessionId,
-      "action" -> action,
-      "resultCode" -> resultCode,
-      "reason" -> reason,
-      "params" -> JSONObject(params).toString()
-    )).toString()
+                     params: Map[String, JsValue] = null): Result = {
+    var responseJson = new JsObject(Map(
+      "sessionId" -> JsString(sessionId),
+      "action" -> JsString(action),
+      "resultCode" -> JsNumber(resultCode),
+      "reason" -> JsString(reason)
+    ))
+    if (params != null)
+      responseJson += ("params" -> JsObject(params))
+    val responseBody = responseJson.toString()
     if (resultCode.equals(ResultCodeEnum.Success.value()))
       Ok(responseBody).withHeaders(commonHeader(request))
     else
@@ -216,18 +218,18 @@ class Application @Inject()(ws: WSClient) extends Controller {
 
   def actionEntryLog(action: String) = logInfo(action + ", client connected")
 
-  def getSessionId = Action { request =>
+  def newSessionId = Action { request =>
     val action = "getSessionId"
     actionEntryLog(action)
     try {
-      val sessionId = UserManager.getSessionId(
+      val sessionId = UserManager.newSessionId(
         getParamValue[String](request,"username"),
         getParamValue[String](request,"password")
       )
-      commonResponse(request,sessionId,action)
+      commonResponse(request, sessionId, action)
     } catch {
       case e: GeneralException =>
-        commonResponse(request,"0",action,e.resultCode,e.getMessage)
+        commonResponse(request, "0", action, e.resultCode, e.getMessage)
     }
   }
 }

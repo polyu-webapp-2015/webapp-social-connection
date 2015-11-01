@@ -2,9 +2,8 @@ package models.impl.social_connection
 
 import models.DatabaseHelper
 import models.idl.social_connection.UserPackage.UserGroupSeqHolder
-import models.idl.social_connection.{GeneralException, SexEnum, User}
+import models.idl.social_connection.{SexEnum, User}
 import models.impl.GeneralObject
-import models.impl.GeneralObject.getParamValue
 import org.omg.CORBA.ShortHolder
 import play.api.libs.json.{JsObject, JsString}
 
@@ -54,10 +53,11 @@ object User {
     override val jsObject: JsObject = _jsObject
   }
 
+  /*@Deprecated
   @throws(classOf[GeneralException])
   def fromMap(map: Map[String, Any]): User = {
     val userId = getParamValue[String](map, "userId")
     val userInfo = getParamValue[String](map, "userInfo")
     newInstance(userId.asInstanceOf[String], userInfo)
-  }
+  }*/
 }

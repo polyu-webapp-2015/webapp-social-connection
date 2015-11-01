@@ -53,7 +53,7 @@ module social_connection{
     void createUser(in string email,in string phoneNum,in string password) raises (GeneralException);
 
     /*login operation, return session if success, raise exception if failed*/
-    string getSessionId(in string username,in string password) raises (GeneralException);
+    string newSessionId(in string username,in string password) raises (GeneralException);
   };
 
   interface Group{
