@@ -6,14 +6,15 @@ import javax.inject.Inject
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props}
 import config.Debug._
-import models.idl.social_connection.{GeneralException, ResultCodeEnum}
+import models.idl.social_connection.{GeneralException, ResultCodeEnum, SexEnum}
 import models.impl.GeneralObject.getParamValue
 import models.impl.social_connection.UserManager
+import org.omg.CORBA.BAD_PARAM
 import play.api.Play.current
 import play.api._
 import play.api.libs.concurrent.Promise
 import play.api.libs.iteratee.{Concurrent, Enumerator, Iteratee}
-import play.api.libs.json.{JsNumber, JsObject, JsString, JsValue}
+import play.api.libs.json._
 import play.api.libs.ws._
 import play.api.mvc._
 import play.libs.Json
@@ -196,8 +197,8 @@ class Application @Inject()(ws: WSClient) extends Controller {
   def commonHeader(request: Request[AnyContent]): (String, String) = (ACCESS_CONTROL_ALLOW_ORIGIN, (request.headers.get(ORIGIN).getOrElse("*")))
 
   def commonResponse(request: Request[AnyContent],
-                     sessionId: String,
                      action: String,
+                     sessionId: String = "0",
                      resultCode: Int = ResultCodeEnum.Success.value(),
                      reason: String = "",
                      params: Map[String, JsValue] = null): Result = {
@@ -217,6 +218,45 @@ class Application @Inject()(ws: WSClient) extends Controller {
   }
 
   def actionEntryLog(action: String) = logInfo(action + ", client connected")
+
+  def isEmailOrPhoneNumUnique = Action { request =>
+    val action = "isEmailOrPhoneNumUnique"
+    try {
+      commonResponse(request, action, params = Map(
+        action -> JsBoolean(
+          UserManager.isEmailOrPhoneNumUnique(
+            getParamValue[String](request,"emailOrPhoneNum")
+          ))))
+    } catch {
+      case e: GeneralException =>
+        commonResponse(request, action, resultCode = e.resultCode, reason = e.getMessage)
+    }
+  }
+
+  def createUser = Action { request =>
+    val action = "createUser"
+    actionEntryLog(action)
+    try {
+      try {
+        val sex: SexEnum = SexEnum.from_int(getParamValue[Int](request,"sex"))
+        val emailOrPhoneNum: String = getParamValue[String](request,"emailOrPhoneNum")
+        val password: String = getParamValue[String](request,"password")
+        val userId = UserManager.createUser(
+          emailOrPhoneNum,
+          password,
+          sex
+        )
+        /*auto login*/
+        val sessionId = UserManager.newSessionId(emailOrPhoneNum, password)
+        commonResponse(request, action, sessionId)
+      } catch {
+        case e: BAD_PARAM => throw new GeneralException("sex", ResultCodeEnum.Request_Wrong_Format.value())
+      }
+    } catch {
+      case e: GeneralException =>
+        commonResponse(request, action, resultCode = e.resultCode, reason = e.getMessage)
+    }
+  }
 
   def newSessionId = Action { request =>
     val action = "getSessionId"

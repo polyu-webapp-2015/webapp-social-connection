@@ -3,7 +3,7 @@ module models{ module impl{
   interface GeneralObject{
     readonly attribute JsObject jsObject;
   };
-}; };
+};};
 
 
 module models{module idl{
@@ -18,6 +18,7 @@ module social_connection{
     Success,
     Failed_To_Connect_To_Database,
     Database_Corrupt,
+    Duplicated,
     User_Not_Exist,
     Password_Wrong,
     No_Permission,
@@ -48,12 +49,16 @@ module social_connection{
     };
     typedef sequence<UserGroup> UserGroupSeq;
     void getUserGroupList(out UserGroupSeq userGroupSeq,out short numUserGroup);
+    boolean isPasswordCorrect(in string password);
   };
   interface UserManager{
-    void createUser(in string email,in string phoneNum,in string password) raises (GeneralException);
+  /*return userId*/
+    string createUser(in string emailOrPhoneNum, in string password, in SexEnum sex) raises (GeneralException);
 
     /*login operation, return session if success, raise exception if failed*/
-    string newSessionId(in string username,in string password) raises (GeneralException);
+    string newSessionId(in string emailOrPhoneNum,in string password) raises (GeneralException);
+
+    boolean isEmailOrPhoneNumUnique(in string emailOrPhoneNum) raises (GeneralException);
   };
 
   interface Group{
