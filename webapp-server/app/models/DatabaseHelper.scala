@@ -5,8 +5,8 @@ import java.io.{FileInputStream, FileNotFoundException}
 import java.util.concurrent.locks.ReentrantReadWriteLock
 
 import utils.Debug._
-import utils.Utils
-import Utils.messageDigest
+import utils.Lang
+import Lang.messageDigest
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, User}
 import play.api.Logger
 import play.api.libs.json._
@@ -32,7 +32,7 @@ object DatabaseHelper {
   private def generateUserId: String = new String(messageDigest.digest("" + System.currentTimeMillis() + System.nanoTime() getBytes()))
 
   def newUser(data: Map[String, JsValue]): User = CachedDatabaseInstance.forWrite[User](root=>  {
-    val userId = Utils.repeat[String](generateUserId) until (_userId=> getUser(userId=_userId,root = root) isEmpty)
+    val userId = Lang.repeat[String](generateUserId) until (_userId=> getUser(userId=_userId,root = root) isEmpty)
     root.value.get("users")match {
     case None=> throw Failed_to_get_user_list_Exception
     case Some(oldUsers)=>

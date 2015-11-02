@@ -5,9 +5,8 @@ import java.util.Date
 import javax.inject.Inject
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props}
-import utils.Debug._
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, SexEnum}
-import models.impl.GeneralObject.getParamValue
+import models.impl.GeneralObject.{getParamJsObject, getParamValue}
 import models.impl.social_connection.UserManager
 import org.omg.CORBA.BAD_PARAM
 import play.api.Play.current
@@ -18,8 +17,10 @@ import play.api.libs.json._
 import play.api.libs.ws._
 import play.api.mvc._
 import play.libs.Json
+import utils.Debug._
 
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.reflect.classTag
 
 class Application @Inject()(ws: WSClient) extends Controller {
 
@@ -157,9 +158,9 @@ class Application @Inject()(ws: WSClient) extends Controller {
     val rawBody = request.body.asRaw
     val bodyBytes = rawBody flatMap {
       x: RawBuffer => x.asBytes(65536)
-    } getOrElse (Array.empty[Byte])
+    } getOrElse Array.empty[Byte]
     Logger.info("request: ")
-    Logger.info(request.body.asFormUrlEncoded.getOrElse("none" -> "none").toString())
+    Logger.info(request.body.asFormUrlEncoded.getOrElse("none" -> "none").toString)
     Ok(request.body.asText.getOrElse("{}"))
       .withHeaders(ACCESS_CONTROL_ALLOW_ORIGIN -> request.headers.get(ORIGIN).getOrElse("*"))
   }
@@ -169,7 +170,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
     val rawBody = request.body.asRaw
     val bodyBytes = rawBody flatMap {
       x: RawBuffer => x.asBytes(65536)
-    } getOrElse (Array.empty[Byte])
+    } getOrElse Array.empty[Byte]
     //    Logger.info("request: ")
     var responseData = "[\"error\":\"wrong format\"]"
     val requestData = request.body.asFormUrlEncoded
@@ -194,7 +195,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
   }
 
   /*-----------------real work start here--------------*/
-  def commonHeader(request: Request[AnyContent]): (String, String) = (ACCESS_CONTROL_ALLOW_ORIGIN, (request.headers.get(ORIGIN).getOrElse("*")))
+  def commonHeader(request: Request[AnyContent]): (String, String) = (ACCESS_CONTROL_ALLOW_ORIGIN, request.headers.get(ORIGIN).getOrElse("*"))
 
   def commonResponse(request: Request[AnyContent],
                      action: String,
@@ -225,7 +226,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
       commonResponse(request, action, params = Map(
         action -> JsBoolean(
           UserManager.isEmailOrPhoneNumUnique(
-            getParamValue[String](request,"emailOrPhoneNum")
+            getParamValue[String](classTag[String],request,"emailOrPhoneNum")
           ))))
     } catch {
       case e: GeneralException =>
@@ -238,9 +239,10 @@ class Application @Inject()(ws: WSClient) extends Controller {
     actionEntryLog(action)
     try {
       try {
-        val sex: SexEnum = SexEnum.from_int(getParamValue[Int](request,"sex"))
-        val emailOrPhoneNum: String = getParamValue[String](request,"emailOrPhoneNum")
-        val password: String = getParamValue[String](request,"password")
+        val jsObject = getParamJsObject(request)
+        val sex: SexEnum = SexEnum.from_int(getParamValue[Int](classTag[Int],jsObject,"sex"))
+        val emailOrPhoneNum: String = getParamValue[String](classTag[String],jsObject,"emailOrPhoneNum")
+        val password: String = getParamValue[String](classTag[String],jsObject,"password")
         val userId = UserManager.createUser(
           emailOrPhoneNum,
           password,
@@ -262,14 +264,15 @@ class Application @Inject()(ws: WSClient) extends Controller {
     val action = "getSessionId"
     actionEntryLog(action)
     try {
+      val jsObject = getParamJsObject(request)
       val sessionId = UserManager.newSessionId(
-        getParamValue[String](request,"username"),
-        getParamValue[String](request,"password")
+        getParamValue[String](classTag[String],jsObject,"username"),
+        getParamValue[String](classTag[String],jsObject,"password")
       )
       commonResponse(request, sessionId, action)
     } catch {
       case e: GeneralException =>
-        commonResponse(request, "0", action, e.resultCode, e.getMessage)
+        commonResponse(request, action, resultCode = e.resultCode, reason = e.getMessage)
     }
   }
 }
