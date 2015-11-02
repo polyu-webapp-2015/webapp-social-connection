@@ -31,10 +31,10 @@
 			<span class="form-control-feedback" ng-class="{'glyphicon glyphicon-ok': re_password_valid, 'glyphicon glyphicon-remove': !re_password_valid}" ng-show="registerForm.re_pwd.$touched && registerForm.re_pwd.$dirty && registerForm.pwd.$dirty"></span>
           </div>
           <label class="radio-inline">
-            <input type="radio" name="gender"/>Male
+            <input type="radio" name="sex" value="0" ng-model="sex"/>Male
           </label>
           <label class="radio-inline">
-            <input type="radio" name="gender"/>Female
+            <input type="radio" name="sex" value="1" ng-model="sex"/>Female
           </label>
         </div>			<!-- /modal-body -->
         <div class="modal-footer">

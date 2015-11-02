@@ -219,11 +219,12 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal) {
 		console.log("username"+$scope.username);
 
 		if (!$scope.password_valid || !$scope.re_password_valid)	return;
-		
+		console.log($scope.sex);
+        //$scope.gender = parseInt($scope.gender);
 		$http.post(site_join('/register'), {"data": JSON.stringify({
-			username: $scope.username,
+			emailOrPhoneNum: $scope.username,
 			password: $scope.password,
-			gender: $scope.gender
+            sex: parseInt($scope.sex)
 		})})
 			.success(function(data, status, headers, config) {
 				alert("success!");
