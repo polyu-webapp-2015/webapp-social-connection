@@ -199,18 +199,17 @@ class Application @Inject()(ws: WSClient) extends Controller {
 
   def commonResponse(request: Request[AnyContent],
                      action: String,
-                     sessionId: String = "0",
+                     sessionId: String = null,
                      resultCode: Int = ResultCodeEnum.Success.value(),
-                     reason: String = "",
+                     reason: String = null,
                      params: Map[String, JsValue] = null): Result = {
     var responseJson = new JsObject(Map(
-      "sessionId" -> JsString(sessionId),
       "action" -> JsString(action),
-      "resultCode" -> JsNumber(resultCode),
-      "reason" -> JsString(reason)
+      "resultCode" -> JsNumber(resultCode)
     ))
-    if (params != null)
-      responseJson += ("params" -> JsObject(params))
+    if (sessionId != null) responseJson +=("sessionId" -> JsString(sessionId))
+    if (reason != null) responseJson += ("reason" -> JsString(reason))
+    if (params != null) responseJson += ("params" -> JsObject(params))
     val responseBody = responseJson.toString()
     if (resultCode.equals(ResultCodeEnum.Success.value()))
       Ok(responseBody).withHeaders(commonHeader(request))

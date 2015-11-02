@@ -22,7 +22,7 @@ object DatabaseHelper {
   val Failed_to_get_user_list_Exception: GeneralException = new GeneralException(ResultCodeEnum.Database_Corrupt.value(), "failed to get user list")
   val Failed_to_parse_user_from_database_Exception: GeneralException = new GeneralException(ResultCodeEnum.Database_Corrupt.value(), "failed to parse user from Database")
   private var thread: Thread = null
-  private var shouldRun = true
+  private var shouldRun = false
 
   @throws(classOf[GeneralException])
   def setUser(userId: String, key: String, value: JsValue) = {
@@ -31,7 +31,7 @@ object DatabaseHelper {
       val newUser = oldUser.jsObject ++ JsObject(Map(key -> value))
       val newUsers = root.value.get("users") match {
         case None => throw Failed_to_get_user_list_Exception
-        case Some(users) => JsObject(users.as[JsObject].value ++ Map(oldUser.userId()-> newUser))
+        case Some(users) => JsObject(users.as[JsObject].value ++ Map(oldUser.userId() -> newUser))
       }
       newUsers
       val newRoot = root
@@ -103,7 +103,6 @@ object DatabaseHelper {
       root.value.get("users") match {
         case None => throw Failed_to_get_user_list_Exception
         case Some(users)=>try{
-//        val matchedUsers= users.as[JsObject].values.filter(user=>user.as[JsObject].value.get(key).equals(value))
         val matchedUsers= users.as[JsObject].values.filter(_.as[JsObject].value.get(key).get.equals(value)        )
         if(matchedUsers.isEmpty){
           /*User not Found*/
@@ -133,12 +132,13 @@ object DatabaseHelper {
     thread = new Thread(new Runnable {
       override def run(): Unit = {
         try {
+          shouldRun = true
           while (shouldRun) {
             Thread.sleep(1000 * 10)
             if (CachedDatabaseInstance.isChanged)
               CachedDatabaseInstance.save()
             else
-              logDatabaseInfo("content not changed, skip saving")
+              logDatabaseDebug("content not changed, skip saving")
           }
         }
         catch {
@@ -147,6 +147,7 @@ object DatabaseHelper {
         }
       }
     }, "DatabaseHelper-Thread")
+    thread start()
   }
 
   def deInit() = {
@@ -202,17 +203,19 @@ object DatabaseHelper {
 
     def save() = {
       if (changed) {
-        logInfo("saving Database File")
+        logDatabaseInfo("saving Database File")
         File(Path.DB_FILE).writeAll(cache.toString())
-        logInfo("saved Database File")
+        logDatabaseInfo("saved Database File")
         changed = false
-      }
+      } else
+        logDatabaseDebug("skip saving Database File (not changed)")
     }
 
     def load() = {
       try {
+        logDatabaseInfo("loading Database File")
         cache = Json.parse(new FileInputStream(Path.DB_FILE)).as[JsObject]
-        logInfo("loaded Database File")
+        logDatabaseInfo("loaded Database File")
       } catch {
         case e: FileNotFoundException =>
           logInfo("Database File not found, creating empty instance")
