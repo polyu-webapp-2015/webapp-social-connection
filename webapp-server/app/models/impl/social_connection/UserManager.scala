@@ -4,10 +4,9 @@ package models.impl.social_connection
 import java.util.concurrent.ConcurrentHashMap
 
 import models.DatabaseHelper
-import utils.Utils
-import Utils.messageDigest
 import models.idl.social_connection._
 import play.api.libs.json.{JsNumber, JsString, JsValue}
+import utils.Lang.digest
 
 import scala.util.Random
 
@@ -28,7 +27,7 @@ object UserManager extends UserManagerOperations {
   override def newSessionId(emailOrPhoneNum: String, password: String): String = {
     val user = DatabaseHelper.findUserByEmailOrPhoneNum(emailOrPhoneNum, throwUserNotFoundException = true).get
     if (!user.isPasswordCorrect(password)) {
-      throw new GeneralException(ResultCodeEnum.Password_Wrong.value())
+      throw new GeneralException(ResultCodeEnum.Password_Wrong.value(), "")
     } else {
       val userId = user.userId()
       var sessionId = generateSessionId(userId)
@@ -43,7 +42,7 @@ object UserManager extends UserManagerOperations {
 
   /*return marshaled sessionId, without collision checking*/
   private def generateSessionId(userId: String): String =
-    new String(messageDigest.digest(userId + System.currentTimeMillis() + System.nanoTime() getBytes()))
+    digest(userId + System.currentTimeMillis() + System.nanoTime())
 
   val sessionMap = new ConcurrentHashMap[String, String]()
 
@@ -58,7 +57,7 @@ object UserManager extends UserManagerOperations {
           "sex" -> JsNumber(sex.value())
         )).userId()
       case Some(user) => /*duplicated user*/
-        throw new GeneralException(key, ResultCodeEnum.Duplicated.value())
+        throw new GeneralException(ResultCodeEnum.Duplicated.value(), key)
     }
   }
 
