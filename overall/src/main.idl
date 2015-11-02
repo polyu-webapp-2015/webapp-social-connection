@@ -18,6 +18,7 @@ module social_connection{
     Success,
     Failed_To_Connect_To_Database,
     Database_Corrupt,
+    Network_Not_Stable,
     Duplicated,
     User_Not_Exist,
     Password_Wrong,
