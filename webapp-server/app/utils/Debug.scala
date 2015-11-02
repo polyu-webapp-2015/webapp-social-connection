@@ -7,13 +7,13 @@ import play.api.Logger
  */
 object Debug {
   /*default verbose level*/
-  val verbose = false
+  val verbose = true
 
   /*Network related verbose level*/
   val NetworkVerbose = true
 
   /*database verbose level*/
-  val DatabaseVerbose = false
+  val DatabaseVerbose = true
 
   def logInfo(message: => String) = if (verbose) Logger.info(message)
 

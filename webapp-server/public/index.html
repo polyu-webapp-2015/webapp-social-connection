@@ -17,9 +17,13 @@
 <h3>Home</h3>
 
 <div ng-controller="MainCtrl">
-	<button data-toggle="modal fade" class="btn btn-info btn-sm" ng-click="openRegisterModal()">Register</button>
+    <button data-toggle="modal fade" class="btn btn-info btn-sm" ng-click="openRegisterModal()">Register</button>
     <!-- Modal -->
 
 </div>
+<div id="debugPanel"></div>
+<script>
+    dumpTarget = $("#debugPanel");
+</script>
 </body>
 </html>
