@@ -12,7 +12,20 @@ import scala.reflect.ClassTag
  * Created by beenotung on 11/1/15.
  */
 object Lang {
-  val messageDigest = MessageDigest.getInstance("SHA-256")
+  private val messageDigest = MessageDigest.getInstance("SHA-256")
+
+
+  def digest(data: Array[Byte]): Array[Byte] = {
+    var s: String = null
+    messageDigest.synchronized({
+      val bs = messageDigest.digest(data)
+      val c = ("" /: bs) (_+_)
+      val hs = bs.map("%02X" format _)
+      val h = hs.mkString
+        s = ""
+    })
+    s getBytes
+  }
 
   def repeat[A](func: => A) = new {
     def until(condition: A => Boolean): A = {

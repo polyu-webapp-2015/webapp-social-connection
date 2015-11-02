@@ -9,7 +9,7 @@ import play.api.Logger
 import play.api.libs.json._
 import utils.Debug._
 import utils.Lang
-import utils.Lang.messageDigest
+import utils.Lang.digest
 
 import scala.language.postfixOps
 import scala.reflect.io.File
@@ -145,7 +145,10 @@ object DatabaseHelper {
     CachedDatabaseInstance.save()
   }
 
-  private def generateUserId: String = new String(messageDigest.digest("" + System.currentTimeMillis() + System.nanoTime() getBytes()))
+  private def generateUserId: String = {
+    val bs=digest(""+System.currentTimeMillis()+System.nanoTime() getBytes())
+    "u"
+  }
 
   object CachedDatabaseInstance {
     private val readWriteLock = new ReentrantReadWriteLock()
