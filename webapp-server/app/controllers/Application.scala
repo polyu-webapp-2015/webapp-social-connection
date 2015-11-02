@@ -230,7 +230,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
           ))))
     } catch {
       case e: GeneralException =>
-        commonResponse(request, action, resultCode = e.resultCode, reason = e.getMessage)
+        commonResponse(request, action, resultCode = e.resultCode, reason = e.reason)
     }
   }
 
@@ -252,11 +252,11 @@ class Application @Inject()(ws: WSClient) extends Controller {
         val sessionId = UserManager.newSessionId(emailOrPhoneNum, password)
         commonResponse(request, action, sessionId)
       } catch {
-        case e: BAD_PARAM => throw new GeneralException( ResultCodeEnum.Request_Param_Wrong_Format.value(),"sex")
+        case e: BAD_PARAM => throw new GeneralException(ResultCodeEnum.Request_Param_Wrong_Format.value(), "sex")
       }
     } catch {
       case e: GeneralException =>
-        commonResponse(request, action, resultCode = e.resultCode, reason = e.getMessage)
+        commonResponse(request, action, resultCode = e.resultCode, reason = e.reason)
     }
   }
 
@@ -272,7 +272,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
       commonResponse(request, sessionId, action)
     } catch {
       case e: GeneralException =>
-        commonResponse(request, action, resultCode = e.resultCode, reason = e.getMessage)
+        commonResponse(request, action, resultCode = e.resultCode, reason = e.reason)
     }
   }
 }
