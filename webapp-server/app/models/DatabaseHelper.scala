@@ -24,11 +24,18 @@ object DatabaseHelper {
   private var thread: Thread = null
   private var shouldRun = true
 
+  @throws(classOf[GeneralException])
   def setUser(userId: String, key: String, value: JsValue) = {
-    val user = getUser(userId, throwUserNotFoundException = true)
-    CachedDatabaseInstance.forWrite(root=>{
-      val newRoot=root
-      (newRoot,None)
+    CachedDatabaseInstance.forWrite(root => {
+      val oldUser = getUser(userId, throwUserNotFoundException = true, root).get
+      val newUser = oldUser.jsObject ++ JsObject(Map(key -> value))
+      val newUsers = root.value.get("users") match {
+        case None => throw Failed_to_get_user_list_Exception
+        case Some(users) => JsObject(users.as[JsObject].value ++ Map(oldUser.userId()-> newUser))
+      }
+      newUsers
+      val newRoot = root
+      (newRoot, None)
     })
     //TODO
   }
