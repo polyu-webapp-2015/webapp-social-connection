@@ -26,8 +26,11 @@ object DatabaseHelper {
 
   def setUser(userId: String, key: String, value: JsValue) = {
     val user = getUser(userId, throwUserNotFoundException = true)
+    CachedDatabaseInstance.forWrite(root=>{
+      val newRoot=root
+      (newRoot,None)
+    })
     //TODO
-    CachedDatabaseInstance.change()
   }
 
   def newUser(data: Map[String, JsValue]): User = CachedDatabaseInstance.forWrite[User](root=>  {
@@ -37,13 +40,11 @@ object DatabaseHelper {
     case Some(oldUsers)=>
       try{
         val newNode:JsObject = JsObject(
-          Map("userId"->JsString( userId))
+          Map("userId"->JsString(userId))
           ++ data
         )
+        logDatabaseInfo("creating new user "+newNode.toString())
         val newUserObject=models.impl.social_connection.User.newInstance(newNode)
-        val newUser:JsObject=JsObject (
-          oldUsers.as[JsObject].value ++ Map[String,JsValue](userId->newNode)
-        )
         val newUsers:JsObject = oldUsers.as[JsObject]++ JsObject(Map(userId->newNode))
         val newRoot=root + ("users"->newUsers)
         (newRoot,newUserObject)
@@ -95,7 +96,8 @@ object DatabaseHelper {
       root.value.get("users") match {
         case None => throw Failed_to_get_user_list_Exception
         case Some(users)=>try{
-        val matchedUsers= users.as[JsObject].values.filter(user=>user.as[JsObject].value.get(key).equals(value))
+//        val matchedUsers= users.as[JsObject].values.filter(user=>user.as[JsObject].value.get(key).equals(value))
+        val matchedUsers= users.as[JsObject].values.filter(_.as[JsObject].value.get(key).get.equals(value)        )
         if(matchedUsers.isEmpty){
           /*User not Found*/
           if(throwUserNotFoundException)
@@ -106,10 +108,10 @@ object DatabaseHelper {
           Some(models.impl.social_connection.User.newInstance(matchedUsers.head.as[JsObject]))
         }catch {
           case e: GeneralException =>
-            Logger.error(e.getClass.getName+":"+e.resultCode+ "->"+e.reason)
+            logDatabaseDebug (e.getClass.getName+":"+e.resultCode+ "->"+e.reason)
             throw e
           case e: Exception =>
-            Logger.error(e.toString)
+            logDatabaseError(e.toString)
             throw Failed_to_parse_user_from_database_Exception
         }
       }
@@ -129,12 +131,12 @@ object DatabaseHelper {
             if (CachedDatabaseInstance.isChanged)
               CachedDatabaseInstance.save()
             else
-              logDatabase("content not changed, skip saving")
+              logDatabaseInfo("content not changed, skip saving")
           }
         }
         catch {
           case e: InterruptedException =>
-            logDatabase("The Database updater thread is interrupted")
+            logDatabaseDebug("The Database updater thread is interrupted")
         }
       }
     }, "DatabaseHelper-Thread")
@@ -145,10 +147,7 @@ object DatabaseHelper {
     CachedDatabaseInstance.save()
   }
 
-  private def generateUserId: String = {
-    val bs=digest(""+System.currentTimeMillis()+System.nanoTime() getBytes())
-    "u"
-  }
+  private def generateUserId: String = digest("" + System.currentTimeMillis() + System.nanoTime())
 
   object CachedDatabaseInstance {
     private val readWriteLock = new ReentrantReadWriteLock()
@@ -213,10 +212,10 @@ object DatabaseHelper {
           cache = Json.obj("createTime" -> System.currentTimeMillis(),
             "users" -> Json.obj())
         case e: JsResultException =>
-          Logger.error("Error: failed to parse Database File (format error)")
+          logDatabaseError("Error: failed to parse Database File (format error)")
           throw e
         case e: Exception =>
-          Logger.error("Error: failed to load Database File (no permission?)")
+          logDatabaseError("Error: failed to load Database File (no permission?)")
           throw e
       }
       changed = false

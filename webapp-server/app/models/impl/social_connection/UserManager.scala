@@ -42,7 +42,7 @@ object UserManager extends UserManagerOperations {
 
   /*return marshaled sessionId, without collision checking*/
   private def generateSessionId(userId: String): String =
-    new String(digest(userId + System.currentTimeMillis() + System.nanoTime() getBytes()))
+    digest(userId + System.currentTimeMillis() + System.nanoTime())
 
   val sessionMap = new ConcurrentHashMap[String, String]()
 

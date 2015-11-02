@@ -3,8 +3,8 @@ package utils
 import java.io.InvalidClassException
 import java.security.MessageDigest
 
-import play.api.Logger
 import play.api.libs.json._
+import utils.Debug.logError
 
 import scala.reflect.ClassTag
 
@@ -15,16 +15,14 @@ object Lang {
   private val messageDigest = MessageDigest.getInstance("SHA-256")
 
 
-  def digest(data: Array[Byte]): Array[Byte] = {
+  def digest(s: String): String = digest(s getBytes)
+
+  def digest(bs: Array[Byte]): String = {
     var s: String = null
     messageDigest.synchronized({
-      val bs = messageDigest.digest(data)
-      val c = ("" /: bs) (_+_)
-      val hs = bs.map("%02X" format _)
-      val h = hs.mkString
-        s = ""
+      s = messageDigest digest bs map ("%02X" format _) mkString
     })
-    s getBytes
+    s
   }
 
   def repeat[A](func: => A) = new {
@@ -85,7 +83,7 @@ object Lang {
       Some(jsValue.as[JsObject].value.asInstanceOf[A])*/
     else
     if (throwException) {
-      Logger.error(Map(
+      logError(Map(
         "ct.runtimeClass" -> t.getName,
         "jsValue" -> jsValue.toString()
       ).mkString)
