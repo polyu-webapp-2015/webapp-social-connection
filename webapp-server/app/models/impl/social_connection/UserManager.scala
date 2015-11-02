@@ -46,6 +46,10 @@ object UserManager extends UserManagerOperations {
 
   val sessionMap = new ConcurrentHashMap[String, String]()
 
+  /**
+   * @return : userId
+   * @throws GeneralException : internal error (e.g. database)
+   * */
   @throws(classOf[GeneralException])
   override def createUser(emailOrPhoneNum: String, password: String, sex: SexEnum): String = {
     val key: String = if (emailOrPhoneNum contains '@') "email" else "phoneNum"

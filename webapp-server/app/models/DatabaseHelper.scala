@@ -103,7 +103,12 @@ object DatabaseHelper {
       root.value.get("users") match {
         case None => throw Failed_to_get_user_list_Exception
         case Some(users)=>try{
-        val matchedUsers= users.as[JsObject].values.filter(_.as[JsObject].value.get(key).get.equals(value)        )
+        val matchedUsers = users.as[JsObject].values.filter(
+          _.as[JsObject].value.get(key)match {
+            case None=>false
+            case Some(v)=>v.equals(value)
+          }
+        )
         if(matchedUsers.isEmpty){
           /*User not Found*/
           if(throwUserNotFoundException)
@@ -138,15 +143,15 @@ object DatabaseHelper {
             if (CachedDatabaseInstance.isChanged)
               CachedDatabaseInstance.save()
             else
-              logDatabaseDebug("content not changed, skip saving")
+              logDatabaseUpdaterDebug("Database content not changed, skip saving")
           }
         }
         catch {
           case e: InterruptedException =>
-            logDatabaseDebug("The Database updater thread is interrupted")
+            logDatabaseUpdaterDebug("The Database updater thread is interrupted")
         }
       }
-    }, "DatabaseHelper-Thread")
+    }, "DatabaseUpdater-Thread")
     thread start()
   }
 
@@ -237,7 +242,7 @@ object DatabaseHelper {
   init()
 
   object Path {
-//    val DB_FILE = "db.json"
+    //    val DB_FILE = "db.json"
     val DB_FILE = "public/db.json"
     val User = "/"
   }
