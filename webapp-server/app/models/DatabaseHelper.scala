@@ -237,7 +237,8 @@ object DatabaseHelper {
   init()
 
   object Path {
-    val DB_FILE = "db.json"
+//    val DB_FILE = "db.json"
+    val DB_FILE = "public/db.json"
     val User = "/"
   }
 
