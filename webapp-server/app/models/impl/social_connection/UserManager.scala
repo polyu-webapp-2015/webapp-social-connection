@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap
 import models.DatabaseHelper
 import models.idl.social_connection._
 import play.api.libs.json.{JsNumber, JsString, JsValue}
-import utils.Lang.messageDigest
+import utils.Lang.digest
 
 import scala.util.Random
 
@@ -42,7 +42,7 @@ object UserManager extends UserManagerOperations {
 
   /*return marshaled sessionId, without collision checking*/
   private def generateSessionId(userId: String): String =
-    new String(messageDigest.digest(userId + System.currentTimeMillis() + System.nanoTime() getBytes()))
+    digest(userId + System.currentTimeMillis() + System.nanoTime())
 
   val sessionMap = new ConcurrentHashMap[String, String]()
 

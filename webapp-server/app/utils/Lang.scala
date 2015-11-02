@@ -3,8 +3,8 @@ package utils
 import java.io.InvalidClassException
 import java.security.MessageDigest
 
-import play.api.Logger
 import play.api.libs.json._
+import utils.Debug.logError
 
 import scala.reflect.ClassTag
 
@@ -12,7 +12,18 @@ import scala.reflect.ClassTag
  * Created by beenotung on 11/1/15.
  */
 object Lang {
-  val messageDigest = MessageDigest.getInstance("SHA-256")
+  private val messageDigest = MessageDigest.getInstance("SHA-256")
+
+
+  def digest(s: String): String = digest(s getBytes)
+
+  def digest(bs: Array[Byte]): String = {
+    var s: String = null
+    messageDigest.synchronized({
+      s = messageDigest digest bs map ("%02X" format _) mkString
+    })
+    s
+  }
 
   def repeat[A](func: => A) = new {
     def until(condition: A => Boolean): A = {
@@ -72,7 +83,7 @@ object Lang {
       Some(jsValue.as[JsObject].value.asInstanceOf[A])*/
     else
     if (throwException) {
-      Logger.error(Map(
+      logError(Map(
         "ct.runtimeClass" -> t.getName,
         "jsValue" -> jsValue.toString()
       ).mkString)

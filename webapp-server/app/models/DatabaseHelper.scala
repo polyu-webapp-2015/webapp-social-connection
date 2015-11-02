@@ -9,7 +9,7 @@ import play.api.Logger
 import play.api.libs.json._
 import utils.Debug._
 import utils.Lang
-import utils.Lang.messageDigest
+import utils.Lang.digest
 
 import scala.language.postfixOps
 import scala.reflect.io.File
@@ -22,12 +22,22 @@ object DatabaseHelper {
   val Failed_to_get_user_list_Exception: GeneralException = new GeneralException(ResultCodeEnum.Database_Corrupt.value(), "failed to get user list")
   val Failed_to_parse_user_from_database_Exception: GeneralException = new GeneralException(ResultCodeEnum.Database_Corrupt.value(), "failed to parse user from Database")
   private var thread: Thread = null
-  private var shouldRun = true
+  private var shouldRun = false
 
+  @throws(classOf[GeneralException])
   def setUser(userId: String, key: String, value: JsValue) = {
-    val user = getUser(userId, throwUserNotFoundException = true)
+    CachedDatabaseInstance.forWrite(root => {
+      val oldUser = getUser(userId, throwUserNotFoundException = true, root).get
+      val newUser = oldUser.jsObject ++ JsObject(Map(key -> value))
+      val newUsers = root.value.get("users") match {
+        case None => throw Failed_to_get_user_list_Exception
+        case Some(users) => JsObject(users.as[JsObject].value ++ Map(oldUser.userId() -> newUser))
+      }
+      newUsers
+      val newRoot = root
+      (newRoot, None)
+    })
     //TODO
-    CachedDatabaseInstance.change()
   }
 
   def newUser(data: Map[String, JsValue]): User = CachedDatabaseInstance.forWrite[User](root=>  {
@@ -37,13 +47,11 @@ object DatabaseHelper {
     case Some(oldUsers)=>
       try{
         val newNode:JsObject = JsObject(
-          Map("userId"->JsString( userId))
+          Map("userId"->JsString(userId))
           ++ data
         )
+        logDatabaseInfo("creating new user "+newNode.toString())
         val newUserObject=models.impl.social_connection.User.newInstance(newNode)
-        val newUser:JsObject=JsObject (
-          oldUsers.as[JsObject].value ++ Map[String,JsValue](userId->newNode)
-        )
         val newUsers:JsObject = oldUsers.as[JsObject]++ JsObject(Map(userId->newNode))
         val newRoot=root + ("users"->newUsers)
         (newRoot,newUserObject)
@@ -95,7 +103,7 @@ object DatabaseHelper {
       root.value.get("users") match {
         case None => throw Failed_to_get_user_list_Exception
         case Some(users)=>try{
-        val matchedUsers= users.as[JsObject].values.filter(user=>user.as[JsObject].value.get(key).equals(value))
+        val matchedUsers= users.as[JsObject].values.filter(_.as[JsObject].value.get(key).get.equals(value)        )
         if(matchedUsers.isEmpty){
           /*User not Found*/
           if(throwUserNotFoundException)
@@ -106,10 +114,10 @@ object DatabaseHelper {
           Some(models.impl.social_connection.User.newInstance(matchedUsers.head.as[JsObject]))
         }catch {
           case e: GeneralException =>
-            Logger.error(e.getClass.getName+":"+e.resultCode+ "->"+e.reason)
+            logDatabaseDebug (e.getClass.getName+":"+e.resultCode+ "->"+e.reason)
             throw e
           case e: Exception =>
-            Logger.error(e.toString)
+            logDatabaseError(e.toString)
             throw Failed_to_parse_user_from_database_Exception
         }
       }
@@ -124,20 +132,22 @@ object DatabaseHelper {
     thread = new Thread(new Runnable {
       override def run(): Unit = {
         try {
+          shouldRun = true
           while (shouldRun) {
             Thread.sleep(1000 * 10)
             if (CachedDatabaseInstance.isChanged)
               CachedDatabaseInstance.save()
             else
-              logDatabase("content not changed, skip saving")
+              logDatabaseDebug("content not changed, skip saving")
           }
         }
         catch {
           case e: InterruptedException =>
-            logDatabase("The Database updater thread is interrupted")
+            logDatabaseDebug("The Database updater thread is interrupted")
         }
       }
     }, "DatabaseHelper-Thread")
+    thread start()
   }
 
   def deInit() = {
@@ -145,7 +155,7 @@ object DatabaseHelper {
     CachedDatabaseInstance.save()
   }
 
-  private def generateUserId: String = new String(messageDigest.digest("" + System.currentTimeMillis() + System.nanoTime() getBytes()))
+  private def generateUserId: String = digest("" + System.currentTimeMillis() + System.nanoTime())
 
   object CachedDatabaseInstance {
     private val readWriteLock = new ReentrantReadWriteLock()
@@ -193,27 +203,29 @@ object DatabaseHelper {
 
     def save() = {
       if (changed) {
-        logInfo("saving Database File")
+        logDatabaseInfo("saving Database File")
         File(Path.DB_FILE).writeAll(cache.toString())
-        logInfo("saved Database File")
+        logDatabaseInfo("saved Database File")
         changed = false
-      }
+      } else
+        logDatabaseDebug("skip saving Database File (not changed)")
     }
 
     def load() = {
       try {
+        logDatabaseInfo("loading Database File")
         cache = Json.parse(new FileInputStream(Path.DB_FILE)).as[JsObject]
-        logInfo("loaded Database File")
+        logDatabaseInfo("loaded Database File")
       } catch {
         case e: FileNotFoundException =>
           logInfo("Database File not found, creating empty instance")
           cache = Json.obj("createTime" -> System.currentTimeMillis(),
             "users" -> Json.obj())
         case e: JsResultException =>
-          Logger.error("Error: failed to parse Database File (format error)")
+          logDatabaseError("Error: failed to parse Database File (format error)")
           throw e
         case e: Exception =>
-          Logger.error("Error: failed to load Database File (no permission?)")
+          logDatabaseError("Error: failed to load Database File (no permission?)")
           throw e
       }
       changed = false
@@ -225,7 +237,8 @@ object DatabaseHelper {
   init()
 
   object Path {
-    val DB_FILE = "db.json"
+//    val DB_FILE = "db.json"
+    val DB_FILE = "public/db.json"
     val User = "/"
   }
 
