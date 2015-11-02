@@ -252,7 +252,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
         val sessionId = UserManager.newSessionId(emailOrPhoneNum, password)
         commonResponse(request, action, sessionId)
       } catch {
-        case e: BAD_PARAM => throw new GeneralException("sex", ResultCodeEnum.Request_Wrong_Format.value())
+        case e: BAD_PARAM => throw new GeneralException( ResultCodeEnum.Request_Param_Wrong_Format.value(),"sex")
       }
     } catch {
       case e: GeneralException =>

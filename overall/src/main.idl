@@ -23,13 +23,17 @@ module social_connection{
     User_Not_Exist,
     Password_Wrong,
     No_Permission,
-    Name_Exist,
     Group_Not_Exist,
+    Request_Body_Wrong_Type,
     Request_Param_Missing,
-    Request_Param_Wrong_Type,
-    Request_Wrong_Format
+    Request_Param_Enum_Invalid,
+    Request_Param_Wrong_Format,
+    Request_Param_Parsing_Server
   };
-  exception GeneralException{long resultCode;};
+  exception GeneralException{
+    long resultCode;
+    string reason;
+  };
 
   enum SexEnum{M,F,Not_Given};
   interface User:models::impl::GeneralObject{

@@ -4,12 +4,12 @@ package models
 import java.io.{FileInputStream, FileNotFoundException}
 import java.util.concurrent.locks.ReentrantReadWriteLock
 
-import utils.Debug._
-import utils.Lang
-import Lang.messageDigest
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, User}
 import play.api.Logger
 import play.api.libs.json._
+import utils.Debug._
+import utils.Lang
+import utils.Lang.messageDigest
 
 import scala.reflect.io.File
 
@@ -18,8 +18,8 @@ import scala.reflect.io.File
  */
 object DatabaseHelper {
 
-  val Failed_to_get_user_list_Exception: GeneralException = new GeneralException("failed to get user list", ResultCodeEnum.Database_Corrupt.value())
-  val Failed_to_parse_user_from_database_Exception: GeneralException = new GeneralException("failed to parse user from Database", ResultCodeEnum.Database_Corrupt.value())
+  val Failed_to_get_user_list_Exception: GeneralException = new GeneralException(ResultCodeEnum.Database_Corrupt.value(), "failed to get user list")
+  val Failed_to_parse_user_from_database_Exception: GeneralException = new GeneralException(ResultCodeEnum.Database_Corrupt.value(), "failed to parse user from Database")
   private var thread: Thread = null
   private var shouldRun = true
 
@@ -110,7 +110,7 @@ object DatabaseHelper {
   }
 
   def User_Not_Exist_Exception(key: String, value: String): GeneralException = {
-    new GeneralException(key + "=" + value, ResultCodeEnum.User_Not_Exist.value())
+    new GeneralException(ResultCodeEnum.User_Not_Exist.value(), key + "=" + value)
   }
 
   def init() = {

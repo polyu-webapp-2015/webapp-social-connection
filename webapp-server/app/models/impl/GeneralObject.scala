@@ -1,6 +1,6 @@
 package models.impl
 
-import java.io.IOException
+import java.io.{IOException, InvalidClassException}
 
 import com.fasterxml.jackson.core.JsonParseException
 import com.fasterxml.jackson.databind.JsonMappingException
@@ -37,13 +37,15 @@ object GeneralObject {
   def getParamValue[T](implicit ct: ClassTag[T], params: JsObject, key: String): T = {
     params.value.get(key) match {
       case None => throw new
-          GeneralException(key, ResultCodeEnum.Request_Param_Missing.value())
+          GeneralException(ResultCodeEnum.Request_Param_Missing.value(), key)
       case Some(jsValue) =>
         try {
           getValue[T](ct,jsValue,throwException = true).get
         } catch {
           case e: JsResultException => throw new
-              GeneralException(key, ResultCodeEnum.Request_Param_Wrong_Type.value())
+              GeneralException(ResultCodeEnum.Request_Param_Enum_Invalid.value(), key)
+          case e: InvalidClassException => throw new
+              GeneralException(ResultCodeEnum.Request_Param_Parsing_Server.value(), e.getMessage)
         }
 
     }
@@ -53,19 +55,19 @@ object GeneralObject {
   def getParamJsObject(request: Request[AnyContent]): JsObject =
     request.body.asFormUrlEncoded match {
       case None => throw new
-          GeneralException("FormUrlEncoded", ResultCodeEnum.Request_Wrong_Format.value())
+          GeneralException(ResultCodeEnum.Request_Body_Wrong_Type.value(), "FormUrlEncoded")
       case Some(params) =>
         params.get("data") match {
           case None => throw new
-              GeneralException("data", ResultCodeEnum.Request_Param_Missing.value())
+              GeneralException(ResultCodeEnum.Request_Param_Missing.value(), "data")
           case Some(data) =>
             try
               Json.parse(data.mkString).as[JsObject]
             catch {
               case e@(_: JsonParseException | _: JsonMappingException | _: JsResultException) => throw new
-                  GeneralException("data", ResultCodeEnum.Request_Wrong_Format.value())
+                  GeneralException(ResultCodeEnum.Request_Param_Wrong_Format.value(), "data")
               case e: IOException => throw new
-                  GeneralException("retry", ResultCodeEnum.Network_Not_Stable.value())
+                  GeneralException(ResultCodeEnum.Network_Not_Stable.value(), "retry")
             }
         }
     }

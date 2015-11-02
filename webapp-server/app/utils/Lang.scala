@@ -3,6 +3,7 @@ package utils
 import java.io.InvalidClassException
 import java.security.MessageDigest
 
+import play.api.Logger
 import play.api.libs.json._
 
 import scala.reflect.ClassTag
@@ -63,13 +64,20 @@ object Lang {
       Some(jsValue.as[JsNumber].value.toDouble.asInstanceOf[T])
     else if (t.equals(classOf[BigDecimal]))
       Some(jsValue.as[JsNumber].value.asInstanceOf[T])
+    else if (t.equals(classOf[String]))
+      Some(jsValue.as[JsString].value.asInstanceOf[T])
     /*else if (a.equals(classOf[Seq[JsValue]]))
       Some(jsValue.as[JsArray].value.asInstanceOf[A])
     else if (a.equals(classOf[Map[String, JsValue]]))
       Some(jsValue.as[JsObject].value.asInstanceOf[A])*/
     else
-    if (throwException) throw new
-        InvalidClassException(t.getName, "not support by play.api.libs.json")
+    if (throwException) {
+      Logger.error(Map(
+        "ct.runtimeClass" -> t.getName,
+        "jsValue" -> jsValue.toString()
+      ).mkString)
+      throw new InvalidClassException(t.getName, "not support by play.api.libs.json")
+    }
     else
       None
   }
