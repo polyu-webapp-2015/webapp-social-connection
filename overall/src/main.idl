@@ -1,0 +1,86 @@
+module models{ module impl{
+  interface JsObject{};
+  interface GeneralObject{
+    readonly attribute JsObject jsObject;
+  };
+};};
+
+
+module models{module idl{
+module social_connection{
+  interface User;
+  interface Group;
+};
+
+module social_connection{
+
+  enum ResultCodeEnum{
+    Success,
+    Failed_To_Connect_To_Database,
+    Database_Corrupt,
+    Duplicated,
+    User_Not_Exist,
+    Password_Wrong,
+    No_Permission,
+    Name_Exist,
+    Group_Not_Exist,
+    Request_Param_Missing,
+    Request_Param_Wrong_Type,
+    Request_Wrong_Format
+  };
+  exception GeneralException{long resultCode;};
+
+  enum SexEnum{M,F,Not_Given};
+  interface User:models::impl::GeneralObject{
+    readonly attribute string userId;
+    attribute string userIntro;
+    attribute string email;
+    attribute string phoneNum;
+    attribute string firstName;
+    attribute string lastName;
+    attribute string nickName;
+    attribute SexEnum sex;
+    struct UserGroup{
+      string groupID;
+      string groupName;
+      /*used for sorting in front-end*/
+      long long lastActionTime;
+      long long joinTime;
+    };
+    typedef sequence<UserGroup> UserGroupSeq;
+    void getUserGroupList(out UserGroupSeq userGroupSeq,out short numUserGroup);
+    boolean isPasswordCorrect(in string password);
+  };
+  interface UserManager{
+  /*return userId*/
+    string createUser(in string emailOrPhoneNum, in string password, in SexEnum sex) raises (GeneralException);
+
+    /*login operation, return session if success, raise exception if failed*/
+    string newSessionId(in string emailOrPhoneNum,in string password) raises (GeneralException);
+
+    boolean isEmailOrPhoneNumUnique(in string emailOrPhoneNum) raises (GeneralException);
+  };
+
+  interface Group{
+    readonly attribute string groupId;
+    readonly attribute string groupName;
+    readonly attribute string groupIntro;
+    readonly attribute string hostUserId;
+    struct GroupUser{
+      string userId;
+      long long lastActionTime;
+      long long joinTime;
+    };
+    typedef sequence<GroupUser> GroupUserSeq;
+    void getGroupUserList(out GroupUserSeq groupUserSeq, out short numGroupUser);
+  };
+  interface GroupManager{
+    void createGroup(in string groupName, in string groupIntro) raises (GeneralException);
+    Group getGroup(in string groupId) raises (GeneralException);
+  };
+
+  interface Conference{};
+
+  interface Exhibition{};
+};
+};};

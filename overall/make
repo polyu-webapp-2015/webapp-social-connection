@@ -1,0 +1,10 @@
+#!/bin/bash
+#idlj -td out/ src/main.idl
+idlj -fserver -td out/ src/main.idl
+# idlj -td out/ src/main.idl
+rm ../server/play-websocket-server/app/models/idl -rf
+mv out/models/idl/ ../server/play-websocket-server/app/models
+rm ../server/play-websocket-server/app/models/idl/social_connection/*POA.java
+# rm ../server/play-websocket-server/app/models/idl/social_connection/*Helper.java
+# rm ../server/play-websocket-server/app/models/idl/social_connection/*Holder.java
+# rm ../server/play-websocket-server/app/models/idl/social_connection/_*Stub.java
