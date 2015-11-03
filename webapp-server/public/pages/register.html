@@ -1,9 +1,11 @@
 
 <div class="modal-dialog" ng-controller="RegisterCtrl">
-  <!-- the scope of "RegisterCtrl" should be a child scope of "MainCtrl" -->
+  <!-- the scope of "RegisterCtrl" should be a child of the scope of "MainCtrl" -->
   <div>
     <div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="$parent.closeRegisterModal()">&times;</button>
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeRegisterModal()">&times;</button>
+  <!-- method "closeRegisterModal()" inheritated from its parent scope -->
+
 	<h4 class="modal-title">Sign Up</h4>
     </div>			<!-- /modal-header -->
     <form id="registerForm" name="registerForm" role="form" ng-submit="register()" autocomplete="off">
@@ -32,7 +34,7 @@
     </div>			<!-- /modal-body -->
     <div class="modal-footer">
 	<button class="btn btn-sm btn-primary" type="submit">Register</button>
-	<a class="btn btn-sm btn-default" ng-click="$parent.closeRegisterModal()">Close</button>
+	<a class="btn btn-sm btn-default" ng-click="closeRegisterModal()">Close</button>
     </div>			<!-- /modal-footer -->
     </form>
   </div>
