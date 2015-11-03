@@ -3,11 +3,12 @@
 serv_address = "http://58.96.176.223:9000";
 // serv_address = "";
 
-var app=angular.module('myApp', ['ui.bootstrap']);
+var app = angular.module('myApp', ['ui.bootstrap']);
 
 function site_join(path) {
 	return serv_address+path;
 }
+
 
 app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;        
@@ -71,3 +72,29 @@ app.config(['$httpProvider', function($httpProvider) {
     }];
   }
 ]);
+
+
+app.factory("$global", function($uibModal) {
+
+  var registerModal = {
+        backdrop: true,
+        backdropClick: true,
+        dialogFade: false,
+        keyboard: true,
+        templateUrl: '/pages/register.html',
+  };
+
+  var user = {isAnonymous: true, sessionid: "-1"};
+
+  return {
+    getUser: function () {
+      return user;
+    },
+    setUser: function (theUser) {
+      user = theUser; // set it when user is got from the server
+    }
+  };
+})
+
+
+

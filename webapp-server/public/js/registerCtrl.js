@@ -4,15 +4,10 @@ app.controller("RegisterCtrl", function ($scope, $http) {
         $scope.re_password_valid = false;
         $scope.password = '';
         $scope.password_valid = false;
+
         $scope.submit = function () {
             console.log("submit");
         }
-
-        $scope.closeModal = function (modal) {
-            console.log("close");
-            modals[modal].close();
-            delete modals[modal];
-        };
 
         $scope.checkUsername = function () {
             console.log("focus out of field");
@@ -89,6 +84,8 @@ app.controller("RegisterCtrl", function ($scope, $http) {
 
         $scope.logi = function () {
             $scope.registerForm.pwd.$setUntouched();
+            console.log("hehe");
+            console.log($scope);
             console.log("loging");
             console.log("pwd_valid: " + $scope.password_valid);
             console.log("pwd_dirty: " + $scope.registerForm.pwd.$dirty);

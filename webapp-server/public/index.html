@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body ng-controller="MainCtrl">
 <div id="debugPanel"></div>
 <script>
     dumpTarget = $("#debugPanel");
 </script>
 <h3>Home</h3>
 
-<div ng-controller="MainCtrl">
+<div>
     <button data-toggle="modal fade" class="btn btn-info btn-sm" ng-click="openRegisterModal()">Register</button>
     <button data-toggle="modal fade" class="btn btn-info btn-sm" ng-click="openLoginModal()">Login</button>
     <!-- Modal -->
