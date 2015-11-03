@@ -13,7 +13,7 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal('registerModal')">&times;</button>
 			<h4 class="modal-title">Sign Up</h4>
         </div>			<!-- /modal-header -->
-        <form id="registerForm" name="registerForm" role="form" ng-submit="register()">
+        <form id="registerForm" name="registerForm" role="form" ng-submit="register()" autocomplete="off">
         <div class="modal-body">
           <div class="form-group">
 			  <label for="username">Username: </label>
@@ -45,5 +45,5 @@
       </div>
     </div>
 </body>
-  <script src="js/controllers.js"></script>
+  <script src="js/registerCtrl.js"></script>
 </html>

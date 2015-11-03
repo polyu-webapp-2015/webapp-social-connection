@@ -1,7 +1,7 @@
 
 /*@deprecated ("AngularJS does not support cross-origin?")*/
-/*serv_address = "http://58.96.176.223:9000";*/
-serv_address = "";
+serv_address = "http://58.96.176.223:9000";
+// serv_address = "";
 
 var app=angular.module('myApp', ['ui.bootstrap']);
 
