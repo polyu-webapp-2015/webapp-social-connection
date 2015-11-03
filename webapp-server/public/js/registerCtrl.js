@@ -11,7 +11,7 @@ app.controller("RegisterCtrl", function ($scope, $http) {
         $scope.closeModal = function (modal) {
             console.log("close");
             modals[modal].close();
-            delete modals[modal]
+            delete modals[modal];
         };
 
         $scope.checkUsername = function () {
@@ -78,6 +78,7 @@ app.controller("RegisterCtrl", function ($scope, $http) {
                 .success(function (data, status, headers, config) {
                     alert("success!");
                     console.log(data);
+                    
                 })
                 .error(function (data, status, header, config) {
                     console.log(status);
