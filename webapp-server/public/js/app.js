@@ -76,22 +76,23 @@ app.config(['$httpProvider', function($httpProvider) {
 
 app.factory("$global", function($uibModal) {
 
-  var registerModal = {
-        backdrop: true,
-        backdropClick: true,
-        dialogFade: false,
-        keyboard: true,
-        templateUrl: '/pages/register.html',
-  };
-
   var user = {isAnonymous: true, sessionid: "-1"};
 
   return {
     getUser: function () {
-      return user;
+    // objects in javascript are volatile, 
+    // so it might be safer to use user like this
+      return angular.copy(user);
     },
     setUser: function (theUser) {
       user = theUser; // set it when user is got from the server
+    },
+    setUserAttr: function (key, value) {
+      // set attribute of the User
+      user[key] = value;
+    },
+    setUserAnonymous: function () {
+      user = {isAnonymous: true, sessionid: "-1"};
     }
   };
 })

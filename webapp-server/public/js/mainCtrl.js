@@ -1,8 +1,4 @@
-var registerModal ;
-
-var modals = {};
-var sessionid = null;
-
+// controller of index.html
 app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     /* 
     $global: self-defined global variables, look at app.js, app.factory for reference
@@ -29,7 +25,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     };
 
     $scope.closeRegisterModal = function () {
-        console.log("closing");
+        $scope.logii();
         $scope.registerModal.close();
     };
 
@@ -46,6 +42,13 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
 
 
     $scope.logii = function () {
+        // for test & debug usage
         console.log("log!!!");
+        var user = $global.getUser();
+        console.log(user);
+        user['b'] = 3;
+        $global.setUserAttr("a", 3);
+        console.log($global.getUser());
+
     }
 })
