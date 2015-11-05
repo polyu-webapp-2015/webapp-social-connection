@@ -1,8 +1,8 @@
 // controller of index.html
 app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
-    /* 
+    /*
     $global: self-defined global variables, look at app.js, app.factory for reference
-    You should save infomation of the user there (using setter and getter) 
+    You should save infomation of the user there (using setter and getter)
 
     $uibModal: take a look at http://angular-ui.github.io/bootstrap/, documentation about $uibModal service
     */
@@ -15,10 +15,10 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
           dialogFade: false,
           keyboard: true,
           templateUrl: '/pages/register.html',
-          scope: $scope 
+          scope: $scope
         /*
         scope - a scope instance to be used for the modal's content (actually
-        the $uibModal service is going to create a child scope of a provided scope). 
+        the $uibModal service is going to create a child scope of a provided scope).
         - from documentation
         */
         });
@@ -30,11 +30,19 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     };
 
     $scope.openLoginModal = function () {
-        // Your code here
+        console.log("login");
+        $scope.loginModal = $uibModal.open({
+          backdrop: true,
+          backdropClick: true,
+          dialogFade: false,
+          keyboard: true,
+          templateUrl: '/pages/login.html',
+          scope: $scope
+        });
     };
 
     $scope.closeLoginModal = function () {
-        // Your code here
+      $scope.loginModal.close();
     }
 
     $scope.whoami = function() {

@@ -1,5 +1,6 @@
 
 app.controller("RegisterCtrl", function ($scope, $http) {
+        $scope.usernameUnique = true;
         $scope.re_password = '';
         $scope.re_password_valid = false;
         $scope.password = '';
@@ -11,17 +12,16 @@ app.controller("RegisterCtrl", function ($scope, $http) {
 
         $scope.checkUsername = function () {
             console.log("focus out of field");
-            /*
-             $http.post(site_join('/checkUsername'), {"data": JSON.stringify({"username": $scope.username})})
-             .success(function(data, status, headers, config) {
-             alert("success!");
-             console.log(data);
-             })
-             .error(function(data, status, header, config) {
-             console.log(status);
-             alert(status);
-             });
-             */
+            $http.post(site_join('/isEmailOrPhoneNumUnique'), {"data": JSON.stringify({"emailOrPhoneNum": $scope.username})})
+            .success(function(data, status, headers, config) {
+              $scope.usernameUnique = true;
+              console.log(data);
+            })
+            .error(function(data, status, header, config) {
+              $scope.usernameUnique = false;
+              console.log(status);
+              alert(status);
+            });
         };
 
         $scope.checkPassword = function () {
@@ -73,7 +73,7 @@ app.controller("RegisterCtrl", function ($scope, $http) {
                 .success(function (data, status, headers, config) {
                     alert("success!");
                     console.log(data);
-                    
+                    $scope.closeRegisterModal();
                 })
                 .error(function (data, status, header, config) {
                     console.log(status);

@@ -1,0 +1,12 @@
+@charset "utf-8";
+.alert-auto {
+  display:inline-block;
+}
+.center {
+  width: max-content;
+  margin: auto;
+}
+.login.alert{
+  margin: auto;
+  margin-top: 10px;
+}
