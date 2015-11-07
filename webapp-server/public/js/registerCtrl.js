@@ -12,15 +12,20 @@ app.controller("RegisterCtrl", function ($scope, $http) {
 
         $scope.checkUsername = function () {
             console.log("focus out of field");
+            console.log($scope.registerForm.pwd);
+            console.log($scope.registerForm.username.$dirty);
+            if (true) return;
             $http.post(site_join('/isEmailOrPhoneNumUnique'), {"data": JSON.stringify({"emailOrPhoneNum": $scope.username})})
             .success(function(data, status, headers, config) {
-              $scope.usernameUnique = true;
-              console.log(data);
+              if (data.resultCode == 0) {
+                $scope.usernameUnique = data.params.isEmailOrPhoneNumUnique;
+              }
+              else {
+                alert("resultCode: " + data.resultCode);
+              }
             })
             .error(function(data, status, header, config) {
-              $scope.usernameUnique = false;
-              console.log(status);
-              alert(status);
+              alert("status: " + status);
             });
         };
 
@@ -58,8 +63,7 @@ app.controller("RegisterCtrl", function ($scope, $http) {
         }
 
         $scope.register = function () {
-            console.log("username" + $scope.username);
-
+            if (!$scope.usernameUnique) return;
             if (!$scope.password_valid || !$scope.re_password_valid)    return;
             console.log($scope.sex);
             //$scope.gender = parseInt($scope.gender);
