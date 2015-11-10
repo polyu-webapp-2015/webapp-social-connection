@@ -258,15 +258,18 @@ function apiCall(host, port, api, data, succ, fail, preferGet) {
 }
 
 function apiCallPHP(host, port, api, data, succ, fail, preferGet) {
-    var url="http://"+host+":"+port+"/api.php";
+    var url="http://"+host+":"+port+"/api/main.php";
+    console.log("url="+url);
     var method=TYPE_POST;
     if(preferGet)method=TYPE_GET;
     //TODO convert data into post or get
-    var dataString=JSON.pruned({
+    var payload={
         "action":api,
         "data":data
-    });
-    ajaxCallSimple(url,method,dataString,succ,fail);
+    };
+    var dataString=JSON.pruned(payload);
+    //ajaxCallSimple(url,method,dataString,succ,fail);
+    ajaxCallSimple(url,method,payload,succ,fail);
 }
 function apiCallPHP2(host, port, api, data, succ, fail, preferGet) {
     //var url="http://localhost:9000/api/index.php";
