@@ -147,6 +147,7 @@ function dictToString(dict) {
 }());
 
 var MODE_WEBSOCKET = "websocket";
+//@Deprecated
 var MODE_JSONP = "jsonp";
 var MODE_AJAX = "ajax";
 var MODE = MODE_WEBSOCKET;
@@ -156,6 +157,9 @@ var TYPE_JSON = "application/json";
 var TYPE_JSONP = "application/javascript";
 var TYPE_XML = "application/xml";
 var ERROR_SERVER = "server side error";
+var BACKEND_PHP="php";
+var BACKEND_PLAY="play";
+var BACKEND=BACKEND_PHP;
 
 function ajaxCallJsonp(url, options, ok, fail) {
     var request = jQuery.post(url, options, null, "json");
@@ -170,7 +174,7 @@ function ajaxCallSimple(url, method, data, ok, fail) {
         method: method,
         dataType: TYPE_JSON,
         /*username:"",password:"",*/
-        /*data: data,*/
+        data: data,
         success: ok,
         error: fail,
         crossDomain: true,
@@ -216,8 +220,13 @@ function onceWebSocketCall(host, port, api, data, succ, fail) {
  @param {*} data : {key:value} / {requestMethod:[TYPE_GET/TYPE_POST],params:{key:value}}
  @param {function} succ : callback when request success
  @param {function} fail : callback when request failed
+ @param {boolean} preferGet : by default use post, if true use get
  */
 function apiCall(host, port, api, data, succ, fail, preferGet) {
+    if(BACKEND==BACKEND_PHP){
+        apiCallPHP(host,port,api,data,succ,fail,preferGet);
+        return;
+    }
     switch (MODE) {
         case MODE_WEBSOCKET:
             return onceWebSocketCall(host, port, api, data, succ, fail);
@@ -246,4 +255,27 @@ function apiCall(host, port, api, data, succ, fail, preferGet) {
         default :
             fail();
     }
+}
+
+function apiCallPHP(host, port, api, data, succ, fail, preferGet) {
+    var url="http://"+host+":"+port+"/api/main.php";
+    console.log("url="+url);
+    var method=TYPE_POST;
+    if(preferGet)method=TYPE_GET;
+    //TODO convert data into post or get
+    var payload={
+        "action":api,
+        "data":data
+    };
+    var dataString=JSON.pruned(payload);
+    //ajaxCallSimple(url,method,dataString,succ,fail);
+    ajaxCallSimple(url,method,payload,succ,fail);
+}
+function apiCallPHP2(host, port, api, data, succ, fail, preferGet) {
+    //var url="http://localhost:9000/api/index.php";
+    var url="http://58.96.176.223:9000/httpEcho";
+    function succ(data){
+        console.log(data);
+    }
+    ajaxCallSimple(url,"POST",data,succ,succ);
 }
