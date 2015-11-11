@@ -15,7 +15,7 @@ app.controller("RegisterCtrl", function ($scope, $http) {
             console.log($scope.registerForm.pwd);
             console.log($scope.registerForm.username.$dirty);
             if (true) return;
-            $http.post(site_join('/isEmailOrPhoneNumUnique'), {"data": JSON.stringify({"emailOrPhoneNum": $scope.username})})
+            $http.post(serv_addr, {"action": "isEmailOrPhoneNumUnique", "data": {"emailOrPhoneNum": $scope.username}})
             .success(function(data, status, headers, config) {
               if (data.resultCode == 0) {
                 $scope.usernameUnique = data.params.isEmailOrPhoneNumUnique;
@@ -67,12 +67,13 @@ app.controller("RegisterCtrl", function ($scope, $http) {
             if (!$scope.password_valid || !$scope.re_password_valid)    return;
             console.log($scope.sex);
             //$scope.gender = parseInt($scope.gender);
-            $http.post(site_join('/register'), {
-                "data": JSON.stringify({
+            $http.post(serv_addr), {
+                "action": "register",
+                "data": {
                     emailOrPhoneNum: $scope.username,
                     password: $scope.password,
                     sex: parseInt($scope.sex)
-                })
+                }
             })
                 .success(function (data, status, headers, config) {
                     alert("success!");
@@ -82,7 +83,6 @@ app.controller("RegisterCtrl", function ($scope, $http) {
                 .error(function (data, status, header, config) {
                     console.log(status);
                     alert(status);
-                    dump(data);
                 });
         };
 

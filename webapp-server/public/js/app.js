@@ -1,13 +1,15 @@
 
 /*@deprecated ("AngularJS does not support cross-origin?")*/
-serv_address = "http://58.96.176.223:9000";
+serv_addr = "http://58.96.176.223:8000/api/main.php";
 // serv_address = "";
 
 var app = angular.module('myApp', ['ui.bootstrap']);
 
+/*
 function site_join(path) {
 	return serv_address+path;
 }
+*/
 
 
 app.config(['$httpProvider', function($httpProvider) {
