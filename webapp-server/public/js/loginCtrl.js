@@ -1,11 +1,12 @@
 app.controller("LoginCtrl", function ($scope, $http) {
   $scope.loginFail = false;
   $scope.login = function () {
-      $http.post(site_join('/login'), {
-          "data": JSON.stringify({
+      $http.post(serv_addr, {
+          "action": "login",
+          "data": {
               emailOrPhoneNum: $scope.username,
               password: $scope.password
-          })
+          }
       })
           .success(function (data, status, headers, config) {
               $scope.loginFail = false;
@@ -17,7 +18,6 @@ app.controller("LoginCtrl", function ($scope, $http) {
               $scope.loginFail = true;
               console.log(status);
               alert(status);
-              dump(data);
           });
   };
 });
