@@ -15,8 +15,8 @@ import scala.language.postfixOps
 import scala.reflect.io.File
 
 /**
- * This instance simulate the function of a database by manipulating on a json file
- */
+  * This instance simulate the function of a database by manipulating on a json file
+  */
 object DatabaseHelper {
 
   val Failed_to_get_user_list_Exception: GeneralException = new GeneralException(ResultCodeEnum.Database_Corrupt.value(), "failed to get user list")
@@ -40,26 +40,26 @@ object DatabaseHelper {
     //TODO
   }
 
-  def newUser(data: Map[String, JsValue]): User = CachedDatabaseInstance.forWrite[User](root=>  {
-    val userId = Lang.repeat[String](generateUserId) until (_userId=> getUser(userId=_userId,root = root) isEmpty)
-    root.value.get("users")match {
-    case None=> throw Failed_to_get_user_list_Exception
-    case Some(oldUsers)=>
-      try{
-        val newNode:JsObject = JsObject(
-          Map("userId"->JsString(userId))
-          ++ data
-        )
-        logDatabaseInfo("creating new user "+newNode.toString())
-        val newUserObject=models.impl.social_connection.User.newInstance(newNode)
-        val newUsers:JsObject = oldUsers.as[JsObject]++ JsObject(Map(userId->newNode))
-        val newRoot=root + ("users"->newUsers)
-        (newRoot,newUserObject)
-      }catch {
-        case e:JsResultException=>
-          Logger.debug(e.toString)
-          throw Failed_to_parse_user_from_database_Exception
-      }
+  def newUser(data: Map[String, JsValue]): User = CachedDatabaseInstance.forWrite[User](root => {
+    val userId = Lang.repeat[String](generateUserId) until (_userId => getUser(userId = _userId, root = root) isEmpty)
+    root.value.get("users") match {
+      case None => throw Failed_to_get_user_list_Exception
+      case Some(oldUsers) =>
+        try {
+          val newNode: JsObject = JsObject(
+            Map("userId" -> JsString(userId))
+              ++ data
+          )
+          logDatabaseInfo("creating new user " + newNode.toString())
+          val newUserObject = models.impl.social_connection.User.newInstance(newNode)
+          val newUsers: JsObject = oldUsers.as[JsObject] ++ JsObject(Map(userId -> newNode))
+          val newRoot = root + ("users" -> newUsers)
+          (newRoot, newUserObject)
+        } catch {
+          case e: JsResultException =>
+            Logger.debug(e.toString)
+            throw Failed_to_parse_user_from_database_Exception
+        }
     }
   }
   )
@@ -67,7 +67,7 @@ object DatabaseHelper {
   @throws(classOf[GeneralException])
   def getUser(userId: String, throwUserNotFoundException: Boolean = false, root: JsObject = null): Option[User] = {
     if (root == null) {
-      CachedDatabaseInstance.forRead[Option[User]](root=> getUser(userId,throwUserNotFoundException,root))
+      CachedDatabaseInstance.forRead[Option[User]](root => getUser(userId, throwUserNotFoundException, root))
     } else {
       root.value.get("users")
       match {
@@ -89,8 +89,8 @@ object DatabaseHelper {
   }
 
   /**
-   * @param emailOrPhoneNum : phoneNum or email
-   **/
+    * @param emailOrPhoneNum : phoneNum or email
+    **/
   @throws(classOf[GeneralException])
   def findUserByEmailOrPhoneNum(emailOrPhoneNum: String, throwUserNotFoundException: Boolean = false): Option[User] = {
     val key = if (emailOrPhoneNum.contains('@')) "email" else "phoneNum"
@@ -102,24 +102,24 @@ object DatabaseHelper {
     CachedDatabaseInstance.forRead[Option[User]](root => {
       root.value.get("users") match {
         case None => throw Failed_to_get_user_list_Exception
-        case Some(users)=>try{
-        val matchedUsers = users.as[JsObject].values.filter(
-          _.as[JsObject].value.get(key)match {
-            case None=>false
-            case Some(v)=>v.equals(value)
-          }
-        )
-        if(matchedUsers.isEmpty){
-          /*User not Found*/
-          if(throwUserNotFoundException)
-            throw User_Not_Exist_Exception(key,value.toString())
-          else
-            None
-        } else
-          Some(models.impl.social_connection.User.newInstance(matchedUsers.head.as[JsObject]))
-        }catch {
+        case Some(users) => try {
+          val matchedUsers = users.as[JsObject].values.filter(
+            _.as[JsObject].value.get(key) match {
+              case None => false
+              case Some(v) => v.equals(value)
+            }
+          )
+          if (matchedUsers.isEmpty) {
+            /*User not Found*/
+            if (throwUserNotFoundException)
+              throw User_Not_Exist_Exception(key, value.toString())
+            else
+              None
+          } else
+            Some(models.impl.social_connection.User.newInstance(matchedUsers.head.as[JsObject]))
+        } catch {
           case e: GeneralException =>
-            logDatabaseDebug (e.getClass.getName+":"+e.resultCode+ "->"+e.reason)
+            logDatabaseDebug(e.getClass.getName + ":" + e.resultCode + "->" + e.reason)
             throw e
           case e: Exception =>
             logDatabaseError(e.toString)
@@ -127,13 +127,14 @@ object DatabaseHelper {
         }
       }
     }
-  )
+    )
 
   def User_Not_Exist_Exception(key: String, value: String): GeneralException = {
     new GeneralException(ResultCodeEnum.User_Not_Exist.value(), key + "=" + value)
   }
 
-  def init() = {
+  private def init(): Unit = {
+    if (thread != null) return
     thread = new Thread(new Runnable {
       override def run(): Unit = {
         try {
@@ -150,12 +151,13 @@ object DatabaseHelper {
           case e: InterruptedException =>
             logDatabaseUpdaterDebug("The Database updater thread is interrupted")
         }
+        thread = null
       }
     }, "DatabaseUpdater-Thread")
     thread start()
   }
 
-  def deInit() = {
+  private def deInit() = {
     shouldRun = false
     CachedDatabaseInstance.save()
   }
@@ -166,6 +168,8 @@ object DatabaseHelper {
     private val readWriteLock = new ReentrantReadWriteLock()
     private var cache: JsObject = null
     private var changed = false
+
+    def ready = cache != null
 
     def isChanged = changed
 
@@ -239,7 +243,32 @@ object DatabaseHelper {
     load()
   }
 
+  Runtime.getRuntime.addShutdownHook(new Thread() {
+    override def run() = {
+      logInfo("received shutdown signal on jvm")
+      stopService()
+    }
+  })
   init()
+
+  def startService() = {
+    this.synchronized({
+      if (!CachedDatabaseInstance.ready) {
+        init()
+        while (!CachedDatabaseInstance.ready) {
+          Thread.sleep(500)
+          logDatabaseDebug("waiting db cache thread")
+        }
+      }
+      if (!DatabaseMiddleMan.ready)
+        DatabaseMiddleMan.init()
+    })
+  }
+
+  def stopService() = {
+    deInit()
+    DatabaseMiddleMan.deInit()
+  }
 
   object Path {
     //    val DB_FILE = "db.json"

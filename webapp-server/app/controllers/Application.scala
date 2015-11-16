@@ -8,6 +8,7 @@ import akka.actor.{Actor, ActorRef, PoisonPill, Props}
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, SexEnum}
 import models.impl.GeneralObject.{getParamJsObject, getParamValue}
 import models.impl.social_connection.UserManager
+import models.{DatabaseHelper, DatabaseMiddleMan}
 import org.omg.CORBA.BAD_PARAM
 import play.api.Play.current
 import play.api._
@@ -207,7 +208,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
       "action" -> JsString(action),
       "resultCode" -> JsNumber(resultCode)
     ))
-    if (sessionId != null) responseJson +=("sessionId" -> JsString(sessionId))
+    if (sessionId != null) responseJson += ("sessionId" -> JsString(sessionId))
     if (reason != null) responseJson += ("reason" -> JsString(reason))
     if (params != null) responseJson += ("params" -> JsObject(params))
     val responseBody = responseJson.toString()
@@ -225,7 +226,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
       commonResponse(request, action, params = Map(
         action -> JsBoolean(
           UserManager.isEmailOrPhoneNumUnique(
-            getParamValue[String](classTag[String],request,"emailOrPhoneNum")
+            getParamValue[String](classTag[String], request, "emailOrPhoneNum")
           ))))
     } catch {
       case e: GeneralException =>
@@ -239,9 +240,9 @@ class Application @Inject()(ws: WSClient) extends Controller {
     try {
       try {
         val jsObject = getParamJsObject(request)
-        val sex: SexEnum = SexEnum.from_int(getParamValue[Int](classTag[Int],jsObject,"sex"))
-        val emailOrPhoneNum: String = getParamValue[String](classTag[String],jsObject,"emailOrPhoneNum")
-        val password: String = getParamValue[String](classTag[String],jsObject,"password")
+        val sex: SexEnum = SexEnum.from_int(getParamValue[Int](classTag[Int], jsObject, "sex"))
+        val emailOrPhoneNum: String = getParamValue[String](classTag[String], jsObject, "emailOrPhoneNum")
+        val password: String = getParamValue[String](classTag[String], jsObject, "password")
         val userId = UserManager.createUser(
           emailOrPhoneNum,
           password,
@@ -265,13 +266,63 @@ class Application @Inject()(ws: WSClient) extends Controller {
     try {
       val jsObject = getParamJsObject(request)
       val sessionId = UserManager.newSessionId(
-        getParamValue[String](classTag[String],jsObject,"username"),
-        getParamValue[String](classTag[String],jsObject,"password")
+        getParamValue[String](classTag[String], jsObject, "username"),
+        getParamValue[String](classTag[String], jsObject, "password")
       )
       commonResponse(request, sessionId, action)
     } catch {
       case e: GeneralException =>
         commonResponse(request, action, resultCode = e.resultCode, reason = e.reason)
     }
+  }
+
+  def startDB = Action { request =>
+    val action = "startDB"
+    actionEntryLog(action)
+    try {
+      //      val jsObject = getParamJsObject(request)
+      //      val sessionId = UserManager.newSessionId(
+      //        getParamValue[String](classTag[String], jsObject, "username"),
+      //        getParamValue[String](classTag[String], jsObject, "password")
+      //      )
+      DatabaseHelper.startService()
+      commonResponse(request, action)
+    } catch {
+      case e: GeneralException =>
+        commonResponse(request, action, resultCode = e.resultCode, reason = e.reason)
+    }
+  }
+
+  def dbPort = Action { request =>
+    val action = "dbPort"
+    actionEntryLog(action)
+    try {
+      //      val jsObject = getParamJsObject(request)
+      //      val sessionId = UserManager.newSessionId(
+      //        getParamValue[String](classTag[String], jsObject, "username"),
+      //        getParamValue[String](classTag[String], jsObject, "password")
+      //      )
+      DatabaseHelper.startService()
+      Ok("" + DatabaseMiddleMan.PORT).withHeaders(commonHeader(request))
+    } catch {
+      case e: GeneralException =>
+        commonResponse(request, action, resultCode = e.resultCode, reason = e.reason)
+    }
+  }
+
+  def wsDB = WebSocket.using[String] {
+    request =>
+      val action = "wsDB"
+      actionEntryLog(action)
+      val in = Iteratee.foreach[String](s => logDebug(s))
+      logDebug("disconnected")
+      val out = Enumerator("test")
+      //      val url = "http://api.openweathermap.org/data/2.5/weather?q=Amsterdam,nl"
+      //      val outEnumerator = Enumerator.repeatM[String]({
+      //        Thread.sleep(3000)
+      //        ws.url(url).get().map(r => s"${new java.util.Date()}\n ${r.body}")
+      //      })
+      //      (Iteratee.ignore[String], outEnumerator)
+      (in, out)
   }
 }
