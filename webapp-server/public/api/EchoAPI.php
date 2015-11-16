@@ -11,6 +11,7 @@ class EchoAPI extends APIClass
 {
     public $name = "Echo";
     public $params = "any";
+    public $output = "any";
     public $desc = "echo the param";
 }
 
