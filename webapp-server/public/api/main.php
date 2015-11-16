@@ -7,14 +7,17 @@ header('Access-Control-Allow-Methods: GET, POST');
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET' :
         $API->printAllAPI();
+        echo('<pre>');
+        readfile('readme.md');
+        echo('</pre>');
         break;
     case 'POST':
         echo "begin";
         foreach ($_POST as $key => $value) {
             echo "\nPOST parameter $key => $value ";
         }
-        echo "\n '$_POST' \n ";
-        echo "\n '$_POST[0]' \n ";
+//        echo "\n '$_POST' \n ";
+//        echo "\n '$_POST[0]' \n ";
         echo "\nend";
         break;
     default:
