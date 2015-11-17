@@ -12,8 +12,11 @@ class IsEmailOrPhoneNumUniqueAPI extends APIClass
 {
     public $name = "IsEmailOrPhoneNumUnique";
     public $params = array("emailOrPhoneNum" => "98765432");
-    public $output = array("isEmailOrPhoneNumUnique" => 0);
+    public $output = array(self::_k1 => 0);
     public $desc = "check if the email or phone number is NOT registered";
+
+    const _k1 = "isEmailOrPhoneNumUnique";
+    const _op = DatabaseHelper::EXIST_UNDER;
 
     public function handle($data)
     {
@@ -24,9 +27,12 @@ class IsEmailOrPhoneNumUniqueAPI extends APIClass
         else
             $key = "phoneNum";
         $path = array("users");
-        $data = array(array($key, $value));
-        $result = $db->exec(DatabaseHelper::EXIST_UNDER, $path, $data);
-        echo $result;
+        $this->params = array($key, $value);
+        $data = array($this->params);
+        $response = $db->exec(self::_op, $path, $data);
+        $result = json_decode($response, true);
+        $this->output[self::_k1] = !$result[self::_op];
+        echo json_encode($this->output);
     }
 }
 
