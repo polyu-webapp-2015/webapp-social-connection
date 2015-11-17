@@ -67,6 +67,7 @@ object DatabaseMiddleMan {
     val out = new PrintStream(client.getOutputStream)
 
     override def run = {
+      logDatabaseDebug("db middle man : reading input from client")
       val s = in.readLine()
       logDatabaseDebug("input db request =" + s)
       out.println(s)

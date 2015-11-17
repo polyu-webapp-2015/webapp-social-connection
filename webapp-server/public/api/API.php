@@ -26,7 +26,9 @@ class APIClass
         echo "desc : $this->desc";
         echo "</pre>";
     }
-    public function handle($data){
+
+    public function handle($data)
+    {
         throw new Exception('not implemented');
     }
 }
@@ -48,13 +50,19 @@ class API extends APIClass
         return $this->list;
     }
 
-    function route($api_name,$data)
+    function route($api_name, $data)
     {
+        $found = false;
         foreach ($this->list as $api) {
             if (strcasecmp($api->name, $api_name) == 0) {
                 $api->handle($data);
+                $found = true;
                 break;
             }
+        }
+        if (!$found) {
+            header('HTTP/1.0 400 Bad Request', true, 400);
+            die("unknown api");
         }
     }
 

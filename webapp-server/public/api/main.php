@@ -1,4 +1,5 @@
 <?php
+include_once 'debug.php';
 include_once 'API.php';
 include_once 'EchoAPI.php';
 include_once 'IsEmailOrPhoneNumUniqueAPI.php';
