@@ -275,5 +275,4 @@ object DatabaseHelper {
     val DB_FILE = "public/db.json"
     val User = "/"
   }
-
 }

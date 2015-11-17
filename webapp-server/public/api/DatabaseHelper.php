@@ -15,38 +15,48 @@ class DatabaseHelper
         echo "port=" . $this->getPort();
     }
 
+    const SET = "SET";
+    const GET = "GET";
+    const COMPARE = "COMPARE";
+    const EXIST = "EXIST";
+    const EXIST_UNDER = "EXIST_UNDER";
+
+    public function exec($action, $path, $data)
+    {
+        global $_db_host;
+        $port = $this->getPort();
+        $sock = fsockopen($_db_host, $port);
+        if ($sock == false)
+            throw new DatabaseServiceNotAvailableException("failed to connect to database");
+        $param = array("action" => $action, "path" => $path, "data" => $data);
+        $payload = json_encode($param);
+        fwrite($sock, "$payload\n");
+        fflush($sock);
+        $read = fread($sock, 1024);
+        socket_close($sock);
+        if ($read == false) {
+            throw new DatabaseServiceNotAvailableException("no response from database");
+        } else {
+            return $read;
+        }
+    }
+
     public function test()
     {
-//        $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
-//        global $_db_port;
         global $_db_host;
-//        global $_db_url;
-//        $connection = socket_connect($socket, $_db_host, $_db_port);
-//        socket_write($socket, "test");
-//        while ($buffer = socket_read($socket, 1024)) {
-//            echo $buffer;
-//        }
-//        error_log(print_r("step 1", TRUE));
         print("step 0");
         $port = $this->getPort();
         print("step 1");
-//        $sock = socket_create(AF_INET, SOCK_STREAM, IPPROTO_IP) or die("Cannot init connection to database");
         $sock = fsockopen($_db_host, $port) or die("failed to init");
         print("step 2");
-//        socket_connect($sock, $_db_host, $port) or die("Cannot connect to database");
         $action = "emailorph";
         $data = "421";
         $param = array("action" => $action, "data" => $data);
-        $payload=json_encode($param);
+        $payload = json_encode($param);
         fwrite($sock, "$payload\n");
         print("step 3");
-//        socket_write($sock, "test");
         fflush($sock);
         print("step 4");
-//        socket
-//        fclose($sock);
-//        print("step 5");
-//        $read = socket_read($sock, 1024);
         $read = fread($sock, 1024);
         print("step 5");
         if ($read == false) {
@@ -56,7 +66,6 @@ class DatabaseHelper
         }
         print("step 6");
         socket_close($sock);
-//        print("step 7");
     }
 
 

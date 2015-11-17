@@ -19,16 +19,16 @@ GET     /time                       controllers.Application.wsTime
 GET     /httpTime                   controllers.Application.httpTime
 GET     /httpEcho                   controllers.Application.httpEcho
 POST    /httpEcho                   controllers.Application.httpEcho
-POST    /httpAdd                    controllers.Application.httpAdd
+#POST    /httpAdd                    controllers.Application.httpAdd
 
 # real work
 GET     /startDB                    controllers.Application.startDB
 GET     /dbPort                     controllers.Application.dbPort
 GET     /wsDB                       controllers.Application.wsDB
-POST    /isEmailOrPhoneNumUnique    controllers.Application.isEmailOrPhoneNumUnique
-POST    /createUser                 controllers.Application.createUser
-POST    /register                   controllers.Application.createUser
-POST    /newSessionId               controllers.Application.newSessionId
+#POST    /isEmailOrPhoneNumUnique    controllers.Application.isEmailOrPhoneNumUnique
+#POST    /createUser                 controllers.Application.createUser
+#POST    /register                   controllers.Application.createUser
+#POST    /newSessionId               controllers.Application.newSessionId
 
 # Map static resources from the /public folder to the /assets URL path
 #GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -17,7 +17,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         try {
             $action = $_POST['action'];
             $data = $_POST['data'];
-            $API->route($action, $data);
+            $API->route($action, json_decode($data,true));
         } catch (Exception $e) {
 //            header('HTTP/1.0 400 Bad Request', true, 400);
             header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);

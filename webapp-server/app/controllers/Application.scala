@@ -316,7 +316,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
       actionEntryLog(action)
       val in = Iteratee.foreach[String](s => logDebug(s))
       logDebug("disconnected")
-      val out = Enumerator("test")
+      val out = Enumerator("test message from server")
       //      val url = "http://api.openweathermap.org/data/2.5/weather?q=Amsterdam,nl"
       //      val outEnumerator = Enumerator.repeatM[String]({
       //        Thread.sleep(3000)
