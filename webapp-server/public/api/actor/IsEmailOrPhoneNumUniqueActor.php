@@ -15,6 +15,7 @@ class IsEmailOrPhoneNumUniqueActor extends Actor
 
     const _k1 = "isEmailOrPhoneNumUnique";
     const _op = DatabaseHelper::_EXIST_UNDER;
+    const _path = array("users");
 
     public function handle($data)
     {
@@ -24,10 +25,9 @@ class IsEmailOrPhoneNumUniqueActor extends Actor
             $key = "email";
         else
             $key = "phoneNum";
-        $path = array("users");
         $this->params = array($key, $value);
         $data = array($this->params);
-        $response = $db->exec(self::_op, $path, $data);
+        $response = $db->exec(self::_op, self::_path, $data);
         $result = json_decode($response, true);
         $this->output[self::_k1] = !$result[self::_op];
         return $this->output;

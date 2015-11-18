@@ -5,10 +5,10 @@ import java.util.Date
 import javax.inject.Inject
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props}
+import models.database.{DatabaseService, DatabaseHelper}
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, SexEnum}
 import models.impl.GeneralObject.{getParamJsObject, getParamValue}
 import models.impl.social_connection.UserManager
-import models.{DatabaseHelper, DatabaseService}
 import org.omg.CORBA.BAD_PARAM
 import play.api.Play.current
 import play.api._

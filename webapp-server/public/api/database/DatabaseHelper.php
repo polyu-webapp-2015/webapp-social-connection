@@ -30,9 +30,12 @@ class DatabaseHelper
         $sock = fsockopen($_db_host, $port);
         if ($sock == false)
             throw new DatabaseServiceNotAvailableException("failed to connect to database");
+        echo "\n\ndata=";
+        print_object($data);
+        echo "\n\n";
         $param = array("action" => $action, "path" => $path, "data" => $data);
-        $payload = json_encode($param);
-        fwrite($sock, "$payload\n");
+        $rawRequest = json_encode($param);
+        fwrite($sock, "$rawRequest\n");
         fflush($sock);
         $read = fread($sock, 1024);
         socket_close($sock);

@@ -1,5 +1,4 @@
-package models
-
+package models.database
 
 import java.io.{FileInputStream, FileNotFoundException}
 import java.util.concurrent.locks.ReentrantReadWriteLock

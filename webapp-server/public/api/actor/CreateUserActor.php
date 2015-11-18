@@ -17,25 +17,38 @@ class CreateUserActor extends Actor
 
     const _k1 = "sessionId";
     const _op = DatabaseHelper::_CREATE_WITHOUT_ID;
+    const _path = ["users"];
 
     public function handle($data)
     {
+        foreach ($this->params as $key => $value) {
+            if (array_key_exists($key, $data))
+                $this->params[$key] = $value;
+            else
+                throw new Exception("missing param $key", ResultCodeEnum::_Request_Param_Missing);
+        }
         $db = new DatabaseHelper();
-        $value = $data['emailOrPhoneNum'];
-        if (strpos($value, '@') != false)
-            $key = "email";
-        else
-            $key = "phoneNum";
-        $path = array("users");
-        $this->params = array($key, $value);
+//        print_object($data);
+//        $value = $data['emailOrPhoneNum'];
+//        if (strpos($value, '@') != false)
+//            $key = "email";
+//        else
+//            $key = "phoneNum";
+//        $path = array("users");
+//        $this->params = array($key, $value);
+//        $data = array($this->params);
+//        echo "before db";
         $data = array($this->params);
-        $response = $db->exec(self::_op, $path, $data);
+        $response = $db->exec(self::_op, self::_path, $data);
+//        echo "after db";
+//        echo $response."--------";
         $result = json_decode($response, true);
-        $this->output[self::_k1] = !$result[self::_op];
-        echo "=========";
-        echo json_encode($this->output);
-        echo "=========";
-        parent::handle($data);
+        $this->output = $result;
+//        echo "=========";
+//        echo json_encode($this->output);
+//        echo "=========";
+//        parent::handle($data);
+        return $this->output;
     }
 }
 

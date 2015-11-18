@@ -34,7 +34,7 @@ class APIActor extends Actor
                     $output["resultCode"] = 0;
                 } catch (Exception $e) {
                     header('HTTP/1.0 400 Bad Request', true, 400);
-                    $output = ["resultCode" => -1, "reason" =>
+                    $output = ["resultCode" => $e->getCode(), "reason" =>
                         ["type" => "Exception",
                             "detail" => [
                                 "code" => $e->getCode(),

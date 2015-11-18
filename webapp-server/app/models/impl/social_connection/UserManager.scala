@@ -2,8 +2,7 @@ package models.impl.social_connection
 
 
 import java.util.concurrent.ConcurrentHashMap
-
-import models.DatabaseHelper
+import models.database.DatabaseHelper
 import models.idl.social_connection._
 import play.api.libs.json.{JsNumber, JsString, JsValue}
 import utils.Lang.digest
