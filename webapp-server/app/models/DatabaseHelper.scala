@@ -260,14 +260,14 @@ object DatabaseHelper {
           logDatabaseDebug("waiting db cache thread")
         }
       }
-      if (!DatabaseMiddleMan.ready)
-        DatabaseMiddleMan.init()
+      if (!DatabaseService.ready)
+        DatabaseService.init()
     })
   }
 
   def stopService() = {
     deInit()
-    DatabaseMiddleMan.deInit()
+    DatabaseService.deInit()
   }
 
   object Path {

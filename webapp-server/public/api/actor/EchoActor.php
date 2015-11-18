@@ -1,5 +1,4 @@
 <?php
-include_once 'Actor.php';
 
 /**
  * Created by PhpStorm.
@@ -13,7 +12,11 @@ class EchoActor extends Actor
     public $params = "any";
     public $output = "any";
     public $desc = "echo the param";
+    public function handle($data)
+    {
+        print_object($data);
+    }
 }
 
-$EchoAPI = new EchoActor();
-addAPI($EchoAPI);
+$_echoActor = new EchoActor();
+addAPI($_echoActor);

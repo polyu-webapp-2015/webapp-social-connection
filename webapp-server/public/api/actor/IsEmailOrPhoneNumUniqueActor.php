@@ -1,6 +1,4 @@
 <?php
-include_once 'Actor.php';
-include_once '../database/DatabaseHelper.php';
 
 /**
  * Created by PhpStorm.
@@ -16,7 +14,7 @@ class IsEmailOrPhoneNumUniqueActor extends Actor
     public $desc = "check if the email or phone number is NOT registered";
 
     const _k1 = "isEmailOrPhoneNumUnique";
-    const _op = DatabaseHelper::EXIST_UNDER;
+    const _op = DatabaseHelper::_EXIST_UNDER;
 
     public function handle($data)
     {
@@ -32,9 +30,9 @@ class IsEmailOrPhoneNumUniqueActor extends Actor
         $response = $db->exec(self::_op, $path, $data);
         $result = json_decode($response, true);
         $this->output[self::_k1] = !$result[self::_op];
-        echo json_encode($this->output);
+        return $this->output;
     }
 }
 
-$IsEmailOrPhoneNumUniqueAPI = new IsEmailOrPhoneNumUniqueActor();
-addAPI($IsEmailOrPhoneNumUniqueAPI);
+$_isEmailOrPhoneNumUniqueActor = new IsEmailOrPhoneNumUniqueActor();
+addAPI($_isEmailOrPhoneNumUniqueActor);

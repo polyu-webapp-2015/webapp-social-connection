@@ -12,7 +12,7 @@ import utils.Lang.trim
 /**
   * Created by beenotung on 11/16/15.
   */
-object DatabaseMiddleMan {
+object DatabaseService {
   var PORT = 9001
   private var inited = false
   private var server: ServerSocket = null
@@ -75,17 +75,17 @@ object DatabaseMiddleMan {
         var currentNode = root
         path.foreach(p => currentNode = currentNode.value.get(p).get.as[JsObject])
         currentNode.values.foreach(node => {
-//          logDatabaseDebug(s"checking ${node.toString()}")
+          //          logDatabaseDebug(s"checking ${node.toString()}")
           val child = node.as[JsObject]
           val found = data.forall(pair => {
             val pairSeq = pair.as[JsArray].value.seq
-            val key = trim(pairSeq(0).toString(),"\"")
+            val key = trim(pairSeq(0).toString(), "\"")
             val value = pairSeq(1)
-//            logDatabaseDebug(s"comparing $key=>${value.toString()}")
+            //            logDatabaseDebug(s"comparing $key=>${value.toString()}")
             child.value.get(key) match {
               case None => false
               case Some(v) =>
-//                logDatabaseDebug(s"v=${v.toString()};value=${value.toString()}")
+                //                logDatabaseDebug(s"v=${v.toString()};value=${value.toString()}")
                 v.toString().equals(value.toString())
             }
           })
@@ -96,12 +96,13 @@ object DatabaseMiddleMan {
     }
 
     val EXIST_UNDER = "exist_under".toUpperCase.intern()
+    val CREATE_WITHOUT_ID = "create_without_id".toUpperCase().intern()
 
     override def run = {
       logDatabaseDebug("receiving database request...")
       val requestRaw = in.readLine()
       logDatabaseDebug("received database request " + requestRaw)
-      var responseRaw = "default response from database"
+      var response = JsObject(Map("result" -> JsString("Default")))
       try {
         val request = Json.parse(requestRaw).as[JsObject]
         val action = trim(request.value.get("action").get.toString(), "\"").toUpperCase.intern()
@@ -109,25 +110,34 @@ object DatabaseMiddleMan {
         val datas = request.value.get("data").get.as[JsArray].value
         action match {
           case EXIST_UNDER =>
-            var response = JsObject(Map(EXIST_UNDER -> JsBoolean(exist_under(paths, datas))))
-            responseRaw = response.toString()
+            response = JsObject(Map(EXIST_UNDER -> JsBoolean(exist_under(paths, datas))))
+          case CREATE_WITHOUT_ID =>
+            response = JsObject(Map("error" -> JsString("Not Implemented")))
           case _ =>
-            responseRaw = "Error: unknown action"
-            responseRaw += s"\naction=$action\npath=${paths}\ndata=$datas"
-            datas.foreach(p => responseRaw += ("\n" + p.toString()))
+            response = JsObject(Map(
+              "error" -> JsString("unknown action"),
+              "request" -> request
+            ))
         }
       } catch {
         case e: JsResultException =>
-          responseRaw = "Error : request is not valid json object\n" + e.toString
+          response = JsObject(Map(
+            "error" -> JsString("request is not valid json object"),
+            "request" -> JsString(requestRaw)
+          ))
         case e: Exception =>
           e.printStackTrace()
-          responseRaw = "Error : " + e.toString + "\nrequest = " + requestRaw
+          response = JsObject(Map(
+            "error" -> JsString(e.toString),
+            "request" -> JsString(requestRaw)
+          ))
       }
+      val responseRaw = response.toString()
       out.println(responseRaw)
       out.flush()
       out.close()
       client.close()
-      logDatabaseDebug("finished db request "+responseRaw)
+      logDatabaseDebug("finished db request " + responseRaw)
       workers.remove(client)
     }
   }

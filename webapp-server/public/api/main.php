@@ -1,18 +1,15 @@
 <?php
 include_once 'config.php';
 include_once 'utils.php';
-include_once 'debug/DatabaseServiceNotAvailableException.php';
-include_once 'database/DatabaseHelper.php';
-include_once 'action/Actor.php';
-include_once 'action/APIActor.php';
-include_once 'action/EchoActor.php';
-include_once 'action/IsEmailOrPhoneNumUniqueActor.php';
+include_once 'debug/package.php';
+include_once 'database/package.php';
+include_once 'actor/package.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET' :
-        $API->printAllAPI();
+        $_API->printAllAPI();
         echo('<pre>');
         readfile('readme.md');
         echo('</pre>');
@@ -21,7 +18,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         try {
             $action = $_POST['action'];
             $data = $_POST['data'];
-            $API->route($action, json_decode($data, true));
+            $_API->route($action, json_decode($data, true));
         } catch (Exception $e) {
 //            header('HTTP/1.0 400 Bad Request', true, 400);
             header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);

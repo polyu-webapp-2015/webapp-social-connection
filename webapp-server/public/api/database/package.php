@@ -1,12 +1,8 @@
 <?php
-
 /**
  * Created by IntelliJ IDEA.
  * User: beenotung
  * Date: 11/18/15
- * Time: 11:45 AM
+ * Time: 12:11 PM
  */
-class CreateUserAPIActor extends APIActor
-{
-
-}
+include_once 'DatabaseHelper.php';

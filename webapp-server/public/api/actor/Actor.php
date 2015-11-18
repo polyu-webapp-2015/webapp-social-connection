@@ -6,7 +6,6 @@
  * Date: 11/10/15
  * Time: 3:19 PM
  */
-include_once '../utils.php';
 
 class Actor
 {

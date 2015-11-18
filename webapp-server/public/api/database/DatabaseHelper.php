@@ -15,11 +15,13 @@ class DatabaseHelper
         echo "port=" . $this->getPort();
     }
 
-    const SET = "SET";
-    const GET = "GET";
-    const COMPARE = "COMPARE";
-    const EXIST = "EXIST";
-    const EXIST_UNDER = "EXIST_UNDER";
+    const _SET = "set";
+    const _GET = "get";
+    const _COMPARE = "compare";
+    const _EXIST = "exist";
+    const _EXIST_UNDER = "exist_under";
+    const _CREATE_WITH_ID = "create_with_id";
+    const _CREATE_WITHOUT_ID = "create_without_id";
 
     public function exec($action, $path, $data)
     {

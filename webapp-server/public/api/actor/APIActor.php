@@ -6,7 +6,6 @@
  * Date: 11/10/15
  * Time: 3:19 PM
  */
-
 class APIActor extends Actor
 {
     public $name = "API";
@@ -29,7 +28,22 @@ class APIActor extends Actor
         $found = false;
         foreach ($this->list as $api) {
             if (loss_match($api->name, $api_name)) {
-                $api->handle($data);
+                $output = [];
+                try {
+                    $output = $api->handle($data);
+                    $output["resultCode"] = 0;
+                } catch (Exception $e) {
+                    header('HTTP/1.0 400 Bad Request', true, 400);
+                    $output = ["resultCode" => -1, "reason" =>
+                        ["type" => "Exception",
+                            "detail" => [
+                                "code" => $e->getCode(),
+                                "message" => $e->getMessage(),
+                                "trace" => $e->getTrace(),
+                            ]]
+                    ];
+                }
+                echo json_encode($output);
                 $found = true;
                 break;
             }
@@ -50,11 +64,11 @@ class APIActor extends Actor
     }
 }
 
-$API = new APIActor();
+$_API = new APIActor();
 function addAPI($newAPI)
 {
-    global $API;
-    $API->addAPI($newAPI);
+    global $_API;
+    $_API->addAPI($newAPI);
 }
 
-addAPI($API);
+addAPI($_API);
