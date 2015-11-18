@@ -6,34 +6,8 @@
  * Date: 11/10/15
  * Time: 3:19 PM
  */
-include_once 'utils.php';
 
-class APIClass
-{
-    public $name;
-    public $params;
-    public $output;
-    public $desc;
-
-    public function printAPI()
-    {
-        echo "<pre>";
-        echo "name : $this->name\n";
-        echo "params : ";
-        print_object($this->params);
-        echo "outputs : ";
-        print_object($this->output);
-        echo "desc : $this->desc";
-        echo "</pre>";
-    }
-
-    public function handle($data)
-    {
-        throw new Exception("API $this->name not implemented");
-    }
-}
-
-class API extends APIClass
+class APIActor extends Actor
 {
     public $name = "API";
     public $params = array();
@@ -76,7 +50,7 @@ class API extends APIClass
     }
 }
 
-$API = new API();
+$API = new APIActor();
 function addAPI($newAPI)
 {
     global $API;

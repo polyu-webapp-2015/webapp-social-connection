@@ -1,5 +1,5 @@
 <?php
-include_once 'API.php';
+include_once 'Actor.php';
 
 /**
  * Created by PhpStorm.
@@ -7,7 +7,7 @@ include_once 'API.php';
  * Date: 11/10/15
  * Time: 7:51 PM
  */
-class EchoAPI extends APIClass
+class EchoActor extends Actor
 {
     public $name = "Echo";
     public $params = "any";
@@ -15,5 +15,5 @@ class EchoAPI extends APIClass
     public $desc = "echo the param";
 }
 
-$EchoAPI = new EchoAPI();
+$EchoAPI = new EchoActor();
 addAPI($EchoAPI);

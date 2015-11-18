@@ -1,6 +1,6 @@
 <?php
-include_once 'API.php';
-include_once 'DatabaseHelper.php';
+include_once 'Actor.php';
+include_once '../database/DatabaseHelper.php';
 
 /**
  * Created by PhpStorm.
@@ -8,7 +8,7 @@ include_once 'DatabaseHelper.php';
  * Date: 11/10/15
  * Time: 7:51 PM
  */
-class IsEmailOrPhoneNumUniqueAPI extends APIClass
+class IsEmailOrPhoneNumUniqueActor extends Actor
 {
     public $name = "IsEmailOrPhoneNumUnique";
     public $params = array("emailOrPhoneNum" => "98765432");
@@ -36,5 +36,5 @@ class IsEmailOrPhoneNumUniqueAPI extends APIClass
     }
 }
 
-$IsEmailOrPhoneNumUniqueAPI = new IsEmailOrPhoneNumUniqueAPI();
+$IsEmailOrPhoneNumUniqueAPI = new IsEmailOrPhoneNumUniqueActor();
 addAPI($IsEmailOrPhoneNumUniqueAPI);
