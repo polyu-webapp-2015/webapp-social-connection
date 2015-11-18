@@ -9,9 +9,13 @@ import utils.Debug.logError
 import scala.reflect.ClassTag
 
 /**
- * Created by beenotung on 11/1/15.
- */
+  * Created by beenotung on 11/1/15.
+  */
 object Lang {
+  def trim(s: String, subString: String) = {
+    s.stripPrefix(subString).stripSuffix(subString)
+  }
+
   private val messageDigest = MessageDigest.getInstance("SHA-256")
 
 
@@ -81,8 +85,7 @@ object Lang {
       Some(jsValue.as[JsArray].value.asInstanceOf[A])
     else if (a.equals(classOf[Map[String, JsValue]]))
       Some(jsValue.as[JsObject].value.asInstanceOf[A])*/
-    else
-    if (throwException) {
+    else if (throwException) {
       logError(Map(
         "ct.runtimeClass" -> t.getName,
         "jsValue" -> jsValue.toString()
