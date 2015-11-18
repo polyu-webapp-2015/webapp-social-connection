@@ -1,13 +1,16 @@
 
 /*@deprecated ("AngularJS does not support cross-origin?")*/
-/*serv_address = "http://58.96.176.223:9000";*/
-serv_address = "";
+serv_addr = "http://58.96.176.223:8000/api/main.php";
+// serv_address = "";
 
-var app=angular.module('myApp', ['ui.bootstrap']);
+var app = angular.module('myApp', ['ui.bootstrap']);
 
+/*
 function site_join(path) {
 	return serv_address+path;
 }
+*/
+
 
 app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;        
@@ -71,3 +74,30 @@ app.config(['$httpProvider', function($httpProvider) {
     }];
   }
 ]);
+
+
+app.factory("$global", function($uibModal) {
+
+  var user = {isAnonymous: true, sessionid: "-1"};
+
+  return {
+    getUser: function () {
+    // objects in javascript are volatile, 
+    // so it might be safer to use user like this
+      return angular.copy(user);
+    },
+    setUser: function (theUser) {
+      user = theUser; // set it when user is got from the server
+    },
+    setUserAttr: function (key, value) {
+      // set attribute of the User
+      user[key] = value;
+    },
+    setUserAnonymous: function () {
+      user = {isAnonymous: true, sessionid: "-1"};
+    }
+  };
+})
+
+
+
