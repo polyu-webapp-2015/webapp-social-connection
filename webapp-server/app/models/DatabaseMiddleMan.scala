@@ -7,7 +7,6 @@ import java.util.concurrent.ConcurrentHashMap
 import models.DatabaseHelper.CachedDatabaseInstance.forRead
 import play.api.libs.json._
 import utils.Debug.{logDatabaseDebug, logDatabaseInfo}
-import utils.Lang
 import utils.Lang.trim
 
 /**
@@ -128,7 +127,7 @@ object DatabaseMiddleMan {
       out.flush()
       out.close()
       client.close()
-      logDatabaseDebug("finished db request")
+      logDatabaseDebug("finished db request "+responseRaw)
       workers.remove(client)
     }
   }
