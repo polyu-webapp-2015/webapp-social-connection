@@ -29,7 +29,7 @@ class APIClass
 
     public function handle($data)
     {
-        throw new Exception('not implemented');
+        throw new Exception("API $this->name not implemented");
     }
 }
 
@@ -54,7 +54,7 @@ class API extends APIClass
     {
         $found = false;
         foreach ($this->list as $api) {
-            if (strcasecmp($api->name, $api_name) == 0) {
+            if (loss_match($api->name, $api_name)) {
                 $api->handle($data);
                 $found = true;
                 break;
