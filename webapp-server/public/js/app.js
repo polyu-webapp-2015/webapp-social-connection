@@ -11,6 +11,17 @@ function site_join(path) {
 }
 */
 
+function Modal(url, scope, settings) {
+  this.templateUrl = url;
+  this.scope = scope;
+
+  if (settings === undefined) settings = {};  // if no settings passed, default values
+  this.backdrop = settings.backdrop === undefined? true: settings.backdrop;
+  this.backdropClick = settings.backdropClick === undefined? true: settings.backdropClick;
+  this.dialogFade = settings.dialogFade === undefined? false: settings.dialogFade;
+  this.keyboard = settings.keyboard === undefined? true: settings.keyboard;
+  this.size = settings.size === undefined? 'md': settings.size;
+}
 
 app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.defaults.useXDomain = true;        
@@ -98,6 +109,4 @@ app.factory("$global", function($uibModal) {
     }
   };
 })
-
-
 
