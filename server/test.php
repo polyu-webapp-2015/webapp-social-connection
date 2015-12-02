@@ -1,6 +1,7 @@
 <?php
-require('connect.php');
 require('models.php');
 
-User::createTable($db_con);
+User::createTable();
+$user = new User(array('username' => 'argon'));
+$user->save();
 ?>
