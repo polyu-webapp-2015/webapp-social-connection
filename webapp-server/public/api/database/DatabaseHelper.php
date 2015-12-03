@@ -1,5 +1,5 @@
 <?php
-include_once '../config.php';
+//include_once '../config.php';
 
 /**
  * Created by PhpStorm.
@@ -9,79 +9,88 @@ include_once '../config.php';
  */
 class DatabaseHelper
 {
+    const _filePath = "db.json";
 
-    public function showPort()
+    public static function save($root)
     {
-        echo "port=" . $this->getPort();
+//        log_object("database : save root");
+//        log_object($root);
+        file_put_contents(self::_filePath, json_encode($root));
     }
 
-    const _SET = "set";
-    const _GET = "get";
-    const _COMPARE = "compare";
-    const _EXIST = "exist";
-    const _EXIST_UNDER = "exist_under";
-    const _CREATE_WITH_ID = "create_with_id";
-    const _CREATE_WITHOUT_ID = "create_without_id";
-
-    public function exec($action, $path, $data)
+    public static function load()
     {
-        global $_db_host;
-        $port = $this->getPort();
-        $sock = fsockopen($_db_host, $port);
-        if ($sock == false)
-            throw new DatabaseServiceNotAvailableException("failed to connect to database");
-        echo "\n\ndata=";
-        print_object($data);
-        echo "\n\n";
-        $param = array("action" => $action, "path" => $path, "data" => $data);
-        $rawRequest = json_encode($param);
-        fwrite($sock, "$rawRequest\n");
-        fflush($sock);
-        $read = fread($sock, 1024);
-        socket_close($sock);
-        if ($read == false) {
-            throw new DatabaseServiceNotAvailableException("no response from database");
+        $root = file_get_contents(self::_filePath);
+        if ($root == false) {
+            error_log("database : root not exist, creating empty node");
+            $root = array("default_element");
         } else {
-            return $read;
+            $root = json_decode($root, true);
         }
+//        log_object("database : load root");
+//        log_object($root);
+        return $root;
     }
 
-    public function test()
+    public static function get_or_create_path(&$root, array $path_array)
     {
-        global $_db_host;
-        print("step 0");
-        $port = $this->getPort();
-        print("step 1");
-        $sock = fsockopen($_db_host, $port) or die("failed to init");
-        print("step 2");
-        $action = "emailorph";
-        $data = "421";
-        $param = array("action" => $action, "data" => $data);
-        $payload = json_encode($param);
-        fwrite($sock, "$payload\n");
-        print("step 3");
-        fflush($sock);
-        print("step 4");
-        $read = fread($sock, 1024);
-        print("step 5");
-        if ($read == false) {
-            echo "failed to read";
-        } else {
-            echo "read=$read";
+        $current = &$root;
+//        log_object("patharray");
+//        log_object($path_array);
+        foreach ($path_array as $path) {
+//            log_object_from_named("path==========================================","databasehelper");
+//            log_object_from_named("$path","databasehelper");
+            if (!array_key_exists($path, $current)) {
+                error_log("database get_or_create_path : $path does not exist, creating empty node");
+                $newNode = array("default_element");
+                $current[$path] = $newNode;
+            }
+            if (is_array($current)) {
+                $current = &$current[$path];
+            } else {
+                $current =& $current->$path;
+            }
         }
-        print("step 6");
-        socket_close($sock);
+        return $current;
     }
 
-
-    public function getPort()
+    public static function save_on_path(&$root, array $path_array, $node)
     {
-        global $_db_url;
-        $result = file_get_contents($_db_url . "dbPort");
-        if ($result == false) {
-            throw new DatabaseServiceNotAvailableException("dbPort");
-        } else {
-            return $result;
+        $current = &$root;
+        foreach ($path_array as $path) {
+            if (!array_key_exists($path, $current)) {
+                error_log("database save_on_path : $path does not exist, creating empty node");
+                $newNode = array("default_element");
+                $current[$path] = $newNode;
+            }
+            if (is_array($current)) {
+                /* the struct is array */
+                $current = &$current[$path];
+            } else {
+                /* the struct is object */
+                $current = &$current->$path;
+            }
         }
+        put_all_into($node, $current);
+        self::save($root);
+    }
+    public static function update_root_on_path(&$root, array $path_array, $node)
+    {
+        $current = &$root;
+        foreach ($path_array as $path) {
+            if (!array_key_exists($path, $current)) {
+                error_log("database save_on_path : $path does not exist, creating empty node");
+                $newNode = array("default_element");
+                $current[$path] = $newNode;
+            }
+            if (is_array($current)) {
+                /* the struct is array */
+                $current = &$current[$path];
+            } else {
+                /* the struct is object */
+                $current = &$current->$path;
+            }
+        }
+        put_all_into($node, $current);
     }
 }

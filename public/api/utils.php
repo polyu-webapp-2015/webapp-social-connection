@@ -19,7 +19,45 @@ function print_object($o)
     } elseif (is_string($o)) {
         echo $o . "\n";
     } else {
-        echo "cannot display\n";
+        echo "<pre>" . var_dump($o) . "</pre>";
+    }
+}
+
+/**
+ * print the object recursively to log (console on server)
+ * @param array|string $o
+ */
+function log_object($o)
+{
+    if (empty($o)) {
+        error_log("empty");
+    } elseif (is_array($o)) {
+        error_log(print_r($o, true));
+    } elseif (is_string($o)) {
+        error_log($o);
+    } else {
+        error_log("might not display");
+        error_log(print_r($o, true));
+    }
+}
+
+/**
+ * similar to log_object
+ * @param array|string $o
+ * @param string $name : name of the caller, e.g. function name
+ */
+function log_object_from_named($o, $name)
+{
+    if (empty($o)) {
+        error_log("$name : empty");
+    } elseif (is_array($o)) {
+        error_log("$name : ");
+        error_log(print_r($o, true));
+    } elseif (is_string($o)) {
+        error_log("$name : $o");
+    } else {
+        error_log("$name : might not display");
+        error_log(print_r($o, true));
     }
 }
 
@@ -69,4 +107,39 @@ function stripPrefix($string, $subString)
 function stripSuffix($string, $subString)
 {
     return preg_replace('/' . $subString . '$/', '', $string);
+}
+
+/* array related */
+
+/**
+ * put all element from source to dist
+ * @param $source : array of elements
+ * @param $dist : dist array
+ */
+function put_all_into(array $source, array &$dist)
+{
+    foreach ($source as $key => $value) {
+        $dist[$key] = $value;
+    }
+}
+
+function array_copy(array $source,array &$dist,array $keys){
+    foreach ($keys as $key){
+        $dist[$key]=$source[$key];
+    }
+}
+
+/**
+ * @param $element : element to be removed
+ * @param array $array : operation target
+ * @return bool : true if element is found, false if the element is not found
+ */
+function remove_from_array($element, array &$array)
+{
+    if (($key = array_search($element, $array)) != false) {
+        unset($array[$key]);
+        return true;
+    }else{
+        return false;
+    }
 }

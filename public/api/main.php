@@ -1,9 +1,5 @@
 <?php
-include_once 'config.php';
-include_once 'utils.php';
-include_once 'debug/package.php';
-include_once 'database/package.php';
-include_once 'actor/package.php';
+include_once 'package.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
@@ -18,7 +14,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
         try {
             $action = $_POST['action'];
             $data = $_POST['data'];
-            $_API->route($action, json_decode($data, true));
+//            print_object($_POST);
+//            print_object($action);
+//            print_object($data);
+            if (!is_array($data))
+                $data = json_decode($data, true);
+            $_API->route($action, $data);
         } catch (Exception $e) {
 //            header('HTTP/1.0 400 Bad Request', true, 400);
             header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
