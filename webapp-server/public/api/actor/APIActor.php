@@ -30,8 +30,10 @@ class APIActor extends Actor
             if (loss_match($api->name, $api_name)) {
                 $output = [];
                 try {
-                    $output = $api->handle($data);
-                    $output["resultCode"] = 0;
+                    log_object("routed to " . $api->name);
+                    $data = $api->handle($data);
+                    $output[ResultCode::_] = ResultCode::_unknown;
+                    $output["data"] = $data;
                 } catch (Exception $e) {
                     header('HTTP/1.0 400 Bad Request', true, 400);
                     $output = ["resultCode" => $e->getCode(), "reason" =>
@@ -49,8 +51,9 @@ class APIActor extends Actor
             }
         }
         if (!$found) {
+            error_log("cannot found API Actor on $api_name");
             header('HTTP/1.0 400 Bad Request', true, 400);
-            die("unknown api");
+            die("unknown api : $api_name");
         }
     }
 
