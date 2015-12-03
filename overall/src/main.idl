@@ -5,7 +5,6 @@ module models{ module impl{
   };
 };};
 
-
 module models{module idl{
 module social_connection{
   interface User;
@@ -13,7 +12,6 @@ module social_connection{
 };
 
 module social_connection{
-
   enum ResultCodeEnum{
     Success,
     Failed_To_Connect_To_Database,
@@ -88,4 +86,41 @@ module social_connection{
 
   interface Exhibition{};
 };
+
+module database{
+  interface JsValue{};
+  interface JsObject:JsValue{};
+  interface JsArray:JsValue{};
+
+  interface KeyJsValue{
+    attribute string key;
+    attribute JsValue jsValue;
+  };
+
+  typedef sequence<JsValue> JsValues;
+  typedef sequence<JsArray> JsArrays;
+  typedef sequence<KeyJsValue> KeyJsValues;
+
+  enum DatabaseResultCodeEnum{
+    Success,
+    Failed_Unknown,
+    Invalid_Format,
+    Path_Not_Exist
+  };
+  exception DatabaseException{
+    long resultCode;
+    string reason;
+  };
+  enum OperationEnum{
+    Exist_Under,
+    Create_Without_Id
+  };
+  typedef sequence<string> Paths;
+  interface DatabaseService{
+    boolean exist_under(in Paths paths, in KeyJsValues keyJsValues)raises(DatabaseException);
+    const string NEW_ID="NEW_ID";
+    string create_without_id(in Paths paths, in KeyJsValues keyJsValues)raises(DatabaseException);
+  };
+};
+
 };};

@@ -1,5 +1,4 @@
-package models
-
+package models.database
 
 import java.io.{FileInputStream, FileNotFoundException}
 import java.util.concurrent.locks.ReentrantReadWriteLock
@@ -260,14 +259,14 @@ object DatabaseHelper {
           logDatabaseDebug("waiting db cache thread")
         }
       }
-      if (!DatabaseMiddleMan.ready)
-        DatabaseMiddleMan.init()
+      if (!DatabaseService.ready)
+        DatabaseService.init()
     })
   }
 
   def stopService() = {
     deInit()
-    DatabaseMiddleMan.deInit()
+    DatabaseService.deInit()
   }
 
   object Path {
