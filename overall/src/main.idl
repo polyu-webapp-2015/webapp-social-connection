@@ -14,6 +14,8 @@ module social_connection{
 module social_connection{
   enum ResultCodeEnum{
     Success,
+    Server_Config_Error,
+    Unknown_API,
     Failed_To_Connect_To_Database,
     Database_Corrupt,
     Network_Not_Stable,

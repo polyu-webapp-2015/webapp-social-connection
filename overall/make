@@ -12,4 +12,4 @@ rm ../webapp-server/app/models/idl/social_connection/*POA.java
 
 ## generate php file from java
 
-bash ./script/resultcode.sh > ../server/api/debug/ResultCode.php
+bash ./script/ResultCodeEnum.sh > ../server/api/debug/ResultCodeEnum.php
