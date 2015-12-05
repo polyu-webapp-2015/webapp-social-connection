@@ -70,7 +70,7 @@ class DatabaseHelper
 
     const __filename = "filename";
     const __code = "code";
-    const _directory = "table_field";
+    const _directory = "database/table_field";
 
     public static function generate_table_stub($table_name, array $field_name_array)
     {
@@ -92,19 +92,23 @@ class DatabaseHelper
         $tables = self::get_table_name_array();
         foreach ($tables as $table) {
             $fields = self::get_table_field_name_array($table);
-//            $class_array[]=[$table,$fields];
             $class_array[] = self::generate_table_stub($table, $fields);
         }
         if (!file_exists(self::_directory)) {
             mkdir(self::_directory, 0755, true);
         }
+        $package_code = "<?php";
         foreach ($class_array as $class) {
             $filename = $class[self::__filename];
             $code = $class[self::__code];
             echo "... $filename<br>";
             file_put_contents(self::_directory . "/" . $filename, $code);
+            $package_code = $package_code . "\nrequire_once \'$filename\';";
         }
-//        log_object($class_array);
+        $filename = "package.php";
+        echo "... $filename<br>";
+        file_put_contents(self::_directory . "/" . $filename, $package_code);
+        echo "<br> written to " . self::_directory . "/<br>";
     }
 
     public static function default_action()

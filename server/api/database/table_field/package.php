@@ -1,0 +1,21 @@
+<?php
+require_once \'Account_Field.php\';
+require_once \'Author_Field.php\';
+require_once \'City_Field.php\';
+require_once \'Country_Field.php\';
+require_once \'Event_Field.php\';
+require_once \'Event_Attendee_Field.php\';
+require_once \'Event_Organization_Field.php\';
+require_once \'Exhibition_Field.php\';
+require_once \'Floor_Field.php\';
+require_once \'Friendship_Field.php\';
+require_once \'Friendship_Tag_Field.php\';
+require_once \'JsonArray_Field.php\';
+require_once \'Message_Field.php\';
+require_once \'Organization_Field.php\';
+require_once \'Paper_Field.php\';
+require_once \'Session_Field.php\';
+require_once \'Tag_Field.php\';
+require_once \'Title_Field.php\';
+require_once \'User_Field.php\';
+require_once \'Venus_Field.php\';

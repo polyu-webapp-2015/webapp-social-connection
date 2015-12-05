@@ -9,6 +9,7 @@
 //require_once '../database/DatabaseHelper.php';
 require_once 'Actor.php';
 require_once 'APIActor.php';
+require_once 'CreateUserActor.php';
 //require_once 'EchoActor.php';
 //require_once 'SetActionActor.php';
 //require_once 'LoginActor.php';
