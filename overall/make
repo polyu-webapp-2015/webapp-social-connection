@@ -1,4 +1,5 @@
 #!/bin/bash
+## generate java file from idl
 #idlj -td out/ src/main.idl
 idlj -fserver -td out/ src/main.idl
 # idlj -td out/ src/main.idl
@@ -8,3 +9,7 @@ rm ../webapp-server/app/models/idl/social_connection/*POA.java
 # rm ../webapp-server/app/models/idl/social_connection/*Helper.java
 # rm ../webapp-server/app/models/idl/social_connection/*Holder.java
 # rm ../webapp-server/app/models/idl/social_connection/_*Stub.java
+
+## generate php file from java
+
+bash ./script/resultcode.sh > ../server/api/debug/ResultCode.php
