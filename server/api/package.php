@@ -5,8 +5,11 @@
  * Date: 11/18/15
  * Time: 12:11 PM
  */
-include_once 'utils.php';
-include_once 'config.php';
-include_once 'debug/package.php';
-include_once 'database/package.php';
-include_once 'actor/package.php';
+
+require_once 'table2class/output/package.php';
+
+require_once 'utils.php';
+require_once 'debug/package.php';
+require_once 'config.php';
+require_once 'database/package.php';
+require_once 'actor/package.php';

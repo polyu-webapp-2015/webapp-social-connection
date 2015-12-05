@@ -15,7 +15,7 @@ class RejectInviteGame1Actor extends Actor
         User::_userId => "player1@gmail.com",
         Game1::_creator_userId => "player2"
     );
-    public $output = ResultCode::_success;
+    public $output = ResultCodeEnum::_Success;
     public $desc = "reject invite to play Game1 with opposite user";
 
     public function handle($data)
@@ -54,7 +54,7 @@ class RejectInviteGame1Actor extends Actor
             $db->save_on_path($root, User::_path, $dict);
         } else {
             log_object_from_named("sender user not exist", $this->name);
-            $this->output = ResultCode::_user_not_exist;
+            $this->output = ResultCodeEnum::_user_not_exist;
         }
         return $this->output;
     }

@@ -18,7 +18,7 @@ class AcceptInviteGame1Actor extends Actor
         User::_creator_is_blue => 1
     );
     public $output = [
-        ResultCode::_ => ResultCode::_success,
+        ResultCodeEnum::_ => ResultCodeEnum::_Success,
         Game1::_gameId => 12
     ];
     public $desc = "accept invite to play Game1 with opposite user";
@@ -42,7 +42,7 @@ class AcceptInviteGame1Actor extends Actor
                     /* remove this opposite from pending list*/
                     //TODO test if this function call works
                     unset($dict[$userId][User::_pending_game1_invite_array][$opposite_userId]);
-                    $this->output[ResultCode::_] = ResultCode::_opposite_busy;
+                    $this->output[ResultCodeEnum::_] = ResultCodeEnum::_opposite_busy;
                 } else {
                     log_object_from_named("success", $this->name);
                     /* clean all other pending invite */
@@ -61,7 +61,7 @@ class AcceptInviteGame1Actor extends Actor
                     $dict = $db->get_or_create_path($root, Game1::_path);
                     $dict[$game[Game1::_gameId]] = $game;
                     $db->save_on_path($root, Game1::_path, $dict);
-                    $this->output[ResultCode::_] = ResultCode::_success;
+                    $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Success;
                     $this->output[Game1::_gameId] = $game[Game1::_gameId];
                     /* session game info into session */
                     if (session_start()) {
@@ -74,11 +74,11 @@ class AcceptInviteGame1Actor extends Actor
             } else {
                 /* opposite not exist */
                 log_object_from_named("opposite user not exist", $this->name);
-                $this->output[ResultCode::_] = ResultCode::_user_not_exist;
+                $this->output[ResultCodeEnum::_] = ResultCodeEnum::_user_not_exist;
             }
         } else {
             log_object_from_named("sender user not exist", $this->name);
-            $this->output[ResultCode::_] = ResultCode::_user_not_exist;
+            $this->output[ResultCodeEnum::_] = ResultCodeEnum::_user_not_exist;
         }
         return $this->output;
     }

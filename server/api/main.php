@@ -5,10 +5,20 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET' :
-        $_API->printAllAPI();
-        echo('<pre>');
-        readfile('readme.md');
-        echo('</pre>');
+//        log_object($_GET);
+//        log_object($_SERVER);
+        $url = $_SERVER["HTTP_REFERER"];
+        if ((strpos($url, "db") + 2) == strlen($url)) {
+            DatabaseHelper::generate_all_table_stub();
+            die("<br>finished<br><a href='main.php'>reload</a>");
+        } else {
+            $_API->printAllAPI();
+            echo '<pre>';
+            readfile('readme.md');
+            echo '</pre>';
+            echo '<hr>';
+            readfile('links.html');
+        }
         break;
     case 'POST':
         try {

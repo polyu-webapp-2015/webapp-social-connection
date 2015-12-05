@@ -1,0 +1,3 @@
+[submodule "server/api/table2class"]
+	path = server/api/table2class
+	url = https://github.com/stevenflesch/table2class.git

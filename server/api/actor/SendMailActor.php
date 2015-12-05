@@ -12,7 +12,7 @@ class SendMailActor extends Actor
         UserGameMailbox::_keep => 0
     ];
     public $output = [
-        ResultCode::_ => ResultCode::_success,
+        ResultCodeEnum::_ => ResultCodeEnum::_Success,
         UserGameMailbox::_mailId => "123"
     ];
     public $desc = "send mail from user to another user";
@@ -32,7 +32,7 @@ class SendMailActor extends Actor
             UserGameMailbox::save_to_root($root, $sender_userId, $gameId, $mail);
         DatabaseHelper::save($root);
         $this->output[UserGameMailbox::_mailId] = $mail[UserGameMailbox::_mailId];
-        $this->output[ResultCode::_] = ResultCode::_success;
+        $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Success;
         return $this->output;
     }
 }

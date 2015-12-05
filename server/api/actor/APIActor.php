@@ -26,23 +26,25 @@ class APIActor extends Actor
     function route($api_name, $data)
     {
         $found = false;
+        /** @var Actor $api */
         foreach ($this->list as $api) {
             if (loss_match($api->name, $api_name)) {
-                $output = [];
                 try {
+                    $api->check_param($data);
                     log_object("routed to " . $api->name);
-                    $data = $api->handle($data);
-                    $output[ResultCode::_] = ResultCode::_unknown;
-                    $output["data"] = $data;
+                    $output = $api->handle($data);
                 } catch (Exception $e) {
                     header('HTTP/1.0 400 Bad Request', true, 400);
-                    $output = ["resultCode" => $e->getCode(), "reason" =>
-                        ["type" => "Exception",
+                    $output = [
+                        self::__result_code => $e->getCode(),
+                        self::__reason => [
+                            "type" => "Exception",
                             "detail" => [
                                 "code" => $e->getCode(),
                                 "message" => $e->getMessage(),
-                                "trace" => $e->getTrace(),
-                            ]]
+                                "trace" => $e->getTrace()
+                            ]
+                        ]
                     ];
                 }
                 echo json_encode($output);
@@ -51,9 +53,7 @@ class APIActor extends Actor
             }
         }
         if (!$found) {
-            error_log("cannot found API Actor on $api_name");
-            header('HTTP/1.0 400 Bad Request', true, 400);
-            die("unknown api : $api_name");
+            ErrorResponse::response(ResultCodeEnum::_Unknown_API, "cannot found API Actor on $api_name");
         }
     }
 

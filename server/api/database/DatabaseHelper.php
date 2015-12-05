@@ -1,5 +1,5 @@
 <?php
-//include_once '../config.php';
+//require_once '../config.php';
 
 /**
  * Created by PhpStorm.
@@ -9,88 +9,107 @@
  */
 class DatabaseHelper
 {
-    const _filePath = "db.json";
+    public static $_connection;
 
-    public static function save($root)
+    public static function check_connection()
     {
-//        log_object("database : save root");
-//        log_object($root);
-        file_put_contents(self::_filePath, json_encode($root));
+        if (self::$_connection == null)
+            self::connect();
     }
 
-    public static function load()
+    public static function connect()
     {
-        $root = file_get_contents(self::_filePath);
-        if ($root == false) {
-            error_log("database : root not exist, creating empty node");
-            $root = array("default_element");
-        } else {
-            $root = json_decode($root, true);
+        global $_config;
+        $ini = $_config->ini;
+        $host = $ini[Config::__database_host];
+        $username = $ini[Config::__database_user];
+        $password = $ini[Config::__database_password];
+        $database_name = $ini[Config::__database_name];
+        $port = $ini[Config::__database_port];
+        $connection = new mysqli($host, $username, $password, $database_name, $port);
+        if ($connection->connect_error) {
+            ErrorResponse::response(ResultCodeEnum::_Failed_To_Connect_To_Database, $connection->connect_error);
         }
-//        log_object("database : load root");
-//        log_object($root);
-        return $root;
+        self::$_connection = $connection;
     }
 
-    public static function get_or_create_path(&$root, array $path_array)
+    public static function get_table_name_array()
     {
-        $current = &$root;
-//        log_object("patharray");
-//        log_object($path_array);
-        foreach ($path_array as $path) {
-//            log_object_from_named("path==========================================","databasehelper");
-//            log_object_from_named("$path","databasehelper");
-            if (!array_key_exists($path, $current)) {
-                error_log("database get_or_create_path : $path does not exist, creating empty node");
-                $newNode = array("default_element");
-                $current[$path] = $newNode;
-            }
-            if (is_array($current)) {
-                $current = &$current[$path];
-            } else {
-                $current =& $current->$path;
-            }
+        self::check_connection();
+        $sql = "show tables;";
+        $result = mysqli_query(self::$_connection, $sql);
+        $table_array = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $table_array[] = $row[0];
         }
-        return $current;
+        return $table_array;
     }
 
-    public static function save_on_path(&$root, array $path_array, $node)
+    public static function query($sql)
     {
-        $current = &$root;
-        foreach ($path_array as $path) {
-            if (!array_key_exists($path, $current)) {
-                error_log("database save_on_path : $path does not exist, creating empty node");
-                $newNode = array("default_element");
-                $current[$path] = $newNode;
-            }
-            if (is_array($current)) {
-                /* the struct is array */
-                $current = &$current[$path];
-            } else {
-                /* the struct is object */
-                $current = &$current->$path;
-            }
+        self::check_connection();
+        $result = mysqli_query(self::$_connection, $sql);
+        $result_array = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $result_array[] = $row;
         }
-        put_all_into($node, $current);
-        self::save($root);
+        return $result_array;
     }
-    public static function update_root_on_path(&$root, array $path_array, $node)
+
+    public static function get_table_field_name_array($table_name)
     {
-        $current = &$root;
-        foreach ($path_array as $path) {
-            if (!array_key_exists($path, $current)) {
-                error_log("database save_on_path : $path does not exist, creating empty node");
-                $newNode = array("default_element");
-                $current[$path] = $newNode;
-            }
-            if (is_array($current)) {
-                /* the struct is array */
-                $current = &$current[$path];
-            } else {
-                /* the struct is object */
-                $current = &$current->$path;
-            }
+        self::check_connection();
+        $sql = "DESCRIBE $table_name;";
+        $result = mysqli_query(self::$_connection, $sql);
+        $field_array = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $field_array[] = $row[0];
         }
-        put_all_into($node, $current);
+        return $field_array;
+    }
+
+    const __filename = "filename";
+    const __code = "code";
+    const _directory = "table_field";
+
+    public static function generate_table_stub($table_name, array $field_name_array)
+    {
+        $file_name = $table_name . "_Field.php";
+        $code = "<?php\n" . "class $table_name" . "_Fields {";
+        foreach ($field_name_array as $field_name) {
+            $code = $code . "\n    const __$field_name = \"$field_name\" ;";
+        }
+        $code = $code . "\n}";
+        return [
+            self::__filename => $file_name,
+            self::__code => $code
+        ];
+    }
+
+    public static function generate_all_table_stub()
+    {
+        $class_array = [];
+        $tables = self::get_table_name_array();
+        foreach ($tables as $table) {
+            $fields = self::get_table_field_name_array($table);
+//            $class_array[]=[$table,$fields];
+            $class_array[] = self::generate_table_stub($table, $fields);
+        }
+        if (!file_exists(self::_directory)) {
+            mkdir(self::_directory, 0755, true);
+        }
+        foreach ($class_array as $class) {
+            $filename = $class[self::__filename];
+            $code = $class[self::__code];
+            echo "... $filename<br>";
+            file_put_contents(self::_directory . "/" . $filename, $code);
+        }
+//        log_object($class_array);
+    }
+
+    public static function default_action()
+    {
+        log_object("default action");
+        self::generate_all_table_stub();
     }
 }

@@ -5,24 +5,19 @@
  * Date: 11/18/15
  * Time: 12:11 PM
  */
-//include_once '../utils.php';
-//include_once '../database/DatabaseHelper.php';
-include_once 'Actor.php';
-include_once 'APIActor.php';
-include_once 'EchoActor.php';
-include_once 'SetActionActor.php';
-include_once 'LoginActor.php';
-include_once 'SignupActor.php';
-include_once 'GetUserListActor.php';
-include_once 'HeartbeatActor.php';
-include_once 'InviteGame1Actor.php';
-include_once 'AcceptInviteGame1Actor.php';
-include_once 'RejectInviteGame1Actor.php';
-include_once 'GetGame1IdActor.php';
-include_once 'MoveChessToGridArrayActor.php';
-include_once 'MoveChessArrayToDrawerActor.php';
-include_once 'GetLastMailArrayActor.php';
-include_once 'GetGameInfoActor.php';
-include_once 'SendMailActor.php';
-include_once 'StartGameActor.php';
-include_once 'SetUserLocationActor.php';
+//require_once '../utils.php';
+//require_once '../database/DatabaseHelper.php';
+require_once 'Actor.php';
+require_once 'APIActor.php';
+//require_once 'EchoActor.php';
+//require_once 'SetActionActor.php';
+//require_once 'LoginActor.php';
+//require_once 'SignupActor.php';
+//require_once 'GetUserListActor.php';
+//require_once 'HeartbeatActor.php';
+//require_once 'AcceptInviteGame1Actor.php';
+//require_once 'RejectInviteGame1Actor.php';
+//require_once 'GetLastMailArrayActor.php';
+//require_once 'SendMailActor.php';
+//require_once 'SetUserLocationActor.php';
+//require_once 'CreateUserActor.php';

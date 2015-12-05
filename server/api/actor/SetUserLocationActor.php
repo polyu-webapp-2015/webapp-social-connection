@@ -8,7 +8,7 @@ class SetUserLocationActor extends Actor
         User::_userId => "player1",
         User::_location => "Hong Kong PolyU P Core"
     ];
-    public $output = ResultCode::_success;
+    public $output = ResultCodeEnum::_Success;
     public $desc = "Set the user location (replace original location)";
 
     public function handle($data)
@@ -21,7 +21,7 @@ class SetUserLocationActor extends Actor
             $dict[$userId][User::_location] = $location;
             DatabaseHelper::save_on_path($root, User::_path, $dict);
         } else {
-            $this->output = ResultCode::_user_not_exist;
+            $this->output = ResultCodeEnum::_user_not_exist;
         }
         return $this->output;
     }

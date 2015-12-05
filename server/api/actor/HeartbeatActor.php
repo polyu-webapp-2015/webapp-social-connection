@@ -14,7 +14,7 @@ class HeartbeatActor extends Actor
     public $params = array(
         User::_userId => "player1@gmail.com"
     );
-    public $output = ResultCode::_success;
+    public $output = ResultCodeEnum::_Success;
     public $desc = "client active push to server to stay alive";
 
     public function handle($data)
@@ -27,10 +27,10 @@ class HeartbeatActor extends Actor
             $dict[$userId][User::_last_connection_time] = time();
             log_object("heartbeat from $userId");
             $db->save_on_path($root, User::_path, $dict);
-            $this->output = ResultCode::_success;
+            $this->output = ResultCodeEnum::_Success;
         } else {
             log_object("heartbeat from $userId, but user not found!");
-            $this->output = ResultCode::_user_not_exist;
+            $this->output = ResultCodeEnum::_user_not_exist;
         }
         return $this->output;
     }
