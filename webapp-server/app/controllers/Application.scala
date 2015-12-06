@@ -5,10 +5,10 @@ import java.util.Date
 import javax.inject.Inject
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props}
+import models.database.{DatabaseService, DatabaseHelper}
 import models.idl.social_connection.{GeneralException, ResultCodeEnum, SexEnum}
 import models.impl.GeneralObject.{getParamJsObject, getParamValue}
 import models.impl.social_connection.UserManager
-import models.{DatabaseHelper, DatabaseMiddleMan}
 import org.omg.CORBA.BAD_PARAM
 import play.api.Play.current
 import play.api._
@@ -303,7 +303,7 @@ class Application @Inject()(ws: WSClient) extends Controller {
       //        getParamValue[String](classTag[String], jsObject, "password")
       //      )
       DatabaseHelper.startService()
-      Ok("" + DatabaseMiddleMan.PORT).withHeaders(commonHeader(request))
+      Ok("" + DatabaseService.PORT).withHeaders(commonHeader(request))
     } catch {
       case e: GeneralException =>
         commonResponse(request, action, resultCode = e.resultCode, reason = e.reason)

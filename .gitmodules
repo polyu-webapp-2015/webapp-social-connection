@@ -1,0 +1,3 @@
+[submodule "server/api/database/table2class"]
+	path = server/api/database/table2class
+	url = https://github.com/aabbcc1241/table2class.git

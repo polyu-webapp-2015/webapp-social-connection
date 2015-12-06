@@ -1,0 +1,1 @@
+INSERT INTO Title (title_id, title_text) VALUES (:title_id, :title_text);

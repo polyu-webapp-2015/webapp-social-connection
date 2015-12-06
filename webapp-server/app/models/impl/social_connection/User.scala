@@ -1,6 +1,6 @@
 package models.impl.social_connection
 
-import models.DatabaseHelper
+import models.database.DatabaseHelper
 import models.idl.social_connection.UserPackage.UserGroupSeqHolder
 import models.idl.social_connection.{SexEnum, User}
 import models.impl.GeneralObject
