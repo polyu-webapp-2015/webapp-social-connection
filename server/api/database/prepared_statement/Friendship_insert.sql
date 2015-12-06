@@ -1,1 +1,1 @@
-INSERT INTO Friendship (friendship_id, host_id, guest_id, remark) VALUES (?,?,?,?);
+INSERT INTO Friendship (friendship_id, host_id, guest_id, remark) VALUES (:friendship_id, :host_id, :guest_id, :remark);

@@ -1,1 +1,1 @@
-INSERT INTO City (city_id, country_id, city_name) VALUES (?,?,?);
+INSERT INTO City (city_id, country_id, city_name) VALUES (:city_id, :country_id, :city_name);

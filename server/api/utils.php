@@ -35,6 +35,11 @@ function log_object($o)
         error_log(print_r($o, true));
     } elseif (is_string($o)) {
         error_log($o);
+    } elseif (is_bool($o)) {
+        if ($o == True)
+            error_log('True');
+        else
+            error_log('False');
     } else {
         error_log("might not display");
         error_log(print_r($o, true));

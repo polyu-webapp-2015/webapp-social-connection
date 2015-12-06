@@ -1,1 +1,1 @@
-INSERT INTO Event_Organization (event_id, organization_id) VALUES (?,?);
+INSERT INTO Event_Organization (event_id, organization_id) VALUES (:event_id, :organization_id);

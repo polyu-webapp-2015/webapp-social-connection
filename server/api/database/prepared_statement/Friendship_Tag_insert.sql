@@ -1,1 +1,1 @@
-INSERT INTO Friendship_Tag (friendship_id, tag_id) VALUES (?,?);
+INSERT INTO Friendship_Tag (friendship_id, tag_id) VALUES (:friendship_id, :tag_id);

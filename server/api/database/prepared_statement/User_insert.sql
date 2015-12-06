@@ -1,1 +1,1 @@
-INSERT INTO User (account_id, sex, first_name, last_name, organization_id, title_id, city_id) VALUES (?,?,?,?,?,?,?);
+INSERT INTO User (account_id, sex, first_name, last_name, organization_id, title_id, city_id) VALUES (:account_id, :sex, :first_name, :last_name, :organization_id, :title_id, :city_id);

@@ -1,1 +1,1 @@
-INSERT INTO Venus (venue_id, floor_id) VALUES (?,?);
+INSERT INTO Venus (venue_id, floor_id) VALUES (:venue_id, :floor_id);

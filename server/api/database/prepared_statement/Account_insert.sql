@@ -1,1 +1,1 @@
-INSERT INTO Account (account_id, password, account_type, email, phone_num) VALUES (?,?,?,?,?);
+INSERT INTO Account (account_id, password, account_type, email, phone_num) VALUES (:account_id, :password, :account_type, :email, :phone_num);

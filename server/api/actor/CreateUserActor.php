@@ -33,13 +33,17 @@ class CreateUserActor extends Actor
                 Account_Fields::__email => $emailOrPhoneNum,
                 Account_Fields::__phone_num => $emailOrPhoneNum
             ];
-            $result=DatabaseHelper::table_insert(Account_Fields::_, $field_array);
-            log_object("---------------result");
-            log_object($result);
-            log_object("result---------------");
+            DatabaseHelper::table_insert(Account_Fields::_, $field_array);
+            $account_id = DatabaseHelper::$_pdo->lastInsertId();
             /* create User */
+            $field_array = [
+                User_Fields::__account_id => $account_id,
+                User_Fields::__sex => $sex,
+            ];
+            DatabaseHelper::table_insert(User_Fields::_, $field_array);
+            log_object("last id = ".DatabaseHelper::$_pdo->lastInsertId());
         } else {
-            $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Duplicated;
+            ErrorResponse::response(ResultCodeEnum::_Duplicated, "The email or phone is already used");
         }
         return $this->output;
     }

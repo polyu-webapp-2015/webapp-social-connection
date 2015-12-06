@@ -22,18 +22,13 @@ class DatabaseOperator
 
     public static function findAccountId($emailOrPhoneNum)
     {
-        //testing start
-
-//        log_object(DatabaseHelper::get_table_field_array("User"));
-
-        //testing end
         $select_array = [Account_Fields::__account_id];
         $where_statement = DatabaseHelper::where_statement_join_OR([
-            [Account_Fields::__email, quote($emailOrPhoneNum)],
-            [Account_Fields::__phone_num, quote($emailOrPhoneNum)]
+            [Account_Fields::__email, DatabaseHelper::quote($emailOrPhoneNum)],
+            [Account_Fields::__phone_num, DatabaseHelper::quote($emailOrPhoneNum)]
         ]);
         $rows = DatabaseHelper::select_from_table(Account_Fields::_, $select_array, $where_statement);
-        if (count($rows) > 0 & array_key_exists(Account_Fields::__account_id, $rows[0]))
+        if (count($rows) > 0 && array_key_exists(Account_Fields::__account_id, $rows[0]))
             return $rows[0][Account_Fields::__account_id];
         else
             return false;

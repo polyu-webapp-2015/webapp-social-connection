@@ -1,5 +1,4 @@
 <?php
-//require_once '../config.php';
 
 /**
  * Created by PhpStorm.
@@ -17,41 +16,18 @@ class DatabaseHelper
     const _enum_directory = "database/enum";
     const _prepared_statement_directory = "database/prepared_statement";
 
-    /**
-     * @deprecated
-     */
-    public static $_connection;
-
     /** @var PDO $connection */
     public static $_pdo;
 
     public static function check_connection()
     {
-//        if (self::$_connection == null)
         if (self::$_pdo == null)
             self::connect();
     }
 
     public static function connect()
     {
-//        /*mysqli*/
-//        try {
-//            global $_config;
-//            $ini = $_config->ini;
-//            $host = $ini[Config::__database_host];
-//            $username = $ini[Config::__database_user];
-//            $password = $ini[Config::__database_password];
-//            $database_name = $ini[Config::__database_name];
-//            $port = $ini[Config::__database_port];
-//            $connection = new mysqli($host, $username, $password, $database_name, $port);
-//            if ($connection->connect_error) {
-//                ErrorResponse::response(ResultCodeEnum::_Failed_To_Connect_To_Database, $connection->connect_error);
-//            }
-//            self::$_connection = $connection;
-//        } catch (mysqli_sql_exception $exception) {
-//            throw new Exception($exception->getMessage(), ResultCodeEnum::_Failed_To_Connect_To_Database, $exception);
-//        }
-        /*pdo*/
+        /* PDO approach */
         try {
             $dsn = 'mysql:dbname=' . Config::$_ini[Config::__database_name] . ';host=' . Config::$_ini[Config::__database_host];
             $username = Config::$_ini[Config::__database_user];
@@ -65,10 +41,15 @@ class DatabaseHelper
         }
     }
 
+    public static function quote($string)
+    {
+        self::check_connection();
+        return self::$_pdo->quote($string);
+    }
+
     public static function prepare($prepared_statement)
     {
         self::check_connection();
-//        return self::$_connection->prepare($prepared_statement);
         return self::$_pdo->prepare($prepared_statement);
     }
 
@@ -76,16 +57,8 @@ class DatabaseHelper
     {
         self::check_connection();
         $sql = "show tables;";
-//        $result = mysqli_query(self::$_connection, $sql);
-//        $result = self::$_pdo->query($sql);
-//        if ($result == false)
-//            throw new Exception("Failed to get table name!", ResultCodeEnum::_Database_Corrupt);
         $result = self::query($sql);
         $table_array = [];
-//        while ($row = mysqli_fetch_array($result)) {
-//            $table_array[] = $row[0];
-//        }
-//        log_object($result);
         foreach ($result as $row) {
             $table_array[] = $row[0];
         }
@@ -95,18 +68,13 @@ class DatabaseHelper
     public static function query($sql)
     {
         self::check_connection();
-//        $result = mysqli_query(self::$_connection, $sql);
         $result = self::$_pdo->query($sql);
         if ($result == false) {
             $code = ResultCodeEnum::_Failed_To_Query_On_Database;
-//            $msg = mysqli_error(self::$_connection);
             $msg = self::$_pdo->errorInfo();
             throw new Exception($msg, $code);
         }
         $result_array = [];
-//        while ($row = mysqli_fetch_array($result)) {
-//            $result_array[] = $row;
-//        }
         foreach ($result as $row) {
             $result_array[] = $row;
         }
@@ -160,10 +128,8 @@ class DatabaseHelper
     {
         self::check_connection();
         $sql = "DESCRIBE $table_name;";
-//        $result = mysqli_query(self::$_connection, $sql);
         $result = self::query($sql);
         $field_array = [];
-//        while ($row = mysqli_fetch_array($result)) {
         foreach ($result as $row) {
             $field = [self::__field_name => $row[0]];
             if (preg_match("/^enum\((.*)\)$/", $row[1], $matches) == 1)
@@ -182,8 +148,21 @@ class DatabaseHelper
             $field_names = $field_names . "," . $field_array[$i][0];
             $field_values = $field_values . "," . $field_array[$i][1];
         }
+        $field_names = implode(', ', array_keys($field_array));
+        $field_values = ':' . implode(', :', array_keys($field_array));
         $sql = "INSERT INTO $table_name ($field_names) VALUES ($field_values)";
-        return self::query($sql);
+        $statement = self::prepare($sql);
+        foreach ($field_array as $field_name => $field_value) {
+            $statement->bindValue(":$field_name", $field_value);
+        }
+        $result = $statement->execute();
+        if ($result == false) {
+            $msg = [];
+            $msg["simple"] = "Failed to insert into table $table_name!";
+            $msg["sql error code"] = self::$_pdo->errorCode();
+            $msg["sql error info"] = self::$_pdo->errorInfo();
+            ErrorResponse::response(ResultCodeEnum::_Failed_To_Insert_On_Database, $msg);
+        }
     }
 
     public static function generate_table_stub($table_name, array $field_array)
@@ -228,8 +207,6 @@ class DatabaseHelper
 //    const backtick = "`";
     const backtick = "";
 
-//    const backtick = "";
-
     public static function generate_prepared_statement($table_name, array $field_array)
     {
         $bt = self::backtick;
@@ -240,9 +217,9 @@ class DatabaseHelper
         for ($i = 1; $i < $N_field; $i++) {
             $code = $code . ", " . $bt . $field_array[$i][self::__field_name . $bt];
         }
-        $code = $code . ") VALUES (?";
+        $code = $code . ") VALUES (:" . $field_array[0][self::__field_name];
         for ($i = 1; $i < $N_field; $i++) {
-            $code = $code . ",?";
+            $code = $code . ", :" . $field_array[$i][self::__field_name];
         }
         $code = $code . ");";
         return [

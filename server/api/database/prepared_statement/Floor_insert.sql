@@ -1,1 +1,1 @@
-INSERT INTO Floor (floor_id, name) VALUES (?,?);
+INSERT INTO Floor (floor_id, name) VALUES (:floor_id, :name);

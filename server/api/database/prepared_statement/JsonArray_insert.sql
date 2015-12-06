@@ -1,1 +1,1 @@
-INSERT INTO JsonArray (JsonArray_id, JsonArray_content) VALUES (?,?);
+INSERT INTO JsonArray (JsonArray_id, JsonArray_content) VALUES (:JsonArray_id, :JsonArray_content);
