@@ -1,43 +1,36 @@
 <?php
 
 /**
- * Created by PhpStorm.
+ * Created by IntelliJ IDEA.
  * User: beenotung
- * Date: 11/10/15
- * Time: 7:51 PM
+ * Date: 11/18/15
+ * Time: 11:45 AM
  */
 class LoginActor extends Actor
 {
-
     public $name = "Login";
     public $params = array(
-//        User::_userId => "player1@gmail.com",
-//        User::_password => "noOneKnow"
+        DatabaseOperator::__emailOrPhoneNum => "98765432",
+        Account_Fields::__password => "ThePass123",
     );
-    public $output = ResultCodeEnum::_Success;
-    public $desc = "login, check if userId exist, check if password correct";
+    public $output = [ResultCodeEnum::_ => ResultCodeEnum::_Success];
+    public $desc = "Sign up new user";
 
     public function handle($data)
     {
-//        $userId = $data[User::_userId];
-//        $password = $data[User::_password];
-//        $db = new DatabaseHelper();
-//        $root = $db->load();
-//        $dict = $db->get_or_create_path($root, User::_path);
-//        if (array_key_exists($userId, $dict)) {
-//            if ($dict[$userId][User::_password] == $password) {
-//                log_object("Login : success");
-//                global $_heartbeatActor;
-//                $_heartbeatActor->handle($data);
-//                $this->output = ResultCodeEnum::_Success;
-//            } else {
-//                log_object("Login : password wrong");
-//                $this->output = ResultCodeEnum::_password_wrong;
-//            }
-//        } else {
-//            log_object("Login : user not exist");
-//            $this->output = ResultCodeEnum::_user_not_exist;
-//        }
+        put_all_into($data, $this->params);
+        $emailOrPhoneNum = $this->params[DatabaseOperator::__emailOrPhoneNum];
+        $password = $this->params[Account_Fields::__password];
+        $account_id = DatabaseOperator::isPasswordCorrect($emailOrPhoneNum, $password);
+        if ($account_id != false) {
+            /* generate session Id */
+            $this->output[Account_Fields::__account_id] = $account_id;
+        } else {
+            if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false)
+                $this->output[ResultCodeEnum::_] = ResultCodeEnum::_User_Not_Exist;
+            else
+                $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Password_Wrong;
+        }
         return $this->output;
     }
 }

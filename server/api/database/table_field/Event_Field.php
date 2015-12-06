@@ -1,6 +1,7 @@
 <?php
 class Event_Fields {
     const _ = "Event" ;
+    const _insert_sql = "database/prepared_statement/Event_insert.sql" ;
     const __event_id = "event_id" ;
     const __create_time = "create_time" ;
     const __edit_time = "edit_time" ;

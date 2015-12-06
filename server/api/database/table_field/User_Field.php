@@ -1,6 +1,7 @@
 <?php
 class User_Fields {
     const _ = "User" ;
+    const _insert_sql = "database/prepared_statement/User_insert.sql" ;
     const __account_id = "account_id" ;
     const __sex = "sex" ;
     const __first_name = "first_name" ;

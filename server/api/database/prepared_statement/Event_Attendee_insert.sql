@@ -1,0 +1,1 @@
+INSERT INTO Event_Attendee (event_id, account_id) VALUES (:event_id, :account_id);

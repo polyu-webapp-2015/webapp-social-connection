@@ -1,0 +1,1 @@
+INSERT INTO Tag (tag_id, tag_content) VALUES (:tag_id, :tag_content);

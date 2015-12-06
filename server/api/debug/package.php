@@ -6,3 +6,4 @@
  * Time: 6:26 PM
  */
 require_once 'ResultCodeEnum.php';
+require_once 'ErrorResponse.php';

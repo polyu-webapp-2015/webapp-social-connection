@@ -1,0 +1,1 @@
+INSERT INTO Exhibition (event_id) VALUES (:event_id);

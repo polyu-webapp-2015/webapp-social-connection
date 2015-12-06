@@ -18,6 +18,7 @@ module social_connection{
     Unknown_API,
     Failed_To_Connect_To_Database,
     Failed_To_Query_On_Database,
+    Failed_To_Insert_On_Database,
     Database_Corrupt,
     Network_Not_Stable,
     Duplicated,
