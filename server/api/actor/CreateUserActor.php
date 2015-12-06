@@ -41,7 +41,6 @@ class CreateUserActor extends Actor
                 User_Fields::__sex => $sex,
             ];
             DatabaseHelper::table_insert(User_Fields::_, $field_array);
-            log_object("last id = ".DatabaseHelper::$_pdo->lastInsertId());
         } else {
             ErrorResponse::response(ResultCodeEnum::_Duplicated, "The email or phone is already used");
         }

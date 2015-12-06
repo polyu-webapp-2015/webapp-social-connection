@@ -67,11 +67,13 @@ class DatabaseHelper
 
     public static function query($sql)
     {
+        log_object("-------query------");
+        log_object($sql);
         self::check_connection();
         $result = self::$_pdo->query($sql);
         if ($result == false) {
             $code = ResultCodeEnum::_Failed_To_Query_On_Database;
-            $msg = self::$_pdo->errorInfo();
+            $msg = json_encode(self::$_pdo->errorInfo());
             throw new Exception($msg, $code);
         }
         $result_array = [];
@@ -84,14 +86,24 @@ class DatabaseHelper
     const __AND = " AND ";
     const __OR = " OR ";
 
+    public static function field_value_to_statement(array $field_value)
+    {
+        assert(count($field_value) == 1, "This operation only support one key value pair");
+        return array_keys($field_value)[0] . " = " . array_values($field_value)[0];
+    }
+
     public static function logical_statement_join(array &$collection, $logic_operation, array $field_value)
     {
         assert($logic_operation == self::__AND || $logic_operation == self::__OR, "Invalid logic operation");
+        $array_values = array_values($field_value);
         if (count($field_value) > 1) {
-            foreach ($field_value as $item)
-                self::logical_statement_join($collection, $logic_operation, $item);
+            foreach ($field_value as $field => $value)
+                self::logical_statement_join($collection, $logic_operation, [$field => $value]);
+        } elseif (is_array($array_values[0])) {
+            foreach ($array_values as $value)
+                self::logical_statement_join($collection, $logic_operation, $value);
         } else {
-            $current_statement = array_keys($field_value)[0] . " = " . array_values($field_value)[0];
+            $current_statement = self::field_value_to_statement($field_value);
             if (count($collection) == 0) {
 //                assert($logic_operation == self::__AND, "Invalid logic operation on empty collection");
                 $collection[] = $current_statement;
@@ -293,11 +305,5 @@ class DatabaseHelper
         self::write_class_array_to_directory(self::_enum_directory, $enum_class_array);
         /* generate insert prepared statement */
         self::write_sql_array_to_directory(self::_prepared_statement_directory, $prepared_statement_array);
-    }
-
-    public static function default_action()
-    {
-        log_object("default action");
-        self::generate_all_table_stub();
     }
 }
