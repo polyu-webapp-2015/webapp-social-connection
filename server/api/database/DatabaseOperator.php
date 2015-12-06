@@ -24,8 +24,8 @@ class DatabaseOperator
     {
         $select_array = [Account_Fields::__account_id];
         $where_statement = DatabaseHelper::where_statement_join_OR([
-            [Account_Fields::__email, DatabaseHelper::quote($emailOrPhoneNum)],
-            [Account_Fields::__phone_num, DatabaseHelper::quote($emailOrPhoneNum)]
+            [Account_Fields::__email => DatabaseHelper::quote($emailOrPhoneNum)],
+            [Account_Fields::__phone_num => DatabaseHelper::quote($emailOrPhoneNum)]
         ]);
         $rows = DatabaseHelper::select_from_table(Account_Fields::_, $select_array, $where_statement);
         if (count($rows) > 0 && array_key_exists(Account_Fields::__account_id, $rows[0]))
@@ -36,6 +36,22 @@ class DatabaseOperator
 
     public static function isPasswordCorrect($emailOrPhoneNum, $password)
     {
-
+        $select_array = [Account_Fields::__account_id];
+        $where_options1 = [];
+        DatabaseHelper::logical_statement_join($where_options1, DatabaseHelper::__AND, [
+            Account_Fields::__password => $password
+        ]);
+        $where_options2 = [];
+        DatabaseHelper::logical_statement_join($where_options2, DatabaseHelper::__OR, [
+            Account_Fields::__email => $emailOrPhoneNum,
+            Account_Fields::__phone_num => $emailOrPhoneNum
+        ]);
+        array_push($where_options1, "(", $where_options2, ")");
+        $where_statement = DatabaseHelper::logical_statement_collection_to_where_statement(array_flatten($where_options1));
+        $rows = DatabaseHelper::select_from_table(Account_Fields::_, $select_array, $where_statement);
+        if (count($rows) > 0 && array_key_exists(Account_Fields::__account_id, $rows[0]))
+            return $rows[0][Account_Fields::__account_id];
+        else
+            return false;
     }
 }

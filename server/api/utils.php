@@ -161,6 +161,8 @@ function remove_from_array($element, array &$array)
 
 function array_flatten(array $input)
 {
+    log_object("---------------input");
+    log_object($input);
     $flatten = [];
     foreach ($input as $key => $value) {
         $new_key = array_keys($value);
@@ -168,5 +170,7 @@ function array_flatten(array $input)
             if (array_key_exists($new_key[0], $value))
                 $flatten[] = $value[$new_key[0]];
     }
+    log_object($flatten);
+    log_object("output---------------");
     return $flatten;
 }

@@ -16,7 +16,7 @@ class CreateUserActor extends Actor
         User_Fields::__sex => sex_Enum::__unknown
     );
     public $output = [ResultCodeEnum::_ => ResultCodeEnum::_Success];
-    public $desc = "check if the email or phone number is NOT registered";
+    public $desc = "Sign up new user";
 
     public function handle($data)
     {

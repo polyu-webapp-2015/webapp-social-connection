@@ -81,32 +81,45 @@ class DatabaseHelper
         return $result_array;
     }
 
+    const __AND = " AND ";
+    const __OR = " OR ";
+
+    public static function logical_statement_join(array &$collection, $logic_operation, array $field_value)
+    {
+        assert($logic_operation == self::__AND || $logic_operation == self::__OR, "Invalid logic operation");
+        if (count($field_value) > 1) {
+            foreach ($field_value as $item)
+                self::logical_statement_join($collection, $logic_operation, $item);
+        } else {
+            $current_statement = array_keys($field_value)[0] . " = " . array_values($field_value)[0];
+            if (count($collection) == 0) {
+//                assert($logic_operation == self::__AND, "Invalid logic operation on empty collection");
+                $collection[] = $current_statement;
+            } else
+                $collection[] = $logic_operation . $current_statement;
+        }
+    }
+
+    public static function logical_statement_collection_to_where_statement(array $collection)
+    {
+        return "WHERE " . implode('', $collection);
+    }
+
     public static function where_statement_join_OR(array $where_statement_array)
     {
-        return self::where_statement_join_generic($where_statement_array, "OR");
+        return self::where_statement_join_generic($where_statement_array, self::__OR);
     }
 
     public static function where_statement_join_AND(array $where_statement_array)
     {
-        return self::where_statement_join_generic($where_statement_array, "AND");
+        return self::where_statement_join_generic($where_statement_array, self::__AND);
     }
 
     public static function where_statement_join_generic(array $field_value_array, $conjunction)
     {
-        $combined_statement_array = [];
-        foreach ($field_value_array as $field_value) {
-            $combined_statement_array[] = $field_value[0] . " = " . $field_value[1];
-        }
-        $N_combined_statement = count($combined_statement_array);
-        if ($N_combined_statement == 0)
-            $where_statement = "";
-        else {
-            $where_statement = "WHERE " . $combined_statement_array[0];
-            for ($i = 1; $i < $N_combined_statement; $i++) {
-                $where_statement = $where_statement . " $conjunction " . $combined_statement_array[$i];
-            }
-        }
-        return $where_statement;
+        $where_options = [];
+        self::logical_statement_join($where_options, $conjunction, $field_value_array);
+        return self::logical_statement_collection_to_where_statement($where_options);
     }
 
     public static function select_from_table($table_name, array $select_array = [], $where_statement = "")
