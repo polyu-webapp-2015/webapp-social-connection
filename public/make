@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-cp make_table2class api/database/table2class/output/make
-cd api/database/table2class/output/; bash ./make
+cd lib; bash ./make
