@@ -123,19 +123,20 @@ function put_all_into(array $source, array &$dist)
     }
 }
 
-function array_copy(array $source, array &$dist, array $keys=[])
+function array_copy(array $source, array &$dist, array $keys = [])
 {
     foreach ($keys as $key) {
         $dist[$key] = $source[$key];
     }
 }
 
-function is_array_key_matched(array $key_array,array $matched_array){
-     foreach ($key_array as $key ) {
-            if (!array_key_exists($key, $matched_array))
-                return false;
-        }
-        return true;
+function is_array_key_matched(array $key_array, array $matched_array)
+{
+    foreach ($key_array as $key) {
+        if (!array_key_exists($key, $matched_array))
+            return false;
+    }
+    return true;
 }
 
 /**
@@ -151,4 +152,16 @@ function remove_from_array($element, array &$array)
     } else {
         return false;
     }
+}
+
+function array_flatten(array $input)
+{
+    $flatten = [];
+    foreach ($input as $key => $value) {
+        $new_key = array_keys($value);
+        if (is_array($new_key) && array_key_exists(0, $new_key))
+            if (array_key_exists($new_key[0], $value))
+                $flatten[] = $value[$new_key[0]];
+    }
+    return $flatten;
 }

@@ -7,6 +7,7 @@
  */
 //require_once '../utils.php';
 //require_once '../database/DatabaseHelper.php';
+require_once'ActorUtil.php';
 require_once 'Actor.php';
 require_once 'APIActor.php';
 require_once 'CreateUserActor.php';

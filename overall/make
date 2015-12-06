@@ -13,3 +13,4 @@ rm ../webapp-server/app/models/idl/social_connection/*POA.java
 ## generate php file from java
 
 bash ./script/ResultCodeEnum.sh > ../server/api/debug/ResultCodeEnum.php
+#bash ./script/SexEnum.sh > ../server/api/database/enum/SexEnum.php
