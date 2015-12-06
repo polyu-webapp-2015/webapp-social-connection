@@ -12,6 +12,7 @@ class CreateUserActor extends Actor
     public $params = array(
         DatabaseOperator::__emailOrPhoneNum => "98765432",
         Account_Fields::__password => "ThePass123",
+        Account_Fields::__account_type => account_type_Enum::__attendee,
         User_Fields::__sex => sex_Enum::__unknown
     );
     public $output = [ResultCodeEnum::_ => ResultCodeEnum::_Success];
@@ -22,12 +23,21 @@ class CreateUserActor extends Actor
         put_all_into($data, $this->params);
         $emailOrPhoneNum = $this->params[DatabaseOperator::__emailOrPhoneNum];
         $password = $this->params[Account_Fields::__password];
+        $account_type = $this->params[Account_Fields::__account_type];
+        $sex = $this->params[User_Fields::__sex];
         if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false) {
-            file_put_contents("UserInsert","test");
-            $prepared_statement="INSERT INTO `social_connection`.`User`(`account_id`,`sex`,`first_name`,`last_name`,`organization_id`,`title_id`,`city_id`)VALUES(?,?,?,?,?,?,?);";
-            $prepared_statement_type="ssssss";
-            $statement=DatabaseHelper::prepare($prepared_statement);
-//            $statement->bind_param($prepared_statement_type,);
+            /* create account */
+            $field_array = [
+                Account_Fields::__password => $password,
+                Account_Fields::__account_type => $account_type,
+                Account_Fields::__email => $emailOrPhoneNum,
+                Account_Fields::__phone_num => $emailOrPhoneNum
+            ];
+            $result=DatabaseHelper::table_insert(Account_Fields::_, $field_array);
+            log_object("---------------result");
+            log_object($result);
+            log_object("result---------------");
+            /* create User */
         } else {
             $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Duplicated;
         }
