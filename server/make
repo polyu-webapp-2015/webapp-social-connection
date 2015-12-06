@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cp make_table2class api/database/table2class/output/make
+cp api/database/table2class/index.php api/database/table2class/web.php
+cd api/database/table2class/output/; bash ./make

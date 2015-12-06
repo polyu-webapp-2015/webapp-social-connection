@@ -1,0 +1,144 @@
+@charset "utf-8";
+.alert-auto {
+  display:inline-block;
+}
+.center {
+  width: max-content;
+  margin: auto;
+}
+
+.login.alert{
+  margin: auto;
+  margin-top: 10px;
+}
+
+.jumbotron {
+	background-color: #2288ee;
+	color: #ffffff;
+	margin-bottom: 0px;
+	padding-top: 100px;
+}
+
+.navbar {
+	background-color: #2288ee;
+	border: none
+}
+
+.navbar li a {
+	color: #ffffff !important;
+}
+
+.navbar li a:hover {
+	background-color: #ffffff !important;
+	color: #2288ee !important;
+}
+
+.modal-header {
+	background-color: #fafafa;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	color: #404040;
+}
+
+.modal-footer {
+	background-color: #fbfbfb;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	color: #404040;	
+}
+
+.container-fluid {
+	margin-top: 0px;
+	padding: 60px 50px;
+	border-left: 2px solid #7bcaf0;
+	border-right: 2px solid #7bcaf0;
+}
+
+.bg-grey {
+	background-color: #efefef;
+}
+
+h4 {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.my-btn {
+	background-color: #3399ee;
+	color: #ffffff;
+	border-radius: 0px;
+}
+
+.my-btn.my-btn-round {
+	border-radius: 3px;
+}
+
+.my-btn:hover {
+	color: #ffffff;
+	background-color: #44aaff;
+}
+
+.my-btn:focus {
+	color: #ffffff;
+	background-color: #44aaff;
+}
+
+.logo {
+	font-size: 200px;
+	color: #2288ee;
+}
+
+.navbar-brand {
+	color: #ffffff !important;
+}
+
+.navbar-brand:hover {
+	color: #2288ee !important;
+	background-color: #ffffff !important;
+}
+
+.icon-bar {
+	background-color: #ffffff !important;
+}
+
+@media screen and (max-width: 768px) {
+	.col-sm-4 {
+	  text-align: center;
+	  margin: 25px 0;
+	}
+}
+
+.well {
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.list-group {
+	margin-bottom: 0;
+}
+
+.list-group-item:focus {
+	outline: none;
+}
+
+.list-group-item.nor {
+	background-color: #ffffff;
+}
+
+.list-group-item.nor:focus {
+	background-color: #ffffff;
+}
+
+.list-group-item.alt{
+	background-color: #f9f9f9;
+}
+
+.list-group-item.alt:focus{
+	background-color: #fafafa;
+}
+
+.list-group-item.alt:hover {
+	background-color: #eaeaea;
+}

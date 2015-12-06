@@ -1,0 +1,35 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# basic alive check
+GET     /                           controllers.Application.index
+#GET     /httpWeather                controllers.Application.httpWeatherProxy
+
+# Websocket endpoints
+GET     /echo                       controllers.Application.wsEcho
+GET     /time                       controllers.Application.wsTime
+#GET     /pingpong                   controllers.Application.wsPingPong
+#GET     /interleave                 controllers.Application.wsInterleave
+#GET     /fromfile                   controllers.Application.wsFromFile
+#GET     /wsWeather                  controllers.Application.wsWeatherProxy
+#GET     /wsWeatherIntervals         controllers.Application.wsWeatherIntervals
+#GET     /wsWithActor                controllers.Application.wsWithActor
+
+GET     /httpTime                   controllers.Application.httpTime
+GET     /httpEcho                   controllers.Application.httpEcho
+POST    /httpEcho                   controllers.Application.httpEcho
+#POST    /httpAdd                    controllers.Application.httpAdd
+
+# real work
+GET     /startDB                    controllers.Application.startDB
+GET     /dbPort                     controllers.Application.dbPort
+GET     /wsDB                       controllers.Application.wsDB
+#POST    /isEmailOrPhoneNumUnique    controllers.Application.isEmailOrPhoneNumUnique
+#POST    /createUser                 controllers.Application.createUser
+#POST    /register                   controllers.Application.createUser
+#POST    /newSessionId               controllers.Application.newSessionId
+
+# Map static resources from the /public folder to the /assets URL path
+#GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /*file               controllers.Assets.versioned(path="/public", file: Asset)

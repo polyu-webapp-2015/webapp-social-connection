@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo '<?php' > package.php
+ls *.php | grep -v 'package.php' | xargs -I {} echo include_once \'{}\'\; >> package.php

@@ -1,0 +1,129 @@
+module models{ module impl{
+  interface JsObject{};
+  interface GeneralObject{
+    readonly attribute JsObject jsObject;
+  };
+};};
+
+module models{module idl{
+module social_connection{
+  interface User;
+  interface Group;
+};
+
+module social_connection{
+  enum ResultCodeEnum{
+    Success,
+    Server_Config_Error,
+    Unknown_API,
+    Failed_To_Connect_To_Database,
+    Failed_To_Query_On_Database,
+    Database_Corrupt,
+    Network_Not_Stable,
+    Duplicated,
+    User_Not_Exist,
+    Password_Wrong,
+    No_Permission,
+    Group_Not_Exist,
+    Request_Body_Wrong_Type,
+    Request_Param_Missing,
+    Request_Param_Enum_Invalid,
+    Request_Param_Wrong_Format,
+    Request_Param_Parsing_Server
+  };
+  exception GeneralException{
+    long resultCode;
+    string reason;
+  };
+
+  enum SexEnum{M,F,other,unknown};
+  interface User:models::impl::GeneralObject{
+    readonly attribute string userId;
+    attribute string userIntro;
+    attribute string email;
+    attribute string phoneNum;
+    attribute string firstName;
+    attribute string lastName;
+    attribute string nickName;
+    attribute SexEnum sex;
+    struct UserGroup{
+      string groupID;
+      string groupName;
+      /*used for sorting in front-end*/
+      long long lastActionTime;
+      long long joinTime;
+    };
+    typedef sequence<UserGroup> UserGroupSeq;
+    void getUserGroupList(out UserGroupSeq userGroupSeq,out short numUserGroup);
+    boolean isPasswordCorrect(in string password);
+  };
+  interface UserManager{
+  /*return userId*/
+    string createUser(in string emailOrPhoneNum, in string password, in SexEnum sex) raises (GeneralException);
+
+    /*login operation, return session if success, raise exception if failed*/
+    string newSessionId(in string emailOrPhoneNum,in string password) raises (GeneralException);
+
+    boolean isEmailOrPhoneNumUnique(in string emailOrPhoneNum) raises (GeneralException);
+  };
+
+  interface Group{
+    readonly attribute string groupId;
+    readonly attribute string groupName;
+    readonly attribute string groupIntro;
+    readonly attribute string hostUserId;
+    struct GroupUser{
+      string userId;
+      long long lastActionTime;
+      long long joinTime;
+    };
+    typedef sequence<GroupUser> GroupUserSeq;
+    void getGroupUserList(out GroupUserSeq groupUserSeq, out short numGroupUser);
+  };
+  interface GroupManager{
+    void createGroup(in string groupName, in string groupIntro) raises (GeneralException);
+    Group getGroup(in string groupId) raises (GeneralException);
+  };
+
+  interface Conference{};
+
+  interface Exhibition{};
+};
+
+module database{
+  interface JsValue{};
+  interface JsObject:JsValue{};
+  interface JsArray:JsValue{};
+
+  interface KeyJsValue{
+    attribute string key;
+    attribute JsValue jsValue;
+  };
+
+  typedef sequence<JsValue> JsValues;
+  typedef sequence<JsArray> JsArrays;
+  typedef sequence<KeyJsValue> KeyJsValues;
+
+  enum DatabaseResultCodeEnum{
+    Success,
+    Failed_Unknown,
+    Invalid_Format,
+    Path_Not_Exist
+  };
+  exception DatabaseException{
+    long resultCode;
+    string reason;
+  };
+  enum OperationEnum{
+    Exist_Under,
+    Create_Without_Id
+  };
+  typedef sequence<string> Paths;
+  interface DatabaseService{
+    boolean exist_under(in Paths paths, in KeyJsValues keyJsValues)raises(DatabaseException);
+    const string NEW_ID="NEW_ID";
+    string create_without_id(in Paths paths, in KeyJsValues keyJsValues)raises(DatabaseException);
+  };
+};
+
+};};
