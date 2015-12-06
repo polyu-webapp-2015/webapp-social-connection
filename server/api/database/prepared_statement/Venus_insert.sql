@@ -1,0 +1,1 @@
+INSERT INTO Venus (venue_id, floor_id) VALUES (?,?);

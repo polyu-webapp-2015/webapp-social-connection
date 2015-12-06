@@ -1,0 +1,1 @@
+INSERT INTO Country (country_id, country_name) VALUES (?,?);

@@ -1,0 +1,1 @@
+INSERT INTO Session (event_id, quota) VALUES (?,?);

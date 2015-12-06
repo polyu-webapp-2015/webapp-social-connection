@@ -10,18 +10,32 @@ class DatabaseOperator
 {
     const __emailOrPhoneNum = "emailOrPhoneNum";
 
+    /**
+     * @deprecate avoid logic on db site
+     * @param string $emailOrPhoneNum
+     * @return bool
+     */
     public static function is_email($emailOrPhoneNum)
     {
         return strpos('@', $emailOrPhoneNum) != false;
     }
 
-    public static function getAccountId($emailOrPhoneNum, $password)
+    public static function findAccountId($emailOrPhoneNum)
     {
-        if (self::is_email($emailOrPhoneNum)) {
-            $type=Account_Fields::__email;
-        } else {
-            $type=Account_Fields::__phone_num;
-        }
-        $sql="select * from ";
+        $select_array = [Account_Fields::__account_id];
+        $where_statement = DatabaseHelper::where_statement_join_OR([
+            [Account_Fields::__email, $emailOrPhoneNum],
+            [Account_Fields::__phone_num, $emailOrPhoneNum]
+        ]);
+        $rows = DatabaseHelper::select_from_table(Account_Fields::_, $select_array, $where_statement);
+        if(count($rows)>0 & array_key_exists(Account_Fields::__account_id,$rows[0]))
+            return $rows[0][Account_Fields::__account_id];
+        else
+            return false;
+    }
+
+    public static function isPasswordCorrect($emailOrPhoneNum, $password)
+    {
+
     }
 }

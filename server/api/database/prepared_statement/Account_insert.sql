@@ -1,0 +1,1 @@
+INSERT INTO Account (account_id, password, account_type, email, phone_num) VALUES (?,?,?,?,?);

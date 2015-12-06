@@ -1,0 +1,1 @@
+INSERT INTO Organization (organization_id, organization_type, name, main_country) VALUES (?,?,?,?);

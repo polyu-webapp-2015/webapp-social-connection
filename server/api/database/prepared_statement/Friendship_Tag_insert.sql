@@ -1,0 +1,1 @@
+INSERT INTO Friendship_Tag (friendship_id, tag_id) VALUES (?,?);

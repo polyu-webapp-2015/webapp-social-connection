@@ -1,0 +1,1 @@
+INSERT INTO JsonArray (JsonArray_id, JsonArray_content) VALUES (?,?);

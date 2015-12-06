@@ -1,0 +1,1 @@
+INSERT INTO Floor (floor_id, name) VALUES (?,?);

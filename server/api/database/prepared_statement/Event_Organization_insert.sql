@@ -1,0 +1,1 @@
+INSERT INTO Event_Organization (event_id, organization_id) VALUES (?,?);
