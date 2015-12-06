@@ -5,6 +5,7 @@
  * Date: 11/18/15
  * Time: 12:11 PM
  */
-//require_once 'enum/package.php';
-require_once 'DatabaseHelper.php';
+include_once 'table2class/output/package.php';
 include_once 'table_field/package.php';
+include_once 'enum/package.php';
+require_once 'DatabaseHelper.php';

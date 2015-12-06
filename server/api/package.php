@@ -6,7 +6,6 @@
  * Time: 12:11 PM
  */
 
-require_once 'table2class/output/package.php';
 
 require_once 'utils.php';
 require_once 'debug/package.php';
