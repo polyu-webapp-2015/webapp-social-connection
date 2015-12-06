@@ -12,6 +12,7 @@ class APIActor extends Actor
     public $params = array();
     public $desc = "show all API available";
     protected $list = array();
+    public $output = "html";
 
     function addAPI($apiClass)
     {
