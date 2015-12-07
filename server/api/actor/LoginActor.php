@@ -13,7 +13,10 @@ class LoginActor extends Actor
         DatabaseOperator::__emailOrPhoneNum => "98765432",
         Account_Fields::__password => "ThePass123",
     );
-    public $output = [ResultCodeEnum::_ => ResultCodeEnum::_Success];
+    public $output = [
+        ResultCodeEnum::_ => ResultCodeEnum::_Success,
+        "sessionId" => 0
+    ];
     public $desc = "Sign up new user";
 
     public function handle($data)
@@ -24,7 +27,13 @@ class LoginActor extends Actor
         $account_id = DatabaseOperator::isPasswordCorrect($emailOrPhoneNum, $password);
         if ($account_id != false) {
             /* generate session Id */
-            $this->output[Account_Fields::__account_id] = $account_id;
+//            $this->output[Account_Fields::__account_id] = $account_id;
+            if (session_start()) {
+                $session_id = session_id();
+                $this->output["sessionId"]=$session_id;
+            } else {
+                $this->output[ResultCodeEnum::_]=ResultCodeEnum::_Server_Unknown_Error;
+            }
         } else {
             if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false)
                 $this->output[ResultCodeEnum::_] = ResultCodeEnum::_User_Not_Exist;
