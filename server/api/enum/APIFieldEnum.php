@@ -1,4 +1,5 @@
 <?php
+
 class APIFieldEnum
 {
     const _ = "APIField";
