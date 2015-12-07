@@ -40,7 +40,7 @@ function log_object($o)
             error_log('True');
         else
             error_log('False');
-    }elseif($o==null){
+    } elseif ($o == null) {
         error_log("null");
     } else {
         error_log("might not display");
@@ -137,6 +137,15 @@ function array_copy(array $source, array &$dist, array $keys = [])
     }
 }
 
+function array_filter_by_keys(array $source, array $keys)
+{
+    $result = [];
+    foreach ($keys as $key) {
+        $result[$key] = $source[$key];
+    }
+    return $result;
+}
+
 function is_array_key_matched(array $key_array, array $matched_array)
 {
     foreach ($key_array as $key) {
@@ -172,4 +181,5 @@ function array_flatten(array $input)
     }
     return $flatten;
 }
+
 
