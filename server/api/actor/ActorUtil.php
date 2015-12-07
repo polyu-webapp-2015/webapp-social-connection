@@ -9,7 +9,8 @@
 class ActorUtil
 {
     /**
-     * @param array $data : from client request
+     * @param array $data : param from client request
+     * @return string session_id
      * @throws Exception
      */
     public static function check_session_valid(array $data)
@@ -21,6 +22,7 @@ class ActorUtil
         if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id() && isset($_SESSION[Account_Fields::__account_id])) {
             /* valid */
             session_id($session_id);
+            return $session_id;
         } else {
             /* not valid or expired */
             throw new Exception("Session Expired", ResultCodeEnum::_Session_Expired);

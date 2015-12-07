@@ -41,7 +41,8 @@ module social_connection{
     Reason,
     Session_ID,
     User_ID_Array,
-    User_Info_Array
+    User_Info_Array,
+    User_Array
   };
   exception GeneralException{
     long resultCode;
