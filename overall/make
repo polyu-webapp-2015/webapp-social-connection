@@ -11,6 +11,9 @@ rm ../webapp-server/app/models/idl/social_connection/*POA.java
 # rm ../webapp-server/app/models/idl/social_connection/_*Stub.java
 
 ## generate php file from java
+bash ./script/make_enum_php.sh ResultCode > ../server/api/enum/ResultCodeEnum.php
+bash ./script/make_enum_php.sh ResultField > ../server/api/enum/ResultFieldEnum.php
 
-bash ./script/ResultCodeEnum.sh > ../server/api/debug/ResultCodeEnum.php
-#bash ./script/SexEnum.sh > ../server/api/database/enum/SexEnum.php
+## generate javascript file from java
+bash ./script/make_enum_js.sh ResultCode > ../public/js/enum/ResultCodeEnum.js
+bash ./script/make_enum_js.sh ResultField > ../public/js/enum/ResultFieldEnum.js

@@ -1,0 +1,23 @@
+var ResultCodeEnum = function () {
+    this._ = "ResultCode";
+    this._Success = "Success";
+    this._Server_Unknown_Error = "Server_Unknown_Error";
+    this._Server_Config_Error = "Server_Config_Error";
+    this._Unknown_API = "Unknown_API";
+    this._Unknown_Database_Error = "Unknown_Database_Error";
+    this._Failed_To_Connect_To_Database = "Failed_To_Connect_To_Database";
+    this._Failed_To_Query_On_Database = "Failed_To_Query_On_Database";
+    this._Failed_To_Insert_On_Database = "Failed_To_Insert_On_Database";
+    this._Database_Corrupt = "Database_Corrupt";
+    this._Network_Not_Stable = "Network_Not_Stable";
+    this._Duplicated = "Duplicated";
+    this._User_Not_Exist = "User_Not_Exist";
+    this._Password_Wrong = "Password_Wrong";
+    this._No_Permission = "No_Permission";
+    this._Group_Not_Exist = "Group_Not_Exist";
+    this._Request_Body_Wrong_Type = "Request_Body_Wrong_Type";
+    this._Request_Param_Missing = "Request_Param_Missing";
+    this._Request_Param_Enum_Invalid = "Request_Param_Enum_Invalid";
+    this._Request_Param_Wrong_Format = "Request_Param_Wrong_Format";
+    this._Request_Param_Parsing_Server = "Request_Param_Parsing_Server";
+};
