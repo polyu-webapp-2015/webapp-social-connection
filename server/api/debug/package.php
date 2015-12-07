@@ -7,3 +7,4 @@
  */
 require_once 'ResultCodeEnum.php';
 require_once 'ErrorResponse.php';
+require_once 'ExceptionUtils.php';

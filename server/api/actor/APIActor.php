@@ -40,11 +40,7 @@ class APIActor extends Actor
                         self::__result_code => $e->getCode(),
                         self::__reason => [
                             "type" => "Exception",
-                            "detail" => [
-                                "code" => $e->getCode(),
-                                "message" => $e->getMessage(),
-                                "trace" => $e->getTrace()
-                            ]
+                            "detail" => ExceptionUtils::Exception_to_array($e)
                         ]
                     ];
                 }

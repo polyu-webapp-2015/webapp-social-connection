@@ -35,8 +35,14 @@ class DatabaseHelper
             $connection = new PDO($dsn, $username, $password);
             self::$_pdo = $connection;
         } catch (PDOException $exception) {
+            $msg = [];
+            $msg["simple"] = "Failed to connect to Database";
+            $msg["type"] = "PDOException";
+            $msg["exception"] = ExceptionUtils::PDOException_to_array($exception);
+            $msg = json_encode($msg);
             $msg = "Failed to connect to Database";
             $result_code = ResultCodeEnum::_Failed_To_Connect_To_Database;
+//            throw new Exception($msg, $result_code, ExceptionUtils::wrap_PDOException($exception));
             throw new Exception($msg, $result_code, $exception);
         }
     }

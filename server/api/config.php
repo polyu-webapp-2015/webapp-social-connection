@@ -16,14 +16,18 @@ class Config
     const __database_user = "database_user";
     const __database_password = "database_password";
     const __database_name = "database_name";
-//    const __database_library = "database_library";
+    const __full_debug_on_database = "full_debug_on_database";
+
+    /** @deprecated */
+    const __database_library = "database_library";
 
     const _keys = [
         self::__database_host,
         self::__database_port,
         self::__database_user,
         self::__database_password,
-        self::__database_name
+        self::__database_name,
+        self::__full_debug_on_database
     ];
 
     public static $_ini;

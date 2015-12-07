@@ -16,6 +16,7 @@ module social_connection{
     Success,
     Server_Config_Error,
     Unknown_API,
+    Unknown_Database_Error,
     Failed_To_Connect_To_Database,
     Failed_To_Query_On_Database,
     Failed_To_Insert_On_Database,
