@@ -142,19 +142,45 @@ class DatabaseHelper
         return self::logical_statement_collection_to_where_statement($where_options);
     }
 
+    /** @deprecated unsafe */
     public static function select_from_table($table_name, array $select_array = [], $where_statement = "")
     {
         $N_select = count($select_array);
         if ($N_select == 0)
             $select_statement = "*";
         else {
-            $select_statement = $select_array[0];
-            for ($i = 1; $i < $N_select; $i++) {
-                $select_statement = "$select_statement,{$select_array[$i]}";
-            }
+//            $select_statement = $select_array[0];
+//            for ($i = 1; $i < $N_select; $i++) {
+//                $select_statement = "$select_statement,{$select_array[$i]}";
+//            }
+            $select_statement = implode(',', $select_array);
         }
         $sql = "SELECT $select_statement from $table_name $where_statement ;";
         return self::query($sql);
+    }
+
+    public static function update_on_table($table_name, array $set_field_value_array = [], $where_statement)
+    {
+        $set_statement_array = array_map(function ($set_field_value) {
+            $field = array_keys($set_field_value)[0];
+            return "$field = :$field";
+        }, $set_field_value_array);
+        $set_statement = implode(',', $set_statement_array);
+        $sql = "UPDATE $table_name SET $set_statement WHERE $where_statement ;";
+        $statement = self::prepare($sql);
+        foreach ($set_field_value_array as $set_field_value) {
+            $field = array_keys($set_field_value)[0];
+            $value = array_values($set_field_value)[0];
+            $statement->bindValue(":$field", $value);
+        }
+        if ($statement->execute()) {
+            return $statement->fetchAll();
+        } else {
+            log_object_from_named($set_field_value_array,"set field value array");
+            log_object_from_named($statement->queryString,"queryString");
+            $msg = ErrorResponse::generate_pdo_error_msg("Failed to update on table");
+            throw new Exception($msg, ResultCodeEnum::_Failed_To_Update_On_Database);
+        }
     }
 
     public static function get_table_field_array($table_name)
@@ -190,12 +216,10 @@ class DatabaseHelper
         }
         $result = $statement->execute();
         if ($result == false) {
-            $msg = [];
-            $msg["simple"] = "Failed to insert into table $table_name!";
-            $msg["sql error code"] = self::$_pdo->errorCode();
-            $msg["sql error info"] = self::$_pdo->errorInfo();
-            ErrorResponse::response(ResultCodeEnum::_Failed_To_Insert_On_Database, $msg);
+            $msg = ErrorResponse::generate_pdo_error_msg("Failed to insert into table $table_name!");
+            throw new Exception($msg, ResultCodeEnum::_Failed_To_Insert_On_Database);
         }
+        return $statement->fetchAll();
     }
 
     public static function generate_table_stub($table_name, array $field_array)
@@ -340,5 +364,14 @@ class DatabaseHelper
         self::write_script_array_to_directory(self::_prepared_statement_directory, $prepared_statement_array);
         /* generate javascript enum */
         self::write_script_array_to_directory(self::_javascript_directory, $enum_javascript_array);
+    }
+
+    public static function get_prepared_statement($filename)
+    {
+        $path = self::_prepared_statement_directory . '/' . $filename;
+        $content = file_get_contents($path);
+        if ($content == false)
+            throw new Exception("Failed to load prepared statement sql script", ResultCodeEnum::_Server_File_Missing);
+        return $content;
     }
 }

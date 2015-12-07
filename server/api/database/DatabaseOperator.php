@@ -36,8 +36,8 @@ class DatabaseOperator
 
     public static function isPasswordCorrect($emailOrPhoneNum, $password)
     {
-        $emailOrPhoneNum=DatabaseHelper::quote($emailOrPhoneNum);
-        $password=DatabaseHelper::quote($password);
+        $emailOrPhoneNum = DatabaseHelper::quote($emailOrPhoneNum);
+        $password = DatabaseHelper::quote($password);
         $select_array = [Account_Fields::__account_id];
         $where_options1 = [];
         $where_options1[] = DatabaseHelper::field_value_to_statement([
@@ -59,5 +59,22 @@ class DatabaseOperator
             return $rows[0][Account_Fields::__account_id];
         else
             return false;
+    }
+
+    /**
+     * @param string $user_id
+     * @return string : account_type (Enum) value
+     * @throws Exception
+     */
+    public static function getAccountType($user_id)
+    {
+        $sql = DatabaseHelper::get_prepared_statement("get_user_type.sql");
+        $statement = DatabaseHelper::prepare($sql);
+        if ($statement->execute([$user_id])) {
+            return $statement->fetch()[Account_Fields::__account_type];
+        } else {
+            $msg = ErrorResponse::generate_pdo_error_msg("Failed to get user type");
+            throw new Exception($msg, ResultCodeEnum::_Failed_To_Query_On_Database);
+        }
     }
 }
