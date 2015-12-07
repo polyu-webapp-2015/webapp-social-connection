@@ -15,7 +15,7 @@ class LoginActor extends Actor
     );
     public $output = [
         ResultCodeEnum::_ => ResultCodeEnum::_Success,
-        "sessionId" => 0
+        ResultFieldEnum::_Session_ID => ''
     ];
     public $desc = "Sign up new user";
 
@@ -30,9 +30,9 @@ class LoginActor extends Actor
 //            $this->output[Account_Fields::__account_id] = $account_id;
             if (session_start()) {
                 $session_id = session_id();
-                $this->output["sessionId"]=$session_id;
+                $this->output[ResultFieldEnum::_Session_ID] = $session_id;
             } else {
-                $this->output[ResultCodeEnum::_]=ResultCodeEnum::_Server_Unknown_Error;
+                $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Server_Unknown_Error;
             }
         } else {
             if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false)
