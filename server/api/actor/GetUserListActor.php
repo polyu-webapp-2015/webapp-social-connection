@@ -4,18 +4,19 @@
  * Created by IntelliJ IDEA.
  * User: beenotung
  */
-class LoginActor extends Actor
+class GetUserListActor extends Actor
 {
-    public $name = "Login";
+    public $name = "GetUserList";
     public $params = array(
-        DatabaseOperator::__emailOrPhoneNum => "98765432",
-        Account_Fields::__password => "ThePass123",
+        APIFieldEnum::_Session_ID => "t63slq6a340mo41rppmkvce5l4",
+        Account_Fields::__account_type => account_type_Enum::__attendee,
+
     );
     public $output = [
         ResultCodeEnum::_ => ResultCodeEnum::_Success,
         APIFieldEnum::_Session_ID => ''
     ];
-    public $desc = "Sign up new user";
+    public $desc = "Get User info (single or multiple user)";
 
     public function handle($data)
     {
@@ -42,5 +43,5 @@ class LoginActor extends Actor
     }
 }
 
-$_loginActor = new LoginActor();
-addAPI($_loginActor);
+$_getUserListActor = new GetUserListActor();
+addAPI($_getUserListActor);

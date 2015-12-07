@@ -37,8 +37,8 @@ class APIActor extends Actor
                 } catch (Exception $e) {
                     header('HTTP/1.0 400 Bad Request', true, 400);
                     $output = [
-                        self::__result_code => $e->getCode(),
-                        self::__reason => [
+                        APIFieldEnum::_ResultCode => $e->getCode(),
+                        APIFieldEnum::_Reason => [
                             "type" => "Exception",
                             "detail" => ExceptionUtils::Exception_to_array($e)
                         ]
@@ -58,6 +58,7 @@ class APIActor extends Actor
     {
         echo "Total API : " . count($this->list) . "<hr>";
         foreach ($this->list as $api) {
+            /** @var Actor $api */
             $api->printAPI();
             echo "<hr>";
         }

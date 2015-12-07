@@ -34,8 +34,12 @@ module social_connection{
     Request_Param_Wrong_Format,
     Request_Param_Parsing_Server
   };
-  enum ResultFieldEnum{
-    Session_ID
+  /* both input and output */
+  enum APIFieldEnum{
+    ResultCode,
+    Reason,
+    Session_ID,
+    User_List
   };
   exception GeneralException{
     long resultCode;

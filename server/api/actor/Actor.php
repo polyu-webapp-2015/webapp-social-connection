@@ -8,8 +8,8 @@
  */
 abstract class Actor
 {
-    const __result_code = ResultCodeEnum::_;
-    const __reason = "reason";
+//    const __result_code = ResultFieldEnum::_Result_Code;
+//    const __reason = ResultFieldEnum::_Result_Reason;
     const __data = "data";
     public $name = "Actor";
     public $params = [];
