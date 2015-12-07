@@ -38,7 +38,7 @@ abstract class Actor
 //            log_object($data);
 //            log_object("***********");
             if (!array_key_exists($key, $data))
-                throw new Exception("missing param $key in " . json_encode($this->params), ResultCodeEnum::_Request_Param_Missing);
+                throw new Exception("missing param $key", ResultCodeEnum::_Request_Param_Missing);
         }
     }
 

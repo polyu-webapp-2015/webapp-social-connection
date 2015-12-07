@@ -26,6 +26,7 @@ class LoginActor extends Actor
         if ($account_id != false) {
             /* save session info */
             if (session_start()) {
+                session_regenerate_id(true);
                 $session_id = session_id();
                 $_SESSION[Account_Fields::__account_id] = $account_id;
                 $this->output[APIFieldEnum::_Session_ID] = $session_id;
