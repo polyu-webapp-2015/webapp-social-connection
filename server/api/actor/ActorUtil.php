@@ -17,8 +17,8 @@ class ActorUtil
         $session_id = $data[APIFieldEnum::_Session_ID];
         if (empty(session_id()))
             session_id($session_id);
-//        session_start();
-        if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id()) {
+        session_start();
+        if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id() && isset($_SESSION[Account_Fields::__account_id])) {
             /* valid */
             session_id($session_id);
         } else {
