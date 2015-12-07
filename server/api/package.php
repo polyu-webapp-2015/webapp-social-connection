@@ -6,7 +6,7 @@
  * Time: 12:11 PM
  */
 
-
+require_once 'enum/package.php';
 require_once 'utils.php';
 require_once 'debug/package.php';
 require_once 'config.php';

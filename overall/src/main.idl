@@ -14,8 +14,10 @@ module social_connection{
 module social_connection{
   enum ResultCodeEnum{
     Success,
+    Server_Unknown_Error,
     Server_Config_Error,
     Unknown_API,
+    Unknown_Database_Error,
     Failed_To_Connect_To_Database,
     Failed_To_Query_On_Database,
     Failed_To_Insert_On_Database,
@@ -31,6 +33,9 @@ module social_connection{
     Request_Param_Enum_Invalid,
     Request_Param_Wrong_Format,
     Request_Param_Parsing_Server
+  };
+  enum ResultFieldEnum{
+    Session_ID
   };
   exception GeneralException{
     long resultCode;
