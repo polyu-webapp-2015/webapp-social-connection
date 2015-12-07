@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 echo '<?php'
+echo ''
 echo 'class '$1'Enum'
 echo '{'
 echo '    const _ = "'$1'";'

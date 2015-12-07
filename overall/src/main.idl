@@ -26,6 +26,7 @@ module social_connection{
     Duplicated,
     User_Not_Exist,
     Password_Wrong,
+    Session_Expired,
     No_Permission,
     Group_Not_Exist,
     Request_Body_Wrong_Type,
@@ -39,7 +40,8 @@ module social_connection{
     ResultCode,
     Reason,
     Session_ID,
-    User_List
+    User_ID_Array,
+    User_Info_Array
   };
   exception GeneralException{
     long resultCode;

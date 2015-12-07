@@ -11,4 +11,4 @@ require_once 'APIActor.php';
 require_once 'CreateUserActor.php';
 require_once 'IsEmailOrPhoneNumUniqueActor.php';
 require_once 'LoginActor.php';
-require_once 'GetUserListActor.php';
+require_once 'GetUserListInfoActor.php';

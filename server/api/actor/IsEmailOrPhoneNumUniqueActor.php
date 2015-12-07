@@ -12,7 +12,7 @@ class IsEmailOrPhoneNumUniqueActor extends Actor
     public $params = array(
         DatabaseOperator::__emailOrPhoneNum => "98765432",
     );
-    public $output = [ResultCodeEnum::_ => ResultCodeEnum::_Success];
+    public $output = [APIFieldEnum::_ResultCode => ResultCodeEnum::_Success];
     public $desc = "check if the email or phone number is NOT registered";
 
     public function handle($data)
@@ -20,7 +20,7 @@ class IsEmailOrPhoneNumUniqueActor extends Actor
         put_all_into($data, $this->params);
         $emailOrPhoneNum = $this->params[DatabaseOperator::__emailOrPhoneNum];
         if (DatabaseOperator::findAccountId($emailOrPhoneNum) != false) {
-            $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Duplicated;
+            $this->output[APIFieldEnum::_ResultCode ]= ResultCodeEnum::_Duplicated;
         }
         return $this->output;
     }
