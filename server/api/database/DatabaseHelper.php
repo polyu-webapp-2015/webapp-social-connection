@@ -5,6 +5,7 @@
  * User: beenotung
  * Date: 11/16/15
  * Time: 1:28 PM
+ * //TODO put this instance on cached variables (among different session) for performance
  */
 class DatabaseHelper
 {
@@ -35,16 +36,16 @@ class DatabaseHelper
             $connection = new PDO($dsn, $username, $password);
             self::$_pdo = $connection;
         } catch (PDOException $exception) {
-            $msg = [];
-            $msg["simple"] = "Failed to connect to Database";
-            $msg["type"] = "PDOException";
-            $msg["exception"] = ExceptionUtils::PDOException_to_array($exception);
-            $msg = json_encode($msg);
             $msg = "Failed to connect to Database";
             $result_code = ResultCodeEnum::_Failed_To_Connect_To_Database;
-//            throw new Exception($msg, $result_code, ExceptionUtils::wrap_PDOException($exception));
             throw new Exception($msg, $result_code, $exception);
         }
+    }
+
+    /** @deprecated */
+    public static function disconnect()
+    {
+        self::$_pdo = null;
     }
 
     public static function quote($string)
