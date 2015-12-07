@@ -16,6 +16,7 @@ class DatabaseHelper
     const _field_directory = "database/table_field";
     const _enum_directory = "database/enum";
     const _prepared_statement_directory = "database/prepared_statement";
+    const _javascript_directory = "../../public/js/enum";
 
     /** @var PDO $connection */
     public static $_pdo;
@@ -236,6 +237,28 @@ class DatabaseHelper
         return $enum_stub_array;
     }
 
+    public static function generate_enum_javascript_array(array $field_array)
+    {
+        $enum_stub_array = [];
+        foreach ($field_array as $field) {
+            if (array_key_exists(self::__enum_value_array, $field)) {
+                $enum_name = $field[self::__field_name];
+                $file_name = $enum_name . "_Enum.js";
+                $code = "var $enum_name" . "_Enum = function (){";
+                foreach ($field[self::__enum_value_array] as $enum_value) {
+                    $code = $code . "\n    this._$enum_value = \"$enum_value\" ;";
+                }
+                $code = $code . "\n};";
+                $enum_stub_array[] =
+                    [
+                        self::__filename => $file_name,
+                        self::__code => $code
+                    ];
+            }
+        }
+        return $enum_stub_array;
+    }
+
 //    const backtick = "`";
     const backtick = "";
 
@@ -279,14 +302,14 @@ class DatabaseHelper
         echo "<br> written to $directory/ <hr>";
     }
 
-    public static function write_sql_array_to_directory($directory, $sql_array)
+    public static function write_script_array_to_directory($directory, $script_array)
     {
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
         }
-        foreach ($sql_array as $class) {
-            $filename = $class[self::__filename];
-            $code = $class[self::__code];
+        foreach ($script_array as $script) {
+            $filename = $script[self::__filename];
+            $code = $script[self::__code];
             echo "... $filename<br>";
             file_put_contents($directory . "/" . $filename, $code);
         }
@@ -297,20 +320,25 @@ class DatabaseHelper
     {
         $field_class_array = [];
         $enum_class_array = [];
+        $enum_javascript_array = [];
         $tables = self::get_table_name_array();
         $prepared_statement_array = [];
         foreach ($tables as $table) {
             $field_array = self::get_table_field_array($table);
             $field_class_array[] = self::generate_table_stub($table, $field_array);
             $enum_class_array[] = self::generate_enum_stub_array($field_array);
+            $enum_javascript_array[] = self::generate_enum_javascript_array($field_array);
             $prepared_statement_array[] = self::generate_prepared_statement($table, $field_array);
         }
         $enum_class_array = array_flatten($enum_class_array);
+        $enum_javascript_array = array_flatten($enum_javascript_array);
         /* generate field classes */
         self::write_class_array_to_directory(self::_field_directory, $field_class_array);
         /* generate enum classes */
         self::write_class_array_to_directory(self::_enum_directory, $enum_class_array);
         /* generate insert prepared statement */
-        self::write_sql_array_to_directory(self::_prepared_statement_directory, $prepared_statement_array);
+        self::write_script_array_to_directory(self::_prepared_statement_directory, $prepared_statement_array);
+        /* generate javascript enum */
+        self::write_script_array_to_directory(self::_javascript_directory, $enum_javascript_array);
     }
 }
