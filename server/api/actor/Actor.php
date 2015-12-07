@@ -14,7 +14,7 @@ abstract class Actor
     public $name = "Actor";
     public $params = [];
     public $output = [
-        ResultCodeEnum::_ => ResultCodeEnum::_Success,
+        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
         self::__data => []
     ];
     public $desc = "abstract Actor";
@@ -27,8 +27,18 @@ abstract class Actor
     public function check_param($data)
     {
         foreach ($this->params as $key => $value) {
+//            log_object("-------------");
+//            log_object("____1____");
+//            log_object($this->params);
+//            log_object("____2____");
+//            log_object($key);
+//            log_object("____3____");
+//            log_object($value);
+//            log_object("____4____");
+//            log_object($data);
+//            log_object("***********");
             if (!array_key_exists($key, $data))
-                throw new Exception("missing param $key", ResultCodeEnum::_Request_Param_Missing);
+                throw new Exception("missing param $key in " . json_encode($this->params), ResultCodeEnum::_Request_Param_Missing);
         }
     }
 

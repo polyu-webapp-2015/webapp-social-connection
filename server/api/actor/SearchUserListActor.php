@@ -3,17 +3,18 @@
 /**
  * Created by IntelliJ IDEA.
  * User: beenotung
+ * @deprecated
+ * @suspended
  */
-class GetUserListActor extends Actor
+class SearchUserListActor extends Actor
 {
     public $name = "GetUserList";
     public $params = array(
         APIFieldEnum::_Session_ID => "t63slq6a340mo41rppmkvce5l4",
         Account_Fields::__account_type => account_type_Enum::__attendee,
-
     );
     public $output = [
-        ResultCodeEnum::_ => ResultCodeEnum::_Success,
+        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
         APIFieldEnum::_Session_ID => ''
     ];
     public $desc = "Get User info (single or multiple user)";
@@ -31,17 +32,16 @@ class GetUserListActor extends Actor
                 $_SESSION[Account_Fields::__account_id] = $account_id;
                 $this->output[APIFieldEnum::_Session_ID] = $session_id;
             } else {
-                $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Server_Unknown_Error;
+                $this->output[APIFieldEnum::_ResultCode ]= ResultCodeEnum::_Server_Unknown_Error;
             }
         } else {
             if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false)
-                $this->output[ResultCodeEnum::_] = ResultCodeEnum::_User_Not_Exist;
+                $this->output[APIFieldEnum::_ResultCode] = ResultCodeEnum::_User_Not_Exist;
             else
-                $this->output[ResultCodeEnum::_] = ResultCodeEnum::_Password_Wrong;
+                $this->output[APIFieldEnum::_ResultCode] = ResultCodeEnum::_Password_Wrong;
         }
         return $this->output;
     }
 }
 
-$_getUserListActor = new GetUserListActor();
-addAPI($_getUserListActor);
+addAPI(new SearchUserListActor());

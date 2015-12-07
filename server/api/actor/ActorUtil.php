@@ -8,5 +8,22 @@
  */
 class ActorUtil
 {
-
+    /**
+     * @param array $data : from client request
+     * @throws Exception
+     */
+    public static function check_session_valid(array $data)
+    {
+        $session_id = $data[APIFieldEnum::_Session_ID];
+        if (empty(session_id()))
+            session_id($session_id);
+//        session_start();
+        if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id()) {
+            /* valid */
+            session_id($session_id);
+        } else {
+            /* not valid or expired */
+            throw new Exception("Session Expired", ResultCodeEnum::_Session_Expired);
+        }
+    }
 }
