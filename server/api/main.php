@@ -3,6 +3,7 @@ require_once 'package.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
+header('Content-Type: application/json');
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET' :
 //        log_object($_GET);
