@@ -2,8 +2,8 @@
 <div ng-controller="AddAnnounceCtrl">
   <!-- the scope of "AddAnnounceCtrl" should be a child of the scope of "MainCtrl" -->
   <div class="modal-header">
-  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeAddAnnounceModal()">&times;</button>
-    <!-- method "closeAddAnnounceModal()" inheritated from its parent scope -->
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+    <!-- method "closeModal()" inheritated from its parent scope -->
   	<h4 class="modal-title">Create Announcement</h4>
   </div>			<!-- /modal-header -->
     <form id="addAnnounceForm" name="addAnnounceForm" role="form" ng-submit="submit()" autocomplete="off">
@@ -26,8 +26,8 @@
       </span>
     </div>			<!-- /modal-body -->
     <div class="modal-footer">
-    	<button class="btn btn-sm my-btn my-btn-round" type="submit">Sumit</button>
-    	<a class="btn btn-sm btn-default" ng-click="closeAddAnnounceModal()">Close</a>
+    	<button class="btn btn-sm my-btn my-btn-round" type="submit">Sumbit</button>
+    	<a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
     </div>			<!-- /modal-footer -->
     </form>
 </div>

@@ -58,7 +58,7 @@
 			<h4>Lorem ipsum ...</h4>
 			<div class="well well-lg">
 			<div class="list-group" ng-controller="ListCtrl">
-				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)"><h4>{{ elem.name }}</h4>{{ elem.content }}</button>
+				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/user_detail.html')"><h4>{{ elem.name }}</h4>{{ elem.content }}</button>
 			</div>
 			</div>
 			<button class="btn btn-ln my-btn" ng-click="openRegisterModal()">Add User</button>

@@ -66,11 +66,12 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
         console.log($scope.sex);
         //$scope.gender = parseInt($scope.gender);
         $http.post(serv_addr, {
-            "action": "register",
+            "action": "createUser",
             "data": {
                 emailOrPhoneNum: $scope.username,
                 password: $scope.password,
-                sex: parseInt($scope.sex)
+                sex: parseInt($scope.sex),
+                account_type: 'attendee'
             }
         })
         .success(function (data, status, headers, config) {
