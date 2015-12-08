@@ -12,7 +12,7 @@ class GetProfileActor extends Actor
     );
     public $output = [
         APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
-        APIFieldEnum::_User_Info_Array => []
+        APIFieldEnum::_Profile => []
     ];
     public $desc = "Fetch all User Info";
 
@@ -37,7 +37,7 @@ class GetProfileActor extends Actor
         $actor = new GetUserListInfoActor();
         $pass_output = $actor->handle($pass_data);
         $this->output[APIFieldEnum::_ResultCode] = $pass_output[APIFieldEnum::_ResultCode];
-        $this->output[APIFieldEnum::_User_Info_Array] = $pass_output[APIFieldEnum::_User_Array][0];
+        $this->output[APIFieldEnum::_Profile] = $pass_output[APIFieldEnum::_User_Array][0];
         return $this->output;
     }
 }

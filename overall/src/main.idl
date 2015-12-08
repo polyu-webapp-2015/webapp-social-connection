@@ -44,7 +44,8 @@ module social_connection{
     Session_ID,
     User_ID_Array,
     User_Info_Array,
-    User_Array
+    User_Array,
+    Profile
   };
   exception GeneralException{
     long resultCode;

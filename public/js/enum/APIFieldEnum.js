@@ -6,4 +6,5 @@ var APIFieldEnum = function () {
     this._User_ID_Array = "User_ID_Array";
     this._User_Info_Array = "User_Info_Array";
     this._User_Array = "User_Array";
+    this._Profile = "Profile";
 };

@@ -9,4 +9,5 @@ class APIFieldEnum
     const _User_ID_Array = "User_ID_Array";
     const _User_Info_Array = "User_Info_Array";
     const _User_Array = "User_Array";
+    const _Profile = "Profile";
 }
