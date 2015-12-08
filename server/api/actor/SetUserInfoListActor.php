@@ -4,9 +4,9 @@
  * Created by IntelliJ IDEA.
  * User: beenotung
  */
-class SetUserListInfoActor extends Actor
+class SetUserInfoListActor extends Actor
 {
-    public $name = "SetUserListInfo";
+    public $name = "SetUserInfoList";
     public $params = array(
         APIFieldEnum::_Session_ID => "t63slq6a340mo41rppmkvce5l4",
         User_Fields::__account_id => "123",
@@ -42,4 +42,4 @@ class SetUserListInfoActor extends Actor
     }
 }
 
-addAPI(new SetUserListInfoActor());
+addAPI(new SetUserInfoListActor());

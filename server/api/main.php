@@ -10,7 +10,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $url = $_SERVER["HTTP_REFERER"];
         if ((strpos($url, "db") + 2) == strlen($url)) {
             DatabaseHelper::generate_all_table_stub();
-            die("<br><a href='main.php'>reload</a>");
+            die("<br><a href='main.php'>Back to API page</a>");
         } else {
             $_API->printAllAPI();
             echo '<pre>';

@@ -75,8 +75,10 @@ class DatabaseHelper
 
     public static function query($sql)
     {
-        log_object("-------query------");
-        log_object($sql);
+        if (Config::$_ini[Config::__full_debug_on_database]) {
+            log_object("-------query------");
+            log_object($sql);
+        }
         self::check_connection();
         $result = self::$_pdo->query($sql);
         if ($result == false) {
@@ -176,8 +178,8 @@ class DatabaseHelper
         if ($statement->execute()) {
             return $statement->fetchAll();
         } else {
-            log_object_from_named($set_field_value_array,"set field value array");
-            log_object_from_named($statement->queryString,"queryString");
+            log_object_from_named($set_field_value_array, "set field value array");
+            log_object_from_named($statement->queryString, "queryString");
             $msg = ErrorResponse::generate_pdo_error_msg("Failed to update on table");
             throw new Exception($msg, ResultCodeEnum::_Failed_To_Update_On_Database);
         }
