@@ -24,7 +24,7 @@ class GetUserListInfoActor extends Actor
 
     public function handle($data)
     {
-        $session_id = ActorUtil::check_session_valid($data);
+        ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
         $user_id_array = $this->params[APIFieldEnum::_User_ID_Array];
         $user_info_array = $this->params[APIFieldEnum::_User_Info_Array];

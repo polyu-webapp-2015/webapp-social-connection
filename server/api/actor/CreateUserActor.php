@@ -42,7 +42,8 @@ class CreateUserActor extends Actor
             ];
             DatabaseHelper::table_insert(User_Fields::_, $field_array);
         } else {
-            ErrorResponse::response(ResultCodeEnum::_Duplicated, "The email or phone is already used");
+            throw new Exception("The email or phone is already used",
+                ResultCodeEnum::_Duplicated);
         }
         return $this->output;
     }

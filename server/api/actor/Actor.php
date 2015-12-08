@@ -47,9 +47,11 @@ abstract class Actor
         echo "<pre>";
         echo "name : $this->name\n";
         echo "params : ";
-        print_object($this->params);
+//        print_object($this->params);
+        print_object("<pre>".json_encode($this->params,JSON_PRETTY_PRINT)."</pre>");
         echo "outputs : ";
-        print_object($this->output);
+//        print_object($this->output);
+        print_object("<pre>".json_encode($this->output,JSON_PRETTY_PRINT)."</pre>");
         echo "desc : $this->desc";
         echo "</pre>";
     }

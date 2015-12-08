@@ -29,9 +29,10 @@ class LoginActor extends Actor
                 session_regenerate_id(true);
                 $session_id = session_id();
                 $_SESSION[Account_Fields::__account_id] = $account_id;
+                log_object_from_named("New Session ID = $session_id", get_called_class());
                 $this->output[APIFieldEnum::_Session_ID] = $session_id;
             } else {
-                $this->output[APIFieldEnum::_ResultCode ]= ResultCodeEnum::_Server_Unknown_Error;
+                $this->output[APIFieldEnum::_ResultCode] = ResultCodeEnum::_Server_Unknown_Error;
             }
         } else {
             if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false)
