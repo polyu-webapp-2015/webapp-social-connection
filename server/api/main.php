@@ -6,6 +6,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 header('Content-Type: application/json');
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET' :
+        header('Content-Type: text/html');
 //        log_object($_GET);
 //        log_object($_SERVER);
         $url = $_SERVER["HTTP_REFERER"];
