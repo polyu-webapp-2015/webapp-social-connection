@@ -44,6 +44,9 @@ class APIActor extends Actor
                         ]
                     ];
                 }
+                if (array_key_exists(APIFieldEnum::_ResultCode, $output) && $output[APIFieldEnum::_ResultCode] != ResultCodeEnum::_Success) {
+                    header('HTTP/1.0 400 Bad Request', true, 400);
+                }
                 echo json_encode($output);
                 $found = true;
                 break;
