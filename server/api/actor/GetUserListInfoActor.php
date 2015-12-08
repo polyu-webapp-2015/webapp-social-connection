@@ -8,7 +8,7 @@ class GetUserListInfoActor extends Actor
 {
     public $name = "GetUserListInfo";
     public $params = array(
-        APIFieldEnum::_Session_ID => "t63slq6a340mo41rppmkvce5l4",
+//        APIFieldEnum::_Session_ID => "t63slq6a340mo41rppmkvce5l4",
         APIFieldEnum::_User_ID_Array => [1, 23, 43],
         APIFieldEnum::_User_Info_Array => [
             User_Fields::__first_name,
