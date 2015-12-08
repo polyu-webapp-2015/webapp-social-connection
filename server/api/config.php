@@ -9,6 +9,9 @@ require_once 'utils.php';
  */
 class Config
 {
+    /* use 200 status even when API call encounter error */
+    const _AIP_Always_OK = true;
+
     const  _file = "../config.ini";
 
     const __database_host = "database_host";

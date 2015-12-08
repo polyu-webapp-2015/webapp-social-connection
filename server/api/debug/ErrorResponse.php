@@ -11,7 +11,7 @@ class ErrorResponse
 
     public static function response($result_code, $msg = "")
     {
-        header('HTTP/1.0 400 Bad Request', true, 400);
+        if (!Config::_AIP_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
         $output = [
             APIFieldEnum::_ResultCode => $result_code,
             APIFieldEnum::_Reason => $msg
@@ -25,6 +25,6 @@ class ErrorResponse
         $msg["simple"] = $simple_msg;
         $msg["sql error code"] = DatabaseHelper::$_pdo->errorCode();
         $msg["sql error info"] = DatabaseHelper::$_pdo->errorInfo();
-        return json_encode( $msg);
+        return json_encode($msg);
     }
 }
