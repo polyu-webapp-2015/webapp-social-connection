@@ -1,4 +1,5 @@
 <?php
+/** @remark this is auto-generated file, do not edit */
 class City_Fields {
     const _ = "City" ;
     const _insert_sql = "database/prepared_statement/City_insert.sql" ;

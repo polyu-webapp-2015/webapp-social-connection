@@ -1,4 +1,5 @@
 <?php
+/** @remark this is auto-generated file, do not edit */
 class Tag_Fields {
     const _ = "Tag" ;
     const _insert_sql = "database/prepared_statement/Tag_insert.sql" ;

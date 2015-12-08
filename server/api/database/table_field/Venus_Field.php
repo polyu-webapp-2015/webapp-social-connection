@@ -1,4 +1,5 @@
 <?php
+/** @remark this is auto-generated file, do not edit */
 class Venus_Fields {
     const _ = "Venus" ;
     const _insert_sql = "database/prepared_statement/Venus_insert.sql" ;

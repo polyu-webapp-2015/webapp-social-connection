@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 echo '<?php'
+echo '/** @remark this is auto-generated file, do not edit */'
 echo ''
 echo 'class '$1'Enum'
 echo '{'

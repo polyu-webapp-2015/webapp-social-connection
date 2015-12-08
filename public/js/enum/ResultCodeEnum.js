@@ -1,3 +1,4 @@
+/** @remark this is auto-generated file, do not edit */
 var ResultCodeEnum = function () {
     this._ = "ResultCode";
     this.Success = 0;

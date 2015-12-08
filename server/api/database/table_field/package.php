@@ -1,4 +1,5 @@
 <?php
+/** @remark this is auto-generated file, do not edit */
 include_once 'Account_Field.php';
 include_once 'City_Field.php';
 include_once 'Country_Field.php';

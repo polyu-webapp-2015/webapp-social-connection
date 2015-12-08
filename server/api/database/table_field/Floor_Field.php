@@ -1,4 +1,5 @@
 <?php
+/** @remark this is auto-generated file, do not edit */
 class Floor_Fields {
     const _ = "Floor" ;
     const _insert_sql = "database/prepared_statement/Floor_insert.sql" ;

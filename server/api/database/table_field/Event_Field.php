@@ -1,4 +1,5 @@
 <?php
+/** @remark this is auto-generated file, do not edit */
 class Event_Fields {
     const _ = "Event" ;
     const _insert_sql = "database/prepared_statement/Event_insert.sql" ;

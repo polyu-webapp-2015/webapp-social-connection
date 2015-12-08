@@ -1,4 +1,5 @@
 <?php
+/** @remark this is auto-generated file, do not edit */
 class Organization_Fields {
     const _ = "Organization" ;
     const _insert_sql = "database/prepared_statement/Organization_insert.sql" ;

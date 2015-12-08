@@ -1,3 +1,4 @@
+/** @remark this is auto-generated file, do not edit */
 var APIFieldEnum = function () {
     this._ = "APIField";
     this.ResultCode = "ResultCode";

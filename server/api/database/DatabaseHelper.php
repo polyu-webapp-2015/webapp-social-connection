@@ -227,14 +227,16 @@ class DatabaseHelper
     public static function generate_table_stub($table_name, array $field_array)
     {
         $file_name = $table_name . "_Field.php";
-        $code = "<?php\n" . "class $table_name" . "_Fields {";
+        $code = "<?php";
+        $code = "$code\n/** @remark this is auto-generated file, do not edit */";
+        $code = "$code\n" . "class $table_name" . "_Fields {";
         $code = $code . "\n    const _ = \"$table_name\" ;";
         $code = $code . "\n    const _insert_sql = \"" . self::_prepared_statement_directory . "/$table_name" . "_insert.sql\" ;";
         foreach ($field_array as $field) {
             $field_name = $field[self::__field_name];
             $code = $code . "\n    const __$field_name = \"$field_name\" ;";
         }
-        $code = $code . "\n}";
+        $code = "$code\n}";
         return [
             self::__filename => $file_name,
             self::__code => $code
@@ -248,7 +250,9 @@ class DatabaseHelper
             if (array_key_exists(self::__enum_value_array, $field)) {
                 $enum_name = $field[self::__field_name];
                 $file_name = $enum_name . "_Enum.php";
-                $code = "<?php\n" . "class $enum_name" . "_Enum {";
+                $code = "<?php";
+                $code = "$code\n/** @remark this is auto-generated file, do not edit */";
+                $code = "$code\n" . "class $enum_name" . "_Enum {";
                 foreach ($field[self::__enum_value_array] as $enum_value) {
                     $code = $code . "\n    const __$enum_value = \"$enum_value\" ;";
                 }
@@ -270,11 +274,12 @@ class DatabaseHelper
             if (array_key_exists(self::__enum_value_array, $field)) {
                 $enum_name = $field[self::__field_name];
                 $file_name = $enum_name . "_Enum.js";
-                $code = "var $enum_name" . "_Enum = function (){";
+                $code = "/** @remark this is auto-generated file, do not edit */";
+                $code = "$code\n" . "var $enum_name" . "_Enum = function (){";
                 foreach ($field[self::__enum_value_array] as $enum_value) {
                     $code = $code . "\n    this._$enum_value = \"$enum_value\" ;";
                 }
-                $code = $code . "\n};";
+                $code = "$code\n};";
                 $enum_stub_array[] =
                     [
                         self::__filename => $file_name,
@@ -314,7 +319,7 @@ class DatabaseHelper
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
         }
-        $package_code = "<?php";
+        $package_code = "<?php\n/** @remark this is auto-generated file, do not edit */";
         foreach ($class_array as $class) {
             $filename = $class[self::__filename];
             $code = $class[self::__code];
