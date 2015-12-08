@@ -35,7 +35,7 @@ class APIActor extends Actor
                     log_object("routed to " . $api->name);
                     $output = $api->handle($data);
                 } catch (Exception $e) {
-                    header('HTTP/1.0 400 Bad Request', true, 400);
+                    if (!Config::_AIP_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
                     $output = [
                         APIFieldEnum::_ResultCode => $e->getCode(),
                         APIFieldEnum::_Reason => [
@@ -45,7 +45,7 @@ class APIActor extends Actor
                     ];
                 }
                 if (array_key_exists(APIFieldEnum::_ResultCode, $output) && $output[APIFieldEnum::_ResultCode] != ResultCodeEnum::_Success) {
-                    header('HTTP/1.0 400 Bad Request', true, 400);
+                    if (!Config::_AIP_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
                 }
                 echo json_encode($output);
                 $found = true;
