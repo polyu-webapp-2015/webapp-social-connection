@@ -15,3 +15,5 @@ require_once 'GetUserListInfoActor.php';
 require_once 'SetUserInfoListActor.php';
 require_once 'GetProfileActor.php';
 require_once 'FollowActor.php';
+require_once 'CreateAnnouncementActor.php';
+require_once 'GetNewNewAnnouncementActor.php';

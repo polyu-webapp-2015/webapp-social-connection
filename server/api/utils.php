@@ -10,7 +10,7 @@
  * print the object recursively to response (client)
  * @param array|string $o
  */
-function print_object($o,$b=tr)
+function print_object($o, $b = tr)
 {
     if (empty($o)) {
         echo "empty\n";
@@ -62,6 +62,13 @@ function log_object_from_named($o, $name)
         error_log(print_r($o, true));
     } elseif (is_string($o)) {
         error_log("$name : $o");
+    } elseif (is_bool($o)) {
+        if ($o == True)
+            error_log($name . ' : True');
+        else
+            error_log($name . ' : False');
+    } elseif ($o == null) {
+        error_log("$name : null");
     } else {
         error_log("$name : might not display");
         error_log(print_r($o, true));
@@ -142,6 +149,24 @@ function array_filter_by_keys(array $source, array $keys)
     $result = [];
     foreach ($keys as $key) {
         $result[$key] = $source[$key];
+    }
+    return $result;
+}
+
+/**
+ * Iterates over each key and value in the array passing them to the callback function.
+ * If the callback function returns true, the current value from array is returned into the result array.
+ * Array keys are preserved.
+ * @param array $source
+ * @param callback $callback
+ * @return array
+ */
+function array_filter_by_function(array $source, $callback)
+{
+    $result = [];
+    foreach ($source as $key => $value) {
+        if ($callback($key, $value))
+            $result[$key] = $value;
     }
     return $result;
 }

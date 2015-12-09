@@ -11,5 +11,7 @@ var APIFieldEnum = function () {
     this.Profile = "Profile";
     this.Follower_User_ID = "Follower_User_ID";
     this.Followed_User_ID = "Followed_User_ID";
+    this.New_Array = "New_Array";
+    this.Old_Array = "Old_Array";
 };
 var APIField = new APIFieldEnum();

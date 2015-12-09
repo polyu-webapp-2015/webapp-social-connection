@@ -31,20 +31,20 @@ class CreateUserActor extends Actor
         $sex = $this->params[User_Fields::__sex];
         if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false) {
             /* create account */
-            $field_array = [
+            $field_value_array = [
                 Account_Fields::__password => $password,
                 Account_Fields::__account_type => $account_type,
                 Account_Fields::__email => $emailOrPhoneNum,
                 Account_Fields::__phone_num => $emailOrPhoneNum
             ];
-            DatabaseHelper::table_insert(Account_Fields::_, $field_array);
+            DatabaseHelper::table_insert(Account_Fields::_, $field_value_array);
             $account_id = DatabaseHelper::$_pdo->lastInsertId();
             /* create User */
-            $field_array = [
+            $field_value_array = [
                 User_Fields::__account_id => $account_id,
                 User_Fields::__sex => $sex,
             ];
-            DatabaseHelper::table_insert(User_Fields::_, $field_array);
+            DatabaseHelper::table_insert(User_Fields::_, $field_value_array);
             $this->output[Account_Fields::__account_id] = $account_id;
         } else {
             throw new Exception("The email or phone is already used",

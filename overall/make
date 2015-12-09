@@ -17,3 +17,6 @@ bash ./script/make_enum_string_php.sh APIField > ../server/api/enum/APIFieldEnum
 ## generate javascript file from java
 bash ./script/make_enum_string_js.sh ResultCode > ../public/js/enum/ResultCodeEnum.js
 bash ./script/make_enum_string_js.sh APIField > ../public/js/enum/APIFieldEnum.js
+
+## generate javascript file from php API
+bash ./script/make_api_list_js.sh > ../public/js/api_list.js

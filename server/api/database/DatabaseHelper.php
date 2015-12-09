@@ -55,10 +55,52 @@ class DatabaseHelper
         return self::$_pdo->quote($string);
     }
 
+    /**
+     * @param $prepared_statement
+     * @return PDOStatement
+     */
     public static function prepare($prepared_statement)
     {
         self::check_connection();
         return self::$_pdo->prepare($prepared_statement);
+    }
+
+    /**
+     * @param PDOStatement $statement
+     * @param array $param_array
+     * @param bool $skip_cleaning
+     * @return mixed
+     * @throws Exception
+     */
+    public static function execute($statement, array $param_array = null, $skip_cleaning = false)
+    {
+        if ($param_array == null)
+            $result = $statement->execute();
+        else
+            $result = $statement->execute($param_array);
+        if ($result) {
+            $rows = $statement->fetchAll();
+            if (!$skip_cleaning)
+                $rows = self::clean_result($rows);
+            return $rows;
+        } else {
+            $msg = ErrorResponse::generate_pdo_error_msg("Failed to execute prepared statement");
+            throw new Exception($msg, ResultCodeEnum::_Failed_To_Query_On_Database);
+        }
+    }
+
+    /**
+     * filter the number in result (only preserve the string key fields)
+     * @param array $result
+     * @return array
+     */
+    public static function clean_result(array $result)
+    {
+        return array_map(function ($row) {
+            return array_filter_by_function($row, function ($key, $value) {
+                return !is_numeric($key);
+            });
+        }, $result);
     }
 
     public static function get_table_name_array()
@@ -202,20 +244,13 @@ class DatabaseHelper
         return $field_array;
     }
 
-    public static function table_insert($table_name, array $field_array)
+    public static function table_insert($table_name, array $field_value_array)
     {
-        $N_field = count($field_array);
-        $field_names = $field_array[0][0];
-        $field_values = $field_array[0][1];
-        for ($i = 1; $i < $N_field; $i++) {
-            $field_names = $field_names . "," . $field_array[$i][0];
-            $field_values = $field_values . "," . $field_array[$i][1];
-        }
-        $field_names = implode(', ', array_keys($field_array));
-        $field_values = ':' . implode(', :', array_keys($field_array));
+        $field_names = implode(', ', array_keys($field_value_array));
+        $field_values = ':' . implode(', :', array_keys($field_value_array));
         $sql = "INSERT INTO $table_name ($field_names) VALUES ($field_values)";
         $statement = self::prepare($sql);
-        foreach ($field_array as $field_name => $field_value) {
+        foreach ($field_value_array as $field_name => $field_value) {
             $statement->bindValue(":$field_name", $field_value);
         }
         $result = $statement->execute();
