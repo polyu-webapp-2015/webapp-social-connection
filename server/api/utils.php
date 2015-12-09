@@ -153,6 +153,24 @@ function array_filter_by_keys(array $source, array $keys)
     return $result;
 }
 
+/**
+ * Iterates over each key and value in the array passing them to the callback function.
+ * If the callback function returns true, the current value from array is returned into the result array.
+ * Array keys are preserved.
+ * @param array $source
+ * @param callback $callback
+ * @return array
+ */
+function array_filter_by_function(array $source, $callback)
+{
+    $result = [];
+    foreach ($source as $key => $value) {
+        if ($callback($key, $value))
+            $result[$key] = $value;
+    }
+    return $result;
+}
+
 function is_array_key_matched(array $key_array, array $matched_array)
 {
     foreach ($key_array as $key) {

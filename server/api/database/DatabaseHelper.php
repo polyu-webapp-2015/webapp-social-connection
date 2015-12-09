@@ -55,10 +55,52 @@ class DatabaseHelper
         return self::$_pdo->quote($string);
     }
 
+    /**
+     * @param $prepared_statement
+     * @return PDOStatement
+     */
     public static function prepare($prepared_statement)
     {
         self::check_connection();
         return self::$_pdo->prepare($prepared_statement);
+    }
+
+    /**
+     * @param PDOStatement $statement
+     * @param array $param_array
+     * @param bool $skip_cleaning
+     * @return mixed
+     * @throws Exception
+     */
+    public static function execute($statement, array $param_array = null, $skip_cleaning = false)
+    {
+        if ($param_array == null)
+            $result = $statement->execute();
+        else
+            $result = $statement->execute($param_array);
+        if ($result) {
+            $rows = $statement->fetchAll();
+            if (!$skip_cleaning)
+                $rows = self::clean_result($rows);
+            return $rows;
+        } else {
+            $msg = ErrorResponse::generate_pdo_error_msg("Failed to execute prepared statement");
+            throw new Exception($msg, ResultCodeEnum::_Failed_To_Query_On_Database);
+        }
+    }
+
+    /**
+     * filter the number in result (only preserve the string key fields)
+     * @param array $result
+     * @return array
+     */
+    public static function clean_result(array $result)
+    {
+        return array_map(function ($row) {
+            return array_filter_by_function($row, function ($key, $value) {
+                return !is_numeric($key);
+            });
+        }, $result);
     }
 
     public static function get_table_name_array()

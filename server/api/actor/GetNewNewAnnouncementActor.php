@@ -11,7 +11,6 @@ class GetNewAnnouncementActor extends Actor
     public $output = [
         APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
         APIFieldEnum::_New_Array => [],
-        APIFieldEnum::_Old_Array => []
     ];
     public $desc = "create announcement, this is only allowed to admin and helper";
 
@@ -19,14 +18,16 @@ class GetNewAnnouncementActor extends Actor
     {
         $account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
-        /* get all announcement */
-        /* get  */
-        $field_value_array = array_filter_by_keys($data, [
-            Announcement_Fields::__subject,
-            Announcement_Fields::__description
-        ]);
-        //TODO
-        DatabaseHelper::table_insert(Announcement_Fields::_, $field_value_array);
+        $sql1 = DatabaseHelper::get_prepared_statement("get_new_announcement.sql");
+        $sql2 = DatabaseHelper::get_prepared_statement("update_read_announcement_datetime.sql");
+        $statement1 = DatabaseHelper::prepare($sql1);
+        $statement2 = DatabaseHelper::prepare($sql2);
+        $param_array = [
+            ":" . User_Fields::__account_id => $account_id
+        ];
+        $result1 = DatabaseHelper::execute($statement1, $param_array);
+        $result2 = DatabaseHelper::execute($statement2, $param_array);
+        $this->output[APIFieldEnum::_New_Array] = $result1;
         return $this->output;
     }
 }
