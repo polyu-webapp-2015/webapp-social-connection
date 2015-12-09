@@ -13,9 +13,12 @@ class CreateUserActor extends Actor
         DatabaseOperator::__emailOrPhoneNum => "98765432",
         Account_Fields::__password => "ThePass123",
         Account_Fields::__account_type => account_type_Enum::__attendee,
-        User_Fields::__sex => sex_Enum::__unknown
+        User_Fields::__sex => sex_Enum::__F
     );
-    public $output = [APIFieldEnum::_ResultCode => ResultCodeEnum::_Success];
+    public $output = [
+        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
+        Account_Fields::__account_id => 123
+    ];
     public $desc = "Sign up new user";
 
     public function handle($data)
@@ -41,6 +44,7 @@ class CreateUserActor extends Actor
                 User_Fields::__sex => $sex,
             ];
             DatabaseHelper::table_insert(User_Fields::_, $field_array);
+            $this->output[Account_Fields::__account_id] = $account_id;
         } else {
             throw new Exception("The email or phone is already used",
                 ResultCodeEnum::_Duplicated);

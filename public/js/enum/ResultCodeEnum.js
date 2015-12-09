@@ -24,5 +24,6 @@ var ResultCodeEnum = function () {
     this.Request_Param_Enum_Invalid = "Request_Param_Enum_Invalid";
     this.Request_Param_Wrong_Format = "Request_Param_Wrong_Format";
     this.Request_Param_Parsing_Server = "Request_Param_Parsing_Server";
+    this.Logic_Error = "Logic_Error";
 };
 var ResultCode = new ResultCodeEnum();

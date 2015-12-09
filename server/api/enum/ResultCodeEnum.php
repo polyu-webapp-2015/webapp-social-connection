@@ -27,6 +27,7 @@ class ResultCodeEnum
     const _Request_Param_Enum_Invalid = 20;
     const _Request_Param_Wrong_Format = 21;
     const _Request_Param_Parsing_Server = 22;
+    const _Logic_Error = 23;
 
     public static function getString($number)
     {
@@ -53,6 +54,7 @@ class ResultCodeEnum
         if ($number == self::_Request_Param_Enum_Invalid) return "Request_Param_Enum_Invalid";
         if ($number == self::_Request_Param_Wrong_Format) return "Request_Param_Wrong_Format";
         if ($number == self::_Request_Param_Parsing_Server) return "Request_Param_Parsing_Server";
+        if ($number == self::_Logic_Error) return "Logic_Error";
         return "Unknown";
     }
 }

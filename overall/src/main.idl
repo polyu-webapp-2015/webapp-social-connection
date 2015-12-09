@@ -35,7 +35,8 @@ module social_connection{
     Request_Param_Missing,
     Request_Param_Enum_Invalid,
     Request_Param_Wrong_Format,
-    Request_Param_Parsing_Server
+    Request_Param_Parsing_Server,
+    Logic_Error
   };
   /* both input and output */
   enum APIFieldEnum{
@@ -46,7 +47,9 @@ module social_connection{
     User_ID_Array,
     User_Info_Array,
     User_Array,
-    Profile
+    Profile,
+    Follower_User_ID,
+    Followed_User_ID
   };
   exception GeneralException{
     long resultCode;
