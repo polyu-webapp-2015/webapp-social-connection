@@ -49,7 +49,9 @@ module social_connection{
     User_Array,
     Profile,
     Follower_User_ID,
-    Followed_User_ID
+    Followed_User_ID,
+    New_Array,
+    Old_Array
   };
   exception GeneralException{
     long resultCode;
