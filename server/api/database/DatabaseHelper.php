@@ -96,12 +96,14 @@ class DatabaseHelper
     const __AND = " AND ";
     const __OR = " OR ";
 
+    /** @deprecated unsafe */
     public static function field_value_to_statement(array $field_value)
     {
         assert(count($field_value) == 1, "This operation only support one key value pair");
         return array_keys($field_value)[0] . " = " . array_values($field_value)[0];
     }
 
+    /** @deprecated unsafe */
     public static function logical_statement_join(array &$collection, $logic_operation, array $field_value)
     {
         assert($logic_operation == self::__AND || $logic_operation == self::__OR, "Invalid logic operation");

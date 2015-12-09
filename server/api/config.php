@@ -20,7 +20,7 @@ class Config
     const __database_password = "database_password";
     const __database_name = "database_name";
     const __full_debug_on_database = "full_debug_on_database";
-    const __session_free_debug = "session_free_debug";
+//    const __session_free_debug = "session_free_debug";
 
     /** @deprecated */
     const __database_library = "database_library";
@@ -31,8 +31,8 @@ class Config
         self::__database_user,
         self::__database_password,
         self::__database_name,
-        self::__full_debug_on_database,
-        self::__session_free_debug
+        self::__full_debug_on_database
+//        self::__session_free_debug
     ];
 
     public static $_ini;

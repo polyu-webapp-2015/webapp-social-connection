@@ -20,6 +20,7 @@ class CreateUserActor extends Actor
 
     public function handle($data)
     {
+        $operator_account_id=ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
         $emailOrPhoneNum = $this->params[DatabaseOperator::__emailOrPhoneNum];
         $password = $this->params[Account_Fields::__password];
