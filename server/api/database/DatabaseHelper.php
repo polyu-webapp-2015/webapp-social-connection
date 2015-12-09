@@ -107,7 +107,7 @@ class DatabaseHelper
     {
         self::check_connection();
         $sql = "show tables;";
-        $result = self::query($sql);
+        $result = self::query($sql, true);
         $table_array = [];
         foreach ($result as $row) {
             $table_array[] = $row[0];
@@ -248,7 +248,7 @@ class DatabaseHelper
     {
         self::check_connection();
         $sql = "DESCRIBE $table_name;";
-        $result = self::query($sql);
+        $result = self::query($sql,true);
         $field_array = [];
         foreach ($result as $row) {
             $field = [self::__field_name => $row[0]];
@@ -270,7 +270,7 @@ class DatabaseHelper
         }
         $result = $statement->execute();
         if ($result == false) {
-            $msg = ErrorResponse::generate_pdo_error_msg("Failed to insert into table $table_name!");
+            $msg = ErrorResponse::generate_pdo_error_msg("Failed to insert into table $table_name!", $statement);
             throw new Exception($msg, ResultCodeEnum::_Failed_To_Insert_On_Database);
         }
         return $statement->fetchAll();

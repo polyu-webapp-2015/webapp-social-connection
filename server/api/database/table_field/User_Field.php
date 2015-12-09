@@ -10,4 +10,5 @@ class User_Fields {
     const __organization_id = "organization_id" ;
     const __title_id = "title_id" ;
     const __city_id = "city_id" ;
+    const __last_announcement_datetime = "last_announcement_datetime" ;
 }

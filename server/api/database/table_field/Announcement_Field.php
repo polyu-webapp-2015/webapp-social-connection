@@ -6,4 +6,5 @@ class Announcement_Fields {
     const __announcement_id = "announcement_id" ;
     const __subject = "subject" ;
     const __description = "description" ;
+    const __create_time = "create_time" ;
 }
