@@ -19,3 +19,4 @@ require_once 'CreateAnnouncementActor.php';
 require_once 'GetNewAnnouncementActor.php';
 require_once 'GetAnnouncementListActor.php';
 require_once 'CreateSessionActor.php';
+require_once 'CreateExhibitionActor.php';
