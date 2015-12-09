@@ -9,7 +9,7 @@ class GetUserListInfoActor extends Actor
     public $name = "GetUserListInfo";
     public $params = array(
 //        APIFieldEnum::_Session_ID => "t63slq6a340mo41rppmkvce5l4",
-        APIFieldEnum::_User_ID_Array => [1, 23, 43],
+        APIFieldEnum::_ID_Array => [1, 23, 43],
         APIFieldEnum::_User_Info_Array => [
             User_Fields::__first_name,
             User_Fields::__last_name,
@@ -26,7 +26,7 @@ class GetUserListInfoActor extends Actor
     {
         ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
-        $user_id_array = $this->params[APIFieldEnum::_User_ID_Array];
+        $user_id_array = $this->params[APIFieldEnum::_ID_Array];
         $user_info_array = $this->params[APIFieldEnum::_User_Info_Array];
         $user_info_array[] = User_Fields::__account_id;
         $this->output[APIFieldEnum::_User_Array] = [];

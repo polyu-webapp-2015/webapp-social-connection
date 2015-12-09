@@ -17,3 +17,4 @@ require_once 'GetProfileActor.php';
 require_once 'FollowActor.php';
 require_once 'CreateAnnouncementActor.php';
 require_once 'GetNewAnnouncementActor.php';
+require_once 'GetAnnouncementListActor.php';

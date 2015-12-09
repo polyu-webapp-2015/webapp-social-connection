@@ -5,13 +5,13 @@ var APIFieldEnum = function () {
     this.ResultCode = "ResultCode";
     this.Reason = "Reason";
     this.Session_ID = "Session_ID";
-    this.User_ID_Array = "User_ID_Array";
     this.User_Info_Array = "User_Info_Array";
     this.User_Array = "User_Array";
     this.Profile = "Profile";
     this.Follower_User_ID = "Follower_User_ID";
     this.Followed_User_ID = "Followed_User_ID";
     this.New_Array = "New_Array";
-    this.Old_Array = "Old_Array";
+    this.ID_Array = "ID_Array";
+    this.Announcement_Array = "Announcement_Array";
 };
 var APIField = new APIFieldEnum();
