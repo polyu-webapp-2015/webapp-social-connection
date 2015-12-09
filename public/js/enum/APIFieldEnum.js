@@ -1,6 +1,7 @@
 /** @remark this is auto-generated file, do not edit */
 var APIFieldEnum = function () {
     this._ = "APIField";
+    this.Action = "Action";
     this.ResultCode = "ResultCode";
     this.Reason = "Reason";
     this.Session_ID = "Session_ID";

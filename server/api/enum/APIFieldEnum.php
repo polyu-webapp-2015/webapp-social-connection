@@ -4,6 +4,7 @@
 class APIFieldEnum
 {
     const _ = "APIField";
+    const _Action = "Action";
     const _ResultCode = "ResultCode";
     const _Reason = "Reason";
     const _Session_ID = "Session_ID";

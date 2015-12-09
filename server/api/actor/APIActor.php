@@ -34,6 +34,7 @@ class APIActor extends Actor
                     $api->check_param($data);
                     log_object("routed to " . $api->name);
                     $output = $api->handle($data);
+                    $output[APIFieldEnum::_Action] = $api_name;
                 } catch (Exception $e) {
                     if (!Config::_AIP_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
                     $output = [

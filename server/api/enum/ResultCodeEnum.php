@@ -1,6 +1,6 @@
 <?php
-
 /** @remark this is auto-generated file, do not edit */
+
 class ResultCodeEnum
 {
     const _ = "ResultCode";

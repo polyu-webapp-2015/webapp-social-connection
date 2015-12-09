@@ -39,6 +39,7 @@ module social_connection{
   };
   /* both input and output */
   enum APIFieldEnum{
+    Action,
     ResultCode,
     Reason,
     Session_ID,
