@@ -12,4 +12,6 @@ class APIFieldEnum
     const _User_Info_Array = "User_Info_Array";
     const _User_Array = "User_Array";
     const _Profile = "Profile";
+    const _Follower_User_ID = "Follower_User_ID";
+    const _Followed_User_ID = "Followed_User_ID";
 }

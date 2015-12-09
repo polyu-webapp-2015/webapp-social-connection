@@ -8,7 +8,6 @@ class SetUserInfoListActor extends Actor
 {
     public $name = "SetUserInfoList";
     public $params = array(
-//        APIFieldEnum::_Session_ID => "t63slq6a340mo41rppmkvce5l4",
         User_Fields::__account_id => "123",
         APIFieldEnum::_User_Info_Array => [
             [User_Fields::__first_name => "Chan"],
