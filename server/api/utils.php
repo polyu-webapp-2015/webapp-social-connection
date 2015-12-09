@@ -10,7 +10,7 @@
  * print the object recursively to response (client)
  * @param array|string $o
  */
-function print_object($o, $b = tr)
+function print_object($o)
 {
     if (empty($o)) {
         echo "empty\n";
