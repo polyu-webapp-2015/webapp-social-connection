@@ -18,3 +18,4 @@ require_once 'FollowActor.php';
 require_once 'CreateAnnouncementActor.php';
 require_once 'GetNewAnnouncementActor.php';
 require_once 'GetAnnouncementListActor.php';
+require_once 'CreateSessionActor.php';

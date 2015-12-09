@@ -11,3 +11,5 @@ var _api_GetProfileActor = "GetProfileActor";
 var _api_FollowActor = "FollowActor";
 var _api_CreateAnnouncementActor = "CreateAnnouncementActor";
 var _api_GetNewAnnouncementActor = "GetNewAnnouncementActor";
+var _api_GetAnnouncementListActor = "GetAnnouncementListActor";
+var _api_CreateSessionActor = "CreateSessionActor";

@@ -23,12 +23,19 @@ class ErrorResponse
         die(json_encode($output));
     }
 
-    public static function generate_pdo_error_msg($simple_msg)
+    /**
+     * @param $simple_msg
+     * @param PDOStatement $statement
+     * @return string
+     */
+    public static function generate_pdo_error_msg($simple_msg, $statement = null)
     {
         $msg = [];
         $msg["simple"] = $simple_msg;
         $msg["sql error code"] = DatabaseHelper::$_pdo->errorCode();
         $msg["sql error info"] = DatabaseHelper::$_pdo->errorInfo();
+        if ($statement != null)
+            $msg["sql query"] = $statement->queryString;
         return json_encode($msg);
     }
 }
