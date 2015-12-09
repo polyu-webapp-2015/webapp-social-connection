@@ -47,6 +47,9 @@ class APIActor extends Actor
                 if (array_key_exists(APIFieldEnum::_ResultCode, $output) && $output[APIFieldEnum::_ResultCode] != ResultCodeEnum::_Success) {
                     if (!Config::_AIP_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
                 }
+                if (array_key_exists(APIFieldEnum::_ResultCode, $output) && is_numeric($output[APIFieldEnum::_ResultCode])) {
+                    $output[APIFieldEnum::_ResultCode] = ResultCodeEnum::getString($output[APIFieldEnum::_ResultCode]);
+                }
                 echo json_encode($output);
                 $found = true;
                 break;

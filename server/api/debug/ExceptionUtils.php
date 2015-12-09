@@ -58,7 +58,7 @@ class ExceptionUtils
             return self::PDOException_to_array($exception, $include_trace);
         else {
             $arr = [
-                "code" => $exception->getCode(),
+                "code" => ResultCodeEnum::getString($exception->getCode()),
                 "message" => $exception->getMessage(),
                 "file" => $exception->getFile(),
                 "line" => $exception->getLine(),
