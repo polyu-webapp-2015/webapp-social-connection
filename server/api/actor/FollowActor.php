@@ -29,12 +29,12 @@ class FollowActor extends Actor
         $dest_user_id = $this->params[APIFieldEnum::_Followed_User_ID];
         if ($dest_user_id == $source_account_id)
             throw new Exception("User following it's self", ResultCodeEnum::_Logic_Error);
-        $field_array = [
+        $field_value_array = [
             Friendship_Fields::__host_id => $source_account_id,
             Friendship_Fields::__guest_id => $dest_user_id
         ];
         //TODO
-        DatabaseHelper::table_insert(Friendship_Fields::_, $field_array);
+        DatabaseHelper::table_insert(Friendship_Fields::_, $field_value_array);
         return $this->output;
     }
 }

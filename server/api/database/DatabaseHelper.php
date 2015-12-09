@@ -202,20 +202,13 @@ class DatabaseHelper
         return $field_array;
     }
 
-    public static function table_insert($table_name, array $field_array)
+    public static function table_insert($table_name, array $field_value_array)
     {
-        $N_field = count($field_array);
-        $field_names = $field_array[0][0];
-        $field_values = $field_array[0][1];
-        for ($i = 1; $i < $N_field; $i++) {
-            $field_names = $field_names . "," . $field_array[$i][0];
-            $field_values = $field_values . "," . $field_array[$i][1];
-        }
-        $field_names = implode(', ', array_keys($field_array));
-        $field_values = ':' . implode(', :', array_keys($field_array));
+        $field_names = implode(', ', array_keys($field_value_array));
+        $field_values = ':' . implode(', :', array_keys($field_value_array));
         $sql = "INSERT INTO $table_name ($field_names) VALUES ($field_values)";
         $statement = self::prepare($sql);
-        foreach ($field_array as $field_name => $field_value) {
+        foreach ($field_value_array as $field_name => $field_value) {
             $statement->bindValue(":$field_name", $field_value);
         }
         $result = $statement->execute();

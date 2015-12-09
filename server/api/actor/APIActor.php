@@ -36,6 +36,7 @@ class APIActor extends Actor
                     $output = $api->handle($data);
                     $output[APIFieldEnum::_Action] = $api_name;
                 } catch (Exception $e) {
+                    log_object_from_named("Exception catched",get_called_class());
                     if (!Config::_AIP_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
                     $output = [
                         APIFieldEnum::_ResultCode => $e->getCode(),
