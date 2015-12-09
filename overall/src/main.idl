@@ -44,14 +44,14 @@ module social_connection{
     ResultCode,
     Reason,
     Session_ID,
-    User_ID_Array,
     User_Info_Array,
     User_Array,
     Profile,
     Follower_User_ID,
     Followed_User_ID,
     New_Array,
-    Old_Array
+    ID_Array,
+    Announcement_Array
   };
   exception GeneralException{
     long resultCode;

@@ -10,3 +10,4 @@ var _api_SetUserInfoListActor = "SetUserInfoListActor";
 var _api_GetProfileActor = "GetProfileActor";
 var _api_FollowActor = "FollowActor";
 var _api_CreateAnnouncementActor = "CreateAnnouncementActor";
+var _api_GetNewAnnouncementActor = "GetNewAnnouncementActor";

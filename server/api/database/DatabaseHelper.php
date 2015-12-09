@@ -91,16 +91,16 @@ class DatabaseHelper
 
     /**
      * filter the number in result (only preserve the string key fields)
-     * @param array $result
+     * @param array $row_array
      * @return array
      */
-    public static function clean_result(array $result)
+    public static function clean_result(array $row_array)
     {
         return array_map(function ($row) {
             return array_filter_by_function($row, function ($key, $value) {
                 return !is_numeric($key);
             });
-        }, $result);
+        }, $row_array);
     }
 
     public static function get_table_name_array()
@@ -115,7 +115,13 @@ class DatabaseHelper
         return $table_array;
     }
 
-    public static function query($sql)
+    /**
+     * @param $sql
+     * @param bool|false $skip_clean
+     * @return array
+     * @throws Exception
+     */
+    public static function query($sql, $skip_clean = false)
     {
         if (Config::$_ini[Config::__full_debug_on_database]) {
             log_object("-------query------");
@@ -128,11 +134,13 @@ class DatabaseHelper
             $msg = json_encode(self::$_pdo->errorInfo());
             throw new Exception($msg, $code);
         }
-        $result_array = [];
+        $row_array = [];
         foreach ($result as $row) {
-            $result_array[] = $row;
+            $row_array[] = $row;
         }
-        return $result_array;
+        if (!$skip_clean)
+            $row_array = self::clean_result($row_array);
+        return $row_array;
     }
 
     const __AND = " AND ";
@@ -188,8 +196,15 @@ class DatabaseHelper
         return self::logical_statement_collection_to_where_statement($where_options);
     }
 
-    /** @deprecated unsafe */
-    public static function select_from_table($table_name, array $select_array = [], $where_statement = "")
+    /** @deprecated unsafe
+     * @param $table_name
+     * @param array $select_array
+     * @param string $where_statement
+     * @param bool $skip_clean
+     * @return array
+     * @throws Exception
+     */
+    public static function select_from_table($table_name, array $select_array = [], $where_statement = "", $skip_clean = false)
     {
         $N_select = count($select_array);
         if ($N_select == 0)
@@ -202,7 +217,7 @@ class DatabaseHelper
             $select_statement = implode(',', $select_array);
         }
         $sql = "SELECT $select_statement from $table_name $where_statement ;";
-        return self::query($sql);
+        return self::query($sql, $skip_clean);
     }
 
     public static function update_on_table($table_name, array $set_field_value_array = [], $where_statement)

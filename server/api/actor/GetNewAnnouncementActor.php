@@ -12,7 +12,7 @@ class GetNewAnnouncementActor extends Actor
         APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
         APIFieldEnum::_New_Array => [],
     ];
-    public $desc = "create announcement, this is only allowed to admin and helper";
+    public $desc = "Get list of new announcement that the user has not read (query) before";
 
     public function handle($data)
     {
