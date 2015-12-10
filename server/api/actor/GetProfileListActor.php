@@ -12,7 +12,7 @@ class GetProfileListActor extends Actor
     );
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
-        APIFieldEnum::_profile => []
+        APIFieldEnum::_element_array => []
     ];
     public $desc = "Fetch all User Full Info (profile), including organization";
 
@@ -37,7 +37,7 @@ class GetProfileListActor extends Actor
         $actor = new GetUserListInfoActor();
         $pass_output = $actor->handle($pass_data);
         $this->output[APIFieldEnum::_result_code] = $pass_output[APIFieldEnum::_result_code];
-        $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_element_array];
+        $this->output[APIFieldEnum::_element_array] = $pass_output[APIFieldEnum::_element_array];
         return $this->output;
     }
 }
