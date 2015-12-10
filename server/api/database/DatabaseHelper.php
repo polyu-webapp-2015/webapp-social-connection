@@ -263,10 +263,10 @@ class DatabaseHelper
         }
     }
 
-    public static function select_all_from_table($table_name)
+    public static function select_all_from_table($table_name, $skip_clean = false)
     {
         $sql = "SELECT * FROM $table_name;";
-        $result = self::query($sql);
+        $result = self::query($sql, $skip_clean);
         return $result;
     }
 
