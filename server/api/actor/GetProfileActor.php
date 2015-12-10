@@ -11,8 +11,8 @@ class GetProfileActor extends Actor
         User_Fields::__account_id => 123
     );
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
-        APIFieldEnum::_Profile => []
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
+        APIFieldEnum::_profile => []
     ];
     public $desc = "Fetch all User Info";
 
@@ -31,13 +31,13 @@ class GetProfileActor extends Actor
         $account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
         $pass_data = [
-            APIFieldEnum::_ID_Array => [$account_id],
+            APIFieldEnum::_id_array => [$account_id],
             APIFieldEnum::_User_Info_Array => self::_User_Info_Array
         ];
         $actor = new GetUserListInfoActor();
         $pass_output = $actor->handle($pass_data);
-        $this->output[APIFieldEnum::_ResultCode] = $pass_output[APIFieldEnum::_ResultCode];
-        $this->output[APIFieldEnum::_Profile] = $pass_output[APIFieldEnum::_User_Array][0];
+        $this->output[APIFieldEnum::_result_code] = $pass_output[APIFieldEnum::_result_code];
+        $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_User_Array][0];
         return $this->output;
     }
 }

@@ -16,9 +16,9 @@ class ActorUtil
     public static function check_session_valid(array $data)
     {
         session_start();
-        if (array_key_exists(APIFieldEnum::_Session_ID, $data)) {
+        if (array_key_exists(APIFieldEnum::_session_id, $data)) {
             /* change session id for debug convenience */
-            $intent_session_id = $data[APIFieldEnum::_Session_ID];
+            $intent_session_id = $data[APIFieldEnum::_session_id];
             session_id($intent_session_id);
         }
         $session_id = session_id();

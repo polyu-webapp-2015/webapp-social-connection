@@ -40,18 +40,16 @@ module social_connection{
   };
   /* both input and output */
   enum APIFieldEnum{
-    Action,
-    ResultCode,
-    Reason,
-    Session_ID,
-    User_Info_Array,
-    User_Array,
-    Profile,
-    Follower_User_ID,
-    Followed_User_ID,
-    New_Array,
-    ID_Array,
-    Announcement_Array
+    action,
+    result_code,
+    reason,
+    session_id,
+    element_array,
+    profile,
+    follower_user_id,
+    followed_user_id,
+    id_array,
+    field_array
   };
   exception GeneralException{
     long resultCode;

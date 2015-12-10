@@ -9,8 +9,8 @@ class GetNewAnnouncementActor extends Actor
     public $name = "GetNewAnnouncement";
     public $params = array();
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
-        APIFieldEnum::_New_Array => [],
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
+        APIFieldEnum::_element_array => [],
     ];
     public $desc = "Get list of new announcement that the user has not read (query) before";
 
@@ -27,7 +27,7 @@ class GetNewAnnouncementActor extends Actor
         ];
         $result1 = DatabaseHelper::execute($statement1, $param_array);
         $result2 = DatabaseHelper::execute($statement2, $param_array);
-        $this->output[APIFieldEnum::_New_Array] = $result1;
+        $this->output[APIFieldEnum::_element_array] = $result1;
         return $this->output;
     }
 }

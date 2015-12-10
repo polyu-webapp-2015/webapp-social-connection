@@ -9,14 +9,14 @@ class SetUserInfoListActor extends Actor
     public $name = "SetUserInfoList";
     public $params = array(
         User_Fields::__account_id => "123",
-        APIFieldEnum::_User_Info_Array => [
+        APIFieldEnum::_field_array => [
             [User_Fields::__first_name => "Chan"],
             [User_Fields::__last_name => "Tai Man"],
             [User_Fields::__title_id => 1]
         ]
     );
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success
     ];
     public $desc = "update User (self or other for admin) Info";
 
@@ -30,7 +30,7 @@ class SetUserInfoListActor extends Actor
             if ($account_type != account_type_Enum::__admin && $account_type != account_type_Enum::__helper)
                 throw new Exception("This user ($account_type) cannot set user info of other user", ResultCodeEnum::_No_Permission);
         }
-        $user_info_array = $this->params[APIFieldEnum::_User_Info_Array];
+        $user_info_array = $this->params[APIFieldEnum::_field_array];
         $table_name = User_Fields::_;
         $where_statement = DatabaseHelper::field_value_to_statement([
             User_Fields::__account_id => $target_account_id

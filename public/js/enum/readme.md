@@ -1,4 +1,4 @@
-## file explaination
+## file explanation
 
 ### database enum
 "typename"+_type_Enum.js

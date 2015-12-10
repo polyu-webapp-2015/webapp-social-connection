@@ -16,7 +16,7 @@ class CreateUserActor extends Actor
         User_Fields::__sex => sex_Enum::__F
     );
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         Account_Fields::__account_id => 123
     ];
     public $desc = "Sign up new user";

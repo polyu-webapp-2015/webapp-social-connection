@@ -17,8 +17,8 @@ class ErrorResponse
     {
         if (!Config::_AIP_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
         $output = [
-            APIFieldEnum::_ResultCode => ResultCodeEnum::getString($result_code),
-            APIFieldEnum::_Reason => $msg
+            APIFieldEnum::_result_code => ResultCodeEnum::getString($result_code),
+            APIFieldEnum::_reason => $msg
         ];
         die(json_encode($output));
     }
