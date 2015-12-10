@@ -251,6 +251,14 @@ class DatabaseHelper
         }
     }
 
+    public static function select_all_from_table($table_name)
+    {
+        $sql = "SELECT * FROM $table_name;";
+        $result = self::query($sql);
+        log_object_from_named($result, "result-----------------");
+        return $result;
+    }
+
     public static function get_table_field_array($table_name)
     {
         self::check_connection();
