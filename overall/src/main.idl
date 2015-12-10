@@ -16,11 +16,13 @@ module social_connection{
     Success,
     Server_Unknown_Error,
     Server_Config_Error,
+    Server_File_Missing,
     Unknown_API,
     Unknown_Database_Error,
     Failed_To_Connect_To_Database,
     Failed_To_Query_On_Database,
     Failed_To_Insert_On_Database,
+    Failed_To_Update_On_Database,
     Database_Corrupt,
     Network_Not_Stable,
     Duplicated,
@@ -33,16 +35,23 @@ module social_connection{
     Request_Param_Missing,
     Request_Param_Enum_Invalid,
     Request_Param_Wrong_Format,
-    Request_Param_Parsing_Server
+    Request_Param_Parsing_Server,
+    Logic_Error
   };
   /* both input and output */
   enum APIFieldEnum{
+    Action,
     ResultCode,
     Reason,
     Session_ID,
-    User_ID_Array,
     User_Info_Array,
-    User_Array
+    User_Array,
+    Profile,
+    Follower_User_ID,
+    Followed_User_ID,
+    New_Array,
+    ID_Array,
+    Announcement_Array
   };
   exception GeneralException{
     long resultCode;

@@ -21,4 +21,5 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
               alert(status);
           });
   };
+
 });
