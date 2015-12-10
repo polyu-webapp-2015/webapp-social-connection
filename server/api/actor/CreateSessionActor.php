@@ -15,7 +15,7 @@ class CreateSessionActor extends Actor
         Session_Fields::__quota => 200
     );
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         Event_Fields::__event_id => 123
     ];
     public $desc = "create conference session, this is only allowed to admin and helper";

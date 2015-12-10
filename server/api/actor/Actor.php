@@ -14,7 +14,7 @@ abstract class Actor
     public $name = "Actor";
     public $params = [];
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         self::__data => []
     ];
     public $desc = "abstract Actor";

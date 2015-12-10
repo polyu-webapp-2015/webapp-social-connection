@@ -14,7 +14,7 @@ class CreateExhibitionActor extends Actor
         Event_Fields::__description => "This Exhibition display about the eco-friendly hotels in Asia. ...",
     );
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         Event_Fields::__event_id => 123
     ];
     public $desc = "create conference Exhibition, this is only allowed to admin and helper";

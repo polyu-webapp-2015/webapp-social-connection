@@ -4,17 +4,17 @@
  * Created by IntelliJ IDEA.
  * User: beenotung
  */
-class GetProfileActor extends Actor
+class GetProfileListActor extends Actor
 {
-    public $name = "GetProfile";
+    public $name = "GetProfileList";
     public $params = array(
-        User_Fields::__account_id => 123
+        APIFieldEnum::_id_array=>[]
     );
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
-        APIFieldEnum::_profile => []
+        APIFieldEnum::_element_array => []
     ];
-    public $desc = "Fetch all User Info";
+    public $desc = "Fetch all User Full Info (profile), including organization";
 
     const _User_Info_Array = [
         User_Fields::__account_id,
@@ -31,15 +31,15 @@ class GetProfileActor extends Actor
         $account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
         $pass_data = [
-            APIFieldEnum::_id_array => [$this->params[User_Fields::__account_id]],
+            APIFieldEnum::_id_array => $this->params[APIFieldEnum::_id_array],
             APIFieldEnum::_field_array => self::_User_Info_Array
         ];
         $actor = new GetUserListInfoActor();
         $pass_output = $actor->handle($pass_data);
         $this->output[APIFieldEnum::_result_code] = $pass_output[APIFieldEnum::_result_code];
-        $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_element_array][0];
+        $this->output[APIFieldEnum::_element_array] = $pass_output[APIFieldEnum::_element_array];
         return $this->output;
     }
 }
 
-addAPI(new GetProfileActor());
+addAPI(new GetProfileListActor());

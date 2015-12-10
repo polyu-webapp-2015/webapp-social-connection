@@ -13,6 +13,7 @@ require_once 'IsEmailOrPhoneNumUniqueActor.php';
 require_once 'LoginActor.php';
 require_once 'GetUserListInfoActor.php';
 require_once 'SetUserInfoListActor.php';
+require_once 'GetProfileListActor.php';
 require_once 'GetProfileActor.php';
 require_once 'FollowActor.php';
 require_once 'CreateAnnouncementActor.php';

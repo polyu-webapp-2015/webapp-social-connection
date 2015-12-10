@@ -12,7 +12,7 @@ class CreateAnnouncementActor extends Actor
         Announcement_Fields::__description => "Due to the Black Rain Warnning, All Exhibition tonight will be cancelled. We apology for any inconvenience caused"
     );
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         Announcement_Fields::__announcement_id=>123
     ];
     public $desc = "create announcement, this is only allowed to admin and helper";

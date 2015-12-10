@@ -6,16 +6,14 @@
 class APIFieldEnum
 {
     const _ = "APIField";
-    const _Action = "Action";
-    const _ResultCode = "ResultCode";
-    const _Reason = "Reason";
-    const _Session_ID = "Session_ID";
-    const _User_Info_Array = "User_Info_Array";
-    const _User_Array = "User_Array";
-    const _Profile = "Profile";
-    const _Follower_User_ID = "Follower_User_ID";
-    const _Followed_User_ID = "Followed_User_ID";
-    const _New_Array = "New_Array";
-    const _ID_Array = "ID_Array";
-    const _Announcement_Array = "Announcement_Array";
+    const _action = "action";
+    const _result_code = "result_code";
+    const _reason = "reason";
+    const _session_id = "session_id";
+    const _element_array = "element_array";
+    const _profile = "profile";
+    const _follower_user_id = "follower_user_id";
+    const _followed_user_id = "followed_user_id";
+    const _id_array = "id_array";
+    const _field_array = "field_array";
 }

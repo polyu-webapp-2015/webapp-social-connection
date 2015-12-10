@@ -3,17 +3,15 @@
  * */
 var APIFieldEnum = function () {
     this._ = "APIField";
-    this.Action = "Action";
-    this.ResultCode = "ResultCode";
-    this.Reason = "Reason";
-    this.Session_ID = "Session_ID";
-    this.User_Info_Array = "User_Info_Array";
-    this.User_Array = "User_Array";
-    this.Profile = "Profile";
-    this.Follower_User_ID = "Follower_User_ID";
-    this.Followed_User_ID = "Followed_User_ID";
-    this.New_Array = "New_Array";
-    this.ID_Array = "ID_Array";
-    this.Announcement_Array = "Announcement_Array";
+    this.action = "action";
+    this.result_code = "result_code";
+    this.reason = "reason";
+    this.session_id = "session_id";
+    this.element_array = "element_array";
+    this.profile = "profile";
+    this.follower_user_id = "follower_user_id";
+    this.followed_user_id = "followed_user_id";
+    this.id_array = "id_array";
+    this.field_array = "field_array";
 };
 var APIField = new APIFieldEnum();

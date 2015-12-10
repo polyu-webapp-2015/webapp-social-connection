@@ -15,12 +15,12 @@ class ActorUtil
      */
     public static function check_session_valid(array $data)
     {
-        session_start();
-        if (array_key_exists(APIFieldEnum::_Session_ID, $data)) {
+        if (array_key_exists(APIFieldEnum::_session_id, $data)) {
             /* change session id for debug convenience */
-            $intent_session_id = $data[APIFieldEnum::_Session_ID];
+            $intent_session_id = $data[APIFieldEnum::_session_id];
             session_id($intent_session_id);
         }
+        session_start();
         $session_id = session_id();
         if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id() && isset($_SESSION[Account_Fields::__account_id])) {
             /* valid */
