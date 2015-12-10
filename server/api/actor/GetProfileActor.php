@@ -34,7 +34,7 @@ class GetProfileActor extends Actor
             $target_account_id = $account_id;
         put_all_into($data, $this->params);
         $pass_data = [
-            APIFieldEnum::_id_array => $target_account_id,
+            APIFieldEnum::_id_array => [$target_account_id],
             APIFieldEnum::_field_array => self::_User_Info_Array
         ];
         $actor = new GetUserListInfoActor();
