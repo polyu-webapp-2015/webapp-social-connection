@@ -1,4 +1,4 @@
-app.controller("LoginCtrl", function ($scope, $http) {
+app.controller("LoginCtrl", function ($scope, $http, $global) {
   $scope.loginFail = false;
   $scope.login = function () {
       $http.post(serv_addr, {
@@ -12,7 +12,8 @@ app.controller("LoginCtrl", function ($scope, $http) {
               $scope.loginFail = false;
               alert("success!");
               console.log(data);
-              $scope.closeLoginModal();
+              var profile =data.Profile;
+              $scope.closeModal();
           })
           .error(function (data, status, header, config) {
               $scope.loginFail = true;

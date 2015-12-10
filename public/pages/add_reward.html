@@ -1,0 +1,33 @@
+
+<div ng-controller="AddRewardCtrl">
+  <!-- the scope of "AddAnnounceCtrl" should be a child of the scope of "MainCtrl" -->
+  <div class="modal-header">
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+    <!-- method "closeModal()" inheritated from its parent scope -->
+  	<h4 class="modal-title">Add Reward</h4>
+  </div>			<!-- /modal-header -->
+    <form id="addRewardForm" name="addRewardForm" role="form" ng-submit="submit()" autocomplete="off">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" id="username" ng-model="reward.username" placeholder="Enter email or phone"/>
+      </div>
+      <div class="form-group">
+        <label for="type">Reward Type</label>
+        <textarea class="form-control" rows="8" name="content" id="content" ng-model="announce.content" placeholder="Enter the content here..."></textarea>
+      </div>
+      <span class="form-group">
+        <label for="date">Date</label>
+        <input type="date" ng-model="announce.date" style="width: 140px"/>
+      </span>
+      <span class="form-group" style="width: 50px">
+        <label for="time">Time</label>
+        <input type="time" ng-model="announce.time"/>
+      </span>
+    </div>			<!-- /modal-body -->
+    <div class="modal-footer">
+    	<button class="btn btn-sm my-btn my-btn-round" type="submit">Sumbit</button>
+    	<a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+    </div>			<!-- /modal-footer -->
+    </form>
+</div>

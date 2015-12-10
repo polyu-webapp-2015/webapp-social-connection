@@ -1,6 +1,6 @@
 // This controller is only a prototype, refer to it if you are writting a List thing.
 
-app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
+app.controller("UserListCtrl", function ($scope, $http, $global, $uibModal) {
 	$scope.elems = [
 		{
 			name: "Dolor sit", 
@@ -21,7 +21,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 	];
 
 	$scope.id_array = [];
-	$scope.field_array = [];
+	$scope.field_array = ['first_name', 'last_name', 'title'];
 	$scope.elems = []; // get output from server
 
 	$scope.rowClass = function (elem, elems) {

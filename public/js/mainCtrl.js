@@ -29,7 +29,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
 
     $scope.openAddAnnounceModal = function () {
       console.log("add announce");
-      $scope.modalItem = $uibModal.open(new Modal('/pages/addAnnounce.html', $scope));
+      $scope.modalItem = $uibModal.open(new Modal('/pages/add_announce.html', $scope));
     }
 
     $scope.openCouponsModal = function () {
@@ -50,4 +50,9 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         console.log($global.getUser());
 
     }
+
+    $scope.openUsersModal = function () {
+        $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
+    }
+
 })
