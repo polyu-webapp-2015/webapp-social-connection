@@ -23,3 +23,5 @@ require_once 'CreateSessionActor.php';
 require_once 'CreateExhibitionActor.php';
 require_once 'GetTitleListActor.php';
 require_once 'GetOrganizationListActor.php';
+require_once 'GetCountryListActor.php';
+require_once 'GetCityListActor.php';
