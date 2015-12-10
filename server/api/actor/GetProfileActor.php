@@ -36,7 +36,7 @@ class GetProfileActor extends Actor
         $pass_data = $data;
         $pass_data[APIFieldEnum::_id_array] = [$target_account_id];
         $pass_data[APIFieldEnum::_field_array] = self::_User_Info_Array;
-        $actor = new GetUserListInfoActor();
+        $actor = new GetProfileListActor();
         $pass_output = $actor->handle($pass_data);
         $this->output[APIFieldEnum::_result_code] = $pass_output[APIFieldEnum::_result_code];
         $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_element_array][0];

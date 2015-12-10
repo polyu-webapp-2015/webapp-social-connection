@@ -89,6 +89,18 @@ class DatabaseHelper
         }
     }
 
+    public static function get_prepare_and_execute($prepared_statement_filename, array $param_array = null, $skip_cleaning = false)
+    {
+        $sql = self::get_prepared_statement($prepared_statement_filename);
+        return self::prepare_and_execute($sql, $param_array, $skip_cleaning);
+    }
+
+    public static function prepare_and_execute($prepared_statement, array $param_array = null, $skip_cleaning = false)
+    {
+        $statement = self::prepare($prepared_statement);
+        return self::execute($statement, $param_array, $skip_cleaning);
+    }
+
     /**
      * filter the number in result (only preserve the string key fields)
      * @param array $row_array
