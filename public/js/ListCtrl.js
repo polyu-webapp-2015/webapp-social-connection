@@ -1,4 +1,3 @@
-// This controller is only a prototype, refer to it if you are writting a List thing.
 
 app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 	$scope.elems = [
@@ -35,18 +34,23 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 
 	$scope.loadElements = function (action) {
 		console.log("loading elements");
+		console.log($scope.id_array);
 		$http.post(serv_addr, {
 			'action': action,
-			'id_array': $scope.id_array,
-			'field_array': $scope.field_array
+			'data': JSON.stringify({
+				session_id: $global.getSessionId(),
+				id_array: $scope.id_array,
+				field_array: $scope.field_array
+			})
 		})
 		.success(function (data, status, headers, config) {
-			if (data.result_code === 0) 
+			if (data.result_code === "Success") 
 				$scope.elems = data.element_array;
 			else {
 				alert('something wrong happens');
 				console.log(data);
 			}
+			console.log($scope.elems);
 		})
 		.error (function (data, status, headers, config) {
 			alert('internal error');
