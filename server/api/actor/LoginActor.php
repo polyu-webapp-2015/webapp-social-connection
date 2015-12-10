@@ -14,7 +14,8 @@ class LoginActor extends Actor
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         Account_Fields::__account_id => '123',
-        APIFieldEnum::_profile => []
+        APIFieldEnum::_profile => [],
+        APIFieldEnum::_session_id => "123"
     ];
     public $desc = "Sign up new user";
 
@@ -36,6 +37,7 @@ class LoginActor extends Actor
                 $pass_data = [User_Fields::__account_id => $account_id];
                 $pass_output = $actor->handle($pass_data);
                 $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_profile];
+                $this->output[APIFieldEnum::_session_id] = $session_id;
             } else {
                 $this->output[APIFieldEnum::_result_code] = ResultCodeEnum::_Server_Unknown_Error;
             }
