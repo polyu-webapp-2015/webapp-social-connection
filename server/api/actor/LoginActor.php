@@ -34,7 +34,8 @@ class LoginActor extends Actor
                 log_object_from_named("New Session ID = $session_id", get_called_class());
                 $this->output[Account_Fields::__account_id] = $account_id;
                 $actor = new GetProfileActor();
-                $pass_data = [User_Fields::__account_id => $account_id];
+                $pass_data = $data;
+                $pass_data[User_Fields::__account_id] = $account_id;
                 $pass_output = $actor->handle($pass_data);
                 $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_profile];
                 $this->output[APIFieldEnum::_session_id] = $session_id;

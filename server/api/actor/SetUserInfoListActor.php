@@ -36,7 +36,6 @@ class SetUserInfoListActor extends Actor
             User_Fields::__account_id => $target_account_id
         ]);
         $result = DatabaseHelper::update_on_table($table_name, $user_info_array, $where_statement);
-        log_object_from_named($result, get_called_class());
         return $this->output;
     }
 }
