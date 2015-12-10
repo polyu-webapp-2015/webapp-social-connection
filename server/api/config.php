@@ -10,7 +10,7 @@ require_once 'utils.php';
 class Config
 {
     /* use 200 status even when API call encounter error */
-    const _API_Always_OK = false;
+    const _API_Always_OK = true;
 
     const  _file = "../config.ini";
 

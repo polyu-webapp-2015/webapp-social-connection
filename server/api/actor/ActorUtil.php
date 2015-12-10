@@ -22,7 +22,8 @@ class ActorUtil
         }
         session_start();
         $session_id = session_id();
-        if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id() && isset($_SESSION[Account_Fields::__account_id])) {
+//        if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id() && isset($_SESSION[Account_Fields::__account_id])) {
+        if (isset($_SESSION[Account_Fields::__account_id])) {
             /* valid */
             return $_SESSION[Account_Fields::__account_id];
         } else {
