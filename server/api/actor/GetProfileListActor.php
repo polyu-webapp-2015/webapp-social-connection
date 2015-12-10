@@ -14,7 +14,7 @@ class GetProfileListActor extends Actor
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         APIFieldEnum::_profile => []
     ];
-    public $desc = "Fetch all User Info";
+    public $desc = "Fetch all User Full Info (profile), including organization";
 
     const _User_Info_Array = [
         User_Fields::__account_id,

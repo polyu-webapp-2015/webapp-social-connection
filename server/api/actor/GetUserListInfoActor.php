@@ -19,7 +19,7 @@ class GetUserListInfoActor extends Actor
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         APIFieldEnum::_element_array => []
     ];
-    public $desc = "Fetch User(s) Info";
+    public $desc = "Fetch User(s) Simple Info";
 
     public function handle($data)
     {

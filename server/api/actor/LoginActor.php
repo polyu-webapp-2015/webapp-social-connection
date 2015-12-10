@@ -8,8 +8,8 @@ class LoginActor extends Actor
 {
     public $name = "Login";
     public $params = array(
-        DatabaseOperator::__emailOrPhoneNum => "98765432",
-        Account_Fields::__password => "ThePass123",
+        DatabaseOperator::__emailOrPhoneNum => "admin@gmail.com",
+        Account_Fields::__password => "123456",
     );
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
