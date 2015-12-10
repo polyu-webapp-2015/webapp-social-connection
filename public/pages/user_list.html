@@ -1,12 +1,12 @@
-<div ng-controller="UserListCtrl">
+<div ng-controller="ListCtrl">
 	<div class="modal-header">
   	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
 		<h4 class="modal-title">All Users</h4>
 	</div>
 	<div class="modal-body">
 		<div class="well well-lg">
-			<div class="list-group" ng-controller="UserListCtrl" ng-init="loadElements('GetProfileList')">
-				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/user_detail.html')"><h4>{{ elem.first_name + elem.last_name }}</h4></button>
+			<div class="list-group" ng-init="loadElements('GetProfileList')">
+				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/user_detail.html')"><h4>{{ elem.first_name + ' ' + elem.last_name }}</h4></button>
 			</div>
 		</div>
 	</div>

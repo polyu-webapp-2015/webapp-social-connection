@@ -4,8 +4,9 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
       $http.post(serv_addr, {
           "action": "Login",
           "data": JSON.stringify({
-              emailOrPhoneNum: $scope.username,
-              password: $scope.password
+            account_id: $global,
+            emailOrPhoneNum: $scope.username,
+            password: $scope.password
           })
       })
           .success(function (data, status, headers, config) {
@@ -14,9 +15,14 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
               console.log(data);
               $scope.closeModal();
               $global.setUser(data.profile);
+              $global.setSessionId(data.session_id);
               $global.setUserAttr('isAnonymous', false);
+
+              sessionStorage.setItem('session_id', data.session_id);
+
               console.log(data);
               console.log($global.getUser());
+              console.log($global.getSessionId());
           })
           .error(function (data, status, header, config) {
               $scope.loginFail = true;
