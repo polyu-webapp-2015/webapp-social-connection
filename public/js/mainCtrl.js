@@ -53,7 +53,26 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         $scope.modalItem = $uibModal.open(new Modal('/pages/coupons.html', $scope));
     }
 
-    $scope.whoami = function() {
+    $scope.whoami = function(session_id) {
+        $http.post(serv_addr, {
+            action: 'GetProfile',
+            data: JSON.stringify({
+                session_id: session_id,
+                account_id: -1
+            })
+        })
+        .success(function (data, status, headers, config) {
+            if (data.result_code !== 'Session_Expired') {
+                console.log(data);
+                $global.setUser(data.profile);
+                $global.setSessionId(session_id);
+                $global.setUserAttr('isAnonymous', false);
+            }
+            else $scope.openLoginModal();
+        })
+        .error(function (data, status, headers, config) {
+            alert('internal error');
+        })
     };
 
     $scope.logii = function () {
@@ -68,7 +87,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     }
 
     $scope.openUsersModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
     }
+
+    var session_id = sessionStorage.getItem('session_id');
+    $scope.whoami(session_id);
 
 })

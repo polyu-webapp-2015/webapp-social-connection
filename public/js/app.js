@@ -90,6 +90,7 @@ app.config(['$httpProvider', function($httpProvider) {
 app.factory("$global", function($uibModal) {
 
   var user = {isAnonymous: true, account_id: "-1"};
+  var session_id = null;
 
   return {
     getUser: function () {
@@ -110,7 +111,12 @@ app.factory("$global", function($uibModal) {
     loggedIn: function () {
       console.log(user.isAnonymous);
       return !user.isAnonymous;
+    },
+    setSessionId: function (id) {
+      session_id = id;
+    },
+    getSessionId: function () {
+      return session_id;
     }
   };
 })
-

@@ -39,17 +39,19 @@ app.controller("UserListCtrl", function ($scope, $http, $global, $uibModal) {
 		$http.post(serv_addr, {
 			'action': action,
 			'data': JSON.stringify({
-				'id_array': $scope.id_array,
-				'field_array': $scope.field_array
+				session_id: $global.getSessionId(),
+				id_array: $scope.id_array,
+				field_array: $scope.field_array
 			})
 		})
 		.success(function (data, status, headers, config) {
-			if (data.result_code === 0) 
+			if (data.result_code === "Success") 
 				$scope.elems = data.element_array;
 			else {
 				alert('something wrong happens');
 				console.log(data);
 			}
+			console.log($scope.elems);
 		})
 		.error (function (data, status, headers, config) {
 			alert('internal error');

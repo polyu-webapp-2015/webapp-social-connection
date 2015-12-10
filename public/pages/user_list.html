@@ -6,7 +6,7 @@
 	<div class="modal-body">
 		<div class="well well-lg">
 			<div class="list-group" ng-controller="UserListCtrl" ng-init="loadElements('GetProfileList')">
-				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/user_detail.html')"><h4>{{ elem.first_name + elem.last_name }}</h4></button>
+				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/user_detail.html')"><h4>{{ elem.first_name + ' ' + elem.last_name }}</h4></button>
 			</div>
 		</div>
 	</div>
