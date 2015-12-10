@@ -21,7 +21,7 @@ app.controller("UserListCtrl", function ($scope, $http, $global, $uibModal) {
 	];
 
 	$scope.id_array = [];
-	$scope.field_array = ['first_name', 'last_name', 'title'];
+	$scope.field_array = [];
 	$scope.elems = []; // get output from server
 
 	$scope.rowClass = function (elem, elems) {
@@ -35,10 +35,13 @@ app.controller("UserListCtrl", function ($scope, $http, $global, $uibModal) {
 
 	$scope.loadElements = function (action) {
 		console.log("loading elements");
+		console.log($scope.id_array);
 		$http.post(serv_addr, {
 			'action': action,
-			'id_array': $scope.id_array,
-			'field_array': $scope.field_array
+			'data': JSON.stringify({
+				'id_array': $scope.id_array,
+				'field_array': $scope.field_array
+			})
 		})
 		.success(function (data, status, headers, config) {
 			if (data.result_code === 0) 

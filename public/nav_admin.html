@@ -17,6 +17,7 @@
   <script src="js/LoginCtrl.js"></script>
   <script src="js/AddAnnounceCtrl.js"></script>
   <script src="js/ListCtrl.js"></script>
+  <script src="js/UserListCtrl.js"></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
 	<link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css"> 
@@ -33,6 +34,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#admin_nav_page"><span class="glyphicon glyphicon-home nav_logo"></span></a>
+			<a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openProfileModal()"><span class="glyphicon glyphicon-user nav_logo" ></span></a>
 		</div>
 		<div class="collapse navbar-collapse" id="client_navbar">
 			<ul class="nav navbar-nav navbar-right">

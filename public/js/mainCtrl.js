@@ -12,6 +12,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     }
 
     $scope.openRegisterModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         console.log("register");
         $scope.modalItem = $uibModal.open(new Modal('/pages/register.html', $scope));
                                               // Modal prototype, defined in app.js
@@ -22,17 +23,32 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         */
     };
 
+    $scope.openProfileModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        else {
+            console.log($global.loggedIn());
+            console.log($global.getUser());
+            $scope.modalItem = $uibModal.open(new Modal('/pages/profile.html', $scope));
+        }
+    }
+
     $scope.openLoginModal = function () {
         console.log("login");
         $scope.modalItem = $uibModal.open(new Modal('/pages/login.html', $scope));
     }
 
     $scope.openAddAnnounceModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
       console.log("add announce");
       $scope.modalItem = $uibModal.open(new Modal('/pages/add_announce.html', $scope));
     }
 
     $scope.openCouponsModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        if ($global.getUser().isAnonymous === false) {
+            openLoginModal();
+            return;
+        }
         console.log("View coupons");
         $scope.modalItem = $uibModal.open(new Modal('/pages/coupons.html', $scope));
     }
