@@ -1,6 +1,6 @@
 
 /*@deprecated ("AngularJS does not support cross-origin?")*/
-serv_addr = "http://58.96.176.223:8000/api/main.php";
+serv_addr = "http://58.96.176.223:9000/api/main.php";
 // serv_address = "";
 
 var app = angular.module('myApp', ['ui.bootstrap']);
@@ -89,7 +89,7 @@ app.config(['$httpProvider', function($httpProvider) {
 
 app.factory("$global", function($uibModal) {
 
-  var user = {isAnonymous: true, sessionid: "-1"};
+  var user = {isAnonymous: true, account_id: "-1"};
 
   return {
     getUser: function () {
@@ -106,6 +106,10 @@ app.factory("$global", function($uibModal) {
     },
     setUserAnonymous: function () {
       user = {isAnonymous: true, sessionid: "-1"};
+    },
+    loggedIn: function () {
+      console.log(user.isAnonymous);
+      return !user.isAnonymous;
     }
   };
 })

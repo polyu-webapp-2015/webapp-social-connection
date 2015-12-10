@@ -29,18 +29,22 @@ app.controller("AddAnnounceCtrl", function ($scope, $http, $global) {
         $scope.announce.dateTime = new Date(yyyy, mm, dd, HH, MM).toString();
         console.log($scope.announce.dateTime);
         $http.post(serv_addr, {
-            action: "addAnnouncement",
+            action: "CreateAnnouncement",
             data: {
-                title: $scope.announce.title,
-                content: $scope.announce.content,
-                datetime: $scope.announce.dateTime
+                subject: $scope.announce.title,
+                description: $scope.announce.content,
             }
         })
         .success(function (data, status, headers, config) {
-            $scope.usernameChecked = true;
-            alert("success!");
-            console.log(data);
-            $scope.closeRegisterModal();
+            if (data.result_code === 'Success') {
+                alert("success!");
+                console.log(data);
+                $scope.closeRegisterModal();
+            }
+            else {
+                alert("something wrong happens");
+                console.log(data);
+            }
         })
         .error(function (data, status, header, config) {
             console.log(status);

@@ -13,7 +13,7 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
         console.log($scope.registerForm.username.$dirty);
         if (true) return;
         $http.post(serv_addr, {"action": "isEmailOrPhoneNumUnique", "data": {"emailOrPhoneNum": $scope.username}})
-        .success(function(data, status, headers, config) {
+        .success(function (data, status, headers, config) {
           if (data.resultCode == 0) {
             $scope.usernameUnique = data.params.isEmailOrPhoneNumUnique;
           }
@@ -80,7 +80,7 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
             console.log(data);
             $scope.closeRegisterModal();
         })
-        .error(function (data, status, header, config) {
+        .error(function (data, status, headers, config) {
             console.log(status);
             alert(status);
         });

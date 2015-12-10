@@ -1,4 +1,6 @@
-app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
+// This controller is only a prototype, refer to it if you are writting a List thing.
+
+app.controller("UserListCtrl", function ($scope, $http, $global, $uibModal) {
 	$scope.elems = [
 		{
 			name: "Dolor sit", 
@@ -18,16 +20,10 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 		},
 	];
 
-/*	$scope.loadElements = function (url) {
-		$http.post(serv_addr, data)
-		.success(function (data, status, headers, config) {
-			$scope.elems = data.elements;
-		})
-		.error(function (data, status, header, config) {
-			alert('internal error');
-		})
-	}
-*/
+	$scope.id_array = [];
+	$scope.field_array = [];
+	$scope.elems = []; // get output from server
+
 	$scope.rowClass = function (elem, elems) {
 		if (elems.indexOf(elem) % 2 == 0) return 'nor';
 		else return 'alt'; 
@@ -36,5 +32,29 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 	$scope.openDetailModal = function (html_path) {
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
 	}
+
+	$scope.loadElements = function (action) {
+		console.log("loading elements");
+		console.log($scope.id_array);
+		$http.post(serv_addr, {
+			'action': action,
+			'data': JSON.stringify({
+				'id_array': $scope.id_array,
+				'field_array': $scope.field_array
+			})
+		})
+		.success(function (data, status, headers, config) {
+			if (data.result_code === 0) 
+				$scope.elems = data.element_array;
+			else {
+				alert('something wrong happens');
+				console.log(data);
+			}
+		})
+		.error (function (data, status, headers, config) {
+			alert('internal error');
+		})
+	}
+
 });
 
