@@ -31,7 +31,7 @@ class GetProfileActor extends Actor
         $account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
         $target_account_id = $this->params[User_Fields::__account_id];
-        if ($target_account_id == -1)
+        if ($target_account_id == -1 || !is_numeric($target_account_id))
             $target_account_id = $account_id;
         $pass_data = $data;
         $pass_data[APIFieldEnum::_id_array] = [$target_account_id];
