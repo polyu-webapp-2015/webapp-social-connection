@@ -29,15 +29,14 @@ class GetProfileActor extends Actor
     public function handle($data)
     {
         $account_id = ActorUtil::check_session_valid($data);
-        $target_account_id = $this->params[User_Fields::__account_id];
-        if ($target_account_id == -1)
-            $target_account_id = $account_id;
         put_all_into($data, $this->params);
-        $pass_data = [
-            APIFieldEnum::_id_array => [$target_account_id],
-            APIFieldEnum::_field_array => self::_User_Info_Array
-        ];
-        $actor = new GetUserListInfoActor();
+        $target_account_id = $this->params[User_Fields::__account_id];
+        if ($target_account_id == -1 || !is_numeric($target_account_id))
+            $target_account_id = $account_id;
+        $pass_data = $data;
+        $pass_data[APIFieldEnum::_id_array] = [$target_account_id];
+        $pass_data[APIFieldEnum::_field_array] = self::_User_Info_Array;
+        $actor = new GetProfileListActor();
         $pass_output = $actor->handle($pass_data);
         $this->output[APIFieldEnum::_result_code] = $pass_output[APIFieldEnum::_result_code];
         $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_element_array][0];

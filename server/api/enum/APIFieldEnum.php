@@ -14,6 +14,9 @@ class APIFieldEnum
     const _profile = "profile";
     const _follower_user_id = "follower_user_id";
     const _followed_user_id = "followed_user_id";
+    const _table_name_array = "table_name_array";
+    const _table_name = "table_name";
+    const _latest_id = "latest_id";
     const _id_array = "id_array";
     const _field_array = "field_array";
 }

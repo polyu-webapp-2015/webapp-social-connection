@@ -16,7 +16,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 		{
 			name: "Ut enim",
 			content: "Ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?"
-		},
+		}
 	];
 
 	$scope.id_array = [];
@@ -26,11 +26,11 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 	$scope.rowClass = function (elem, elems) {
 		if (elems.indexOf(elem) % 2 == 0) return 'nor';
 		else return 'alt'; 
-	}
+	};
 
 	$scope.openDetailModal = function (html_path) {
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
-	}
+	};
 
 	$scope.loadElements = function (action) {
 		console.log("loading elements");

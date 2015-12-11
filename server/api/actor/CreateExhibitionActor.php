@@ -37,13 +37,13 @@ class CreateExhibitionActor extends Actor
         $field_array[Event_Fields::__creator_account_id] = $account_id;
         $field_array[Event_Fields::__editor_account_id] = $account_id;
         $result = DatabaseHelper::table_insert(Event_Fields::_, $field_array);
-        $event_id = DatabaseHelper::$_pdo->lastInsertId();
+        $event_id = DatabaseHelper::pdo()->lastInsertId();
         log_object_from_named($event_id, "new Event id");
         /* create Conference Exhibition */
         $field_array = [];
         $field_array[Exhibition_Fields::__event_id] = $event_id;
         DatabaseHelper::table_insert(Exhibition_Fields::_, $field_array);
-//        $event_id = DatabaseHelper::$_pdo->lastInsertId();
+//        $event_id = DatabaseHelper::pdo()->lastInsertId();
         log_object_from_named($event_id, "new Exhibition id");
         $this->output[Event_Fields::__event_id] = $event_id;
         return $this->output;

@@ -77,4 +77,16 @@ class DatabaseOperator
             throw new Exception($msg, ResultCodeEnum::_Failed_To_Query_On_Database);
         }
     }
+
+    public static function getUserOrganization($user_id)
+    {
+        $sql = DatabaseHelper::get_prepared_statement("get_user_organization.sql");
+        $statement = DatabaseHelper::prepare($sql);
+        if ($statement->execute([$user_id])) {
+            return $statement->fetch()[User_Fields::__organization_id];
+        } else {
+            $msg = ErrorResponse::generate_pdo_error_msg("Failed to get user type");
+            throw new Exception($msg, ResultCodeEnum::_Failed_To_Query_On_Database);
+        }
+    }
 }

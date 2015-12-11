@@ -4,9 +4,9 @@
  * Created by IntelliJ IDEA.
  * User: beenotung
  */
-class SetUserInfoListActor extends Actor
+class EditProfileActor extends Actor
 {
-    public $name = "SetUserInfoList";
+    public $name = "EditProfile";
     public $params = array(
         User_Fields::__account_id => "123",
         APIFieldEnum::_field_array => [
@@ -18,7 +18,7 @@ class SetUserInfoListActor extends Actor
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success
     ];
-    public $desc = "update User (self or other for admin) Info";
+    public $desc = "update User (self or other for admin) Info, aka edit profile";
 
     public function handle($data)
     {
@@ -36,9 +36,8 @@ class SetUserInfoListActor extends Actor
             User_Fields::__account_id => $target_account_id
         ]);
         $result = DatabaseHelper::update_on_table($table_name, $user_info_array, $where_statement);
-        log_object_from_named($result, get_called_class());
         return $this->output;
     }
 }
 
-addAPI(new SetUserInfoListActor());
+addAPI(new EditProfileActor());

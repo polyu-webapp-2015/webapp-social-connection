@@ -48,6 +48,9 @@ module social_connection{
     profile,
     follower_user_id,
     followed_user_id,
+    table_name_array,
+    table_name,
+    latest_id,
     id_array,
     field_array
   };

@@ -32,8 +32,8 @@ class ErrorResponse
     {
         $msg = [];
         $msg["simple"] = $simple_msg;
-        $msg["sql error code"] = DatabaseHelper::$_pdo->errorCode();
-        $msg["sql error info"] = DatabaseHelper::$_pdo->errorInfo();
+        $msg["sql error code"] = DatabaseHelper::pdo()->errorCode();
+        $msg["sql error info"] = DatabaseHelper::pdo()->errorInfo();
         if ($statement != null)
             $msg["sql query"] = $statement->queryString;
         return json_encode($msg);
