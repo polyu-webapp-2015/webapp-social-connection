@@ -1,0 +1,1 @@
+INSERT INTO Reply (reply_id, post_Id, message) VALUES (:reply_id, :post_Id, :message);

@@ -1,0 +1,1 @@
+INSERT INTO Post (post_Id, subject, description, discussboard_id) VALUES (:post_Id, :subject, :description, :discussboard_id);

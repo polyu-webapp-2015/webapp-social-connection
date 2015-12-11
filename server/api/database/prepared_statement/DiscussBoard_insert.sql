@@ -1,0 +1,1 @@
+INSERT INTO DiscussBoard (discussboard_id, subject, description) VALUES (:discussboard_id, :subject, :description);
