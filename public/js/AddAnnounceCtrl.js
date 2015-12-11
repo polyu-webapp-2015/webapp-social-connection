@@ -4,7 +4,7 @@ app.controller("AddAnnounceCtrl", function ($scope, $http, $global) {
     $scope.submit = function () {
         //$scope.gender = parseInt($scope.gender);
         console.log($scope.announce);
-        
+
         $http.post(serv_addr, {
             action: "CreateAnnouncement",
             data: {

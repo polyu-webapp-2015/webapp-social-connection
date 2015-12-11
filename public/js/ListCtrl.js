@@ -28,7 +28,8 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 		else return 'alt'; 
 	};
 
-	$scope.openDetailModal = function (html_path) {
+	$scope.openDetailModal = function (html_path, elem) {
+		$scope.elem = elem;
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
 	};
 
