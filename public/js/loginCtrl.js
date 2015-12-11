@@ -17,7 +17,7 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
               $global.setUser(data.profile);
               $global.setSessionId(data.session_id);
               $global.setUserAttr('isAnonymous', false);
-
+              
               sessionStorage.setItem('session_id', data.session_id);
 
               console.log(data);
