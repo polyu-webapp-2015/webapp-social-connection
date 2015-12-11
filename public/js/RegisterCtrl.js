@@ -81,7 +81,7 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
             console.log(data);
             $scope.closeModal();
         })
-        .error(function (data, status, header, config) {
+        .error(function (data, status, headers, config) {
             console.log(status);
             alert(status);
         });

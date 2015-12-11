@@ -1,3 +1,4 @@
+
 app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 	$scope.elems = [
 		{
@@ -15,26 +16,46 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
 		{
 			name: "Ut enim",
 			content: "Ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?"
-		},
+		}
 	];
 
-/*	$scope.loadElements = function (url) {
-		$http.post(serv_addr, data)
-		.success(function (data, status, headers, config) {
-			$scope.elems = data.elements;
-		})
-		.error(function (data, status, header, config) {
-			alert('internal error');
-		})
-	}
-*/
+	$scope.id_array = [];
+	$scope.field_array = [];
+	$scope.elems = []; // get output from server
+
 	$scope.rowClass = function (elem, elems) {
 		if (elems.indexOf(elem) % 2 == 0) return 'nor';
 		else return 'alt'; 
-	}
+	};
 
 	$scope.openDetailModal = function (html_path) {
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
+	};
+
+	$scope.loadElements = function (action) {
+		console.log("loading elements");
+		console.log($scope.id_array);
+		$http.post(serv_addr, {
+			'action': action,
+			'data': JSON.stringify({
+				session_id: $global.getSessionId(),
+				id_array: $scope.id_array,
+				field_array: $scope.field_array
+			})
+		})
+		.success(function (data, status, headers, config) {
+			if (data.result_code === "Success") 
+				$scope.elems = data.element_array;
+			else {
+				alert('something wrong happens');
+				console.log(data);
+			}
+			console.log($scope.elems);
+		})
+		.error (function (data, status, headers, config) {
+			alert('internal error');
+		})
 	}
+
 });
 

@@ -10,19 +10,22 @@ class ActorUtil
 {
     /**
      * @param array $data : param from client request
-     * @return string session_id
+     * @return string account_id
      * @throws Exception
      */
     public static function check_session_valid(array $data)
     {
-        $session_id = $data[APIFieldEnum::_Session_ID];
-        if (empty(session_id()))
-            session_id($session_id);
+        if (array_key_exists(APIFieldEnum::_session_id, $data)) {
+            /* change session id for debug convenience */
+            $intent_session_id = $data[APIFieldEnum::_session_id];
+            session_id($intent_session_id);
+        }
         session_start();
-        if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id() && isset($_SESSION[Account_Fields::__account_id])) {
+        $session_id = session_id();
+//        if (session_status() == PHP_SESSION_ACTIVE && $session_id == session_id() && isset($_SESSION[Account_Fields::__account_id])) {
+        if (isset($_SESSION[Account_Fields::__account_id])) {
             /* valid */
-            session_id($session_id);
-            return $session_id;
+            return $_SESSION[Account_Fields::__account_id];
         } else {
             /* not valid or expired */
             throw new Exception("Session Expired", ResultCodeEnum::_Session_Expired);

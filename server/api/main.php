@@ -3,14 +3,16 @@ require_once 'package.php';
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
+header('Content-Type: application/json');
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'GET' :
+        header('Content-Type: text/html');
 //        log_object($_GET);
 //        log_object($_SERVER);
         $url = $_SERVER["HTTP_REFERER"];
         if ((strpos($url, "db") + 2) == strlen($url)) {
             DatabaseHelper::generate_all_table_stub();
-            die("<br><a href='main.php'>reload</a>");
+            die("<br><a href='main.php'>Back to API page</a>");
         } else {
             $_API->printAllAPI();
             echo '<pre>';

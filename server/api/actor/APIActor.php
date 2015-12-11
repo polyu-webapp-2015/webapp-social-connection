@@ -35,14 +35,22 @@ class APIActor extends Actor
                     log_object("routed to " . $api->name);
                     $output = $api->handle($data);
                 } catch (Exception $e) {
-                    header('HTTP/1.0 400 Bad Request', true, 400);
+                    log_object_from_named("Exception catched", get_called_class());
+                    if (!Config::_API_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
                     $output = [
-                        APIFieldEnum::_ResultCode => $e->getCode(),
-                        APIFieldEnum::_Reason => [
+                        APIFieldEnum::_result_code => $e->getCode(),
+                        APIFieldEnum::_reason => [
                             "type" => "Exception",
                             "detail" => ExceptionUtils::Exception_to_array($e)
                         ]
                     ];
+                }
+                $output[APIFieldEnum::_action] = $api_name;
+                if (array_key_exists(APIFieldEnum::_result_code, $output) && $output[APIFieldEnum::_result_code] != ResultCodeEnum::_Success) {
+                    if (!Config::_API_Always_OK) header('HTTP/1.0 400 Bad Request', true, 400);
+                }
+                if (array_key_exists(APIFieldEnum::_result_code, $output) && is_numeric($output[APIFieldEnum::_result_code])) {
+                    $output[APIFieldEnum::_result_code] = ResultCodeEnum::getString($output[APIFieldEnum::_result_code]);
                 }
                 echo json_encode($output);
                 $found = true;
