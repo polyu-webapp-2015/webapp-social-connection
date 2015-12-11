@@ -1,5 +1,5 @@
 app.controller('ProfileCtrl', function  ($scope, $http, $global, $uibModal) {
-
+	console.log('gether');
 	$scope.id_array = [];
 	$scope.field_array = [];
 	$scope.elems = []; // get output from server
@@ -82,7 +82,7 @@ app.controller('ProfileCtrl', function  ($scope, $http, $global, $uibModal) {
 				// $scope.organizationCountry 
 				// $scope.organizationName 
 				// $scope.organizationType 
-			});
+			})
 
 		})
 		.success(function (data, status, headers, config) {
@@ -97,7 +97,7 @@ app.controller('ProfileCtrl', function  ($scope, $http, $global, $uibModal) {
           })
           .error(function (data, status, header, config) {
               alert(status);
-          });
+        });
 
 		$scope.profileInit();
 	}
