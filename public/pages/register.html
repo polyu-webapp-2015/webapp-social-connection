@@ -2,9 +2,9 @@
 <div ng-controller="RegisterCtrl">
   <!-- the scope of "RegisterCtrl" should be a child of the scope of "MainCtrl" -->
   <div class="modal-header">
-  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeRegisterModal()">&times;</button>
-<!-- method "closeRegisterModal()" inheritated from its parent scope -->
-  	<h4 class="modal-title">Sign Up</h4>
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+<!-- method "closeModal()" inheritated from its parent scope -->
+  	<h4 class="modal-title">Create User</h4>
   </div>			<!-- /modal-header -->
   <form id="registerForm" name="registerForm" role="form" ng-submit="submit()" autocomplete="off">
   <div class="modal-body">
@@ -26,15 +26,15 @@
     	<span class="form-control-feedback" ng-class="{'glyphicon glyphicon-ok': re_password_valid, 'glyphicon glyphicon-remove': !re_password_valid}" ng-show="registerForm.re_pwd.$touched && registerForm.re_pwd.$dirty && registerForm.pwd.$dirty"></span>
     </div>
     <label class="radio-inline">
-      <input type="radio" name="sex" value="0" ng-model="sex"/>Male
+      <input type="radio" name="sex" value="M" ng-model="sex"/>Male
     </label>
     <label class="radio-inline">
-      <input type="radio" name="sex" value="1" ng-model="sex"/>Female
+      <input type="radio" name="sex" value="F" ng-model="sex"/>Female
     </label>
   </div>			<!-- /modal-body -->
   <div class="modal-footer">
-  	<button class="btn btn-sm my-btn my-btn-round" type="submit">Register</button>
-  	<a class="btn btn-sm btn-default" ng-click="closeRegisterModal()">Close</a>
+  	<button class="btn btn-sm my-btn my-btn-round" type="submit">Create</button>
+  	<a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
   </div>			<!-- /modal-footer -->
   </form>
 </div>

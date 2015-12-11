@@ -10,12 +10,12 @@ class SearchUserListActor extends Actor
 {
     public $name = "GetUserList";
     public $params = array(
-        APIFieldEnum::_Session_ID => "t63slq6a340mo41rppmkvce5l4",
+        APIFieldEnum::_session_id => "t63slq6a340mo41rppmkvce5l4",
         Account_Fields::__account_type => account_type_Enum::__attendee,
     );
     public $output = [
-        APIFieldEnum::_ResultCode => ResultCodeEnum::_Success,
-        APIFieldEnum::_Session_ID => ''
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
+        APIFieldEnum::_session_id => ''
     ];
     public $desc = "Get User info (single or multiple user)";
 
@@ -30,15 +30,15 @@ class SearchUserListActor extends Actor
             if (session_start()) {
                 $session_id = session_id();
                 $_SESSION[Account_Fields::__account_id] = $account_id;
-                $this->output[APIFieldEnum::_Session_ID] = $session_id;
+                $this->output[APIFieldEnum::_session_id] = $session_id;
             } else {
-                $this->output[APIFieldEnum::_ResultCode ]= ResultCodeEnum::_Server_Unknown_Error;
+                $this->output[APIFieldEnum::_result_code ]= ResultCodeEnum::_Server_Unknown_Error;
             }
         } else {
             if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false)
-                $this->output[APIFieldEnum::_ResultCode] = ResultCodeEnum::_User_Not_Exist;
+                $this->output[APIFieldEnum::_result_code] = ResultCodeEnum::_User_Not_Exist;
             else
-                $this->output[APIFieldEnum::_ResultCode] = ResultCodeEnum::_Password_Wrong;
+                $this->output[APIFieldEnum::_result_code] = ResultCodeEnum::_Password_Wrong;
         }
         return $this->output;
     }

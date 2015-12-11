@@ -7,6 +7,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     $uibModal: take a brief look at http://angular-ui.github.io/bootstrap/, documentation about $uibModal service
     */
 
+
     $scope.openRegisterModal = function () {
         console.log("register");
         $scope.registerModal = $uibModal.open(new Modal('/pages/register.html', $scope));
@@ -53,6 +54,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         user['b'] = 3;  // DO NOT set User's attributes in this way
         $global.setUserAttr("a", 3);
         console.log($global.getUser());
+        alert("hello world");
 
     }
 })

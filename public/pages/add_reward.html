@@ -1,19 +1,19 @@
 
-<div ng-controller="AddAnnounceCtrl">
+<div ng-controller="AddRewardCtrl">
   <!-- the scope of "AddAnnounceCtrl" should be a child of the scope of "MainCtrl" -->
   <div class="modal-header">
-  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeAddAnnounceModal()">&times;</button>
-    <!-- method "closeAddAnnounceModal()" inheritated from its parent scope -->
-  	<h4 class="modal-title">Create Announcement</h4>
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+    <!-- method "closeModal()" inheritated from its parent scope -->
+  	<h4 class="modal-title">Add Reward</h4>
   </div>			<!-- /modal-header -->
-    <form id="addAnnounceForm" name="addAnnounceForm" role="form" ng-submit="submit()" autocomplete="off">
+    <form id="addRewardForm" name="addRewardForm" role="form" ng-submit="submit()" autocomplete="off">
     <div class="modal-body">
       <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" name="title" id="title" ng-model="announce.title" placeholder="Enter the title here..."/>
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" id="username" ng-model="reward.username" placeholder="Enter email or phone"/>
       </div>
       <div class="form-group">
-        <label for="content">Content</label>
+        <label for="type">Reward Type</label>
         <textarea class="form-control" rows="8" name="content" id="content" ng-model="announce.content" placeholder="Enter the content here..."></textarea>
       </div>
       <span class="form-group">
@@ -26,8 +26,8 @@
       </span>
     </div>			<!-- /modal-body -->
     <div class="modal-footer">
-    	<button class="btn btn-sm my-btn my-btn-round" type="submit">Sumit</button>
-    	<a class="btn btn-sm btn-default" ng-click="closeAddAnnounceModal()">Close</a>
+    	<button class="btn btn-sm my-btn my-btn-round" type="submit">Sumbit</button>
+    	<a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
     </div>			<!-- /modal-footer -->
     </form>
 </div>

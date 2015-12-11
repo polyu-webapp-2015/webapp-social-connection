@@ -7,12 +7,11 @@ app.controller("AddAnnounceCtrl", function ($scope, $http, $global) {
         if (!$scope.password_valid || !$scope.re_password_valid)    return;
         console.log($scope.sex);
         //$scope.gender = parseInt($scope.gender);
+        console.log($scope.announce);
         $http.post(serv_addr, {
-            "action": "register",
+            "action": "addAnnouncement",
             "data": {
-                emailOrPhoneNum: $scope.username,
-                password: $scope.password,
-                sex: parseInt($scope.sex)
+                $scope.announce
             }
         })
         .success(function (data, status, headers, config) {
