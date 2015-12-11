@@ -59,7 +59,9 @@ app.controller('UserDetailCtrl', function  ($scope, $http, $global, $uibModal) {
 	}
 
 	$scope.log = function () {
-
+		console.log($scope);
+		console.log($scope.elem);
+		console.log("momoda");
 	}
 
 	$scope.log();
