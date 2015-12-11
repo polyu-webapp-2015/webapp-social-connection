@@ -17,7 +17,7 @@ class LoginActor extends Actor
         APIFieldEnum::_profile => [],
         APIFieldEnum::_session_id => "123"
     ];
-    public $desc = "Sign up new user";
+    public $desc = "Login and get session id (as identity)";
 
     public function handle($data)
     {
