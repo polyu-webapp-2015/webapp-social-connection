@@ -1,16 +1,7 @@
-var BaseModel = (function () {
-    function BaseModel() {
-    }
-    return BaseModel;
-})();
-//class User extends BaseModel<User> {
-//    first_name:string;
-//    last_name:string;
-//    public static table_name:string = "User";
-//
-//    constructor(raw:Object) {
-//        super(raw);
-//
-//    }
-//}
+function loadModel(full_path) {
+    console.log("loading model " + full_path);
+    var script = document.createElement("script");
+    script.src = full_path;
+    document.body.appendChild(script);
+}
 //# sourceMappingURL=models.js.map
