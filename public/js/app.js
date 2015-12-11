@@ -101,7 +101,10 @@ app.factory("$global", function($uibModal) {
     },
 
     setUser: function (theUser) {
-      user = theUser; // set it when user is got from the server
+      if (!theUser) 
+        user = {isAnonymous: true, account_id: "-1"}
+      else 
+        user = theUser; // set it when user is got from the server
     },
 
     setUserAttr: function (key, value) {
