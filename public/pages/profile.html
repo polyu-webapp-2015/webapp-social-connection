@@ -1,0 +1,74 @@
+<div ng-controller="ProfileCtrl">
+	<div class="modal-header">
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+		<h4 class="modal-title">Profile</h4>
+	</div>
+	<div class="modal-body">
+		<div class="well well-lg">
+  			<form name="profileForm" role="form" ng-submit="submit()" autocomplete="off">
+
+  				<div class="form-group">
+		    		<label class="control-label col-sm-1"  for="firstName">First Name:</label>
+		    		<div class="col-sm-5">
+		    			<input class="form-control" type="text" name="firstName" id='firstName'>
+		    		</div>
+    			</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-1"  for="lastName">Last Name: </label>
+		    		<div class="col-sm-5">
+		    			<input class="form-control" type="text" name="lastName" id='lastName'>
+		    		</div>
+		    	</div>
+
+		    	<div class="form-group">
+					<label class='control-label col-sm-1' for="sex">Gender:</label>
+		    		<div class="col-sm-5">
+						<select class="form-control" name="sex" id='sex'>
+								<option value="M" id='maleOption'>Male</option>
+								<option value="F" id='femaleOption'>Female</option>
+						</select>
+					</div>
+				</div>
+
+		    	<div class="form-group">
+					<label class='control-label col-sm-1' for="title">Title:</label>
+		    		<div class="col-sm-5">
+    					<input class="form-control" type="text" name="title" id='title'>
+					</div>
+				</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-1"  for="userCity">User City: </label>
+		    		<div class="col-sm-5">
+		    			<input class="form-control" type="text" name="userCity" id='userCity'>
+		    		</div>
+		    	</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-1"  for="organizationName">Organization Name:</label>
+		    		<div class="col-sm-5">
+		    			<input class="form-control" type="text" name="organizationName" id='organizationName'>
+		    		</div>
+		    	</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-1"  for="organizationType">Organization Type:</label>
+		    		<div class="col-sm-5">
+		    			<input class="form-control" type="text" name="organizationType" id='organizationType'>
+		    		</div>
+		    	</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-1"  for="organizationCountry">Organization Country:</label>
+		    		<div class="col-sm-5">
+		    			<input class="form-control" type="text" name="organizationCountry" id='organizationCountry'>
+		    		</div>
+		    	</div>
+		    </form>
+		</div>
+	</div>
+	<div class="modal-footer">
+  	<a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+	</div>
+</div>
