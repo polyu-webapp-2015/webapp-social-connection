@@ -9,21 +9,26 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
 
     $scope.checkUsername = function () {
         console.log("focus out of field");
-        console.log($scope.registerForm.pwd);
-        console.log($scope.registerForm.username.$dirty);
-        if (true) return;
-        $http.post(serv_addr, {"action": "isEmailOrPhoneNumUnique", "data": {"emailOrPhoneNum": $scope.username}})
-        .success(function(data, status, headers, config) {
-          if (data.resultCode == 0) {
-            $scope.usernameUnique = data.params.isEmailOrPhoneNumUnique;
-          }
-          else {
-            alert("resultCode: " + data.resultCode);
-          }
-        })
-        .error(function(data, status, header, config) {
-          alert("status: " + status);
-        });
+        if ($scope.registerForm.username.$dirty) {
+          $http.post(serv_addr, {"action": "IsEmailOrPhoneNumUnique", "data": {"emailOrPhoneNum": $scope.username}})
+          .success(function(data, status, headers, config) {
+            console.log(data.ResultCode);
+            if (data.ResultCode == "Success") {
+              $scope.usernameUnique = true;
+              $scope.usernameChecked = true;
+            }
+            else if (data.ResultCode == "Duplicated") {
+              $scope.usernameUnique = false;
+              $scope.usernameChecked = true;
+            }
+            else {
+              console.log("ResultCode: " + data.ResultCode);
+            }
+          })
+          .error(function(data, status, header, config) {
+            console.log("error ResultCode: " + data.ResultCode);
+          });
+        }
     };
 
     $scope.checkPassword = function () {
@@ -60,11 +65,8 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
     }
 
     $scope.submit = function () {
-        $scope.usernameChecked = false;
-        if (!$scope.usernameUnique) return;
+        if (!($scope.usernameChecked && $scope.usernameUnique)) return;
         if (!$scope.password_valid || !$scope.re_password_valid)    return;
-        console.log($scope.sex);
-        //$scope.gender = parseInt($scope.gender);
         $http.post(serv_addr, {
             "action": "createUser",
             "data": {
@@ -75,10 +77,9 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
             }
         })
         .success(function (data, status, headers, config) {
-            $scope.usernameChecked = true;
             alert("success!");
             console.log(data);
-            $scope.closeRegisterModal();
+            $scope.closeModal();
         })
         .error(function (data, status, header, config) {
             console.log(status);
