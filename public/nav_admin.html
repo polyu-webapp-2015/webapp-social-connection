@@ -1,49 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 <head>
-  <title>Administration</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="lib/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<title>Administration</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="lib/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="lib/node_modules/angular/angular.js"></script>
   <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
   <!-- Order is Important -->
 
   <script src="js/app.js"></script>
   <script src="lib/utils.js"></script>
-  <!-- start include typescript -->
-  <script src="ts/models.js"></script>
-  <script src="ts/stub/package.js"></script>
-  <!-- end include typescript -->
-  <script src="js/MainCtrl.js"></script>
-  <script src="js/RegisterCtrl.js"></script>
-  <script src="js/LoginCtrl.js"></script>
-  <script src="js/AddAnnounceCtrl.js"></script>
-  <script src="js/ListCtrl.js"></script>
-  <script src="js/AddSessionCtrl.js"></script>
-  <script src="js/ProfileCtrl.js"></script>
+  <script src="js/mainCtrl.js"></script>
+  <script src="js/registerCtrl.js"></script>
+  <script src="js/loginCtrl.js"></script>
+  <script src="js/addAnnounceCtrl.js"></script>
+	<script src="js/addRewardCtrl.js"></script>
+  <script src="js/listCtrl.js"></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
-  <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/common.css">
 </head>
 
-<body id="admin_nav_page" ng-controller="MainCtrl" onload="load_all_typescript_class()">
+<body id="admin_nav_page" ng-controller="MainCtrl">
 <nav class="navbar navbar-default navbar-fixed-top">
-
 	<div class="container">
 		<div class="navbar-header">
-			<button type="button" id="navbar-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#client_navbar">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#client_navbar">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="#admin_nav_page"><span class="glyphicon glyphicon-home nav_logo"></span></a>
-			<a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openProfileModal()"><span class="glyphicon glyphicon-user nav_logo" ></span></a>
 		</div>
 		<div class="collapse navbar-collapse" id="client_navbar">
-			<ul ng-click="closeNavbar()" class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#conferences">Conferences</a></li>
 				<li><a href="#announcements">Announcements</a></li>
 				<li><a href="#exhibitions">Exhibitions</a></li>
@@ -51,28 +44,30 @@
 				<li><a href="#forum">Forum</a></li>
 				<li><a href="#analytics">Analytics</a></li>
 				<li><a href="#attractions">Attractions</a></li>
-				<li ng-click="logoff()"><a>Log off</a></li>
 			</ul>
 		</div>
 	</div>
-
 </nav>
 <div class="jumbotron text-center">
-  <h2>School of Hotel and Tourism Management</h2>
-  <h3>Administration</h3>
+	<h2>School of Hotel and Tourism Management</h2>
+	<h3>Administration<h>
 </div>
 <div id="users" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>User Information</h2>
-      <br/>
-      <button class="btn btn-ln my-btn" ng-click="openRegisterModal()">Add User</button>
-      <button class="btn btn-ln my-btn" ng-click="openUsersModal()">Show Users</button>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-user logo"></span>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>User Information</h2>
+			<h4>Lorem ipsum ...</h4>
+			<div class="well well-lg">
+			<div class="list-group" ng-controller="ListCtrl">
+				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/user_detail.html')"><h4>{{ elem.name }}</h4>{{ elem.content }}</button>
+			</div>
+			</div>
+			<button class="btn btn-ln my-btn" ng-click="openRegisterModal()">Add User</button>
+		</div>
+		<div class="col-sm-4">
+			<span class="glyphicon glyphicon-user logo"></span>
+		</div>
+	</div>
 </div>
 <div id="announcements" class="container-fluid bg-grey">
 	<div class="row">
@@ -83,17 +78,17 @@
 			<h2>Announcements</h2>
 			<h4>Lorem ipsum ...</h4>
 			<div class="well well-lg"></div>
-			<button class="btn btn-ln my-btn" ng-click="openAddAnnounceModal()">Create</button>
+			<button class="btn btn-ln my-btn" ng-click="openAddAnnounceModal()">Create Announcement</button>
 		</div>
 	</div>
 </div>
-<div id="sessions" class="container-fluid">
+<div id="conferences" class="container-fluid">
 	<div class="row">
 		<div class="col-sm-8">
-			<h2>Sessions</h2>
+			<h2>Conferences</h2>
 			<h4>Lorem ipsum ...</h4>
 			<div class="well well-lg"></div>
-			<button class="btn btn-ln my-btn" ng-click="openAddSessionModal()">Manage</button>
+			<button class="btn btn-ln my-btn">Manage Conferences</button>
 		</div>
 		<div class="col-sm-4">
 			<span class="glyphicon glyphicon-list-alt logo"></span>
@@ -109,62 +104,61 @@
 			<h2>Exhibitions</h2>
 			<h4>Lorem ipsum ...</h4>
 			<div class="well well-lg"></div>
-			<button class="btn btn-ln my-btn">Create</button>
+			<button class="btn btn-sm my-btn">Add Exibitions</button>
 		</div>
 	</div>
-
 </div>
 <div id="rewards" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>Rewards</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn">Add Rewards</button>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-usd logo"></span>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>Rewards</h2>
+			<h4>Lorem ipsum ...</h4>
+			<div class="well well-lg"></div>
+			<button class="btn btn-sm my-btn" ng-click="openAddRewardModal()">Add Reward</button>
+		</div>
+		<div class="col-sm-4">
+			<span class="glyphicon glyphicon-usd logo"></span>
+		</div>
+	</div>
 </div>
 <div id="forum" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-refresh logo"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Forum</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn">Add Discussion</button>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-sm-4">
+			<span class="glyphicon glyphicon-refresh logo"></span>
+		</div>
+		<div class="col-sm-8">
+			<h2>Forum</h2>
+			<h4>Lorem ipsum ...</h4>
+			<div class="well well-lg"></div>
+			<button class="btn btn-sm my-btn">Add Discussion</button>
+		</div>
+	</div>
 </div>
 <div id="analytics" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>Analytics</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn">Show More</button>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-signal logo"></span>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>Analytics</h2>
+			<h4>Lorem ipsum ...</h4>
+			<div class="well well-lg"></div>
+			<button class="btn btn-sm my-btn">Show More</button>
+		</div>
+		<div class="col-sm-4">
+			<span class="glyphicon glyphicon-signal logo"></span>
+		</div>
+	</div>
 </div>
 <div id="attractions" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-road logo"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Attractions</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn">Add Attractions</button>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-sm-4">
+			<span class="glyphicon glyphicon-road logo"></span>
+		</div>
+		<div class="col-sm-8">
+			<h2>Attractions</h2>
+			<h4>Lorem ipsum ...</h4>
+			<div class="well well-lg"></div>
+			<button class="btn btn-sm my-btn">Add Attractions</button>
+		</div>
+	</div>
 </div>
 </body>
 </html>

@@ -43,14 +43,14 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
       $scope.modalItem = $uibModal.open(new Modal('/pages/add_announce.html', $scope));
     }
 
-    $scope.openCouponsModal = function () {
+    $scope.openAddRewardModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         if ($global.getUser().isAnonymous === false) {
             openLoginModal();
             return;
         }
-        console.log("View coupons");
-        $scope.modalItem = $uibModal.open(new Modal('/pages/coupons.html', $scope));
+        console.log("add reward");
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_reward.html', $scope));
     }
 
     $scope.whoami = function(session_id) {
@@ -89,21 +89,6 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     $scope.openUsersModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
-    }
-
-    $scope.logoff = function () {
-        sessionStorage.removeItem('session_id');
-        $global.setUserAnonymous();
-    }
-
-    $scope.closeNavbar = function () {
-        if ($('#navbar-toggle').css('display') !== 'none')
-            document.getElementById('navbar-toggle').click();
-    }
-
-    $scope.openAddSessionModal = function () {
-        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
-        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html'));
     }
 
     var session_id = sessionStorage.getItem('session_id');
