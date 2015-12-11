@@ -93,30 +93,38 @@ app.factory("$global", function($uibModal) {
   var session_id = null;
 
   return {
+
     getUser: function () {
     // objects in javascript are volatile, 
     // so it might be safer to use user like this
       return angular.copy(user);
     },
+
     setUser: function (theUser) {
       user = theUser; // set it when user is got from the server
     },
+
     setUserAttr: function (key, value) {
       // set attribute of the User
       user[key] = value;
     },
+
     setUserAnonymous: function () {
       user = {isAnonymous: true, sessionid: "-1"};
     },
+
     loggedIn: function () {
       console.log(user.isAnonymous);
       return !user.isAnonymous;
     },
+
     setSessionId: function (id) {
       session_id = id;
     },
+
     getSessionId: function () {
       return session_id;
     }
+    
   };
 })

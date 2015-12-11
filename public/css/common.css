@@ -88,6 +88,12 @@ h4 {
 	color: #2288ee;
 }
 
+.detail-avatar {
+	width: 150px;
+	height: 150px;	
+	color: #aaaaaa;
+}
+
 .navbar-brand {
 	color: #ffffff !important;
 }

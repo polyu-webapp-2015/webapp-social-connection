@@ -179,8 +179,9 @@ class DatabaseHelper
     {
         self::check_connection();
         assert(count($field_value) == 1, "This operation only support one key value pair");
-//        return array_keys($field_value)[0] . " = " . array_values($field_value)[0];
-        return self::$_pdo->quote(array_keys($field_value)[0]) . " = " . self::$_pdo->quote(array_values($field_value)[0]);
+        return array_keys($field_value)[0] . " = " . array_values($field_value)[0];
+//        return array_keys($field_value)[0] . " = " . self::$_pdo->quote(array_values($field_value)[0]);
+//        return self::$_pdo->quote(array_keys($field_value)[0]) . " = " . self::$_pdo->quote(array_values($field_value)[0]);
     }
 
     /** @deprecated unsafe
@@ -190,8 +191,9 @@ class DatabaseHelper
     public static function field_value_to_not_statement(array $field_value)
     {
         assert(count($field_value) == 1, "This operation only support one key value pair");
-//        return array_keys($field_value)[0] . " != " . array_values($field_value)[0];
-        return self::$_pdo->quote(array_keys($field_value)[0]) . " != " . self::$_pdo->quote(array_values($field_value)[0]);
+        return array_keys($field_value)[0] . " != " . array_values($field_value)[0];
+//        return array_keys($field_value)[0] . " != " . self::$_pdo->quote(array_values($field_value)[0]);
+//        return self::$_pdo->quote(array_keys($field_value)[0]) . " != " . self::$_pdo->quote(array_values($field_value)[0]);
     }
 
     /** @deprecated unsafe */

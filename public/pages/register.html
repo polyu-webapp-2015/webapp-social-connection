@@ -25,12 +25,19 @@
     	<input type="password" class="form-control" id="re_pwd" name="re_pwd" ng-model="re_password" ng-blur="checkPassword()" placeholder="Retype your password" ng-change="onChangeRePwd()" required/>
     	<span class="form-control-feedback" ng-class="{'glyphicon glyphicon-ok': re_password_valid, 'glyphicon glyphicon-remove': !re_password_valid}" ng-show="registerForm.re_pwd.$touched && registerForm.re_pwd.$dirty && registerForm.pwd.$dirty"></span>
     </div>
-    <label class="radio-inline">
-      <input type="radio" name="sex" value="M" ng-model="sex"/>Male
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="sex" value="F" ng-model="sex"/>Female
-    </label>
+
+    <div class="form-group">
+      <label for="account_type">Account Type:</label>
+      <select class="form-control" name="account_type" id="account_type" ng-model="account_type">
+        <option value="admin" selected>Administrator</option>
+        <option value="attendee">Attendee </option>
+        <option value="speaker">Speaker</option>
+      </select>
+    </div>
+    <div>
+        <input type="radio" name="sex" value="M" ng-model="sex" checked> Male      
+        <input type="radio" name="sex" value="F" ng-model="sex"> Female
+    </div>
   </div>			<!-- /modal-body -->
   <div class="modal-footer">
   	<button class="btn btn-sm my-btn my-btn-round" type="submit">Create</button>

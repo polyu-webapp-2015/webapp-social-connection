@@ -70,10 +70,11 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
         $http.post(serv_addr, {
             "action": "createUser",
             "data": {
+                session_id: $global.getSessionId(),
                 emailOrPhoneNum: $scope.username,
                 password: $scope.password,
                 sex: parseInt($scope.sex),
-                account_type: 'attendee'
+                account_type: $scope.account_type,
             }
         })
         .success(function (data, status, headers, config) {

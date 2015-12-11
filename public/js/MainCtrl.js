@@ -91,6 +91,21 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
     }
 
+    $scope.logoff = function () {
+        sessionStorage.removeItem('session_id');
+        $global.setUserAnonymous();
+    }
+
+    $scope.closeNavbar = function () {
+        if ($('#navbar-toggle').css('display') !== 'none')
+            document.getElementById('navbar-toggle').click();
+    }
+
+    $scope.openAddSessionModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html'));
+    }
+
     var session_id = sessionStorage.getItem('session_id');
     $scope.whoami(session_id);
 
