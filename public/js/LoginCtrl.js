@@ -12,12 +12,11 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
             console.log(data);
             if (data.result_code == "Success") {
               $scope.loginFail = false;
-              alert("success!");
               console.log(data);
               $scope.closeModal();
               $global.setUser(data.profile);
               $global.setSessionId(data.session_id);
-              $global.setUserAnonymous();
+              $global.setUserAttr('isAnonymous', false); ;
               sessionStorage.setItem('session_id', data.session_id);
               console.log($global.getUser());
               console.log($global.getSessionId());
