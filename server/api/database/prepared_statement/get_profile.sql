@@ -5,6 +5,8 @@
 SELECT
   `User`.`account_id`,
   `Account`.`account_type`,
+  `Account`.`email`,
+  `Account`.`phone_num`,
   `User`.`sex`,
   `User`.`first_name`,
   `User`.`last_name`,
