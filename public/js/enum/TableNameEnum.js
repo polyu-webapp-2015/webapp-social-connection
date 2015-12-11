@@ -4,6 +4,7 @@
 var TableNameEnum = function (){
     this.Account = "Account" ;
     this.Announcement = "Announcement" ;
+    this.Attraction = "Attraction" ;
     this.City = "City" ;
     this.Country = "Country" ;
     this.Event = "Event" ;
@@ -13,6 +14,7 @@ var TableNameEnum = function (){
     this.Floor = "Floor" ;
     this.Friendship = "Friendship" ;
     this.Friendship_Tag = "Friendship_Tag" ;
+    this.Image = "Image" ;
     this.JsonArray = "JsonArray" ;
     this.Message = "Message" ;
     this.Organization = "Organization" ;

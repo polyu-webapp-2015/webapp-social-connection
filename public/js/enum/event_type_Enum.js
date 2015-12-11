@@ -4,5 +4,6 @@
 var event_type_Enum = function (){
     this.E = "E" ;
     this.S = "S" ;
+    this.A = "A" ;
 };
 var event_type = new event_type_Enum();

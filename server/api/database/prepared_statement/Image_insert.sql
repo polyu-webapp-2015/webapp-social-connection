@@ -1,0 +1,1 @@
+INSERT INTO Image (image_id, url) VALUES (:image_id, :url);

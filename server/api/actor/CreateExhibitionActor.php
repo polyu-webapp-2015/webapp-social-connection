@@ -25,7 +25,7 @@ class CreateExhibitionActor extends Actor
         put_all_into($data, $this->params);
         $account_type = DatabaseOperator::getAccountType($account_id);
         if ($account_type != account_type_Enum::__admin && $account_type != account_type_Enum::__helper)
-            throw new Exception("This user ($account_type) cannot create Announcement", ResultCodeEnum::_No_Permission);
+            throw new Exception("This user ($account_type) cannot create Exhibition", ResultCodeEnum::_No_Permission);
         /* create Event */
         $field_array = array_filter_by_keys($data, [
             Event_Fields::__venue_id,
