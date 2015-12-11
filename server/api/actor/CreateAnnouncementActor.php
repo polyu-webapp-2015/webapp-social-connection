@@ -29,7 +29,7 @@ class CreateAnnouncementActor extends Actor
             Announcement_Fields::__description
         ]);
         DatabaseHelper::table_insert(Announcement_Fields::_, $field_array);
-        $id=DatabaseHelper::$_pdo->lastInsertId();
+        $id=DatabaseHelper::pdo()->lastInsertId();
         log_object_from_named($id,"new announcement id");
         $this->output[Announcement_Fields::__announcement_id]=$id;
         return $this->output;

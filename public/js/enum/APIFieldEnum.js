@@ -11,6 +11,9 @@ var APIFieldEnum = function () {
     this.profile = "profile";
     this.follower_user_id = "follower_user_id";
     this.followed_user_id = "followed_user_id";
+    this.table_name_array = "table_name_array";
+    this.table_name = "table_name";
+    this.latest_id = "latest_id";
     this.id_array = "id_array";
     this.field_array = "field_array";
 };

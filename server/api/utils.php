@@ -207,4 +207,9 @@ function array_flatten(array $input)
     return $flatten;
 }
 
-
+function array_replace_key_by_order(array $input){
+    $output=[];
+    foreach($input as $key => $value)
+        $output[]=$value;
+    return $output;
+}

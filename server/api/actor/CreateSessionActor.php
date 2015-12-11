@@ -38,14 +38,14 @@ class CreateSessionActor extends Actor
         $field_array[Event_Fields::__creator_account_id] = $account_id;
         $field_array[Event_Fields::__editor_account_id] = $account_id;
         $result = DatabaseHelper::table_insert(Event_Fields::_, $field_array);
-        $event_id = DatabaseHelper::$_pdo->lastInsertId();
+        $event_id = DatabaseHelper::pdo()->lastInsertId();
         log_object_from_named($event_id, "new Event id");
         /* create Conference Session */
         $field_array = [];
         $field_array[Session_Fields::__event_id] = $event_id;
         $field_array[Session_Fields::__quota] = $this->params[Session_Fields::__quota];
         DatabaseHelper::table_insert(Session_Fields::_, $field_array);
-//        $event_id = DatabaseHelper::$_pdo->lastInsertId();
+//        $event_id = DatabaseHelper::pdo()->lastInsertId();
         log_object_from_named($event_id, "new Session id");
         $this->output[Event_Fields::__event_id] = $event_id;
         return $this->output;
