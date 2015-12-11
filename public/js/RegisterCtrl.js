@@ -71,14 +71,14 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
                 emailOrPhoneNum: $scope.username,
                 password: $scope.password,
                 sex: parseInt($scope.sex),
-                account_type: 'attendee'
+                account_type: $scope.account_type,
             }
         })
         .success(function (data, status, headers, config) {
             $scope.usernameChecked = true;
             alert("success!");
             console.log(data);
-            $scope.closeRegisterModal();
+            $scope.closeModal();
         })
         .error(function (data, status, headers, config) {
             console.log(status);
