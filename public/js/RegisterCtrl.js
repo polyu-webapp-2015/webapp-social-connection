@@ -71,7 +71,6 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
     }
 
     $scope.submit = function () {
-      console.log("checked?? " + $scope.usernameChecked);
         if (!($scope.usernameChecked && $scope.usernameUnique))   return;
         if (!$scope.password_valid || !$scope.re_password_valid)  return;
         $http.post(serv_addr, {

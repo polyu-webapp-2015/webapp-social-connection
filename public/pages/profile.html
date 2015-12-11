@@ -1,0 +1,80 @@
+<div ng-controller="ProfileCtrl">
+	<div class="modal-header">
+  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+		<h4 class="modal-title">Profile</h4>
+	</div>
+
+	<div class="modal-body">
+		<div class="well well-lg">
+  			<form class="form-horizontal" name="profileForm" role="form" ng-init="profileInit()" autocomplete="off">
+
+  				<div class="form-group">
+		    		<label class="control-label col-sm-4"  for="firstName">First Name:</label>
+		    		<div class="col-sm-8">
+		    			<input class="form-control" type="text" name="firstName" id='firstName'>
+		    		</div>
+    			</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-4"  for="lastName">Last Name: </label>
+		    		<div class="col-sm-8">
+		    			<input class="form-control" type="text" name="lastName" id='lastName'>
+		    		</div>
+		    	</div>
+
+		    	<div class="form-group">
+					<label class='control-label col-sm-4' for="sex">Gender:</label>
+		    		<div class="col-sm-8">
+						<select class="form-control" name="sex" id='sex'>
+								<option value="M" id='maleOption'>Male</option>
+								<option value="F" id='femaleOption'>Female</option>
+						</select>
+					</div>
+				</div>
+
+		    	<div class="form-group">
+					<label class='control-label col-sm-4' for="title">Title:</label>
+		    		<div class="col-sm-8">
+    					<input class="form-control" type="text" name="title" id='title'>
+					</div>
+				</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-4"  for="userCity">User City: </label>
+		    		<div class="col-sm-8">
+		    			<input class="form-control" type="text" name="userCity" id='userCity'>
+		    		</div>
+		    	</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-4"  for="organizationName">Organization Name:</label>
+		    		<div class="col-sm-8">
+		    			<input class="form-control" type="text" name="organizationName" id='organizationName'>
+		    		</div>
+		    	</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-4"  for="organizationType">Organization Type:</label>
+		    		<div class="col-sm-8">
+		    			<input class="form-control" type="text" name="organizationType" id='organizationType'>
+		    		</div>
+		    	</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-4"  for="organizationCountry">Organization Country:</label>
+		    		<div class="col-sm-8">
+		    			<input class="form-control" type="text" name="organizationCountry" id='organizationCountry'>
+		    		</div>
+		    	</div>
+		    </form>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<div>
+			<a id='updateButton' class='col-sm-2 btn btn-sm btn-primary' ng-click='profileUpdate()'>Update</a>
+			<a id='saveButton' class='col-sm-2 btn btn-sm btn-success' ng-click='profileSave()'>Save</a>
+			<a class="col-sm-2 btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+		</div>
+	</div>
+</div>
