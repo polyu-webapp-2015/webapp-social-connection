@@ -1,0 +1,1 @@
+{"version":3,"file":"models.js","sourceRoot":"","sources":["models.ts"],"names":["BaseModel","BaseModel.constructor"],"mappings":"AAAA;IAAAA;IAIAC,CAACA;IAADD,gBAACA;AAADA,CAACA,AAJD,IAIC;AACD,sCAAsC;AACtC,wBAAwB;AACxB,uBAAuB;AACvB,+CAA+C;AAC/C,EAAE;AACF,+BAA+B;AAC/B,qBAAqB;AACrB,EAAE;AACF,OAAO;AACP,GAAG"}
