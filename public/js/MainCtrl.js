@@ -101,9 +101,9 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
             document.getElementById('navbar-toggle').click();
     }
 
-    $scope.openCreateSessionModal = function () {
+    $scope.openAddSessionModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
-        $scope.modalItem = $uibModal.open(new Modal('/pages/create_session.html'));
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html'));
     }
 
     var session_id = sessionStorage.getItem('session_id');

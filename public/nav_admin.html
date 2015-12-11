@@ -17,6 +17,7 @@
   <script src="js/LoginCtrl.js"></script>
   <script src="js/AddAnnounceCtrl.js"></script>
   <script src="js/ListCtrl.js"></script>
+  <script src="js/AddSessionCtrl.js"></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
 	<link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css"> 
@@ -85,7 +86,7 @@
 			<h2>Sessions</h2>
 			<h4>Lorem ipsum ...</h4>
 			<div class="well well-lg"></div>
-			<button class="btn btn-ln my-btn">Manage</button>
+			<button class="btn btn-ln my-btn" ng-click="openAddSessionModal()">Manage</button>
 		</div>
 		<div class="col-sm-4">
 			<span class="glyphicon glyphicon-list-alt logo"></span>
