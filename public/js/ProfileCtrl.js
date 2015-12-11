@@ -86,17 +86,19 @@ app.controller('ProfileCtrl', function  ($scope, $http, $global, $uibModal) {
 
 		})
 		.success(function (data, status, headers, config) {
-			if (data.result_code === "Success") 
-				$scope.elems = data.element_array;
-			else {
-				alert('something wrong happens');
-				console.log(data);
-			}
-			console.log($scope.elems);
-		})
-		.error (function (data, status, headers, config) {
-			alert('internal error');
-		})
+            console.log(data);
+            if (data.result_code == "Success") {
+              console.log(data);
+              $global.setUser(data.profile);
+            }
+            else {
+              console.log("result_code: " + data.result_code);
+            }
+          })
+          .error(function (data, status, header, config) {
+              alert(status);
+          });
+
 		$scope.profileInit();
 	}
 
