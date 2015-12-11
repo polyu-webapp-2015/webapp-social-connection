@@ -1,0 +1,40 @@
+<div ng-controller="AddAttractionCtrl">
+	<div class="modal-header">
+  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+		<h4 class="modal-title">Add Attraction Information</h4>
+	</div>
+
+	<div class="modal-body">
+		<div class="well well-lg">
+  			<form class="form-horizontal" name="addAttractionForm" role="form" autocomplete="off">
+  				<div class="form-group">
+		    		<label class="control-label col-sm-2"  for="title"><p class='col-sm-offset-2 text-left'>Title:</p></label>
+		    		<div class="col-sm-10">
+		    			<input class="form-control" type="text" ng-model='title' required>
+		    		</div>
+    			</div>
+
+		  		<div class="form-group">
+		    		<label class="control-label col-sm-2 text-left"  for="location"><p class='col-sm-offset-2 text-left'>Location:</p></label>
+		    		<div class="col-sm-10">
+		    			<input class="form-control" type="text" ng-model='location' required>
+		    		</div>
+		    	</div>
+
+		    	<div class="form-group">
+					<label class='control-label col-sm-2 text-left' for="intro"><p class='col-sm-offset-2 text-left'>Introduction:</p></label>
+		    		<div class="col-sm-10">
+    					<textarea class="form-control" row='8' type="text" ng-model="intro" required></textarea>
+					</div>
+				</div>
+		    </form>
+		</div>
+	</div>
+
+	<div class="modal-footer">
+		<div>
+			<a class='col-sm-2 btn btn-sm btn-success' ng-click='submit()'>Add</a>
+			<a class="col-sm-2 btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+		</div>
+	</div>
+</div>

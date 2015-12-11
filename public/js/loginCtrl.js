@@ -11,7 +11,6 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
       })
           .success(function (data, status, headers, config) {
               $scope.loginFail = false;
-              alert("success!");
               console.log(data);
               $scope.closeModal();
               $global.setUser(data.profile);

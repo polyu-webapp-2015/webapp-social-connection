@@ -53,6 +53,12 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         $scope.modalItem = $uibModal.open(new Modal('/pages/coupons.html', $scope));
     }
 
+    $scope.openAddAttractionModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        console.log("Add attraction");
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_attraction.html', $scope));
+    }
+
     $scope.whoami = function(session_id) {
         $http.post(serv_addr, {
             action: 'GetProfile',
