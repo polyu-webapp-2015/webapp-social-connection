@@ -23,7 +23,10 @@ class CreateUserActor extends Actor
 
     public function handle($data)
     {
-        $operator_account_id=ActorUtil::check_session_valid($data);
+        $operator_account_id = ActorUtil::check_session_valid($data);
+        $operator_account_type = DatabaseOperator::getAccountType($operator_account_id);
+        if ($operator_account_type != account_type_Enum::__admin)
+            throw new Exception("This user ($operator_account_id) cannot create User", ResultCodeEnum::_No_Permission);
         put_all_into($data, $this->params);
         $emailOrPhoneNum = $this->params[DatabaseOperator::__emailOrPhoneNum];
         $password = $this->params[Account_Fields::__password];
@@ -38,7 +41,7 @@ class CreateUserActor extends Actor
                 Account_Fields::__phone_num => $emailOrPhoneNum
             ];
             DatabaseHelper::table_insert(Account_Fields::_, $field_value_array);
-            $account_id = DatabaseHelper::$_pdo->lastInsertId();
+            $account_id = DatabaseHelper::pdo()->lastInsertId();
             /* create User */
             $field_value_array = [
                 User_Fields::__account_id => $account_id,
