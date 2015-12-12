@@ -1,7 +1,7 @@
 declare function get_all_row($http:any, table_name:string):any[];
 declare function set_all_row($http:any, table_name:string, rows:any[]);
 
-module stub {
+export module stub {
   export class DataObjectError extends Error {
     public name = "DataObjectError";
 
