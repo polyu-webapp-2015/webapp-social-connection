@@ -71,5 +71,5 @@ var stub;
         return DataObject;
     })();
     stub.DataObject = DataObject;
-})(stub = exports.stub || (exports.stub = {}));
+})(stub || (stub = {}));
 //# sourceMappingURL=DataObject.js.map

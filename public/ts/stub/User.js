@@ -60,7 +60,7 @@ var stub;
                 this.account_id = newValue;
             }
             else {
-                throw new DataObjectEditError(this);
+                throw new stub.DataObjectEditError(this);
             }
         };
         User_stub.prototype.get_sex = function () {
@@ -71,7 +71,7 @@ var stub;
                 this.sex = newValue;
             }
             else {
-                throw new DataObjectEditError(this);
+                throw new stub.DataObjectEditError(this);
             }
         };
         User_stub.prototype.get_first_name = function () {
@@ -82,7 +82,7 @@ var stub;
                 this.first_name = newValue;
             }
             else {
-                throw new DataObjectEditError(this);
+                throw new stub.DataObjectEditError(this);
             }
         };
         User_stub.prototype.get_last_name = function () {
@@ -93,7 +93,7 @@ var stub;
                 this.last_name = newValue;
             }
             else {
-                throw new DataObjectEditError(this);
+                throw new stub.DataObjectEditError(this);
             }
         };
         User_stub.prototype.get_organization_id = function () {
@@ -104,7 +104,7 @@ var stub;
                 this.organization_id = newValue;
             }
             else {
-                throw new DataObjectEditError(this);
+                throw new stub.DataObjectEditError(this);
             }
         };
         User_stub.prototype.get_title_id = function () {
@@ -115,7 +115,7 @@ var stub;
                 this.title_id = newValue;
             }
             else {
-                throw new DataObjectEditError(this);
+                throw new stub.DataObjectEditError(this);
             }
         };
         User_stub.prototype.get_city_id = function () {
@@ -126,7 +126,7 @@ var stub;
                 this.city_id = newValue;
             }
             else {
-                throw new DataObjectEditError(this);
+                throw new stub.DataObjectEditError(this);
             }
         };
         User_stub.prototype.get_last_announcement_datetime = function () {
@@ -137,11 +137,11 @@ var stub;
                 this.last_announcement_datetime = newValue;
             }
             else {
-                throw new DataObjectEditError(this);
+                throw new stub.DataObjectEditError(this);
             }
         };
         return User_stub;
     })(stub.DataObject);
     stub.User_stub = User_stub;
-})(stub = exports.stub || (exports.stub = {}));
+})(stub || (stub = {}));
 //# sourceMappingURL=User.js.map
