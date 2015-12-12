@@ -31,11 +31,19 @@ module stub {
     }
     
     parseObject(rawObject:any):DiscussBoard_stub {
-      return null;//TODO
+      var instance = new DiscussBoard_stub();
+      instance.discussboard_id = rawObject[DiscussBoard_stub.__discussboard_id()];
+      instance.subject = rawObject[DiscussBoard_stub.__subject()];
+      instance.description = rawObject[DiscussBoard_stub.__description()];
+      return instance;
     }
     
     toObject(instant:DiscussBoard_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[DiscussBoard_stub.__discussboard_id()] = instant.discussboard_id;
+      rawObject[DiscussBoard_stub.__subject()] = instant.subject;
+      rawObject[DiscussBoard_stub.__description()] = instant.description;
+      return rawObject;
     }
 
     /* variable */

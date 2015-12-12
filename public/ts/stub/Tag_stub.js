@@ -29,10 +29,16 @@ var stub;
             return list;
         };
         Tag_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Tag_stub();
+            instance.tag_id = rawObject[Tag_stub.__tag_id()];
+            instance.tag_content = rawObject[Tag_stub.__tag_content()];
+            return instance;
         };
         Tag_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Tag_stub.__tag_id()] = instant.tag_id;
+            rawObject[Tag_stub.__tag_content()] = instant.tag_content;
+            return rawObject;
         };
         /* getter and setter */
         Tag_stub.prototype.get_tag_id = function () {

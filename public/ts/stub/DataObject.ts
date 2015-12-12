@@ -53,13 +53,14 @@ module stub {
     }
 
     public use_all_instance_list(consumer:comm.Consumer<DataObject[]>) {
+      var instance = this;
       var success:api.APICallback<DataObject[]> = function (resultCode:string, data:any) {
         if (resultCode == ResultCode.Success) {
           var all_row = data[APIField.element_array];
-          var dataObjects:DataObject[] = all_row.map(row => this.parseObject(row));
+          var dataObjects:DataObject[] = all_row.map(instance.parseObject);
           consumer(dataObjects);
         } else {
-          comm.log("failed to get all instance of " + this.tableName())
+          comm.log("failed to get all instance of " + instance.tableName())
         }
       };
       api.get_all_row(this.tableName(), success);

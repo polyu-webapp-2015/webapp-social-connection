@@ -32,10 +32,18 @@ var stub;
             return list;
         };
         City_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new City_stub();
+            instance.city_id = rawObject[City_stub.__city_id()];
+            instance.country_id = rawObject[City_stub.__country_id()];
+            instance.city_name = rawObject[City_stub.__city_name()];
+            return instance;
         };
         City_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[City_stub.__city_id()] = instant.city_id;
+            rawObject[City_stub.__country_id()] = instant.country_id;
+            rawObject[City_stub.__city_name()] = instant.city_name;
+            return rawObject;
         };
         /* getter and setter */
         City_stub.prototype.get_city_id = function () {

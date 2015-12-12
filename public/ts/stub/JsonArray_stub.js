@@ -28,10 +28,16 @@ var stub;
             return list;
         };
         JsonArray_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new JsonArray_stub();
+            instance.JsonArray_id = rawObject[JsonArray_stub.__JsonArray_id()];
+            instance.JsonArray_content = rawObject[JsonArray_stub.__JsonArray_content()];
+            return instance;
         };
         JsonArray_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[JsonArray_stub.__JsonArray_id()] = instant.JsonArray_id;
+            rawObject[JsonArray_stub.__JsonArray_content()] = instant.JsonArray_content;
+            return rawObject;
         };
         /* getter and setter */
         JsonArray_stub.prototype.get_JsonArray_id = function () {

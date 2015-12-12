@@ -37,11 +37,21 @@ module stub {
     }
     
     parseObject(rawObject:any):Friendship_stub {
-      return null;//TODO
+      var instance = new Friendship_stub();
+      instance.friendship_id = rawObject[Friendship_stub.__friendship_id()];
+      instance.host_id = rawObject[Friendship_stub.__host_id()];
+      instance.guest_id = rawObject[Friendship_stub.__guest_id()];
+      instance.remark = rawObject[Friendship_stub.__remark()];
+      return instance;
     }
     
     toObject(instant:Friendship_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Friendship_stub.__friendship_id()] = instant.friendship_id;
+      rawObject[Friendship_stub.__host_id()] = instant.host_id;
+      rawObject[Friendship_stub.__guest_id()] = instant.guest_id;
+      rawObject[Friendship_stub.__remark()] = instant.remark;
+      return rawObject;
     }
 
     /* variable */

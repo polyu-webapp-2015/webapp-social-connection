@@ -28,10 +28,16 @@ var stub;
             return list;
         };
         Session_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Session_stub();
+            instance.event_id = rawObject[Session_stub.__event_id()];
+            instance.quota = rawObject[Session_stub.__quota()];
+            return instance;
         };
         Session_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Session_stub.__event_id()] = instant.event_id;
+            rawObject[Session_stub.__quota()] = instant.quota;
+            return rawObject;
         };
         /* getter and setter */
         Session_stub.prototype.get_event_id = function () {

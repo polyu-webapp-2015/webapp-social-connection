@@ -52,10 +52,32 @@ var stub;
             return list;
         };
         Event_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Event_stub();
+            instance.event_id = rawObject[Event_stub.__event_id()];
+            instance.create_time = rawObject[Event_stub.__create_time()];
+            instance.edit_time = rawObject[Event_stub.__edit_time()];
+            instance.event_type = rawObject[Event_stub.__event_type()];
+            instance.venue_id = rawObject[Event_stub.__venue_id()];
+            instance.event_time = rawObject[Event_stub.__event_time()];
+            instance.creator_account_id = rawObject[Event_stub.__creator_account_id()];
+            instance.editor_account_id = rawObject[Event_stub.__editor_account_id()];
+            instance.subject = rawObject[Event_stub.__subject()];
+            instance.description = rawObject[Event_stub.__description()];
+            return instance;
         };
         Event_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Event_stub.__event_id()] = instant.event_id;
+            rawObject[Event_stub.__create_time()] = instant.create_time;
+            rawObject[Event_stub.__edit_time()] = instant.edit_time;
+            rawObject[Event_stub.__event_type()] = instant.event_type;
+            rawObject[Event_stub.__venue_id()] = instant.venue_id;
+            rawObject[Event_stub.__event_time()] = instant.event_time;
+            rawObject[Event_stub.__creator_account_id()] = instant.creator_account_id;
+            rawObject[Event_stub.__editor_account_id()] = instant.editor_account_id;
+            rawObject[Event_stub.__subject()] = instant.subject;
+            rawObject[Event_stub.__description()] = instant.description;
+            return rawObject;
         };
         /* getter and setter */
         Event_stub.prototype.get_event_id = function () {

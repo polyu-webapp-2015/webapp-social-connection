@@ -29,10 +29,16 @@ var stub;
             return list;
         };
         Event_Organization_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Event_Organization_stub();
+            instance.event_id = rawObject[Event_Organization_stub.__event_id()];
+            instance.organization_id = rawObject[Event_Organization_stub.__organization_id()];
+            return instance;
         };
         Event_Organization_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Event_Organization_stub.__event_id()] = instant.event_id;
+            rawObject[Event_Organization_stub.__organization_id()] = instant.organization_id;
+            return rawObject;
         };
         /* getter and setter */
         Event_Organization_stub.prototype.get_event_id = function () {

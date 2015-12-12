@@ -28,10 +28,16 @@ var stub;
             return list;
         };
         Venus_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Venus_stub();
+            instance.venue_id = rawObject[Venus_stub.__venue_id()];
+            instance.floor_id = rawObject[Venus_stub.__floor_id()];
+            return instance;
         };
         Venus_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Venus_stub.__venue_id()] = instant.venue_id;
+            rawObject[Venus_stub.__floor_id()] = instant.floor_id;
+            return rawObject;
         };
         /* getter and setter */
         Venus_stub.prototype.get_venue_id = function () {

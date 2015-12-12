@@ -27,11 +27,17 @@ module stub {
     }
     
     parseObject(rawObject:any):JsonArray_stub {
-      return null;//TODO
+      var instance = new JsonArray_stub();
+      instance.JsonArray_id = rawObject[JsonArray_stub.__JsonArray_id()];
+      instance.JsonArray_content = rawObject[JsonArray_stub.__JsonArray_content()];
+      return instance;
     }
     
     toObject(instant:JsonArray_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[JsonArray_stub.__JsonArray_id()] = instant.JsonArray_id;
+      rawObject[JsonArray_stub.__JsonArray_content()] = instant.JsonArray_content;
+      return rawObject;
     }
 
     /* variable */

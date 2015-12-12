@@ -27,11 +27,17 @@ module stub {
     }
     
     parseObject(rawObject:any):Venus_stub {
-      return null;//TODO
+      var instance = new Venus_stub();
+      instance.venue_id = rawObject[Venus_stub.__venue_id()];
+      instance.floor_id = rawObject[Venus_stub.__floor_id()];
+      return instance;
     }
     
     toObject(instant:Venus_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Venus_stub.__venue_id()] = instant.venue_id;
+      rawObject[Venus_stub.__floor_id()] = instant.floor_id;
+      return rawObject;
     }
 
     /* variable */

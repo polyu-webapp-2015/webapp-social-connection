@@ -29,10 +29,16 @@ var stub;
             return list;
         };
         Title_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Title_stub();
+            instance.title_id = rawObject[Title_stub.__title_id()];
+            instance.title_text = rawObject[Title_stub.__title_text()];
+            return instance;
         };
         Title_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Title_stub.__title_id()] = instant.title_id;
+            rawObject[Title_stub.__title_text()] = instant.title_text;
+            return rawObject;
         };
         /* getter and setter */
         Title_stub.prototype.get_title_id = function () {

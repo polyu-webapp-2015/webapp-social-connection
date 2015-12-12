@@ -27,11 +27,17 @@ module stub {
     }
     
     parseObject(rawObject:any):Floor_stub {
-      return null;//TODO
+      var instance = new Floor_stub();
+      instance.floor_id = rawObject[Floor_stub.__floor_id()];
+      instance.name = rawObject[Floor_stub.__name()];
+      return instance;
     }
     
     toObject(instant:Floor_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Floor_stub.__floor_id()] = instant.floor_id;
+      rawObject[Floor_stub.__name()] = instant.name;
+      return rawObject;
     }
 
     /* variable */

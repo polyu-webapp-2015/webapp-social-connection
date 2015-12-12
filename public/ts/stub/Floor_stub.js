@@ -28,10 +28,16 @@ var stub;
             return list;
         };
         Floor_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Floor_stub();
+            instance.floor_id = rawObject[Floor_stub.__floor_id()];
+            instance.name = rawObject[Floor_stub.__name()];
+            return instance;
         };
         Floor_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Floor_stub.__floor_id()] = instant.floor_id;
+            rawObject[Floor_stub.__name()] = instant.name;
+            return rawObject;
         };
         /* getter and setter */
         Floor_stub.prototype.get_floor_id = function () {

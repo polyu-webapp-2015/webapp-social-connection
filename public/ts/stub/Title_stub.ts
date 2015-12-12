@@ -28,11 +28,17 @@ module stub {
     }
     
     parseObject(rawObject:any):Title_stub {
-      return null;//TODO
+      var instance = new Title_stub();
+      instance.title_id = rawObject[Title_stub.__title_id()];
+      instance.title_text = rawObject[Title_stub.__title_text()];
+      return instance;
     }
     
     toObject(instant:Title_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Title_stub.__title_id()] = instant.title_id;
+      rawObject[Title_stub.__title_text()] = instant.title_text;
+      return rawObject;
     }
 
     /* variable */

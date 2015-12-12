@@ -23,11 +23,15 @@ module stub {
     }
     
     parseObject(rawObject:any):Exhibition_stub {
-      return null;//TODO
+      var instance = new Exhibition_stub();
+      instance.event_id = rawObject[Exhibition_stub.__event_id()];
+      return instance;
     }
     
     toObject(instant:Exhibition_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Exhibition_stub.__event_id()] = instant.event_id;
+      return rawObject;
     }
 
     /* variable */

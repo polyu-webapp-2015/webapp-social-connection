@@ -35,11 +35,21 @@ module stub {
     }
     
     parseObject(rawObject:any):Reply_stub {
-      return null;//TODO
+      var instance = new Reply_stub();
+      instance.reply_id = rawObject[Reply_stub.__reply_id()];
+      instance.post_Id = rawObject[Reply_stub.__post_Id()];
+      instance.message = rawObject[Reply_stub.__message()];
+      instance.account_id = rawObject[Reply_stub.__account_id()];
+      return instance;
     }
     
     toObject(instant:Reply_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Reply_stub.__reply_id()] = instant.reply_id;
+      rawObject[Reply_stub.__post_Id()] = instant.post_Id;
+      rawObject[Reply_stub.__message()] = instant.message;
+      rawObject[Reply_stub.__account_id()] = instant.account_id;
+      return rawObject;
     }
 
     /* variable */

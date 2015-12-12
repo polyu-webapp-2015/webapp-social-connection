@@ -39,11 +39,23 @@ module stub {
     }
     
     parseObject(rawObject:any):Message_stub {
-      return null;//TODO
+      var instance = new Message_stub();
+      instance.msg_id = rawObject[Message_stub.__msg_id()];
+      instance.from_account_id = rawObject[Message_stub.__from_account_id()];
+      instance.to_account_id = rawObject[Message_stub.__to_account_id()];
+      instance.create_time = rawObject[Message_stub.__create_time()];
+      instance.read_time = rawObject[Message_stub.__read_time()];
+      return instance;
     }
     
     toObject(instant:Message_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Message_stub.__msg_id()] = instant.msg_id;
+      rawObject[Message_stub.__from_account_id()] = instant.from_account_id;
+      rawObject[Message_stub.__to_account_id()] = instant.to_account_id;
+      rawObject[Message_stub.__create_time()] = instant.create_time;
+      rawObject[Message_stub.__read_time()] = instant.read_time;
+      return rawObject;
     }
 
     /* variable */

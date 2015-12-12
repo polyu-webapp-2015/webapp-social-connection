@@ -34,10 +34,20 @@ var stub;
             return list;
         };
         Announcement_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Announcement_stub();
+            instance.announcement_id = rawObject[Announcement_stub.__announcement_id()];
+            instance.subject = rawObject[Announcement_stub.__subject()];
+            instance.description = rawObject[Announcement_stub.__description()];
+            instance.create_time = rawObject[Announcement_stub.__create_time()];
+            return instance;
         };
         Announcement_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Announcement_stub.__announcement_id()] = instant.announcement_id;
+            rawObject[Announcement_stub.__subject()] = instant.subject;
+            rawObject[Announcement_stub.__description()] = instant.description;
+            rawObject[Announcement_stub.__create_time()] = instant.create_time;
+            return rawObject;
         };
         /* getter and setter */
         Announcement_stub.prototype.get_announcement_id = function () {

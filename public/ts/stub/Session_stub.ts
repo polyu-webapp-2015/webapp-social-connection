@@ -27,11 +27,17 @@ module stub {
     }
     
     parseObject(rawObject:any):Session_stub {
-      return null;//TODO
+      var instance = new Session_stub();
+      instance.event_id = rawObject[Session_stub.__event_id()];
+      instance.quota = rawObject[Session_stub.__quota()];
+      return instance;
     }
     
     toObject(instant:Session_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Session_stub.__event_id()] = instant.event_id;
+      rawObject[Session_stub.__quota()] = instant.quota;
+      return rawObject;
     }
 
     /* variable */

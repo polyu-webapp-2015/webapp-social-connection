@@ -63,9 +63,13 @@ var social_connection;
             //data[APIField.id_array] = [];
             //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
             var loader = new stub.City_stub();
-            //var callback:api.APICallback<City_stub[]> = new function (resultCode:string, data:any):City_stub[] {
-            //}
-            loader.use_all_instance_list();
+            var consumer = function (citys) {
+                citys.map(function (city) {
+                    comm.log(city.get_city_name());
+                    return null;
+                });
+            };
+            loader.use_all_instance_list(consumer);
         }
         asynchronous_logic.getAllCity = getAllCity;
     })(asynchronous_logic = social_connection.asynchronous_logic || (social_connection.asynchronous_logic = {}));

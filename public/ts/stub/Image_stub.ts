@@ -27,11 +27,17 @@ module stub {
     }
     
     parseObject(rawObject:any):Image_stub {
-      return null;//TODO
+      var instance = new Image_stub();
+      instance.image_id = rawObject[Image_stub.__image_id()];
+      instance.url = rawObject[Image_stub.__url()];
+      return instance;
     }
     
     toObject(instant:Image_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Image_stub.__image_id()] = instant.image_id;
+      rawObject[Image_stub.__url()] = instant.url;
+      return rawObject;
     }
 
     /* variable */

@@ -34,10 +34,20 @@ var stub;
             return list;
         };
         Post_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Post_stub();
+            instance.post_Id = rawObject[Post_stub.__post_Id()];
+            instance.subject = rawObject[Post_stub.__subject()];
+            instance.description = rawObject[Post_stub.__description()];
+            instance.discussboard_id = rawObject[Post_stub.__discussboard_id()];
+            return instance;
         };
         Post_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Post_stub.__post_Id()] = instant.post_Id;
+            rawObject[Post_stub.__subject()] = instant.subject;
+            rawObject[Post_stub.__description()] = instant.description;
+            rawObject[Post_stub.__discussboard_id()] = instant.discussboard_id;
+            return rawObject;
         };
         /* getter and setter */
         Post_stub.prototype.get_post_Id = function () {

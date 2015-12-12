@@ -28,11 +28,17 @@ module stub {
     }
     
     parseObject(rawObject:any):Country_stub {
-      return null;//TODO
+      var instance = new Country_stub();
+      instance.country_id = rawObject[Country_stub.__country_id()];
+      instance.country_name = rawObject[Country_stub.__country_name()];
+      return instance;
     }
     
     toObject(instant:Country_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Country_stub.__country_id()] = instant.country_id;
+      rawObject[Country_stub.__country_name()] = instant.country_name;
+      return rawObject;
     }
 
     /* variable */

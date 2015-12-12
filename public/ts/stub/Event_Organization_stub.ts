@@ -28,11 +28,17 @@ module stub {
     }
     
     parseObject(rawObject:any):Event_Organization_stub {
-      return null;//TODO
+      var instance = new Event_Organization_stub();
+      instance.event_id = rawObject[Event_Organization_stub.__event_id()];
+      instance.organization_id = rawObject[Event_Organization_stub.__organization_id()];
+      return instance;
     }
     
     toObject(instant:Event_Organization_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Event_Organization_stub.__event_id()] = instant.event_id;
+      rawObject[Event_Organization_stub.__organization_id()] = instant.organization_id;
+      return rawObject;
     }
 
     /* variable */

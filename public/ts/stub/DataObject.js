@@ -62,15 +62,15 @@ var stub;
             }
         };
         DataObject.prototype.use_all_instance_list = function (consumer) {
+            var instance = this;
             var success = function (resultCode, data) {
-                var _this = this;
                 if (resultCode == ResultCode.Success) {
                     var all_row = data[APIField.element_array];
-                    var dataObjects = all_row.map(function (row) { return _this.parseObject(row); });
+                    var dataObjects = all_row.map(instance.parseObject);
                     consumer(dataObjects);
                 }
                 else {
-                    comm.log("failed to get all instance of " + this.tableName());
+                    comm.log("failed to get all instance of " + instance.tableName());
                 }
             };
             api.get_all_row(this.tableName(), success);

@@ -28,11 +28,17 @@ module stub {
     }
     
     parseObject(rawObject:any):Friendship_Tag_stub {
-      return null;//TODO
+      var instance = new Friendship_Tag_stub();
+      instance.friendship_id = rawObject[Friendship_Tag_stub.__friendship_id()];
+      instance.tag_id = rawObject[Friendship_Tag_stub.__tag_id()];
+      return instance;
     }
     
     toObject(instant:Friendship_Tag_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[Friendship_Tag_stub.__friendship_id()] = instant.friendship_id;
+      rawObject[Friendship_Tag_stub.__tag_id()] = instant.tag_id;
+      return rawObject;
     }
 
     /* variable */

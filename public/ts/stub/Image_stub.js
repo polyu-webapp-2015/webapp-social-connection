@@ -28,10 +28,16 @@ var stub;
             return list;
         };
         Image_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Image_stub();
+            instance.image_id = rawObject[Image_stub.__image_id()];
+            instance.url = rawObject[Image_stub.__url()];
+            return instance;
         };
         Image_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Image_stub.__image_id()] = instant.image_id;
+            rawObject[Image_stub.__url()] = instant.url;
+            return rawObject;
         };
         /* getter and setter */
         Image_stub.prototype.get_image_id = function () {

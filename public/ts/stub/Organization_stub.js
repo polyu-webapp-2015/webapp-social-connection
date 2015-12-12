@@ -34,10 +34,20 @@ var stub;
             return list;
         };
         Organization_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Organization_stub();
+            instance.organization_id = rawObject[Organization_stub.__organization_id()];
+            instance.organization_type = rawObject[Organization_stub.__organization_type()];
+            instance.name = rawObject[Organization_stub.__name()];
+            instance.main_country = rawObject[Organization_stub.__main_country()];
+            return instance;
         };
         Organization_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Organization_stub.__organization_id()] = instant.organization_id;
+            rawObject[Organization_stub.__organization_type()] = instant.organization_type;
+            rawObject[Organization_stub.__name()] = instant.name;
+            rawObject[Organization_stub.__main_country()] = instant.main_country;
+            return rawObject;
         };
         /* getter and setter */
         Organization_stub.prototype.get_organization_id = function () {

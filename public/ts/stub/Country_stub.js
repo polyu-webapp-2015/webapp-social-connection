@@ -29,10 +29,16 @@ var stub;
             return list;
         };
         Country_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Country_stub();
+            instance.country_id = rawObject[Country_stub.__country_id()];
+            instance.country_name = rawObject[Country_stub.__country_name()];
+            return instance;
         };
         Country_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Country_stub.__country_id()] = instant.country_id;
+            rawObject[Country_stub.__country_name()] = instant.country_name;
+            return rawObject;
         };
         /* getter and setter */
         Country_stub.prototype.get_country_id = function () {

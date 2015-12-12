@@ -29,10 +29,16 @@ var stub;
             return list;
         };
         Friendship_Tag_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Friendship_Tag_stub();
+            instance.friendship_id = rawObject[Friendship_Tag_stub.__friendship_id()];
+            instance.tag_id = rawObject[Friendship_Tag_stub.__tag_id()];
+            return instance;
         };
         Friendship_Tag_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Friendship_Tag_stub.__friendship_id()] = instant.friendship_id;
+            rawObject[Friendship_Tag_stub.__tag_id()] = instant.tag_id;
+            return rawObject;
         };
         /* getter and setter */
         Friendship_Tag_stub.prototype.get_friendship_id = function () {

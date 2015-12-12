@@ -410,11 +410,21 @@ class DatabaseHelper
         $code = $code . "\n    }";
         $code = $code . "\n    ";
         $code = $code . "\n    parseObject(rawObject:any):$stub_name {";
-        $code = $code . "\n      return null;//TODO";
+        $code = $code . "\n      var instance = new $stub_name();";
+        foreach ($field_array as $field) {
+            $field_name = $field[self::__field_name];
+            $code = $code . "\n      instance.$field_name = rawObject[$stub_name.__$field_name()];";
+        }
+        $code = $code . "\n      return instance;";
         $code = $code . "\n    }";
         $code = $code . "\n    ";
         $code = $code . "\n    toObject(instant:$stub_name):any {";
-        $code = $code . "\n      return null;//TODO";
+        $code = $code . "\n      var rawObject = {};";
+        foreach ($field_array as $field) {
+            $field_name = $field[self::__field_name];
+            $code = $code . "\n      rawObject[$stub_name.__$field_name()] = instant.$field_name;";
+        }
+        $code = $code . "\n      return rawObject;";
         $code = $code . "\n    }";
 
         /* generate stub variable */

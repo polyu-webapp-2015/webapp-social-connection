@@ -36,10 +36,20 @@ var stub;
             return list;
         };
         Friendship_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Friendship_stub();
+            instance.friendship_id = rawObject[Friendship_stub.__friendship_id()];
+            instance.host_id = rawObject[Friendship_stub.__host_id()];
+            instance.guest_id = rawObject[Friendship_stub.__guest_id()];
+            instance.remark = rawObject[Friendship_stub.__remark()];
+            return instance;
         };
         Friendship_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Friendship_stub.__friendship_id()] = instant.friendship_id;
+            rawObject[Friendship_stub.__host_id()] = instant.host_id;
+            rawObject[Friendship_stub.__guest_id()] = instant.guest_id;
+            rawObject[Friendship_stub.__remark()] = instant.remark;
+            return rawObject;
         };
         /* getter and setter */
         Friendship_stub.prototype.get_friendship_id = function () {

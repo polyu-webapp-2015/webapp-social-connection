@@ -79,6 +79,7 @@ module social_connection {
   export module asynchronous_logic {
     //TODO test import DiscussBoard_stub = stub.DiscussBoard_stub;
     import City_stub = stub.City_stub;
+    import Consumer = comm.Consumer;
     export function login(id:string, password:string) {
       comm.indent(1);
       comm.log("try to login");
@@ -96,9 +97,13 @@ module social_connection {
       //data[APIField.id_array] = [];
       //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
       var loader = new stub.City_stub();
-      //var callback:api.APICallback<City_stub[]> = new function (resultCode:string, data:any):City_stub[] {
-      //}
-      loader.use_all_instance_list();
+      var consumer:Consumer<City_stub[]> = function (citys:City_stub[]) {
+        citys.map(city => {
+          comm.log(city.get_city_name);
+          return null;
+        });
+      };
+      loader.use_all_instance_list(consumer);
     }
 
     //export function getAllDiscussBoard() {

@@ -51,11 +51,29 @@ module stub {
     }
     
     parseObject(rawObject:any):User_stub {
-      return null;//TODO
+      var instance = new User_stub();
+      instance.account_id = rawObject[User_stub.__account_id()];
+      instance.sex = rawObject[User_stub.__sex()];
+      instance.first_name = rawObject[User_stub.__first_name()];
+      instance.last_name = rawObject[User_stub.__last_name()];
+      instance.organization_id = rawObject[User_stub.__organization_id()];
+      instance.title_id = rawObject[User_stub.__title_id()];
+      instance.city_id = rawObject[User_stub.__city_id()];
+      instance.last_announcement_datetime = rawObject[User_stub.__last_announcement_datetime()];
+      return instance;
     }
     
     toObject(instant:User_stub):any {
-      return null;//TODO
+      var rawObject = {};
+      rawObject[User_stub.__account_id()] = instant.account_id;
+      rawObject[User_stub.__sex()] = instant.sex;
+      rawObject[User_stub.__first_name()] = instant.first_name;
+      rawObject[User_stub.__last_name()] = instant.last_name;
+      rawObject[User_stub.__organization_id()] = instant.organization_id;
+      rawObject[User_stub.__title_id()] = instant.title_id;
+      rawObject[User_stub.__city_id()] = instant.city_id;
+      rawObject[User_stub.__last_announcement_datetime()] = instant.last_announcement_datetime;
+      return rawObject;
     }
 
     /* variable */

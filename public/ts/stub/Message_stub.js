@@ -37,10 +37,22 @@ var stub;
             return list;
         };
         Message_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Message_stub();
+            instance.msg_id = rawObject[Message_stub.__msg_id()];
+            instance.from_account_id = rawObject[Message_stub.__from_account_id()];
+            instance.to_account_id = rawObject[Message_stub.__to_account_id()];
+            instance.create_time = rawObject[Message_stub.__create_time()];
+            instance.read_time = rawObject[Message_stub.__read_time()];
+            return instance;
         };
         Message_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Message_stub.__msg_id()] = instant.msg_id;
+            rawObject[Message_stub.__from_account_id()] = instant.from_account_id;
+            rawObject[Message_stub.__to_account_id()] = instant.to_account_id;
+            rawObject[Message_stub.__create_time()] = instant.create_time;
+            rawObject[Message_stub.__read_time()] = instant.read_time;
+            return rawObject;
         };
         /* getter and setter */
         Message_stub.prototype.get_msg_id = function () {

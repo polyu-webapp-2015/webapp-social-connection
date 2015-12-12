@@ -25,10 +25,14 @@ var stub;
             return list;
         };
         Exhibition_stub.prototype.parseObject = function (rawObject) {
-            return null; //TODO
+            var instance = new Exhibition_stub();
+            instance.event_id = rawObject[Exhibition_stub.__event_id()];
+            return instance;
         };
         Exhibition_stub.prototype.toObject = function (instant) {
-            return null; //TODO
+            var rawObject = {};
+            rawObject[Exhibition_stub.__event_id()] = instant.event_id;
+            return rawObject;
         };
         /* getter and setter */
         Exhibition_stub.prototype.get_event_id = function () {
