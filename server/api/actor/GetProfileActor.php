@@ -34,7 +34,7 @@ class GetProfileActor extends Actor
         if ($target_account_id == -1 || !is_numeric($target_account_id))
             $target_account_id = $account_id;
         $pass_data = $data;
-        $pass_data[APIFieldEnum::_id_array] = [$target_account_id];
+        $pass_data[APIFieldEnum::_.APIFieldEnum::_id_array] = [$target_account_id];
         $pass_data[APIFieldEnum::_field_array] = self::_User_Info_Array;
         $actor = new GetProfileListActor();
         $pass_output = $actor->handle($pass_data);
