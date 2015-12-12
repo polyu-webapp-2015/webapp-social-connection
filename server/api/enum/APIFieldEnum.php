@@ -8,7 +8,10 @@ class APIFieldEnum
     const _ = "APIField";
     const _action = "action";
     const _result_code = "result_code";
+    const _data = "data";
     const _reason = "reason";
+    const _emailOrPhoneNum = "emailOrPhoneNum";
+    const _password = "password";
     const _session_id = "session_id";
     const _element_array = "element_array";
     const _profile = "profile";

@@ -1,7 +1,8 @@
-declare function get_all_row($http:any, table_name:string):any[];
-declare function set_all_row($http:any, table_name:string, rows:any[]);
+///<reference path="../main.ts"/>
+
 
 module stub {
+  import APICallback = api.APICallback;
   export class DataObjectError extends Error {
     public name = "DataObjectError";
 
@@ -45,18 +46,27 @@ module stub {
         var rawObjects:any[] = dataObjects.map(function (dataObject:DataObject) {
           return dataObject.toObject(dataObject);
         });
-        set_all_row($http, this.tableName(), rawObjects);
+        api.set_all_row(this.tableName(), rawObjects);
       } else {
         throw new DataObjectSaveError(this);
       }
     }
 
-    public get_all_instance_list($http):DataObject[] {
-      var all_row = get_all_row($http, this.tableName());
-      return all_row.map(row => this.parseObject(row));
+    public use_all_instance_list(consumer:comm.Consumer<DataObject[]>) {
+      var instance = this;
+      var success:api.APICallback<DataObject[]> = function (resultCode:string, data:any) {
+        if (resultCode == ResultCode.Success) {
+          var all_row = data[APIField.element_array];
+          var dataObjects:DataObject[] = all_row.map(instance.parseObject);
+          consumer(dataObjects);
+        } else {
+          comm.log("failed to get all instance of " + instance.tableName())
+        }
+      };
+      api.get_all_row(this.tableName(), success);
     }
 
-    public get_matched_instance_list($http, query_key_value_array):DataObject[] {
+    public use_matched_instance_list(query_key_value_array, consumer:comm.Consumer<DataObject[]>) {
       throw new TypeError("Operation not support yet");
     }
   }

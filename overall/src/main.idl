@@ -42,7 +42,10 @@ module social_connection{
   enum APIFieldEnum{
     action,
     result_code,
+    data,
     reason,
+    emailOrPhoneNum,
+    password,
     session_id,
     element_array,
     profile,

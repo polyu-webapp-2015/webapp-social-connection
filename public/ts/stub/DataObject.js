@@ -1,3 +1,4 @@
+///<reference path="../main.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -54,18 +55,27 @@ var stub;
                 var rawObjects = dataObjects.map(function (dataObject) {
                     return dataObject.toObject(dataObject);
                 });
-                set_all_row($http, this.tableName(), rawObjects);
+                api.set_all_row(this.tableName(), rawObjects);
             }
             else {
                 throw new DataObjectSaveError(this);
             }
         };
-        DataObject.prototype.get_all_instance_list = function ($http) {
-            var _this = this;
-            var all_row = get_all_row($http, this.tableName());
-            return all_row.map(function (row) { return _this.parseObject(row); });
+        DataObject.prototype.use_all_instance_list = function (consumer) {
+            var instance = this;
+            var success = function (resultCode, data) {
+                if (resultCode == ResultCode.Success) {
+                    var all_row = data[APIField.element_array];
+                    var dataObjects = all_row.map(instance.parseObject);
+                    consumer(dataObjects);
+                }
+                else {
+                    comm.log("failed to get all instance of " + instance.tableName());
+                }
+            };
+            api.get_all_row(this.tableName(), success);
         };
-        DataObject.prototype.get_matched_instance_list = function ($http, query_key_value_array) {
+        DataObject.prototype.use_matched_instance_list = function (query_key_value_array, consumer) {
             throw new TypeError("Operation not support yet");
         };
         return DataObject;
