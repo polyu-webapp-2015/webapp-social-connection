@@ -29,4 +29,3 @@ var ResultCodeEnum = function () {
     this.Logic_Error = "Logic_Error";
 };
 var ResultCode = new ResultCodeEnum();
-//# sourceMappingURL=ResultCodeEnum.js.map

@@ -115,4 +115,5 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     var session_id = sessionStorage.getItem('session_id');
     $scope.whoami(session_id);
 
+    api.$http=$http;
 })

@@ -25,4 +25,3 @@ var _api_GetLatestIdList = "GetLatestIdList";
 var _api_GetExhibition = "GetExhibition";
 var _api_CreateAttraction = "CreateAttraction";
 var _api_GetAttractionList = "GetAttractionList";
-//# sourceMappingURL=api_list.js.map

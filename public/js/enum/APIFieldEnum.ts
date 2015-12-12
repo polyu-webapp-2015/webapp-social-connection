@@ -21,4 +21,3 @@ var APIFieldEnum = function () {
     this.field_array = "field_array";
 };
 var APIField = new APIFieldEnum();
-//# sourceMappingURL=APIFieldEnum.js.map
