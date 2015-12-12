@@ -1,6 +1,7 @@
 ///<reference path="../js/enum/APIFieldEnum.ts"/>
 ///<reference path="../js/enum/ResultCodeEnum.ts"/>
 ///<reference path="../js/api_list.ts"/>
+///<reference path="stub/City_stub.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -35,6 +36,8 @@ var social_connection;
                 var sessionId = data[APIField.session_id];
                 comm.log("the session id is " + sessionId);
                 config.save_login(sessionId);
+                //asynchronous_logic.getAllDiscussBoard();
+                asynchronous_logic.getAllCity();
             }
             else {
                 comm.log("failed to login");
@@ -43,7 +46,6 @@ var social_connection;
     })(ui || (ui = {}));
     var asynchronous_logic;
     (function (asynchronous_logic) {
-        //TODO test import DiscussBoard_stub = stub.DiscussBoard_stub;
         function login(id, password) {
             comm.indent(1);
             comm.log("try to login");
@@ -55,6 +57,17 @@ var social_connection;
             comm.indent(-1);
         }
         asynchronous_logic.login = login;
+        function getAllCity() {
+            comm.log("try to get all City");
+            //var data = {};
+            //data[APIField.id_array] = [];
+            //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
+            var loader = new stub.City_stub();
+            //var callback:api.APICallback<City_stub[]> = new function (resultCode:string, data:any):City_stub[] {
+            //}
+            loader.use_all_instance_list();
+        }
+        asynchronous_logic.getAllCity = getAllCity;
     })(asynchronous_logic = social_connection.asynchronous_logic || (social_connection.asynchronous_logic = {}));
 })(social_connection || (social_connection = {}));
 var debug;
@@ -175,6 +188,15 @@ var api;
         }
     }
     api.api_call = api_call;
+    function get_all_row(table_name, callback) {
+        var data = {};
+        data[APIField.table_name] = table_name;
+        api_call(_api_GetTableRowList, data, callback);
+    }
+    api.get_all_row = get_all_row;
+    function set_all_row(table_name, rows) {
+    }
+    api.set_all_row = set_all_row;
 })(api || (api = {}));
 var task;
 (function (task_1) {

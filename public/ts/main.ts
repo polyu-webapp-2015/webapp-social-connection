@@ -1,6 +1,7 @@
 ///<reference path="../js/enum/APIFieldEnum.ts"/>
 ///<reference path="../js/enum/ResultCodeEnum.ts"/>
 ///<reference path="../js/api_list.ts"/>
+///<reference path="stub/City_stub.ts"/>
 
 module social_connection {
   /** @unsafe should not disclose this sensitive info */
@@ -30,6 +31,7 @@ module social_connection {
         comm.log("the session id is " + sessionId);
         config.save_login(sessionId);
         //asynchronous_logic.getAllDiscussBoard();
+        asynchronous_logic.getAllCity()
       } else {
         comm.log("failed to login");
       }
@@ -54,10 +56,10 @@ module social_connection {
     //      throw debug.IllegalStatusError;
     //    var profile_raws:any[] = data[APIField.element_array];
     //    var profile_list = profile_raws.map(function (raw) {
-          //return new Profile(raw["first_name"], raw["last_name"]);
-        //});
-        //return profile_list;
-      //}
+    //return new Profile(raw["first_name"], raw["last_name"]);
+    //});
+    //return profile_list;
+    //}
     //}
     //export class DiscussBoard {
     //  public desc:string;
@@ -68,14 +70,15 @@ module social_connection {
     //
     //  static parse_list:api.APICallback<DiscussBoard[]> = function (resultCode:string, data:any):DiscussBoard[] {
     //    comm.log("parsing discuss board list");
-        //var list:DiscussBoard[] = [];
-        //list.push(new DiscussBoard("123"));
-        //return list;
-      //}
+    //var list:DiscussBoard[] = [];
+    //list.push(new DiscussBoard("123"));
+    //return list;
+    //}
     //}
   }
   export module asynchronous_logic {
     //TODO test import DiscussBoard_stub = stub.DiscussBoard_stub;
+    import City_stub = stub.City_stub;
     export function login(id:string, password:string) {
       comm.indent(1);
       comm.log("try to login");
@@ -85,6 +88,17 @@ module social_connection {
       api.api_call(_api_Login, data, ui.onLogin);
       comm.log("sent login command");
       comm.indent(-1);
+    }
+
+    export function getAllCity() {
+      comm.log("try to get all City");
+      //var data = {};
+      //data[APIField.id_array] = [];
+      //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
+      var loader = new stub.City_stub();
+      //var callback:api.APICallback<City_stub[]> = new function (resultCode:string, data:any):City_stub[] {
+      //}
+      loader.use_all_instance_list();
     }
 
     //export function getAllDiscussBoard() {
@@ -131,12 +145,18 @@ module comm {
   export function indent(delta:number) {
     indentCount += delta;
   }
+
+  export interface Consumer<T> {
+    (t:T);
+  }
 }
 module api {
+  import Consumer = comm.Consumer;
   export var $http:any;
   declare var $:any;
+
   export interface APICallback<T> {
-    (resultCode:string, data:any):T;
+    (resultCode:string, data:any, consumer:Consumer<T>);
   }
 
   var _api_url = "http://localhost:8000/api/main.php";
@@ -205,6 +225,15 @@ module api {
         comm.log(result);
       });
     }
+  }
+
+  export function get_all_row(table_name:string, callback:APICallback<any>) {
+    var data = {};
+    data[APIField.table_name] = table_name;
+    api_call(_api_GetTableRowList, data, callback)
+  }
+
+  export function set_all_row(table_name:string, rows:any[]) {
   }
 }
 module task {
