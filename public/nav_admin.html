@@ -21,6 +21,10 @@
   <script src="js/LoginCtrl.js"></script>
   <script src="js/AddAnnounceCtrl.js"></script>
   <script src="js/ListCtrl.js"></script>
+  <script src="js/AddSessionCtrl.js"></script>
+  <script src="js/ProfileCtrl.js"></script>
+  <script src="js/AddAttractionCtrl.js"></script>
+  <script src="js/UserDetailCtrl.js"></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
   <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -29,29 +33,31 @@
 
 <body id="admin_nav_page" ng-controller="MainCtrl" onload="load_all_typescript_class()">
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#client_navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#admin_nav_page"><span class="glyphicon glyphicon-home nav_logo"></span></a>
-      <a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openProfileModal()"><span
-          class="glyphicon glyphicon-user nav_logo"></span></a>
-    </div>
-    <div class="collapse navbar-collapse" id="client_navbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#conferences">Conferences</a></li>
-        <li><a href="#announcements">Announcements</a></li>
-        <li><a href="#exhibitions">Exhibitions</a></li>
-        <li><a href="#rewards">Rewards</a></li>
-        <li><a href="#forum">Forum</a></li>
-        <li><a href="#analytics">Analytics</a></li>
-        <li><a href="#attractions">Attractions</a></li>
-      </ul>
-    </div>
-  </div>
+
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" id="navbar-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#client_navbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#admin_nav_page"><span class="glyphicon glyphicon-home nav_logo"></span></a>
+			<a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openProfileModal()"><span class="glyphicon glyphicon-user nav_logo" ></span></a>
+		</div>
+		<div class="collapse navbar-collapse" id="client_navbar">
+			<ul ng-click="closeNavbar()" class="nav navbar-nav navbar-right">
+				<li><a href="#conferences">Conferences</a></li>
+				<li><a href="#announcements">Announcements</a></li>
+				<li><a href="#exhibitions">Exhibitions</a></li>
+				<li><a href="#rewards">Rewards</a></li>
+				<li><a href="#forum">Forum</a></li>
+				<li><a href="#analytics">Analytics</a></li>
+				<li><a href="#attractions">Attractions</a></li>
+				<li ng-click="logoff()"><a>Log off</a></li>
+			</ul>
+		</div>
+	</div>
+
 </nav>
 <div class="jumbotron text-center">
   <h2>School of Hotel and Tourism Management</h2>
@@ -71,43 +77,44 @@
   </div>
 </div>
 <div id="announcements" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-bullhorn logo"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Announcements</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-      <button class="btn btn-ln my-btn" ng-click="openAddAnnounceModal()">Create Announcement</button>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-sm-4">
+			<span class="glyphicon glyphicon-bullhorn logo"></span>
+		</div>
+		<div class="col-sm-8">
+			<h2>Announcements</h2>
+			<h4>Lorem ipsum ...</h4>
+			<div class="well well-lg"></div>
+			<button class="btn btn-ln my-btn" ng-click="openAddAnnounceModal()">Create</button>
+		</div>
+	</div>
 </div>
-<div id="conferences" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>Conferences</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-      <button class="btn btn-ln my-btn">Manage Conferences</button>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-list-alt logo"></span>
-    </div>
-  </div>
+<div id="sessions" class="container-fluid">
+	<div class="row">
+		<div class="col-sm-8">
+			<h2>Sessions</h2>
+			<h4>Lorem ipsum ...</h4>
+			<div class="well well-lg"></div>
+			<button class="btn btn-ln my-btn" ng-click="openAddSessionModal()">Manage</button>
+		</div>
+		<div class="col-sm-4">
+			<span class="glyphicon glyphicon-list-alt logo"></span>
+		</div>
+	</div>
 </div>
 <div id="exhibitions" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-picture logo"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Exhibitions</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn">Add Exhibitions</button>
-    </div>
-  </div>
+	<div class="row">
+		<div class="col-sm-4">
+			<span class="glyphicon glyphicon-picture logo"></span>
+		</div>
+		<div class="col-sm-8">
+			<h2>Exhibitions</h2>
+			<h4>Lorem ipsum ...</h4>
+			<div class="well well-lg"></div>
+			<button class="btn btn-ln my-btn">Create</button>
+		</div>
+	</div>
+
 </div>
 <div id="rewards" class="container-fluid">
   <div class="row">
@@ -157,7 +164,7 @@
       <h2>Attractions</h2>
       <h4>Lorem ipsum ...</h4>
       <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn">Add Attractions</button>
+      <button class="btn btn-sm my-btn" ng-click='openAddAttractionModal()'>Add Attractions</button>
     </div>
   </div>
 </div>

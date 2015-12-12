@@ -24,7 +24,7 @@ function Modal(url, scope, settings) {
 }
 
 app.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;        
+    $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     // setup CSRF support
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
@@ -40,16 +40,16 @@ app.config(['$httpProvider', function($httpProvider) {
        * The workhorse; converts an object to x-www-form-urlencoded serialization.
        * @param {Object} obj
        * @return {String}
-       */ 
+       */
       var param = function(obj)
       {
         var query = '';
         var name, value, fullSubName, subName, subValue, innerObj, i;
-        
+
         for(name in obj)
         {
           value = obj[name];
-          
+
           if(value instanceof Array)
           {
             for(i=0; i<value.length; ++i)
@@ -77,10 +77,10 @@ app.config(['$httpProvider', function($httpProvider) {
             query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
           }
         }
-        
+
         return query.length ? query.substr(0, query.length - 1) : query;
       };
-      
+
       return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
     }];
   }
@@ -93,30 +93,41 @@ app.factory("$global", function($uibModal) {
   var session_id = null;
 
   return {
+
     getUser: function () {
-    // objects in javascript are volatile, 
+    // objects in javascript are volatile,
     // so it might be safer to use user like this
       return angular.copy(user);
     },
+
     setUser: function (theUser) {
-      user = theUser; // set it when user is got from the server
+      if (!theUser) 
+        user = {isAnonymous: true, account_id: "-1"}
+      else 
+        user = theUser; // set it when user is got from the server
     },
+
     setUserAttr: function (key, value) {
       // set attribute of the User
       user[key] = value;
     },
+
     setUserAnonymous: function () {
       user = {isAnonymous: true, sessionid: "-1"};
     },
+
     loggedIn: function () {
       console.log(user.isAnonymous);
       return !user.isAnonymous;
     },
+
     setSessionId: function (id) {
       session_id = id;
     },
+
     getSessionId: function () {
       return session_id;
     }
+
   };
 })
