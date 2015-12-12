@@ -11,6 +11,16 @@ var stub;
         function City_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        City_stub.__city_id = function () {
+            return "city_id";
+        };
+        City_stub.__country_id = function () {
+            return "country_id";
+        };
+        City_stub.__city_name = function () {
+            return "city_name";
+        };
         /* implement DataObject */
         City_stub.prototype.tableName = function () {
             return "City";
@@ -18,7 +28,6 @@ var stub;
         City_stub.prototype.uniqueKeyList = function () {
             var list = [];
             list.push("city_id");
-            list.push("country_id");
             list.push("city_name");
             return list;
         };
@@ -28,10 +37,40 @@ var stub;
         City_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        City_stub.__city_id = "city_id";
-        City_stub.__country_id = "country_id";
-        City_stub.__city_name = "city_name";
+        /* getter and setter */
+        City_stub.prototype.get_city_id = function () {
+            return this.city_id;
+        };
+        City_stub.prototype.set_city_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.city_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        City_stub.prototype.get_country_id = function () {
+            return this.country_id;
+        };
+        City_stub.prototype.set_country_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.country_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        City_stub.prototype.get_city_name = function () {
+            return this.city_name;
+        };
+        City_stub.prototype.set_city_name = function (newValue) {
+            if (this.isEditSupport()) {
+                this.city_name = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return City_stub;
     })(stub.DataObject);
     stub.City_stub = City_stub;

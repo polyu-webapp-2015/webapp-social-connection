@@ -11,6 +11,13 @@ var stub;
         function Title_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Title_stub.__title_id = function () {
+            return "title_id";
+        };
+        Title_stub.__title_text = function () {
+            return "title_text";
+        };
         /* implement DataObject */
         Title_stub.prototype.tableName = function () {
             return "Title";
@@ -27,9 +34,29 @@ var stub;
         Title_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Title_stub.__title_id = "title_id";
-        Title_stub.__title_text = "title_text";
+        /* getter and setter */
+        Title_stub.prototype.get_title_id = function () {
+            return this.title_id;
+        };
+        Title_stub.prototype.set_title_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.title_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Title_stub.prototype.get_title_text = function () {
+            return this.title_text;
+        };
+        Title_stub.prototype.set_title_text = function (newValue) {
+            if (this.isEditSupport()) {
+                this.title_text = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Title_stub;
     })(stub.DataObject);
     stub.Title_stub = Title_stub;

@@ -7,8 +7,13 @@ module stub {
   export class Country_stub extends stub.DataObject {
 
     /* key */
-    protected static __country_id:string = "country_id";
-    protected static __country_name:string = "country_name";
+    protected static __country_id():string {
+      return "country_id";
+    }
+
+    protected static __country_name():string {
+      return "country_name";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -16,7 +21,7 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("country_id");
       list.push("country_name");
       return list;
@@ -33,6 +38,31 @@ module stub {
     /* variable */
     private country_id:number;
     private country_name:string;
+
+    /* getter and setter */
+    public get_country_id():number {
+      return this.country_id;
+    }
+
+    public set_country_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.country_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_country_name():string {
+      return this.country_name;
+    }
+
+    public set_country_name(newValue:string) {
+      if (this.isEditSupport()) {
+        this.country_name = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

@@ -7,8 +7,13 @@ module stub {
   export class Image_stub extends stub.DataObject {
 
     /* key */
-    protected static __image_id:string = "image_id";
-    protected static __url:string = "url";
+    protected static __image_id():string {
+      return "image_id";
+    }
+
+    protected static __url():string {
+      return "url";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -16,9 +21,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("image_id");
-      list.push("url");
       return list;
     }
     
@@ -33,6 +37,31 @@ module stub {
     /* variable */
     private image_id:number;
     private url:string;
+
+    /* getter and setter */
+    public get_image_id():number {
+      return this.image_id;
+    }
+
+    public set_image_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.image_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_url():string {
+      return this.url;
+    }
+
+    public set_url(newValue:string) {
+      if (this.isEditSupport()) {
+        this.url = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

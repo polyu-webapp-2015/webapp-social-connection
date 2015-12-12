@@ -7,8 +7,13 @@ module stub {
   export class Event_Attendee_stub extends stub.DataObject {
 
     /* key */
-    protected static __event_id:string = "event_id";
-    protected static __account_id:string = "account_id";
+    protected static __event_id():string {
+      return "event_id";
+    }
+
+    protected static __account_id():string {
+      return "account_id";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -16,7 +21,7 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("event_id");
       list.push("account_id");
       return list;
@@ -33,6 +38,31 @@ module stub {
     /* variable */
     private event_id:number;
     private account_id:number;
+
+    /* getter and setter */
+    public get_event_id():number {
+      return this.event_id;
+    }
+
+    public set_event_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.event_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_account_id():number {
+      return this.account_id;
+    }
+
+    public set_account_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.account_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

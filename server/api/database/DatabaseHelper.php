@@ -388,21 +388,23 @@ class DatabaseHelper
         $code = $code . "\n\n    /* key */";
         foreach ($field_array as $field) {
             $field_name = $field[self::__field_name];
-//            $code = $code . "\n    public static __$field_name:string = \"$field_name\";";
-            $code = $code . "\n    protected static __$field_name:string = \"$field_name\";";
+//            $code = $code . "\n    protected static __$field_name:string = \"$field_name\";";
+            $code = $code . "\n    protected static __$field_name():string {\n      return \"$field_name\";\n    }\n";
         }
 
         /* generate stub implement code */
-        $code = $code . "\n\n    /* implement DataObject */";
+        $code = $code . "\n    /* implement DataObject */";
         $code = $code . "\n    tableName():string {";
         $code = $code . "\n      return \"$table_name\";";
         $code = $code . "\n    }";
         $code = $code . "\n    ";
         $code = $code . "\n    uniqueKeyList():string[] {";
-        $code = $code . "\n      var list : string[] = [];";
+        $code = $code . "\n      var list:string[] = [];";
         foreach ($field_array as $field) {
-            $field_name = $field[self::__field_name];
-            $code = $code . "\n      list.push(\"$field_name\");";
+            if ($field[self::__field_unique]) {
+                $field_name = $field[self::__field_name];
+                $code = $code . "\n      list.push(\"$field_name\");";
+            }
         }
         $code = $code . "\n      return list;";
         $code = $code . "\n    }";
@@ -423,13 +425,28 @@ class DatabaseHelper
             $code = $code . "\n    private $field_name:$field_type;";
         }
 
-        $code = $code . "\n";
+        /* generate stub getter and setter */
+        $code = $code . "\n\n    /* getter and setter */";
+        foreach ($field_array as $field) {
+            $field_name = $field[self::__field_name];
+            $field_type = self::db_type_to_typescript_type($field[self::__field_type]);
+            $code = $code . "
+    public get_$field_name():$field_type {
+      return this.$field_name;
+    }\n";
+            $code = "$code
+    public set_$field_name(newValue:$field_type) {
+      if (this.isEditSupport()) {
+        this.$field_name = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }\n";
+        }
+
+//        $code = $code . "\n";
         $code = "$code\n  }";
         $code = "$code\n}";
-
-        /* generate model */
-//        $code = "$code\n" . "class $table_name" . " {";
-//        $code = $code . "\n    public static table_name:string = \"$table_name\" ;";
 
         return [
             self::__filename => $file_name,
@@ -441,7 +458,8 @@ class DatabaseHelper
      * @param string $db_type
      * @return string
      */
-    public static function db_type_to_typescript_type($db_type)
+    public
+    static function db_type_to_typescript_type($db_type)
     {
         if (preg_match("/^char/", $db_type))
             $dest_type = "string";
@@ -463,7 +481,8 @@ class DatabaseHelper
         return $dest_type;
     }
 
-    public static function generate_enum_stub_array(array $field_array)
+    public
+    static function generate_enum_stub_array(array $field_array)
     {
         $enum_stub_array = [];
         foreach ($field_array as $field) {
@@ -487,7 +506,8 @@ class DatabaseHelper
         return $enum_stub_array;
     }
 
-    public static function generate_enum_javascript_array(array $field_array)
+    public
+    static function generate_enum_javascript_array(array $field_array)
     {
         $enum_stub_array = [];
         foreach ($field_array as $field) {
@@ -514,7 +534,8 @@ class DatabaseHelper
 //    const backtick = "`";
     const backtick = "";
 
-    public static function generate_prepared_statement($table_name, array $field_array)
+    public
+    static function generate_prepared_statement($table_name, array $field_array)
     {
         $bt = self::backtick;
         $file_name = $table_name . "_insert.sql";
@@ -535,7 +556,8 @@ class DatabaseHelper
         ];
     }
 
-    public static function write_php_class_array_to_directory($directory, $class_array)
+    public
+    static function write_php_class_array_to_directory($directory, $class_array)
     {
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
@@ -554,12 +576,14 @@ class DatabaseHelper
         echo "<br> written to $directory/ <hr>";
     }
 
-    private static function filename_ts_to_js($filename)
+    private
+    static function filename_ts_to_js($filename)
     {
         return preg_replace('(ts$)', 'js', $filename);
     }
 
-    public static function write_typescript_class_array_to_directory($directory, $class_array)
+    public
+    static function write_typescript_class_array_to_directory($directory, $class_array)
     {
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
@@ -581,7 +605,8 @@ class DatabaseHelper
         echo "<br> written to $directory/ <hr>";
     }
 
-    public static function write_script_array_to_directory($directory, $script_array)
+    public
+    static function write_script_array_to_directory($directory, $script_array)
     {
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
@@ -595,7 +620,8 @@ class DatabaseHelper
         echo "<br> written to $directory/ <hr>";
     }
 
-    public static function generate_all_table_stub()
+    public
+    static function generate_all_table_stub()
     {
         $table_class_php_array = [];
         $table_class_typescript_array = [];
@@ -628,7 +654,8 @@ class DatabaseHelper
         self::write_typescript_class_array_to_directory(self::_typescript_directory, $table_class_typescript_array);
     }
 
-    public static function get_prepared_statement($filename)
+    public
+    static function get_prepared_statement($filename)
     {
         $path = self::_prepared_statement_directory . '/' . $filename;
         $content = file_get_contents($path);

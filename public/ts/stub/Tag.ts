@@ -7,8 +7,13 @@ module stub {
   export class Tag_stub extends stub.DataObject {
 
     /* key */
-    protected static __tag_id:string = "tag_id";
-    protected static __tag_content:string = "tag_content";
+    protected static __tag_id():string {
+      return "tag_id";
+    }
+
+    protected static __tag_content():string {
+      return "tag_content";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -16,7 +21,7 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("tag_id");
       list.push("tag_content");
       return list;
@@ -33,6 +38,31 @@ module stub {
     /* variable */
     private tag_id:number;
     private tag_content:string;
+
+    /* getter and setter */
+    public get_tag_id():number {
+      return this.tag_id;
+    }
+
+    public set_tag_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.tag_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_tag_content():string {
+      return this.tag_content;
+    }
+
+    public set_tag_content(newValue:string) {
+      if (this.isEditSupport()) {
+        this.tag_content = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

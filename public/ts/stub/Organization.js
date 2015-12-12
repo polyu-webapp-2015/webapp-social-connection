@@ -11,6 +11,19 @@ var stub;
         function Organization_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Organization_stub.__organization_id = function () {
+            return "organization_id";
+        };
+        Organization_stub.__organization_type = function () {
+            return "organization_type";
+        };
+        Organization_stub.__name = function () {
+            return "name";
+        };
+        Organization_stub.__main_country = function () {
+            return "main_country";
+        };
         /* implement DataObject */
         Organization_stub.prototype.tableName = function () {
             return "Organization";
@@ -18,9 +31,6 @@ var stub;
         Organization_stub.prototype.uniqueKeyList = function () {
             var list = [];
             list.push("organization_id");
-            list.push("organization_type");
-            list.push("name");
-            list.push("main_country");
             return list;
         };
         Organization_stub.prototype.parseObject = function (rawObject) {
@@ -29,11 +39,51 @@ var stub;
         Organization_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Organization_stub.__organization_id = "organization_id";
-        Organization_stub.__organization_type = "organization_type";
-        Organization_stub.__name = "name";
-        Organization_stub.__main_country = "main_country";
+        /* getter and setter */
+        Organization_stub.prototype.get_organization_id = function () {
+            return this.organization_id;
+        };
+        Organization_stub.prototype.set_organization_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.organization_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Organization_stub.prototype.get_organization_type = function () {
+            return this.organization_type;
+        };
+        Organization_stub.prototype.set_organization_type = function (newValue) {
+            if (this.isEditSupport()) {
+                this.organization_type = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Organization_stub.prototype.get_name = function () {
+            return this.name;
+        };
+        Organization_stub.prototype.set_name = function (newValue) {
+            if (this.isEditSupport()) {
+                this.name = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Organization_stub.prototype.get_main_country = function () {
+            return this.main_country;
+        };
+        Organization_stub.prototype.set_main_country = function (newValue) {
+            if (this.isEditSupport()) {
+                this.main_country = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Organization_stub;
     })(stub.DataObject);
     stub.Organization_stub = Organization_stub;

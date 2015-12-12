@@ -11,6 +11,13 @@ var stub;
         function Tag_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Tag_stub.__tag_id = function () {
+            return "tag_id";
+        };
+        Tag_stub.__tag_content = function () {
+            return "tag_content";
+        };
         /* implement DataObject */
         Tag_stub.prototype.tableName = function () {
             return "Tag";
@@ -27,9 +34,29 @@ var stub;
         Tag_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Tag_stub.__tag_id = "tag_id";
-        Tag_stub.__tag_content = "tag_content";
+        /* getter and setter */
+        Tag_stub.prototype.get_tag_id = function () {
+            return this.tag_id;
+        };
+        Tag_stub.prototype.set_tag_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.tag_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Tag_stub.prototype.get_tag_content = function () {
+            return this.tag_content;
+        };
+        Tag_stub.prototype.set_tag_content = function (newValue) {
+            if (this.isEditSupport()) {
+                this.tag_content = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Tag_stub;
     })(stub.DataObject);
     stub.Tag_stub = Tag_stub;

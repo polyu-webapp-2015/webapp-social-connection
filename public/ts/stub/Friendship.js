@@ -11,6 +11,19 @@ var stub;
         function Friendship_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Friendship_stub.__friendship_id = function () {
+            return "friendship_id";
+        };
+        Friendship_stub.__host_id = function () {
+            return "host_id";
+        };
+        Friendship_stub.__guest_id = function () {
+            return "guest_id";
+        };
+        Friendship_stub.__remark = function () {
+            return "remark";
+        };
         /* implement DataObject */
         Friendship_stub.prototype.tableName = function () {
             return "Friendship";
@@ -20,7 +33,6 @@ var stub;
             list.push("friendship_id");
             list.push("host_id");
             list.push("guest_id");
-            list.push("remark");
             return list;
         };
         Friendship_stub.prototype.parseObject = function (rawObject) {
@@ -29,11 +41,51 @@ var stub;
         Friendship_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Friendship_stub.__friendship_id = "friendship_id";
-        Friendship_stub.__host_id = "host_id";
-        Friendship_stub.__guest_id = "guest_id";
-        Friendship_stub.__remark = "remark";
+        /* getter and setter */
+        Friendship_stub.prototype.get_friendship_id = function () {
+            return this.friendship_id;
+        };
+        Friendship_stub.prototype.set_friendship_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.friendship_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Friendship_stub.prototype.get_host_id = function () {
+            return this.host_id;
+        };
+        Friendship_stub.prototype.set_host_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.host_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Friendship_stub.prototype.get_guest_id = function () {
+            return this.guest_id;
+        };
+        Friendship_stub.prototype.set_guest_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.guest_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Friendship_stub.prototype.get_remark = function () {
+            return this.remark;
+        };
+        Friendship_stub.prototype.set_remark = function (newValue) {
+            if (this.isEditSupport()) {
+                this.remark = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Friendship_stub;
     })(stub.DataObject);
     stub.Friendship_stub = Friendship_stub;

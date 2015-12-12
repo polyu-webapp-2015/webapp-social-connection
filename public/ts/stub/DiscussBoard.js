@@ -11,6 +11,16 @@ var stub;
         function DiscussBoard_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        DiscussBoard_stub.__discussboard_id = function () {
+            return "discussboard_id";
+        };
+        DiscussBoard_stub.__subject = function () {
+            return "subject";
+        };
+        DiscussBoard_stub.__description = function () {
+            return "description";
+        };
         /* implement DataObject */
         DiscussBoard_stub.prototype.tableName = function () {
             return "DiscussBoard";
@@ -18,8 +28,6 @@ var stub;
         DiscussBoard_stub.prototype.uniqueKeyList = function () {
             var list = [];
             list.push("discussboard_id");
-            list.push("subject");
-            list.push("description");
             return list;
         };
         DiscussBoard_stub.prototype.parseObject = function (rawObject) {
@@ -28,10 +36,40 @@ var stub;
         DiscussBoard_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        DiscussBoard_stub.__discussboard_id = "discussboard_id";
-        DiscussBoard_stub.__subject = "subject";
-        DiscussBoard_stub.__description = "description";
+        /* getter and setter */
+        DiscussBoard_stub.prototype.get_discussboard_id = function () {
+            return this.discussboard_id;
+        };
+        DiscussBoard_stub.prototype.set_discussboard_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.discussboard_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        DiscussBoard_stub.prototype.get_subject = function () {
+            return this.subject;
+        };
+        DiscussBoard_stub.prototype.set_subject = function (newValue) {
+            if (this.isEditSupport()) {
+                this.subject = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        DiscussBoard_stub.prototype.get_description = function () {
+            return this.description;
+        };
+        DiscussBoard_stub.prototype.set_description = function (newValue) {
+            if (this.isEditSupport()) {
+                this.description = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return DiscussBoard_stub;
     })(stub.DataObject);
     stub.DiscussBoard_stub = DiscussBoard_stub;

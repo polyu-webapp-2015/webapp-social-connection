@@ -7,9 +7,17 @@ module stub {
   export class City_stub extends stub.DataObject {
 
     /* key */
-    protected static __city_id:string = "city_id";
-    protected static __country_id:string = "country_id";
-    protected static __city_name:string = "city_name";
+    protected static __city_id():string {
+      return "city_id";
+    }
+
+    protected static __country_id():string {
+      return "country_id";
+    }
+
+    protected static __city_name():string {
+      return "city_name";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -17,9 +25,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("city_id");
-      list.push("country_id");
       list.push("city_name");
       return list;
     }
@@ -36,6 +43,43 @@ module stub {
     private city_id:number;
     private country_id:number;
     private city_name:string;
+
+    /* getter and setter */
+    public get_city_id():number {
+      return this.city_id;
+    }
+
+    public set_city_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.city_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_country_id():number {
+      return this.country_id;
+    }
+
+    public set_country_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.country_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_city_name():string {
+      return this.city_name;
+    }
+
+    public set_city_name(newValue:string) {
+      if (this.isEditSupport()) {
+        this.city_name = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

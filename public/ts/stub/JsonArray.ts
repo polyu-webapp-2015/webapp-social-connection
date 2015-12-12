@@ -7,8 +7,13 @@ module stub {
   export class JsonArray_stub extends stub.DataObject {
 
     /* key */
-    protected static __JsonArray_id:string = "JsonArray_id";
-    protected static __JsonArray_content:string = "JsonArray_content";
+    protected static __JsonArray_id():string {
+      return "JsonArray_id";
+    }
+
+    protected static __JsonArray_content():string {
+      return "JsonArray_content";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -16,9 +21,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("JsonArray_id");
-      list.push("JsonArray_content");
       return list;
     }
     
@@ -33,6 +37,31 @@ module stub {
     /* variable */
     private JsonArray_id:number;
     private JsonArray_content:string;
+
+    /* getter and setter */
+    public get_JsonArray_id():number {
+      return this.JsonArray_id;
+    }
+
+    public set_JsonArray_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.JsonArray_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_JsonArray_content():string {
+      return this.JsonArray_content;
+    }
+
+    public set_JsonArray_content(newValue:string) {
+      if (this.isEditSupport()) {
+        this.JsonArray_content = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

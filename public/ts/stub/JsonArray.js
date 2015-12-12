@@ -11,6 +11,13 @@ var stub;
         function JsonArray_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        JsonArray_stub.__JsonArray_id = function () {
+            return "JsonArray_id";
+        };
+        JsonArray_stub.__JsonArray_content = function () {
+            return "JsonArray_content";
+        };
         /* implement DataObject */
         JsonArray_stub.prototype.tableName = function () {
             return "JsonArray";
@@ -18,7 +25,6 @@ var stub;
         JsonArray_stub.prototype.uniqueKeyList = function () {
             var list = [];
             list.push("JsonArray_id");
-            list.push("JsonArray_content");
             return list;
         };
         JsonArray_stub.prototype.parseObject = function (rawObject) {
@@ -27,9 +33,29 @@ var stub;
         JsonArray_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        JsonArray_stub.__JsonArray_id = "JsonArray_id";
-        JsonArray_stub.__JsonArray_content = "JsonArray_content";
+        /* getter and setter */
+        JsonArray_stub.prototype.get_JsonArray_id = function () {
+            return this.JsonArray_id;
+        };
+        JsonArray_stub.prototype.set_JsonArray_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.JsonArray_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        JsonArray_stub.prototype.get_JsonArray_content = function () {
+            return this.JsonArray_content;
+        };
+        JsonArray_stub.prototype.set_JsonArray_content = function (newValue) {
+            if (this.isEditSupport()) {
+                this.JsonArray_content = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return JsonArray_stub;
     })(stub.DataObject);
     stub.JsonArray_stub = JsonArray_stub;

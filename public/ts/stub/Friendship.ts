@@ -7,10 +7,21 @@ module stub {
   export class Friendship_stub extends stub.DataObject {
 
     /* key */
-    protected static __friendship_id:string = "friendship_id";
-    protected static __host_id:string = "host_id";
-    protected static __guest_id:string = "guest_id";
-    protected static __remark:string = "remark";
+    protected static __friendship_id():string {
+      return "friendship_id";
+    }
+
+    protected static __host_id():string {
+      return "host_id";
+    }
+
+    protected static __guest_id():string {
+      return "guest_id";
+    }
+
+    protected static __remark():string {
+      return "remark";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -18,11 +29,10 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("friendship_id");
       list.push("host_id");
       list.push("guest_id");
-      list.push("remark");
       return list;
     }
     
@@ -39,6 +49,55 @@ module stub {
     private host_id:number;
     private guest_id:number;
     private remark:string;
+
+    /* getter and setter */
+    public get_friendship_id():number {
+      return this.friendship_id;
+    }
+
+    public set_friendship_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.friendship_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_host_id():number {
+      return this.host_id;
+    }
+
+    public set_host_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.host_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_guest_id():number {
+      return this.guest_id;
+    }
+
+    public set_guest_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.guest_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_remark():string {
+      return this.remark;
+    }
+
+    public set_remark(newValue:string) {
+      if (this.isEditSupport()) {
+        this.remark = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

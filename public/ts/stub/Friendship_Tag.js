@@ -11,6 +11,13 @@ var stub;
         function Friendship_Tag_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Friendship_Tag_stub.__friendship_id = function () {
+            return "friendship_id";
+        };
+        Friendship_Tag_stub.__tag_id = function () {
+            return "tag_id";
+        };
         /* implement DataObject */
         Friendship_Tag_stub.prototype.tableName = function () {
             return "Friendship_Tag";
@@ -27,9 +34,29 @@ var stub;
         Friendship_Tag_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Friendship_Tag_stub.__friendship_id = "friendship_id";
-        Friendship_Tag_stub.__tag_id = "tag_id";
+        /* getter and setter */
+        Friendship_Tag_stub.prototype.get_friendship_id = function () {
+            return this.friendship_id;
+        };
+        Friendship_Tag_stub.prototype.set_friendship_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.friendship_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Friendship_Tag_stub.prototype.get_tag_id = function () {
+            return this.tag_id;
+        };
+        Friendship_Tag_stub.prototype.set_tag_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.tag_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Friendship_Tag_stub;
     })(stub.DataObject);
     stub.Friendship_Tag_stub = Friendship_Tag_stub;

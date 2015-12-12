@@ -7,9 +7,17 @@ module stub {
   export class DiscussBoard_stub extends stub.DataObject {
 
     /* key */
-    protected static __discussboard_id:string = "discussboard_id";
-    protected static __subject:string = "subject";
-    protected static __description:string = "description";
+    protected static __discussboard_id():string {
+      return "discussboard_id";
+    }
+
+    protected static __subject():string {
+      return "subject";
+    }
+
+    protected static __description():string {
+      return "description";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -17,10 +25,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("discussboard_id");
-      list.push("subject");
-      list.push("description");
       return list;
     }
     
@@ -36,6 +42,43 @@ module stub {
     private discussboard_id:number;
     private subject:string;
     private description:string;
+
+    /* getter and setter */
+    public get_discussboard_id():number {
+      return this.discussboard_id;
+    }
+
+    public set_discussboard_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.discussboard_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_subject():string {
+      return this.subject;
+    }
+
+    public set_subject(newValue:string) {
+      if (this.isEditSupport()) {
+        this.subject = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_description():string {
+      return this.description;
+    }
+
+    public set_description(newValue:string) {
+      if (this.isEditSupport()) {
+        this.description = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

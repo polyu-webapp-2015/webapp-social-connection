@@ -11,6 +11,13 @@ var stub;
         function Floor_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Floor_stub.__floor_id = function () {
+            return "floor_id";
+        };
+        Floor_stub.__name = function () {
+            return "name";
+        };
         /* implement DataObject */
         Floor_stub.prototype.tableName = function () {
             return "Floor";
@@ -18,7 +25,6 @@ var stub;
         Floor_stub.prototype.uniqueKeyList = function () {
             var list = [];
             list.push("floor_id");
-            list.push("name");
             return list;
         };
         Floor_stub.prototype.parseObject = function (rawObject) {
@@ -27,9 +33,29 @@ var stub;
         Floor_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Floor_stub.__floor_id = "floor_id";
-        Floor_stub.__name = "name";
+        /* getter and setter */
+        Floor_stub.prototype.get_floor_id = function () {
+            return this.floor_id;
+        };
+        Floor_stub.prototype.set_floor_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.floor_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Floor_stub.prototype.get_name = function () {
+            return this.name;
+        };
+        Floor_stub.prototype.set_name = function (newValue) {
+            if (this.isEditSupport()) {
+                this.name = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Floor_stub;
     })(stub.DataObject);
     stub.Floor_stub = Floor_stub;

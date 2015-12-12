@@ -11,6 +11,22 @@ var stub;
         function Account_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Account_stub.__account_id = function () {
+            return "account_id";
+        };
+        Account_stub.__password = function () {
+            return "password";
+        };
+        Account_stub.__account_type = function () {
+            return "account_type";
+        };
+        Account_stub.__email = function () {
+            return "email";
+        };
+        Account_stub.__phone_num = function () {
+            return "phone_num";
+        };
         /* implement DataObject */
         Account_stub.prototype.tableName = function () {
             return "Account";
@@ -18,8 +34,6 @@ var stub;
         Account_stub.prototype.uniqueKeyList = function () {
             var list = [];
             list.push("account_id");
-            list.push("password");
-            list.push("account_type");
             list.push("email");
             list.push("phone_num");
             return list;
@@ -30,12 +44,62 @@ var stub;
         Account_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Account_stub.__account_id = "account_id";
-        Account_stub.__password = "password";
-        Account_stub.__account_type = "account_type";
-        Account_stub.__email = "email";
-        Account_stub.__phone_num = "phone_num";
+        /* getter and setter */
+        Account_stub.prototype.get_account_id = function () {
+            return this.account_id;
+        };
+        Account_stub.prototype.set_account_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.account_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Account_stub.prototype.get_password = function () {
+            return this.password;
+        };
+        Account_stub.prototype.set_password = function (newValue) {
+            if (this.isEditSupport()) {
+                this.password = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Account_stub.prototype.get_account_type = function () {
+            return this.account_type;
+        };
+        Account_stub.prototype.set_account_type = function (newValue) {
+            if (this.isEditSupport()) {
+                this.account_type = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Account_stub.prototype.get_email = function () {
+            return this.email;
+        };
+        Account_stub.prototype.set_email = function (newValue) {
+            if (this.isEditSupport()) {
+                this.email = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Account_stub.prototype.get_phone_num = function () {
+            return this.phone_num;
+        };
+        Account_stub.prototype.set_phone_num = function (newValue) {
+            if (this.isEditSupport()) {
+                this.phone_num = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Account_stub;
     })(stub.DataObject);
     stub.Account_stub = Account_stub;

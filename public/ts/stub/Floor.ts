@@ -7,8 +7,13 @@ module stub {
   export class Floor_stub extends stub.DataObject {
 
     /* key */
-    protected static __floor_id:string = "floor_id";
-    protected static __name:string = "name";
+    protected static __floor_id():string {
+      return "floor_id";
+    }
+
+    protected static __name():string {
+      return "name";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -16,9 +21,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("floor_id");
-      list.push("name");
       return list;
     }
     
@@ -33,6 +37,31 @@ module stub {
     /* variable */
     private floor_id:number;
     private name:string;
+
+    /* getter and setter */
+    public get_floor_id():number {
+      return this.floor_id;
+    }
+
+    public set_floor_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.floor_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_name():string {
+      return this.name;
+    }
+
+    public set_name(newValue:string) {
+      if (this.isEditSupport()) {
+        this.name = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

@@ -7,11 +7,25 @@ module stub {
   export class Message_stub extends stub.DataObject {
 
     /* key */
-    protected static __msg_id:string = "msg_id";
-    protected static __from_account_id:string = "from_account_id";
-    protected static __to_account_id:string = "to_account_id";
-    protected static __create_time:string = "create_time";
-    protected static __read_time:string = "read_time";
+    protected static __msg_id():string {
+      return "msg_id";
+    }
+
+    protected static __from_account_id():string {
+      return "from_account_id";
+    }
+
+    protected static __to_account_id():string {
+      return "to_account_id";
+    }
+
+    protected static __create_time():string {
+      return "create_time";
+    }
+
+    protected static __read_time():string {
+      return "read_time";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -19,12 +33,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("msg_id");
-      list.push("from_account_id");
-      list.push("to_account_id");
-      list.push("create_time");
-      list.push("read_time");
       return list;
     }
     
@@ -42,6 +52,67 @@ module stub {
     private to_account_id:number;
     private create_time:string;
     private read_time:string;
+
+    /* getter and setter */
+    public get_msg_id():number {
+      return this.msg_id;
+    }
+
+    public set_msg_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.msg_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_from_account_id():number {
+      return this.from_account_id;
+    }
+
+    public set_from_account_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.from_account_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_to_account_id():number {
+      return this.to_account_id;
+    }
+
+    public set_to_account_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.to_account_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_create_time():string {
+      return this.create_time;
+    }
+
+    public set_create_time(newValue:string) {
+      if (this.isEditSupport()) {
+        this.create_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_read_time():string {
+      return this.read_time;
+    }
+
+    public set_read_time(newValue:string) {
+      if (this.isEditSupport()) {
+        this.read_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

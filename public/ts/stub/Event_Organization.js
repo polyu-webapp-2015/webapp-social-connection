@@ -11,6 +11,13 @@ var stub;
         function Event_Organization_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Event_Organization_stub.__event_id = function () {
+            return "event_id";
+        };
+        Event_Organization_stub.__organization_id = function () {
+            return "organization_id";
+        };
         /* implement DataObject */
         Event_Organization_stub.prototype.tableName = function () {
             return "Event_Organization";
@@ -27,9 +34,29 @@ var stub;
         Event_Organization_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Event_Organization_stub.__event_id = "event_id";
-        Event_Organization_stub.__organization_id = "organization_id";
+        /* getter and setter */
+        Event_Organization_stub.prototype.get_event_id = function () {
+            return this.event_id;
+        };
+        Event_Organization_stub.prototype.set_event_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.event_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Event_Organization_stub.prototype.get_organization_id = function () {
+            return this.organization_id;
+        };
+        Event_Organization_stub.prototype.set_organization_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.organization_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Event_Organization_stub;
     })(stub.DataObject);
     stub.Event_Organization_stub = Event_Organization_stub;

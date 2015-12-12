@@ -11,6 +11,10 @@ var stub;
         function Exhibition_stub() {
             _super.apply(this, arguments);
         }
+        /* key */
+        Exhibition_stub.__event_id = function () {
+            return "event_id";
+        };
         /* implement DataObject */
         Exhibition_stub.prototype.tableName = function () {
             return "Exhibition";
@@ -26,8 +30,18 @@ var stub;
         Exhibition_stub.prototype.toObject = function (instant) {
             return null; //TODO
         };
-        /* key */
-        Exhibition_stub.__event_id = "event_id";
+        /* getter and setter */
+        Exhibition_stub.prototype.get_event_id = function () {
+            return this.event_id;
+        };
+        Exhibition_stub.prototype.set_event_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.event_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Exhibition_stub;
     })(stub.DataObject);
     stub.Exhibition_stub = Exhibition_stub;

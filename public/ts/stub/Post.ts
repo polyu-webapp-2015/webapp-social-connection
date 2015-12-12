@@ -7,10 +7,21 @@ module stub {
   export class Post_stub extends stub.DataObject {
 
     /* key */
-    protected static __post_Id:string = "post_Id";
-    protected static __subject:string = "subject";
-    protected static __description:string = "description";
-    protected static __discussboard_id:string = "discussboard_id";
+    protected static __post_Id():string {
+      return "post_Id";
+    }
+
+    protected static __subject():string {
+      return "subject";
+    }
+
+    protected static __description():string {
+      return "description";
+    }
+
+    protected static __discussboard_id():string {
+      return "discussboard_id";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -18,11 +29,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("post_Id");
-      list.push("subject");
-      list.push("description");
-      list.push("discussboard_id");
       return list;
     }
     
@@ -39,6 +47,55 @@ module stub {
     private subject:string;
     private description:string;
     private discussboard_id:number;
+
+    /* getter and setter */
+    public get_post_Id():number {
+      return this.post_Id;
+    }
+
+    public set_post_Id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.post_Id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_subject():string {
+      return this.subject;
+    }
+
+    public set_subject(newValue:string) {
+      if (this.isEditSupport()) {
+        this.subject = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_description():string {
+      return this.description;
+    }
+
+    public set_description(newValue:string) {
+      if (this.isEditSupport()) {
+        this.description = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_discussboard_id():number {
+      return this.discussboard_id;
+    }
+
+    public set_discussboard_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.discussboard_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

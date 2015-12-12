@@ -7,10 +7,21 @@ module stub {
   export class Announcement_stub extends stub.DataObject {
 
     /* key */
-    protected static __announcement_id:string = "announcement_id";
-    protected static __subject:string = "subject";
-    protected static __description:string = "description";
-    protected static __create_time:string = "create_time";
+    protected static __announcement_id():string {
+      return "announcement_id";
+    }
+
+    protected static __subject():string {
+      return "subject";
+    }
+
+    protected static __description():string {
+      return "description";
+    }
+
+    protected static __create_time():string {
+      return "create_time";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -18,11 +29,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("announcement_id");
-      list.push("subject");
-      list.push("description");
-      list.push("create_time");
       return list;
     }
     
@@ -39,6 +47,55 @@ module stub {
     private subject:string;
     private description:string;
     private create_time:string;
+
+    /* getter and setter */
+    public get_announcement_id():number {
+      return this.announcement_id;
+    }
+
+    public set_announcement_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.announcement_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_subject():string {
+      return this.subject;
+    }
+
+    public set_subject(newValue:string) {
+      if (this.isEditSupport()) {
+        this.subject = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_description():string {
+      return this.description;
+    }
+
+    public set_description(newValue:string) {
+      if (this.isEditSupport()) {
+        this.description = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_create_time():string {
+      return this.create_time;
+    }
+
+    public set_create_time(newValue:string) {
+      if (this.isEditSupport()) {
+        this.create_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

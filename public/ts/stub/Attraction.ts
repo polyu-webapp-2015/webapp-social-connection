@@ -7,7 +7,9 @@ module stub {
   export class Attraction_stub extends stub.DataObject {
 
     /* key */
-    protected static __event_id:string = "event_id";
+    protected static __event_id():string {
+      return "event_id";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -15,7 +17,7 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("event_id");
       return list;
     }
@@ -30,6 +32,19 @@ module stub {
 
     /* variable */
     private event_id:number;
+
+    /* getter and setter */
+    public get_event_id():number {
+      return this.event_id;
+    }
+
+    public set_event_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.event_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

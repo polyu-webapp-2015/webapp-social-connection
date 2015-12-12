@@ -7,8 +7,13 @@ module stub {
   export class Friendship_Tag_stub extends stub.DataObject {
 
     /* key */
-    protected static __friendship_id:string = "friendship_id";
-    protected static __tag_id:string = "tag_id";
+    protected static __friendship_id():string {
+      return "friendship_id";
+    }
+
+    protected static __tag_id():string {
+      return "tag_id";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -16,7 +21,7 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("friendship_id");
       list.push("tag_id");
       return list;
@@ -33,6 +38,31 @@ module stub {
     /* variable */
     private friendship_id:number;
     private tag_id:number;
+
+    /* getter and setter */
+    public get_friendship_id():number {
+      return this.friendship_id;
+    }
+
+    public set_friendship_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.friendship_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_tag_id():number {
+      return this.tag_id;
+    }
+
+    public set_tag_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.tag_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }

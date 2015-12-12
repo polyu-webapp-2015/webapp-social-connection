@@ -7,8 +7,13 @@ module stub {
   export class Venus_stub extends stub.DataObject {
 
     /* key */
-    protected static __venue_id:string = "venue_id";
-    protected static __floor_id:string = "floor_id";
+    protected static __venue_id():string {
+      return "venue_id";
+    }
+
+    protected static __floor_id():string {
+      return "floor_id";
+    }
 
     /* implement DataObject */
     tableName():string {
@@ -16,9 +21,8 @@ module stub {
     }
     
     uniqueKeyList():string[] {
-      var list : string[] = [];
+      var list:string[] = [];
       list.push("venue_id");
-      list.push("floor_id");
       return list;
     }
     
@@ -33,6 +37,31 @@ module stub {
     /* variable */
     private venue_id:number;
     private floor_id:number;
+
+    /* getter and setter */
+    public get_venue_id():number {
+      return this.venue_id;
+    }
+
+    public set_venue_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.venue_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_floor_id():number {
+      return this.floor_id;
+    }
+
+    public set_floor_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.floor_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
 
   }
 }
