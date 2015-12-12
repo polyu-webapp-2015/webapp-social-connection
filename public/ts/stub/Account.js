@@ -1,36 +1,43 @@
-var Account_stub = (function () {
-    function Account_stub() {
-    }
-    Account_stub.getObject = function ($http) {
-        get_all_row($http, this.table_name);
-    };
-    Account_stub.parseObject = function (rawObject) {
-        //TODO
-        var myAccount = new Account();
-        myAccount.account_id = rawObject.account_id;
-        myAccount.password = rawObject.password;
-        myAccount.account_type = rawObject.account_type;
-        myAccount.email = rawObject.email;
-        myAccount.phone_num = rawObject.phone_num;
-        return myAccount;
-    };
-    Account_stub.get_all_instance = function ($http) {
-        var _this = this;
-        var all_row = get_all_row($http, this.table_name);
-        return all_row.map(function (row) { return _this.parseObject(row); });
-    };
-    Account_stub.table_name = "Account";
-    Account_stub.__account_id = "account_id";
-    Account_stub.__password = "password";
-    Account_stub.__account_type = "account_type";
-    Account_stub.__email = "email";
-    Account_stub.__phone_num = "phone_num";
-    return Account_stub;
-})();
-var Account = (function () {
-    function Account() {
-    }
-    Account.table_name = "Account";
-    return Account;
-})();
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+///<reference path="DataObject.ts"/>
+var stub;
+(function (stub) {
+    var Account_stub = (function (_super) {
+        __extends(Account_stub, _super);
+        function Account_stub() {
+            _super.apply(this, arguments);
+        }
+        /* implement DataObject */
+        Account_stub.prototype.tableName = function () {
+            return "Account";
+        };
+        Account_stub.prototype.uniqueKeyList = function () {
+            var list = [];
+            list.push("account_id");
+            list.push("password");
+            list.push("account_type");
+            list.push("email");
+            list.push("phone_num");
+            return list;
+        };
+        Account_stub.prototype.parseObject = function (rawObject) {
+            return null; //TODO
+        };
+        Account_stub.prototype.toObject = function (instant) {
+            return null; //TODO
+        };
+        /* key */
+        Account_stub.__account_id = "account_id";
+        Account_stub.__password = "password";
+        Account_stub.__account_type = "account_type";
+        Account_stub.__email = "email";
+        Account_stub.__phone_num = "phone_num";
+        return Account_stub;
+    })(stub.DataObject);
+    stub.Account_stub = Account_stub;
+})(stub || (stub = {}));
 //# sourceMappingURL=Account.js.map

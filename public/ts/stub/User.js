@@ -1,42 +1,49 @@
-var User_stub = (function () {
-    function User_stub() {
-    }
-    User_stub.getObject = function ($http) {
-        get_all_row($http, this.table_name);
-    };
-    User_stub.parseObject = function (rawObject) {
-        //TODO
-        var myUser = new User();
-        myUser.account_id = rawObject.account_id;
-        myUser.sex = rawObject.sex;
-        myUser.first_name = rawObject.first_name;
-        myUser.last_name = rawObject.last_name;
-        myUser.organization_id = rawObject.organization_id;
-        myUser.title_id = rawObject.title_id;
-        myUser.city_id = rawObject.city_id;
-        myUser.last_announcement_datetime = rawObject.last_announcement_datetime;
-        return myUser;
-    };
-    User_stub.get_all_instance = function ($http) {
-        var _this = this;
-        var all_row = get_all_row($http, this.table_name);
-        return all_row.map(function (row) { return _this.parseObject(row); });
-    };
-    User_stub.table_name = "User";
-    User_stub.__account_id = "account_id";
-    User_stub.__sex = "sex";
-    User_stub.__first_name = "first_name";
-    User_stub.__last_name = "last_name";
-    User_stub.__organization_id = "organization_id";
-    User_stub.__title_id = "title_id";
-    User_stub.__city_id = "city_id";
-    User_stub.__last_announcement_datetime = "last_announcement_datetime";
-    return User_stub;
-})();
-var User = (function () {
-    function User() {
-    }
-    User.table_name = "User";
-    return User;
-})();
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+///<reference path="DataObject.ts"/>
+var stub;
+(function (stub) {
+    var User_stub = (function (_super) {
+        __extends(User_stub, _super);
+        function User_stub() {
+            _super.apply(this, arguments);
+        }
+        /* implement DataObject */
+        User_stub.prototype.tableName = function () {
+            return "User";
+        };
+        User_stub.prototype.uniqueKeyList = function () {
+            var list = [];
+            list.push("account_id");
+            list.push("sex");
+            list.push("first_name");
+            list.push("last_name");
+            list.push("organization_id");
+            list.push("title_id");
+            list.push("city_id");
+            list.push("last_announcement_datetime");
+            return list;
+        };
+        User_stub.prototype.parseObject = function (rawObject) {
+            return null; //TODO
+        };
+        User_stub.prototype.toObject = function (instant) {
+            return null; //TODO
+        };
+        /* key */
+        User_stub.__account_id = "account_id";
+        User_stub.__sex = "sex";
+        User_stub.__first_name = "first_name";
+        User_stub.__last_name = "last_name";
+        User_stub.__organization_id = "organization_id";
+        User_stub.__title_id = "title_id";
+        User_stub.__city_id = "city_id";
+        User_stub.__last_announcement_datetime = "last_announcement_datetime";
+        return User_stub;
+    })(stub.DataObject);
+    stub.User_stub = User_stub;
+})(stub || (stub = {}));
 //# sourceMappingURL=User.js.map

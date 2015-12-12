@@ -8,4 +8,5 @@ class Reply_Fields {
     const __reply_id = "reply_id" ;
     const __post_Id = "post_Id" ;
     const __message = "message" ;
+    const __account_id = "account_id" ;
 }

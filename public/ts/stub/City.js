@@ -1,32 +1,39 @@
-var City_stub = (function () {
-    function City_stub() {
-    }
-    City_stub.getObject = function ($http) {
-        get_all_row($http, this.table_name);
-    };
-    City_stub.parseObject = function (rawObject) {
-        //TODO
-        var myCity = new City();
-        myCity.city_id = rawObject.city_id;
-        myCity.country_id = rawObject.country_id;
-        myCity.city_name = rawObject.city_name;
-        return myCity;
-    };
-    City_stub.get_all_instance = function ($http) {
-        var _this = this;
-        var all_row = get_all_row($http, this.table_name);
-        return all_row.map(function (row) { return _this.parseObject(row); });
-    };
-    City_stub.table_name = "City";
-    City_stub.__city_id = "city_id";
-    City_stub.__country_id = "country_id";
-    City_stub.__city_name = "city_name";
-    return City_stub;
-})();
-var City = (function () {
-    function City() {
-    }
-    City.table_name = "City";
-    return City;
-})();
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+///<reference path="DataObject.ts"/>
+var stub;
+(function (stub) {
+    var City_stub = (function (_super) {
+        __extends(City_stub, _super);
+        function City_stub() {
+            _super.apply(this, arguments);
+        }
+        /* implement DataObject */
+        City_stub.prototype.tableName = function () {
+            return "City";
+        };
+        City_stub.prototype.uniqueKeyList = function () {
+            var list = [];
+            list.push("city_id");
+            list.push("country_id");
+            list.push("city_name");
+            return list;
+        };
+        City_stub.prototype.parseObject = function (rawObject) {
+            return null; //TODO
+        };
+        City_stub.prototype.toObject = function (instant) {
+            return null; //TODO
+        };
+        /* key */
+        City_stub.__city_id = "city_id";
+        City_stub.__country_id = "country_id";
+        City_stub.__city_name = "city_name";
+        return City_stub;
+    })(stub.DataObject);
+    stub.City_stub = City_stub;
+})(stub || (stub = {}));
 //# sourceMappingURL=City.js.map

@@ -1,1 +1,1 @@
-INSERT INTO Reply (reply_id, post_Id, message) VALUES (:reply_id, :post_Id, :message);
+INSERT INTO Reply (reply_id, post_Id, message, account_id) VALUES (:reply_id, :post_Id, :message, :account_id);
