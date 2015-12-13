@@ -1,3 +1,4 @@
+
 app.controller('AddDiscussionCtrl', function ($scope, $http, $global, $uibModal) {
 	$scope.id_array = [];
 	$scope.field_array = [];
@@ -23,5 +24,4 @@ app.controller('AddDiscussionCtrl', function ($scope, $http, $global, $uibModal)
             alert(status);
         });
     };
-
 });

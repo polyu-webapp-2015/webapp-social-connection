@@ -19,9 +19,13 @@
 	padding-top: 100px;
 }
 
-.navbar {
+.navbar-fixed-top {
 	background-color: #2288ee;
 	border: none
+}
+
+.navbar-fixed-bottom {
+	background-color: #fefefe;
 }
 
 .navbar li a {
@@ -129,6 +133,10 @@ textarea {
 	margin-bottom: 0;
 }
 
+.list-group-item {
+	height: 80px;
+}
+
 .list-group-item:focus {
 	outline: none;
 }
@@ -151,5 +159,16 @@ textarea {
 
 .list-group-item.alt:hover {
 	background-color: #eaeaea;
+}
+
+.list-item-title {
+	margin-bottom: 7px; 
+	margin-top: 8px;
+}
+
+.list-item-remarks {
+	font-size: 12px;
+	color: #737373;
+	font-weight: thick;
 }
 
