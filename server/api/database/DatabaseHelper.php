@@ -322,7 +322,11 @@ class DatabaseHelper
         $field_values = ':' . implode(', :', array_keys($field_value_array));
         $sql = "INSERT INTO $table_name ($field_names) VALUES ($field_values)";
         $statement = self::prepare($sql);
+        if (Config::$_ini[Config::__full_debug_on_database])
+            log_object_from_named($statement->queryString, "table_insert");
         foreach ($field_value_array as $field_name => $field_value) {
+            if (Config::$_ini[Config::__full_debug_on_database])
+                log_object_from_named("bind :$field_name to $field_value", "table_insert");
             $statement->bindValue(":$field_name", $field_value);
         }
         $result = $statement->execute();
@@ -603,7 +607,7 @@ class DatabaseHelper
 //        $package_code = "$package_code\n" . "import loadModel = utils.loadModel;";
         $package_code = "$package_code\n" . "function load_all_stub_script(callback) {
   var done = 0;
-  var total = ".count($class_array).";
+  var total = " . count($class_array) . ";
   var lastFired = false;
 
   function loadOne() {
@@ -678,13 +682,18 @@ class DatabaseHelper
         self::write_typescript_stub_array_to_directory(self::_typescript_stub_directory, $table_class_typescript_array);
     }
 
-    public
-    static function get_prepared_statement($filename)
+    public static function get_prepared_statement($filename)
     {
         $path = self::_prepared_statement_directory . '/' . $filename;
         $content = file_get_contents($path);
         if ($content == false)
             throw new Exception("Failed to load prepared statement sql script", ResultCodeEnum::_Server_File_Missing);
         return $content;
+    }
+
+    public static function lastInsertId($name = null)
+    {
+        self::check_connection();
+        return self::$_pdo->lastInsertId($name);
     }
 }
