@@ -1,6 +1,8 @@
 app.controller("LoginCtrl", function ($scope, $http, $global) {
   $scope.loginFail = false;
   $scope.login = function () {
+    console.log($scope.username);
+    console.log($scope.password);
       $http.post(serv_addr, {
           "action": "Login",
           "data": JSON.stringify({
@@ -12,7 +14,6 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
             console.log(data);
             if (data.result_code == "Success") {
               $scope.loginFail = false;
-              console.log(data);
               $scope.closeModal();
               $global.setUser(data.profile);
               $global.setSessionId(data.session_id);
@@ -20,6 +21,7 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
               sessionStorage.setItem('session_id', data.session_id);
               console.log($global.getUser());
               console.log($global.getSessionId());
+              $scope.closeModal();
             }
             else if (data.result_code == "") {
               $scope.usernameUnique = false;
