@@ -8,7 +8,6 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     */
 
     $.get("/pages/console.html", {}, function (data, status, headers, config) {
-        console.log(data);
         $("#content").html(
             $compile(data)($scope)
         );
