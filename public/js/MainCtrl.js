@@ -1,5 +1,5 @@
 // controller of index.html
-app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
+app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global) {
     /*
     $global: self-defined global variables, look at app.js, app.factory for reference
     You should save infomation of the user there (USING setter and getter)
@@ -7,8 +7,14 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     $uibModal: take a brief look at http://angular-ui.github.io/bootstrap/, documentation about $uibModal service
     */
 
+    $.get("/pages/console.html", {}, function (data, status, headers, config) {
+        console.log(data);
+        $("#content").html(
+            $compile(data)($scope);
+        );
+    });
+
     $scope.closeModal = function () {
-        console.log("closing");
         $scope.modalItem.close();
     }
 
@@ -110,17 +116,12 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
 
     $scope.openAddSessionModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
-        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html', $scope));
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html'));
     }
 
     $scope.openUsersModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
-    }
-
-    $scope.openViewSessionModal = function () {
-        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
-        $scope.modalItem = $uibModal.open(new Modal('/pages/view_sessions.html', $scope));
     }
 
     var session_id = sessionStorage.getItem('session_id');
