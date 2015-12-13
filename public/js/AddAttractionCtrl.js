@@ -5,6 +5,7 @@ app.controller('AddAttractionCtrl', function ($scope, $http, $global, $uibModal)
 
     $scope.submit = function () {
         $http.post(serv_addr, {
+            //TODO .................
             "action": "createAttraction",
             "data": {
                 session_id: $global.getSessionId(),
