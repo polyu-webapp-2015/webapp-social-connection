@@ -1,8 +1,3 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 ///<reference path="lang.ts"/>
 ///<reference path="../js/enum/APIFieldEnum.ts"/>
 ///<reference path="../js/api_list.ts"/>
@@ -25,15 +20,6 @@ var api;
         });
     }
     api.removeExtra = removeExtra;
-    var APIParseResultError = (function (_super) {
-        __extends(APIParseResultError, _super);
-        function APIParseResultError(message) {
-            _super.call(this, message);
-            this.name = "APIParseResultError";
-        }
-        return APIParseResultError;
-    })(Error);
-    api.APIParseResultError = APIParseResultError;
     var _api_url = "http://localhost:8000/api/main.php";
     function set_api_url(url) {
         _api_url = url;
@@ -67,6 +53,8 @@ var api;
                 commFailed(data);
             }
         }
+        if (api.$http == null)
+            api.$http = _$http;
         if (api.$http != null) {
             api.$http.post(_api_url, {
                 action: api_action,
@@ -80,15 +68,16 @@ var api;
                 type: "POST",
                 url: _api_url,
                 crossDomain: true,
-                dataType: 'jsonp',
+                //dataType: 'jsonp',
                 success: function (e) {
                     try {
                         var result = JSON.parse(e);
                         commSuccess(result);
                     }
                     catch (exception) {
-                        utils.log("failed to parse json from api result");
-                        commFailed(e);
+                        //utils.log("failed to parse json from api result");
+                        //commFailed(e);
+                        commSuccess(e);
                     }
                 }
             }).error(commFailed);

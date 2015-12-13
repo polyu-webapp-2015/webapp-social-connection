@@ -2,6 +2,7 @@
 ///<reference path="../js/enum/APIFieldEnum.ts"/>
 ///<reference path="../js/api_list.ts"/>
 ///<reference path="utils.ts"/>
+declare var _$http:any;
 module api {
   import Consumer = lang.Consumer;
   import KeyValue = lang.KeyValue;
@@ -25,17 +26,8 @@ module api {
     });
   }
 
-  export class APIParseResultError extends Error {
-    public name = "APIParseResultError";
-
-    constructor(message?:string) {
-      super(message);
-    }
-  }
-
   export type APIResult=[string,any];
   export type APIResultHandler<T>=[lang.Producer<APIResult,T>,lang.Consumer<T>];
-
 
   var _api_url = "http://localhost:8000/api/main.php";
 
@@ -72,6 +64,8 @@ module api {
       }
     }
 
+    if ($http == null)
+      $http = _$http;
     if ($http != null) {
       $http.post(_api_url, {
           action: api_action,
@@ -84,7 +78,7 @@ module api {
         type: "POST",
         url: _api_url,
         crossDomain: true,
-        dataType: 'jsonp',
+        //dataType: 'jsonp',
         success: function (e) {
           try {
             var result = JSON.parse(e);
@@ -101,10 +95,9 @@ module api {
             //utils.log(e);
             //}
           } catch (exception) {
-            utils.log("failed to parse json from api result");
-            commFailed(e);
-            //utils.log(exception);
-            //utils.log(e);
+            //utils.log("failed to parse json from api result");
+            //commFailed(e);
+            commSuccess(e);
           }
         }
       }).error(commFailed);
