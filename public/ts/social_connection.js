@@ -49,11 +49,24 @@ var social_connection;
         function getCityList() {
             utils.log("try to get city list now ");
             var instance = new stub.City_stub();
-            instance.use_all_instance_list(function (citys) {
-                citys.forEach(function (city) {
+            //instance.use_all_instance_list(function (citys:stub.City_stub[]) {
+            //  citys.forEach(city=>
+            //    utils.log("city " + city.get_city_id() + "  " + city.get_city_name()));
+            //});
+            var filter = function (x) {
+                return true;
+            };
+            var consumer = function (xs) {
+                xs.forEach(function (city) {
                     return utils.log("city " + city.get_city_id() + "  " + city.get_city_name());
                 });
-            });
+                utils.log("get again, should be much faster");
+                setTimeout(function () {
+                    getCityList();
+                });
+            };
+            var forceUpdate = true;
+            DataObjectManager.request(instance, filter, consumer, forceUpdate);
         }
     })(ui || (ui = {}));
     var model;
@@ -82,8 +95,7 @@ var social_connection;
                 if (resultCode == ResultCode.Success) {
                     var sessionId = apiResult[1][APIField.session_id];
                     var profile = new model.Profile("first", "second");
-                    var loginResult = [sessionId, profile];
-                    return loginResult;
+                    return [sessionId, profile];
                 }
                 else {
                     throw new debug.APIParseResultError();
@@ -102,11 +114,12 @@ var social_connection;
             //var data = {};
             //data[APIField.id_array] = [];
             //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
-            var loader = new stub.City_stub();
-            var consumer = function (citys) {
-                citys.forEach(function (city) { return utils.log(toString(city)); });
-            };
-            loader.use_all_instance_list(consumer);
+            //var loader = new stub.City_stub();
+            //var consumer:Consumer<City[]> = function (citys:City[]) {
+            //  citys.forEach(city=>utils.log(toString(city)));
+            //};
+            //loader.use_all_instance_list(consumer);
+            utils.log("request now");
         }
         asynchronous_logic.getAllCity = getAllCity;
         function getAllAccount() {

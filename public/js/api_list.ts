@@ -26,3 +26,4 @@ var _api_GetExhibition = "GetExhibition";
 var _api_CreateAttraction = "CreateAttraction";
 var _api_GetAttractionList = "GetAttractionList";
 var _api_GetTableRowList = "GetTableRowList";
+var _api_AddTableRowList = "AddTableRowList";

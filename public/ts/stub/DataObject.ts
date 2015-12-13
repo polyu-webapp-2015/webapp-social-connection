@@ -1,15 +1,14 @@
 ///<reference path="../api.ts"/>
 ///<reference path="../../js/enum/ResultCodeEnum.ts"/>
+///<reference path="../debug.ts"/>
 
 
 module stub {
-  import Task = lang.task.Task;
-  import TaskQueue = lang.task.TaskQueue;
   import Consumer = lang.Consumer;
   import Producer = lang.Producer;
   import APIResultHandler = api.APIResultHandler;
   import APIResult = api.APIResult;
-  import APIParseResultError = api.APIParseResultError;
+  import APIParseResultError = debug.APIParseResultError;
   import KeyValue = lang.KeyValue;
   import use_all_row = api.use_all_row;
   export class DataObjectError extends Error {
@@ -56,6 +55,18 @@ module stub {
 
     public isEditSupport():boolean {
       return this.uniqueKeyList().length > 0;
+    }
+
+    //TODO implement faster method (direct compare in subclass)
+    public isSame(another:DataObject):boolean {
+      var keys = this.uniqueKeyList();
+      if (keys.length <= 0)
+        return false;
+      else {
+        var thisO = this.toObject(this);
+        var anotherO = another.toObject(another);
+        return keys.every(key=>thisO[key] == anotherO[key]);
+      }
     }
 
     public save($http:any) {

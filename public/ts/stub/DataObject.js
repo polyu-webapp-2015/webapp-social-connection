@@ -1,5 +1,6 @@
 ///<reference path="../api.ts"/>
 ///<reference path="../../js/enum/ResultCodeEnum.ts"/>
+///<reference path="../debug.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -7,7 +8,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var stub;
 (function (stub) {
-    var APIParseResultError = api.APIParseResultError;
+    var APIParseResultError = debug.APIParseResultError;
     var DataObjectError = (function (_super) {
         __extends(DataObjectError, _super);
         function DataObjectError(dataObject, message) {
@@ -54,6 +55,17 @@ var stub;
         //}
         DataObject.prototype.isEditSupport = function () {
             return this.uniqueKeyList().length > 0;
+        };
+        //TODO implement faster method (direct compare in subclass)
+        DataObject.prototype.isSame = function (another) {
+            var keys = this.uniqueKeyList();
+            if (keys.length <= 0)
+                return false;
+            else {
+                var thisO = this.toObject(this);
+                var anotherO = another.toObject(another);
+                return keys.every(function (key) { return thisO[key] == anotherO[key]; });
+            }
         };
         DataObject.prototype.save = function ($http) {
             this.save_all($http, [this]);

@@ -37,6 +37,7 @@ module social_connection {
     //import DiscussBoard = social_connection.model.DiscussBoard;
     import APIResultHandler = api.APIResultHandler;
     import getAllCity = social_connection.asynchronous_logic.getAllCity;
+    import City_stub = stub.City_stub;
     export type SessionID=string;
     export type LoginResult=[SessionID,model.Profile];
     //export type APIResultHandler<T>=[lang.Producer<APIResult,T>,lang.Consumer<T>];
@@ -55,28 +56,25 @@ module social_connection {
     function getCityList() {
       utils.log("try to get city list now ");
       var instance = new stub.City_stub();
-      instance.use_all_instance_list(function (citys:stub.City_stub[]) {
-        citys.forEach(city=>
-          utils.log("city " + city.get_city_id() + "  " + city.get_city_name()));
-      });
+      //instance.use_all_instance_list(function (citys:stub.City_stub[]) {
+      //  citys.forEach(city=>
+      //    utils.log("city " + city.get_city_id() + "  " + city.get_city_name()));
+      //});
+      var filter = function (x:City_stub) {
+        return true
+      };
+      var consumer = function (xs:City_stub[]) {
+        xs.forEach(city=>
+          utils.log("city " + city.get_city_id() + "  " + city.get_city_name())
+        );
+        utils.log("get again, should be much faster");
+        setTimeout(function () {
+          getCityList();
+        });
+      };
+      var forceUpdate = true;
+      DataObjectManager.request(instance, filter, consumer, forceUpdate);
     }
-
-    //export var onLogin:api.APICallback<LoginResult> = new APICallback<LoginResult>(
-    //  function (result:api.APIResult) {
-    //    if (result[0] != ResultCode.Success) {
-    //      utils.log("failed to login");
-    //      return ["", null]
-    //    }
-    //    var sessionId = result[1][APIField.session_id];
-    //    var profile = result[1][APIField.profile];
-    //    return [sessionId, profile];
-    //  },
-    //  function (result:LoginResult) {
-    //    config.save_login(result[0]);
-    //    utils.log("received profile");
-    //    utils.log(result[1]);
-    //  }
-    //);
   }
   export module model {
     export class Profile {
@@ -104,8 +102,7 @@ module social_connection {
         if (resultCode == ResultCode.Success) {
           var sessionId:ui.SessionID = apiResult[1][APIField.session_id];
           var profile:model.Profile = new model.Profile("first", "second");
-          var loginResult:ui.LoginResult = [sessionId, profile];
-          return loginResult;
+          return [sessionId, profile];
         } else {
           throw new debug.APIParseResultError();
         }
@@ -123,11 +120,12 @@ module social_connection {
       //var data = {};
       //data[APIField.id_array] = [];
       //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
-      var loader = new stub.City_stub();
-      var consumer:Consumer<City[]> = function (citys:City[]) {
-        citys.forEach(city=>utils.log(toString(city)));
-      };
-      loader.use_all_instance_list(consumer);
+      //var loader = new stub.City_stub();
+      //var consumer:Consumer<City[]> = function (citys:City[]) {
+      //  citys.forEach(city=>utils.log(toString(city)));
+      //};
+      //loader.use_all_instance_list(consumer);
+      utils.log("request now")
     }
 
     export function getAllAccount() {
