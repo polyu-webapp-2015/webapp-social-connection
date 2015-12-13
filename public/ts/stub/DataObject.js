@@ -1,4 +1,5 @@
-///<reference path="../main.ts"/>
+///<reference path="../api.ts"/>
+///<reference path="../../js/enum/ResultCodeEnum.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -6,6 +7,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var stub;
 (function (stub) {
+    var APIParseResultError = api.APIParseResultError;
     var DataObjectError = (function (_super) {
         __extends(DataObjectError, _super);
         function DataObjectError(dataObject, message) {
@@ -44,6 +46,12 @@ var stub;
     var DataObject = (function () {
         function DataObject() {
         }
+        //public isEveryMatch(patterns:KeyValue[]):boolean {
+        //  return patterns.every(pair=>this.getValueByKey(pair[0]) == pair[1]);
+        //}
+        //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
+        //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
+        //}
         DataObject.prototype.isEditSupport = function () {
             return this.uniqueKeyList().length > 0;
         };
@@ -63,19 +71,32 @@ var stub;
         };
         DataObject.prototype.use_all_instance_list = function (consumer) {
             var instance = this;
-            var success = function (resultCode, data) {
+            var producer = function (apiResult) {
+                var resultCode = apiResult[0];
+                var data = apiResult[1];
                 if (resultCode == ResultCode.Success) {
                     var all_row = data[APIField.element_array];
-                    var dataObjects = all_row.map(instance.parseObject);
-                    consumer(dataObjects);
+                    return all_row.map(instance.parseObject);
                 }
                 else {
-                    comm.log("failed to get all instance of " + instance.tableName());
+                    throw new APIParseResultError(resultCode);
                 }
             };
-            api.get_all_row(this.tableName(), success);
+            var handler = [producer, consumer];
+            api.use_all_row(this.tableName(), handler);
         };
-        DataObject.prototype.use_matched_instance_list = function (query_key_value_array, consumer) {
+        //TODO to implment the filter logic on server (php)
+        DataObject.prototype.use_fully_matched_instance_list = function (queryKeyValues, consumer) {
+            throw new TypeError("Operation not support yet");
+            //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {
+            //  consumer(fullList.filter(function (dataObject:DataObject) {
+            //    return dataObject.isEveryMatch(queryKeyValues);
+            //  }));
+            //};
+            //this.use_all_instance_list(applier);
+        };
+        //TODO to implement the filter logic on server (php)
+        DataObject.prototype.use_partially_matched_instance_list = function (queryKeyValues, consumer) {
             throw new TypeError("Operation not support yet");
         };
         return DataObject;

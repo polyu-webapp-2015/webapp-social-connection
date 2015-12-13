@@ -1,8 +1,17 @@
-///<reference path="../main.ts"/>
+///<reference path="../api.ts"/>
+///<reference path="../../js/enum/ResultCodeEnum.ts"/>
 
 
 module stub {
-  import APICallback = api.APICallback;
+  import Task = lang.task.Task;
+  import TaskQueue = lang.task.TaskQueue;
+  import Consumer = lang.Consumer;
+  import Producer = lang.Producer;
+  import APIResultHandler = api.APIResultHandler;
+  import APIResult = api.APIResult;
+  import APIParseResultError = api.APIParseResultError;
+  import KeyValue = lang.KeyValue;
+  import use_all_row = api.use_all_row;
   export class DataObjectError extends Error {
     public name = "DataObjectError";
 
@@ -29,9 +38,21 @@ module stub {
 
     abstract uniqueKeyList():string[];
 
+    //abstract fullKeyList():string[];
+
+    //abstract getValueByKey(key:string):any;
+
     abstract toObject(instant:DataObject):any;
 
     abstract parseObject(rawObject:any):DataObject ;
+
+    //public isEveryMatch(patterns:KeyValue[]):boolean {
+    //  return patterns.every(pair=>this.getValueByKey(pair[0]) == pair[1]);
+    //}
+
+    //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
+    //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
+    //}
 
     public isEditSupport():boolean {
       return this.uniqueKeyList().length > 0;
@@ -52,22 +73,37 @@ module stub {
       }
     }
 
-    public use_all_instance_list(consumer:comm.Consumer<DataObject[]>) {
+    public use_all_instance_list(consumer:Consumer<DataObject[]>) {
       var instance = this;
-      var success:api.APICallback<DataObject[]> = function (resultCode:string, data:any) {
+      var producer:Producer<APIResult,DataObject[]> = function (apiResult:APIResult) {
+        var resultCode:string = apiResult[0];
+        var data:any = apiResult[1];
         if (resultCode == ResultCode.Success) {
           var all_row = data[APIField.element_array];
-          var dataObjects:DataObject[] = all_row.map(instance.parseObject);
-          consumer(dataObjects);
+          return all_row.map(instance.parseObject);
         } else {
-          comm.log("failed to get all instance of " + instance.tableName())
+          throw new APIParseResultError(resultCode);
         }
       };
-      api.get_all_row(this.tableName(), success);
+      var handler:APIResultHandler<DataObject[]> = [producer, consumer];
+      api.use_all_row<DataObject[]>(this.tableName(), handler);
     }
 
-    public use_matched_instance_list(query_key_value_array, consumer:comm.Consumer<DataObject[]>) {
+    //TODO to implment the filter logic on server (php)
+    public use_fully_matched_instance_list(queryKeyValues:KeyValue[], consumer:Consumer<DataObject[]>) {
+      throw new TypeError("Operation not support yet");
+      //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {
+      //  consumer(fullList.filter(function (dataObject:DataObject) {
+      //    return dataObject.isEveryMatch(queryKeyValues);
+      //  }));
+      //};
+      //this.use_all_instance_list(applier);
+    }
+
+    //TODO to implement the filter logic on server (php)
+    public use_partially_matched_instance_list(queryKeyValues:KeyValue[], consumer:Consumer<DataObject[]>) {
       throw new TypeError("Operation not support yet");
     }
+
   }
 }
