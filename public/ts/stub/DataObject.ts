@@ -69,6 +69,17 @@ module stub {
       }
     }
 
+    public hashCode():string {
+      var keys = this.uniqueKeyList();
+      var o = this.toObject(this);
+      if (keys.length > 0) {
+        return JSON.stringify(keys.map(key=>o[key]));
+      } else {
+        console.log("Warning : this hashCode might lead to collision");
+        return JSON.stringify(o);
+      }
+    }
+
     public save($http:any) {
       this.save_all($http, [this]);
     }

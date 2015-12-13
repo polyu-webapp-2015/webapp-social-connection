@@ -67,6 +67,17 @@ var stub;
                 return keys.every(function (key) { return thisO[key] == anotherO[key]; });
             }
         };
+        DataObject.prototype.hashCode = function () {
+            var keys = this.uniqueKeyList();
+            var o = this.toObject(this);
+            if (keys.length > 0) {
+                return JSON.stringify(keys.map(function (key) { return o[key]; }));
+            }
+            else {
+                console.log("Warning : this hashCode might lead to collision");
+                return JSON.stringify(o);
+            }
+        };
         DataObject.prototype.save = function ($http) {
             this.save_all($http, [this]);
         };

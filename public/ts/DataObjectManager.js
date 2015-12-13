@@ -14,35 +14,37 @@
 var DataObjectManager;
 (function (DataObjectManager) {
     var cachedTimeInMillisecond = 1000 * 10;
-    var cachedMap = {};
+    var cachedTables = {};
     function nextInvalidTime() {
         return new Date().getTime() + cachedTimeInMillisecond;
     }
+    function () { }
     /* update cached objects locally */
-    function updateTable(table_name, newDataObjects) {
+    function updateTable(tableName, newDataObjects) {
         var invalidTime = nextInvalidTime();
-        if (cachedMap[table_name] == null)
-            cachedMap[table_name] = [];
+        if (cachedTables[tableName] == null)
+            cachedTables[tableName] = {};
         /* removed duplicated */
-        cachedMap[table_name] = cachedMap[table_name].filter(function (old) { return !newDataObjects.some(function (newO) { return newO.isSame(old[1]); }); });
+        //cachedTables[tableName] = cachedTables[tableName].filter(old=>!newDataObjects.some(newO=>newO.isSame(old[1])));
+        cachedTables[tableName] = lang.Dictionary.filter(cachedTables[tableName], isDuplicated());
         /* store new objects */
-        newDataObjects.forEach(function (e) { return cachedMap[table_name].push([invalidTime, e]); });
+        newDataObjects.forEach(function (e) { return cachedTables[tableName].push([invalidTime, e]); });
     }
     function hasOutDated(tableName) {
         var invalidTime = nextInvalidTime();
-        if (cachedMap[tableName] == null)
-            cachedMap[tableName] = [];
-        cachedMap[tableName].some(function (e) { return (e[0] <= invalidTime); });
+        if (cachedTables[tableName] == null)
+            cachedTables[tableName] = [];
+        cachedTables[tableName].some(function (e) { return (e[0] <= invalidTime); });
     }
     function request(instance, filter, consumer, forceUpdate) {
         if (forceUpdate === void 0) { forceUpdate = false; }
         /* try to find local */
         var tableName = instance.tableName();
-        if (cachedMap[tableName] == null)
-            cachedMap[tableName] = [];
+        if (cachedTables[tableName] == null)
+            cachedTables[tableName] = [];
         //else
         //  removeOutDatedObjects(tableName);
-        var matchedList = cachedMap[tableName].map(function (e) { return e[1]; }).filter(filter);
+        var matchedList = cachedTables[tableName].map(function (e) { return e[1]; }).filter(filter);
         if (matchedList.length > 0 && !forceUpdate) {
             /* satisfy by the local version */
             consumer(matchedList);
