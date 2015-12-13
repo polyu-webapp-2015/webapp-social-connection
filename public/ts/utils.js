@@ -22,9 +22,12 @@ var utils;
         indentCount += delta;
     }
     utils.indent = indent;
-    function loadModel(full_path) {
+    function loadModel(full_path, onload) {
         console.log("loading model " + full_path);
         var script = document.createElement("script");
+        script.onload = function () {
+            onload();
+        };
         script.src = full_path;
         document.body.appendChild(script);
     }

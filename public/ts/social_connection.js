@@ -6,7 +6,11 @@
 ///<reference path="stub/Account_stub.ts"/>
 ///<reference path="utils.ts"/>
 ///<reference path="debug.ts"/>
-var TaskQuene = lang.task.TaskQueue;
+///<reference path="api.ts"/>
+///<reference path="DataObjectManager.ts"/>
+//import Producer = lang.Producer;
+//import Supplier = lang.Supplier;
+//import Consumer = lang.Consumer;
 var social_connection;
 (function (social_connection) {
     /** @unsafe should not disclose this sensitive info */
@@ -17,6 +21,7 @@ var social_connection;
         function save_login(new_session_id) {
             this.session_id = new_session_id;
             this.login = true;
+            api.addExtra([APIField.session_id, new_session_id]);
         }
         config.save_login = save_login;
         function getSessionId() {
@@ -26,64 +31,80 @@ var social_connection;
                 throw new debug.IllegalStatusError();
         }
         config.getSessionId = getSessionId;
-        var dataManager = new DataObjectManager();
-        function getDataManager() {
-            return this.dataManager;
-        }
-        config.getDataManager = getDataManager;
     })(config = social_connection.config || (social_connection.config = {}));
     var ui;
     (function (ui) {
-        //import DiscussBoard = social_connection.model.DiscussBoard;
-        var APICallback = api.APICallback;
+        //export type APIResultHandler<T>=[lang.Producer<APIResult,T>,lang.Consumer<T>];
+        ui.onLogin = function (loginResult) {
+            config.save_login(loginResult[0]);
+            utils.log("login success, session id is " + loginResult[0]);
+            utils.log("received profile");
+            utils.log(loginResult[1]);
+            utils.log("waiting to get city list");
+            setTimeout(function () {
+                utils.log("calling get city list function");
+                getCityList();
+            });
+        };
+        function getCityList() {
+            utils.log("try to get city list now ");
+            var instance = new stub.City_stub();
+            instance.use_all_instance_list(function (citys) {
+                citys.forEach(function (city) {
+                    return utils.log("city " + city.get_city_id() + "  " + city.get_city_name());
+                });
+            });
+        }
+    })(ui || (ui = {}));
+    var model;
+    (function (model) {
         var Profile = (function () {
-            function Profile(data) {
-                this.data = data;
+            function Profile(first_name, last_name) {
+                this.first_name = first_name;
+                this.last_name = last_name;
             }
-            Profile.prototype.toString = function () {
-                return this.data.toString;
-            };
             return Profile;
         })();
-        ui.onLogin = new APICallback(function (result) {
-            if (result[0] != ResultCode.Success) {
-                comm.log("failed to login");
-                return ["", null];
-            }
-            var sessionId = result[1][APIField.session_id];
-            var profile = result[1][APIField.profile];
-            return [sessionId, profile];
-        }, function (result) {
-            config.save_login(result[0]);
-            comm.log("received profile");
-            comm.log(result[1]);
-        });
-    })(ui || (ui = {}));
+        model.Profile = Profile;
+    })(model = social_connection.model || (social_connection.model = {}));
     var asynchronous_logic;
     (function (asynchronous_logic) {
         var Account = stub.Account_stub;
+        //import APIResultHandler<T>=api.APIResultHandler<T>;
         function login(id, password) {
-            comm.indent(1);
-            comm.log("try to login");
+            utils.indent(1);
+            utils.log("try to login");
             var data = {};
             data[APIField.emailOrPhoneNum] = id;
             data[APIField.password] = password;
-            api.api_call(_api_Login, data, ui.onLogin);
-            comm.log("sent login command");
-            comm.indent(-1);
+            var producer = function (apiResult) {
+                var resultCode = apiResult[0];
+                if (resultCode == ResultCode.Success) {
+                    var sessionId = apiResult[1][APIField.session_id];
+                    var profile = new model.Profile("first", "second");
+                    var loginResult = [sessionId, profile];
+                    return loginResult;
+                }
+                else {
+                    throw new debug.APIParseResultError();
+                }
+            };
+            api.api_call(_api_Login, data, [producer, ui.onLogin]);
+            utils.log("sent login command");
+            utils.indent(-1);
         }
         asynchronous_logic.login = login;
         function getAllCity() {
             var toString = function (city) {
                 return "City Id : " + city.get_city_id() + "\tCity Name : " + city.get_city_name();
             };
-            comm.log("try to get all City");
+            utils.log("try to get all City");
             //var data = {};
             //data[APIField.id_array] = [];
             //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
             var loader = new stub.City_stub();
             var consumer = function (citys) {
-                citys.forEach(function (city) { return comm.log(toString(city)); });
+                citys.forEach(function (city) { return utils.log(toString(city)); });
             };
             loader.use_all_instance_list(consumer);
         }
@@ -93,36 +114,18 @@ var social_connection;
                 return account.get_account_type() == account_type.attendee;
             };
             var consumer = function (list) {
-                list.forEach(function (account) { return comm.log(account.get_email() + "\t" + account.get_password()); });
+                list.forEach(function (account) { return utils.log(account.get_email() + "\t" + account.get_password()); });
             };
-            social_connection.config.getDataManager().request(new Account(), filter, consumer);
+            DataObjectManager.request(new Account(), filter, consumer);
         }
         asynchronous_logic.getAllAccount = getAllAccount;
     })(asynchronous_logic = social_connection.asynchronous_logic || (social_connection.asynchronous_logic = {}));
 })(social_connection || (social_connection = {}));
-var DataObjectManager = (function () {
-    function DataObjectManager() {
-        this.taskQueue = new lang.task.TaskQueue();
-    }
-    DataObjectManager.getInstance = function () {
-        if (this.instance == null)
-            this.instance = new DataObjectManager();
-        return this.instance;
-    };
-    DataObjectManager.prototype.request = function (dataObject, filter, consumer) {
-        var filterFunc = function (list) {
-            consumer(list.filter(filter));
-        };
-        dataObject.use_all_instance_list(filterFunc);
-    };
-    DataObjectManager.instance = new DataObjectManager();
-    return DataObjectManager;
-})();
 function main_init() {
-    comm.log("stub_test:start");
+    utils.log("stub_test:start");
     var id = "98765432";
     var password = "123456";
     social_connection.asynchronous_logic.login(id, password);
-    comm.log("stub_test:end");
+    utils.log("stub_test:end");
 }
 //# sourceMappingURL=social_connection.js.map
