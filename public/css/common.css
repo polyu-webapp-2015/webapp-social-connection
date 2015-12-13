@@ -26,13 +26,18 @@
 
 .navbar-fixed-bottom {
 	background-color: #fefefe;
+	height: 30px !important;
 }
 
-.navbar li a {
+.navbar-fixed-bottom ul {
+	list-style-type: none;
+}
+
+.navbar-fixed-top li a {
 	color: #ffffff !important;
 }
 
-.navbar li a:hover {
+.navbar-fixed-top li a:hover {
 	background-color: #ffffff !important;
 	color: #2288ee !important;
 }
