@@ -30,11 +30,6 @@
 
   <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/common.css">
-	<script>
-	$(document).ready( function() {
-		$("#content").load("/pages/console.html");
-	});
-	</script>
 </head>
 
 <body id="admin_nav_page" ng-controller="MainCtrl" onload="load_all_typescript_class()">
@@ -68,7 +63,7 @@
   <h2>School of Hotel and Tourism Management</h2>
   <h3>Administration</h3>
 </div>
-<div id="content">
+<div id="content" ng-bind-html="html_content">
 
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
