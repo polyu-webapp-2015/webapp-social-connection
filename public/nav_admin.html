@@ -20,10 +20,10 @@
   <script src="js/RegisterCtrl.js"></script>
   <script src="js/LoginCtrl.js"></script>
   <script src="js/AddAnnounceCtrl.js"></script>
+  <script src="js/AddRewardCtrl.js"></script>
   <script src="js/ListCtrl.js"></script>
   <script src="js/AddSessionCtrl.js"></script>
   <script src="js/ProfileCtrl.js"></script>
-  <script src="js/AddAttractionCtrl.js"></script>
   <script src="js/UserDetailCtrl.js"></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
@@ -122,7 +122,7 @@
       <h2>Rewards</h2>
       <h4>Lorem ipsum ...</h4>
       <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn">Add Rewards</button>
+      <button class="btn btn-sm my-btn" ng-click="openAddRewardModal()">Add Reward</button>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-usd logo"></span>
@@ -164,7 +164,7 @@
       <h2>Attractions</h2>
       <h4>Lorem ipsum ...</h4>
       <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn" ng-click='openAddAttractionModal()'>Add Attractions</button>
+      <button class="btn btn-sm my-btn">Add Attractions</button>
     </div>
   </div>
 </div>
