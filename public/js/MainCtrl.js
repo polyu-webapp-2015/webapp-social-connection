@@ -1,5 +1,7 @@
 // controller of index.html
+var _$http;
 app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
+    _$http=$http;
     /*
     $global: self-defined global variables, look at app.js, app.factory for reference
     You should save infomation of the user there (USING setter and getter)
@@ -115,5 +117,5 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     var session_id = sessionStorage.getItem('session_id');
     $scope.whoami(session_id);
 
-    api.$http=$http;
+    //api.$http=$http;
 })

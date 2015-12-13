@@ -12,21 +12,21 @@
 
     <!-- static stuff -->
     <script src="lib/node_modules/jquery/dist/jquery.js"></script>
-    <script src="ts/models.js"></script>
-    <script src="ts/stub/DataObject.js"></script>
-    <script src="ts/stub/package.js"></script>
+    <!--<script src="ts/models.js"></script>-->
+    <!--<script src="ts/stub/DataObject.js"></script>-->
+    <!--<script src="ts/stub/package.js"></script>-->
     <!--<script src="scripts/stub_test/utils.js"></script>-->
     <!--<script src="scripts/stub_test/api.js"></script>-->
-    <script src="js/api_list.js"></script>
-    <script src="js/enum/ResultCodeEnum.js"></script>
-    <script src="js/enum/APIFieldEnum.js"></script>
+    <!--<script src="js/api_list.js"></script>-->
+    <!--<script src="js/enum/ResultCodeEnum.js"></script>-->
+    <!--<script src="js/enum/APIFieldEnum.js"></script>-->
     <!--<script src="scripts/stub_test/stub_test.js"></script>-->
 
     <script src="js/app.js"></script>
     <script src="lib/utils.js"></script>
     <!-- start include typescript -->
-    <script src="ts/models.js"></script>
-    <script src="ts/stub/package.js"></script>
+    <!--<script src="ts/models.js"></script>-->
+    <!--<script src="ts/stub/package.js"></script>-->
     <!-- end include typescript -->
     <script src="js/MainCtrl.js"></script>
     <script src="js/RegisterCtrl.js"></script>
@@ -38,14 +38,24 @@
     <script src="js/AddAttractionCtrl.js"></script>
     <script src="js/UserDetailCtrl.js"></script>
     <!-- be reminded that newly created .js files should be loaded here -->
-    <script src="ts/main.js"></script>
+
+    <!-- main scripts -->
+    <script src="js/enum/APIFieldEnum.js"></script>
+    <script src="js/enum/ResultCodeEnum.js"></script>
+    <script src="js/api_list.js"></script>
+    <script src="ts/lang.js"></script>
+    <script src="ts/debug.js"></script>
+    <script src="ts/utils.js"></script>
+    <script src="ts/api.js"></script>
+    <script src="ts/stub/package.ts"></script>
+    <script src="ts/social_connection.js"></script>
 
     <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/common.css">
     <script>
         function init() {
-            load_all_typescript_class();
-            main_init();
+            load_all_stub_script(main_init);
+//            main_init();
         }
     </script>
 </head>

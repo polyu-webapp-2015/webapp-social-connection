@@ -22,9 +22,12 @@ module utils {
     indentCount += delta;
   }
 
-  export function loadModel(full_path:string) {
+  export function loadModel(full_path:string, onload:Function) {
     console.log("loading model " + full_path);
     var script = document.createElement("script");
+    script.onload = function () {
+      onload();
+    };
     script.src = full_path;
     document.body.appendChild(script);
   }
