@@ -53,6 +53,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         $scope.modalItem = $uibModal.open(new Modal('/pages/add_reward.html', $scope));
     }
 
+    $scope.openAddDiscussionModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        console.log("Add Discussion");
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_discussion.html', $scope));
+    }
     $scope.openAddAttractionModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         console.log("Add attraction");
