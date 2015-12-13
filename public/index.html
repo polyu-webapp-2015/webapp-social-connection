@@ -14,14 +14,38 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/common.css">
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script>
-function init(){
-  $("#container").load("pages/login.html");
-}
-</script>
 </head>
-<body onload=init()>
-  <div id='container'></div>
+<body>
+  <div class="modal-dialog">
+    <div ng-controller="LoginCtrl">
+      <div class="modal-header">
+  	<h4 class="modal-title">Log In</h4>
+      </div>			<!-- /modal-header -->
+      <div class="center">
+        <div class="alert alert-danger alert-auto login" ng-show="userNotExist">
+          <strong>Username does not exist.</strong>
+        </div>
+        <div class="alert alert-danger alert-auto login" ng-show="wrongPassword">
+          <strong>Incorrect password.</strong>
+        </div>
+      </div>
+      <form id="loginForm" name="loginForm" role="form" ng-submit="login()" autocomplete="off">
+      <div class="modal-body">
+        <div class="form-group">
+  	  <label for="phone">Username: </label>
+  	  <input type="username" class="form-control" id="phone" ng-model="username" placeholder="Email or mobile number" required/>
+        </div>
+        <div class="form-group">
+      <label for="pwd">Password: </label>
+      <input type="password" class="form-control" id="pwd" name="pwd" ng-model="password" placeholder="Enter password" required>
+        </div>
+      </div>			<!-- /modal-body -->
+      <div class="modal-footer">
+  	<button class="btn btn-sm my-btn my-btn-round" type="submit">login</button>
+      </div>			<!-- /modal-footer -->
+      </form>
+    </div>
+  </div>
 <!--<p>
   <a href="nav_admin.html">Admin</a>
 </p>
