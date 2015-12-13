@@ -1,7 +1,17 @@
-declare function get_all_row($http:any, table_name:string):any[];
-declare function set_all_row($http:any, table_name:string, rows:any[]);
+///<reference path="../api.ts"/>
+///<reference path="../../js/enum/ResultCodeEnum.ts"/>
 
-export module stub {
+
+module stub {
+  import Task = lang.task.Task;
+  import TaskQueue = lang.task.TaskQueue;
+  import Consumer = lang.Consumer;
+  import Producer = lang.Producer;
+  import APIResultHandler = api.APIResultHandler;
+  import APIResult = api.APIResult;
+  import APIParseResultError = api.APIParseResultError;
+  import KeyValue = lang.KeyValue;
+  import use_all_row = api.use_all_row;
   export class DataObjectError extends Error {
     public name = "DataObjectError";
 
@@ -28,9 +38,21 @@ export module stub {
 
     abstract uniqueKeyList():string[];
 
+    //abstract fullKeyList():string[];
+
+    //abstract getValueByKey(key:string):any;
+
     abstract toObject(instant:DataObject):any;
 
     abstract parseObject(rawObject:any):DataObject ;
+
+    //public isEveryMatch(patterns:KeyValue[]):boolean {
+    //  return patterns.every(pair=>this.getValueByKey(pair[0]) == pair[1]);
+    //}
+
+    //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
+    //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
+    //}
 
     public isEditSupport():boolean {
       return this.uniqueKeyList().length > 0;
@@ -45,19 +67,43 @@ export module stub {
         var rawObjects:any[] = dataObjects.map(function (dataObject:DataObject) {
           return dataObject.toObject(dataObject);
         });
-        set_all_row($http, this.tableName(), rawObjects);
+        api.set_all_row(this.tableName(), rawObjects);
       } else {
         throw new DataObjectSaveError(this);
       }
     }
 
-    public get_all_instance_list($http):DataObject[] {
-      var all_row = get_all_row($http, this.tableName());
-      return all_row.map(row => this.parseObject(row));
+    public use_all_instance_list(consumer:Consumer<DataObject[]>) {
+      var instance = this;
+      var producer:Producer<APIResult,DataObject[]> = function (apiResult:APIResult) {
+        var resultCode:string = apiResult[0];
+        var data:any = apiResult[1];
+        if (resultCode == ResultCode.Success) {
+          var all_row = data[APIField.element_array];
+          return all_row.map(instance.parseObject);
+        } else {
+          throw new APIParseResultError(resultCode);
+        }
+      };
+      var handler:APIResultHandler<DataObject[]> = [producer, consumer];
+      api.use_all_row<DataObject[]>(this.tableName(), handler);
     }
 
-    public get_matched_instance_list($http, query_key_value_array):DataObject[] {
+    //TODO to implment the filter logic on server (php)
+    public use_fully_matched_instance_list(queryKeyValues:KeyValue[], consumer:Consumer<DataObject[]>) {
+      throw new TypeError("Operation not support yet");
+      //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {
+      //  consumer(fullList.filter(function (dataObject:DataObject) {
+      //    return dataObject.isEveryMatch(queryKeyValues);
+      //  }));
+      //};
+      //this.use_all_instance_list(applier);
+    }
+
+    //TODO to implement the filter logic on server (php)
+    public use_partially_matched_instance_list(queryKeyValues:KeyValue[], consumer:Consumer<DataObject[]>) {
       throw new TypeError("Operation not support yet");
     }
+
   }
 }
