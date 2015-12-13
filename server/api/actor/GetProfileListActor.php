@@ -18,6 +18,7 @@ class GetProfileListActor extends Actor
 
     public function handle($data)
     {
+        log_object_from_named($data, "get profile list actor, data");
         $account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
         $account_id_array = $this->params[APIFieldEnum::_id_array];
@@ -25,7 +26,7 @@ class GetProfileListActor extends Actor
         if (count($account_id_array) > 0) {
             $field_value_array = [];
             foreach ($account_id_array as $account_id) {
-                $field_value_array[] = [User_Fields::__account_id => $account_id];
+                $field_value_array[] = [User_Fields::_ . "." . User_Fields::__account_id => $account_id];
             }
             $where_statement = DatabaseHelper::where_statement_join_OR($field_value_array);
             $sql = "$sql $where_statement";
