@@ -37,13 +37,29 @@ var social_connection;
                 comm.log("the session id is " + sessionId);
                 config.save_login(sessionId);
                 //asynchronous_logic.getAllDiscussBoard();
-                asynchronous_logic.getAllCity();
+                getAllCity();
             }
             else {
                 comm.log("failed to login");
             }
         };
-    })(ui || (ui = {}));
+        function onReceivedCitys(citys) {
+            citys.forEach(function (city) { return comm.log("the city name is " + city.cityName); });
+        }
+        ui.onReceivedCitys = onReceivedCitys;
+    })(ui = social_connection.ui || (social_connection.ui = {}));
+    var model;
+    (function (model) {
+        //TODO this part simulate the stub
+        var City = (function () {
+            function City(cityId, cityName) {
+                this.cityId = cityId;
+                this.cityName = cityName;
+            }
+            return City;
+        })();
+        model.City = City;
+    })(model = social_connection.model || (social_connection.model = {}));
     var asynchronous_logic;
     (function (asynchronous_logic) {
         function login(id, password) {
@@ -57,21 +73,6 @@ var social_connection;
             comm.indent(-1);
         }
         asynchronous_logic.login = login;
-        function getAllCity() {
-            comm.log("try to get all City");
-            //var data = {};
-            //data[APIField.id_array] = [];
-            //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
-            var loader = new stub.City_stub();
-            var consumer = function (citys) {
-                citys.map(function (city) {
-                    comm.log(city.get_city_name());
-                    return null;
-                });
-            };
-            loader.use_all_instance_list(consumer);
-        }
-        asynchronous_logic.getAllCity = getAllCity;
     })(asynchronous_logic = social_connection.asynchronous_logic || (social_connection.asynchronous_logic = {}));
 })(social_connection || (social_connection = {}));
 var debug;
@@ -123,7 +124,7 @@ var comm;
 })(comm || (comm = {}));
 var api;
 (function (api) {
-    var _api_url = "http://localhost:8000/api/main.php";
+    var _api_url = "http://58.96.176.223:9000/api/main.php";
     function api_call(api_action, data, success, failMessage) {
         if (failMessage === void 0) { failMessage = "Failed to call api " + api_action; }
         comm.log("calling api " + api_action);
@@ -142,6 +143,7 @@ var api;
             alert(data);
         }
         if (api.$http != null) {
+            comm.log("using \$http");
             api.$http.post(_api_url, {
                 action: api_action,
                 data: JSON.stringify(data)
@@ -160,11 +162,11 @@ var api;
             });
         }
         else {
+            comm.log("using jquery ajax");
             $.ajax({
                 type: "POST",
                 url: _api_url,
                 crossDomain: true,
-                dataType: 'jsonp',
                 success: function (e) {
                     try {
                         var result = JSON.parse(e);
@@ -256,5 +258,19 @@ function main_init() {
     var password = "123456";
     social_connection.asynchronous_logic.login(id, password);
     comm.log("stub_test:end");
+}
+function getAllCity() {
+    comm.log("try to get all City");
+    //var data = {};
+    //data[APIField.id_array] = [];
+    //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
+    var loader = new stub.City_stub();
+    var consumer = function (citys) {
+        citys.map(function (city) {
+            comm.log(city.get_city_name());
+            return null;
+        });
+    };
+    loader.use_all_instance_list(consumer);
 }
 //# sourceMappingURL=main.js.map

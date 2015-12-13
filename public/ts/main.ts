@@ -22,7 +22,7 @@ module social_connection {
         throw new debug.IllegalStatusError();
     }
   }
-  module ui {
+  export module ui {
     //import DiscussBoard = social_connection.model.DiscussBoard;
     export var onLogin:api.APICallback<any> = function (resultCode:string, data:any):any {
       if (resultCode = ResultCode.Success) {
@@ -31,50 +31,22 @@ module social_connection {
         comm.log("the session id is " + sessionId);
         config.save_login(sessionId);
         //asynchronous_logic.getAllDiscussBoard();
-        asynchronous_logic.getAllCity()
+        getAllCity()
       } else {
         comm.log("failed to login");
       }
     };
+
+    export function onReceivedCitys(citys:model.City[]) {
+      citys.forEach(city=>comm.log("the city name is " + city.cityName))
+    }
   }
   export module model {
-    //export class Profile {
-    //  public first_name:string;
-    //  public last_name:string;
-    //
-    //  public toString():string {
-    //    return this.first_name + " " + this.last_name;
-    //  }
-    //
-    //  constructor(firstName:string, lastName:string) {
-    //    this.first_name = firstName;
-    //    this.last_name = lastName;
-    //  }
-    //
-    //  static parse_list:api.APICallback<Profile[]> = function (resultCode:string, data:any):model.Profile[] {
-    //    if (resultCode != ResultCode.Success)
-    //      throw debug.IllegalStatusError;
-    //    var profile_raws:any[] = data[APIField.element_array];
-    //    var profile_list = profile_raws.map(function (raw) {
-    //return new Profile(raw["first_name"], raw["last_name"]);
-    //});
-    //return profile_list;
-    //}
-    //}
-    //export class DiscussBoard {
-    //  public desc:string;
-    //
-    //  constructor(desc:string) {
-    //    this.desc = desc;
-    //  }
-    //
-    //  static parse_list:api.APICallback<DiscussBoard[]> = function (resultCode:string, data:any):DiscussBoard[] {
-    //    comm.log("parsing discuss board list");
-    //var list:DiscussBoard[] = [];
-    //list.push(new DiscussBoard("123"));
-    //return list;
-    //}
-    //}
+    //TODO this part simulate the stub
+    export class City {
+      constructor(public cityId:number, public cityName:string) {
+      }
+    }
   }
   export module asynchronous_logic {
     //TODO test import DiscussBoard_stub = stub.DiscussBoard_stub;
@@ -91,20 +63,7 @@ module social_connection {
       comm.indent(-1);
     }
 
-    export function getAllCity() {
-      comm.log("try to get all City");
-      //var data = {};
-      //data[APIField.id_array] = [];
-      //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
-      var loader = new stub.City_stub();
-      var consumer:Consumer<City_stub[]> = function (citys:City_stub[]) {
-        citys.map(city => {
-          comm.log(city.get_city_name);
-          return null;
-        });
-      };
-      loader.use_all_instance_list(consumer);
-    }
+
 
     //export function getAllDiscussBoard() {
     //  comm.log("try to get all discuss board");
@@ -164,7 +123,7 @@ module api {
     (resultCode:string, data:any, consumer:Consumer<T>);
   }
 
-  var _api_url = "http://localhost:8000/api/main.php";
+  var _api_url = "http://58.96.176.223:9000/api/main.php";
 
   export function api_call<T>(api_action:string, data:any, success:APICallback<T>, failMessage = "Failed to call api " + api_action) {
     comm.log("calling api " + api_action);
@@ -185,6 +144,7 @@ module api {
     }
 
     if ($http != null) {
+      comm.log("using \$http");
       $http.post(_api_url, {
           action: api_action,
           data: JSON.stringify(data)
@@ -202,11 +162,11 @@ module api {
           failed(data, status, headers, config);
         });
     } else {
+      comm.log("using jquery ajax");
       $.ajax({
         type: "POST",
         url: _api_url,
         crossDomain: true,
-        dataType: 'jsonp',
         success: function (e) {
           try {
             var result = JSON.parse(e);
@@ -296,3 +256,18 @@ function main_init() {
   social_connection.asynchronous_logic.login(id, password);
   comm.log("stub_test:end");
 }
+
+ function getAllCity() {
+      comm.log("try to get all City");
+      //var data = {};
+      //data[APIField.id_array] = [];
+      //api.api_call(_api_GetProfileList, data, model.Profile.parse_list);
+      var loader = new stub.City_stub();
+      var consumer:comm.Consumer<stub.City_stub[]> = function (citys:stub.City_stub[]) {
+        citys.map(city => {
+          comm.log(city.get_city_name());
+          return null;
+        });
+      };
+      loader.use_all_instance_list(consumer);
+    }
