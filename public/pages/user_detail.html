@@ -10,16 +10,16 @@
         <table class="table">
           <tbody>
             <tr>
-              <td> <b>Organization: </b></td>
-              <td> {{ elem.organization_name }}</td>
-            </tr>
-            <tr>
-              <td> <b>Country: </b></td>
-              <td> {{ elem.organization_country }}</td>
-            </tr>
-            <tr>
               <td> <b>Gender: </b></td>
               <td> {{ elem.sex === 'F'? 'Female': 'Male' }} </td>
+            </tr>
+            <tr>
+              <td> <b>Organization: </b></td>
+              <td> {{ elem.organization_name + ', ' + elem.organization_country}}</td>
+            </tr>
+            <tr>
+              <td> <b>City: </b></td>
+              <td> {{ elem.user_city }}</td>
             </tr>
           </tbody>
         </table>

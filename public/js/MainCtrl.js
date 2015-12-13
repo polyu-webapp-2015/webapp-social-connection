@@ -8,6 +8,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
     */
 
     $scope.closeModal = function () {
+        console.log("closing");
         $scope.modalItem.close();
     }
 
@@ -53,6 +54,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         $scope.modalItem = $uibModal.open(new Modal('/pages/add_reward.html', $scope));
     }
 
+    $scope.openAddDiscussionModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        console.log("Add Discussion");
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_discussion.html', $scope));
+    }
     $scope.openAddAttractionModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         console.log("Add attraction");
@@ -104,12 +110,17 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
 
     $scope.openAddSessionModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
-        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html'));
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html', $scope));
     }
 
     $scope.openUsersModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
+    }
+
+    $scope.openViewSessionModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        $scope.modalItem = $uibModal.open(new Modal('/pages/view_sessions.html', $scope));
     }
 
     var session_id = sessionStorage.getItem('session_id');
