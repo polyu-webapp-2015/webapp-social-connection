@@ -14,11 +14,14 @@
 var DataObjectManager;
 (function (DataObjectManager) {
     var cachedTimeInMillisecond = 1000 * 10;
+    /**
+     * key : string (tableName)
+     * value : CachedTable
+     * */
     var cachedTables = {};
     function nextInvalidTime() {
         return new Date().getTime() + cachedTimeInMillisecond;
     }
-    function () { }
     /* update cached objects locally */
     function updateTable(tableName, newDataObjects) {
         var invalidTime = nextInvalidTime();
@@ -26,14 +29,19 @@ var DataObjectManager;
             cachedTables[tableName] = {};
         /* removed duplicated */
         //cachedTables[tableName] = cachedTables[tableName].filter(old=>!newDataObjects.some(newO=>newO.isSame(old[1])));
-        cachedTables[tableName] = lang.Dictionary.filter(cachedTables[tableName], isDuplicated());
+        //var uniqueFilter:Producer<CachedTable,boolean> =
+        //  function (keyValue:KeyValue<string,CachedObject>):boolean {
+        //    return !newDataObjects.some(newDataObject=>newDataObject.hashCode() == keyValue[0]);
+        //  };
+        //cachedTables[tableName] = lang.Dictionary.filter(cachedTables[tableName], uniqueFilter);
         /* store new objects */
-        newDataObjects.forEach(function (e) { return cachedTables[tableName].push([invalidTime, e]); });
+        //newDataObjects.forEach(e=>cachedTables[tableName].push([invalidTime, e]));
+        newDataObjects.forEach(function (e) { return cachedTables[tableName][e.hashCode()] = ([invalidTime, e]); });
     }
     function hasOutDated(tableName) {
         var invalidTime = nextInvalidTime();
         if (cachedTables[tableName] == null)
-            cachedTables[tableName] = [];
+            cachedTables[tableName] = {};
         cachedTables[tableName].some(function (e) { return (e[0] <= invalidTime); });
     }
     function request(instance, filter, consumer, forceUpdate) {
@@ -41,10 +49,11 @@ var DataObjectManager;
         /* try to find local */
         var tableName = instance.tableName();
         if (cachedTables[tableName] == null)
-            cachedTables[tableName] = [];
+            cachedTables[tableName] = {};
         //else
-        //  removeOutDatedObjects(tableName);
-        var matchedList = cachedTables[tableName].map(function (e) { return e[1]; }).filter(filter);
+        // removeOutDatedObjects(tableName);
+        //var matchedList:T[] = cachedTables[tableName].map(e=><T>e[1]).filter(filter);
+        var matchedList = lang.Dictionary.map(cachedTables[tableName], (function (e) { return e[1]; })).filter(filter);
         if (matchedList.length > 0 && !forceUpdate) {
             /* satisfy by the local version */
             consumer(matchedList);

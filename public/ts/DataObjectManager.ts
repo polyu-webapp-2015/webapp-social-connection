@@ -18,17 +18,25 @@ import Consumer = lang.Consumer;
  * */
 module DataObjectManager {
   import DataObject = stub.DataObject;
+  import KeyValue = lang.KeyValue;
   type CachedObject = [number,DataObject];
   var cachedTimeInMillisecond = 1000 * 10;
 
-  type CachedTable={[hashCode:string]:CachedObject};
-  var cachedTables:{[tableName:string]:CachedTable} = {};
+  /**
+   * key : string (hashCode)
+   * value : CachedObject
+   * */
+  type CachedTable={};
+  /**
+   * key : string (tableName)
+   * value : CachedTable
+   * */
+  var cachedTables:{} = {};
 
   function nextInvalidTime():number {
     return new Date().getTime() + cachedTimeInMillisecond;
   }
 
-  function(){}
 
   /* update cached objects locally */
   function updateTable(tableName:string, newDataObjects:DataObject[]) {
@@ -37,15 +45,20 @@ module DataObjectManager {
       cachedTables[tableName] = {};
     /* removed duplicated */
     //cachedTables[tableName] = cachedTables[tableName].filter(old=>!newDataObjects.some(newO=>newO.isSame(old[1])));
-    cachedTables[tableName]=lang.Dictionary.filter(cachedTables[tableName],isDuplicated());
+    //var uniqueFilter:Producer<CachedTable,boolean> =
+    //  function (keyValue:KeyValue<string,CachedObject>):boolean {
+    //    return !newDataObjects.some(newDataObject=>newDataObject.hashCode() == keyValue[0]);
+    //  };
+    //cachedTables[tableName] = lang.Dictionary.filter(cachedTables[tableName], uniqueFilter);
     /* store new objects */
-    newDataObjects.forEach(e=>cachedTables[tableName].push([invalidTime, e]));
+    //newDataObjects.forEach(e=>cachedTables[tableName].push([invalidTime, e]));
+    newDataObjects.forEach(e=>cachedTables[tableName][e.hashCode()]=([invalidTime, e]));
   }
 
   function hasOutDated(tableName:string) {
     var invalidTime = nextInvalidTime();
     if (cachedTables[tableName] == null)
-      cachedTables[tableName] = [];
+      cachedTables[tableName] = {};
     cachedTables[tableName].some(e=> (e[0] <= invalidTime));
   }
 
@@ -53,10 +66,11 @@ module DataObjectManager {
     /* try to find local */
     var tableName = instance.tableName();
     if (cachedTables[tableName] == null)
-      cachedTables[tableName] = [];
+      cachedTables[tableName] = {};
     //else
-    //  removeOutDatedObjects(tableName);
-    var matchedList:T[] = cachedTables[tableName].map(e=><T>e[1]).filter(filter);
+    // removeOutDatedObjects(tableName);
+    //var matchedList:T[] = cachedTables[tableName].map(e=><T>e[1]).filter(filter);
+    var matchedList:T[] = lang.Dictionary.map(cachedTables[tableName], (e=><T>e[1])) .filter(filter);
     if (matchedList.length > 0 && !forceUpdate) {
       /* satisfy by the local version */
       consumer(matchedList);

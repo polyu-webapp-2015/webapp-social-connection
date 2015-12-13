@@ -2,6 +2,45 @@ var lang;
 (function (lang) {
     var Dictionary;
     (function (Dictionary) {
+        /** @deprecated does not work */
+        function create() {
+            var o = {};
+            inject(o);
+            return o;
+        }
+        Dictionary.create = create;
+        /** @deprecated does not work */
+        function inject(dict) {
+            //dict.reduce = (producer)=>reduce(dict, producer);
+            //dict.fold = (p, initial)=>fold(dict, p, initial);
+            //dict.map = (producer)=>map(dict, producer);
+            //dict.filter = (producer)=>filter(dict, producer);
+            //dict.some = (producer)=>some(dict, producer);
+            //dict.every = (producer)=>every(dict, producer);
+            //dict.forEach = (producer)=>forEach(dict, producer);
+            dict.reduce = function (producer) {
+                return reduce(dict, producer);
+            };
+            dict.fold = function (p, initial) {
+                return fold(dict, p, initial);
+            };
+            dict.map = function (producer) {
+                return map(dict, producer);
+            };
+            dict.filter = function (producer) {
+                return filter(dict, producer);
+            };
+            dict.some = function (producer) {
+                return some(dict, producer);
+            };
+            dict.every = function (producer) {
+                return every(dict, producer);
+            };
+            dict.forEach = function (producer) {
+                return forEach(dict, producer);
+            };
+        }
+        Dictionary.inject = inject;
         function reduce(dict, producer) {
             var result = null;
             var initialized = false;
@@ -38,11 +77,13 @@ var lang;
         Dictionary.map = map;
         function filter(dict, producer) {
             var result = {};
+            //var result = create();
             for (var key in dict) {
                 if (dict.hasOwnProperty(key))
                     if (producer([key, dict[key]]))
                         result[key] = dict[key];
             }
+            //inject(result);
             return result;
         }
         Dictionary.filter = filter;

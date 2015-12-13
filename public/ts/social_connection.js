@@ -60,10 +60,10 @@ var social_connection;
                 xs.forEach(function (city) {
                     return utils.log("city " + city.get_city_id() + "  " + city.get_city_name());
                 });
-                utils.log("get again, should be much faster");
-                setTimeout(function () {
-                    getCityList();
-                });
+                //utils.log("get again, should be much faster");
+                //setTimeout(function () {
+                //  getCityList();
+                //});
             };
             var forceUpdate = true;
             DataObjectManager.request(instance, filter, consumer, forceUpdate);
