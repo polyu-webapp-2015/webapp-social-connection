@@ -22,6 +22,7 @@
   <script src="js/AddAnnounceCtrl.js"></script>
   <script src="js/ListCtrl.js"></script>
   <script src="js/AddSessionCtrl.js"></script>
+  <script src="js/AddDiscussionCtrl.js"></script>
   <script src="js/ProfileCtrl.js"></script>
   <script src="js/AddAttractionCtrl.js"></script>
   <script src="js/UserDetailCtrl.js"></script>
@@ -33,42 +34,20 @@
 </head>
 
 <body id="admin_nav_page" ng-controller="MainCtrl" onload="load_all_typescript_class()">
-<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid jumbotron">
+		<div class='row'>
+			<div class='col-sm-offset-1 col-sm-5'>
+        <br><br>
+				<h1>Forum</h1>
+			</div>
 
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" id="navbar-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#client_navbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#admin_nav_page"><span class="glyphicon glyphicon-home nav_logo"></span></a>
-			<a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openProfileModal()"><span class="glyphicon glyphicon-user nav_logo" ></span></a>
+			<div class='col-sm-6'>
+				<span class="glyphicon glyphicon-refresh logo" style="color:white"></span>
+			</div>
 		</div>
-		<div class="collapse navbar-collapse" id="client_navbar">
-			<ul ng-click="closeNavbar()" class="nav navbar-nav navbar-right">
-				<li><a href="#sessions">Sessions</a></li>
-				<li><a href="#announcements">Announcements</a></li>
-				<li><a href="#exhibitions">Exhibitions</a></li>
-				<li><a href="#rewards">Rewards</a></li>
-				<li><a href="#forum">Forum</a></li>
-				<li><a href="#analytics">Analytics</a></li>
-				<li><a href="#attractions">Attractions</a></li>
-				<li ng-click="logoff()"><a>Log off</a></li>
-			</ul>
+
+		<div class='row'>
 		</div>
 	</div>
-</nav>
-<div class="jumbotron text-center">
-  <h2>School of Hotel and Tourism Management</h2>
-  <h3>Administration</h3>
-</div>
-<div id="content" ng-bind-html="html_content">
-
-</div>
-<nav class="navbar navbar-default navbar-fixed-bottom">
-	<div class="container">
-	</div>
-</nav>
 </body>
 </html>
