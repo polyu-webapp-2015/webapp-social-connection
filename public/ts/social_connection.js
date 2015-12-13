@@ -21,6 +21,7 @@ var social_connection;
         function save_login(new_session_id) {
             this.session_id = new_session_id;
             this.login = true;
+            api.addExtra([APIField.session_id, new_session_id]);
         }
         config.save_login = save_login;
         function getSessionId() {
@@ -39,7 +40,21 @@ var social_connection;
             utils.log("login success, session id is " + loginResult[0]);
             utils.log("received profile");
             utils.log(loginResult[1]);
+            utils.log("waiting to get city list");
+            setTimeout(function () {
+                utils.log("calling get city list function");
+                getCityList();
+            });
         };
+        function getCityList() {
+            utils.log("try to get city list now ");
+            var instance = new stub.City_stub();
+            instance.use_all_instance_list(function (citys) {
+                citys.forEach(function (city) {
+                    return utils.log("city " + city.get_city_id() + "  " + city.get_city_name());
+                });
+            });
+        }
     })(ui || (ui = {}));
     var model;
     (function (model) {

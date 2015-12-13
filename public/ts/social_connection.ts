@@ -23,6 +23,7 @@ module social_connection {
     export function save_login(new_session_id:string) {
       this.session_id = new_session_id;
       this.login = true;
+      api.addExtra([APIField.session_id, new_session_id]);
     }
 
     export function getSessionId():string {
@@ -35,6 +36,7 @@ module social_connection {
   module ui {
     //import DiscussBoard = social_connection.model.DiscussBoard;
     import APIResultHandler = api.APIResultHandler;
+    import getAllCity = social_connection.asynchronous_logic.getAllCity;
     export type SessionID=string;
     export type LoginResult=[SessionID,model.Profile];
     //export type APIResultHandler<T>=[lang.Producer<APIResult,T>,lang.Consumer<T>];
@@ -43,7 +45,22 @@ module social_connection {
       utils.log("login success, session id is " + loginResult[0]);
       utils.log("received profile");
       utils.log(loginResult[1]);
+      utils.log("waiting to get city list");
+      setTimeout(function () {
+        utils.log("calling get city list function");
+        getCityList();
+      });
     };
+
+    function getCityList() {
+      utils.log("try to get city list now ");
+      var instance = new stub.City_stub();
+      instance.use_all_instance_list(function (citys:stub.City_stub[]) {
+        citys.forEach(city=>
+          utils.log("city " + city.get_city_id() + "  " + city.get_city_name()));
+      });
+    }
+
     //export var onLogin:api.APICallback<LoginResult> = new APICallback<LoginResult>(
     //  function (result:api.APIResult) {
     //    if (result[0] != ResultCode.Success) {
