@@ -12,6 +12,7 @@ app.controller('AddDiscussionCtrl', function ($scope, $http, $global, $uibModal)
                 // session_id: $global.getSessionId(),
                 // topic: $scope.topic,
                 // intro: $scope.intro,
+                // time ????
             }
         })
         .success(function (data, status, headers, config) {

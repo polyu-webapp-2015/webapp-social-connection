@@ -1,0 +1,24 @@
+ <div ng-controller="ForumCtrl">
+  <div id="forumHead" class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <h2>Forum</h2>
+        <div class="well well-lg"></div>
+      </div>
+
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-refresh logo"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class='container-fluid'>
+        <div class="list-group"> <!-- ng-init="loadElements('GetForumList')" -->
+          <button class="list-group-item" ng-repeat="elem in elems" ng-click="loadContent('forum_detail.html')"> <!-- loadContent() -->
+            <h4 class="list-item-title">{{ elem.topic }}</h4>
+            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px">{{ elem.brief }}</p>
+          </button>
+        </div>
+  </div>
+
+</div>
