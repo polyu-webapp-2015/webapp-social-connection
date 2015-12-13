@@ -7,11 +7,16 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $uibModal: take a brief look at http://angular-ui.github.io/bootstrap/, documentation about $uibModal service
     */
 
-    $.get("/pages/console.html", {}, function (data, status, headers, config) {
-        $("#content").html(
-            $compile(data)($scope)
-        );
-    });
+    $scope.loadContent = function(page) {
+        $.get("/pages/" + page, {}, function (data, status, headers, config) {
+            $("#content").html(
+                $compile(data)($scope)
+            );
+        });
+    }
+
+    $scope.loadContent('console.html');
+
 
     $scope.closeModal = function () {
         $scope.modalItem.close();

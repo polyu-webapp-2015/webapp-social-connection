@@ -26,6 +26,8 @@
   <script src="js/AddAttractionCtrl.js"></script>
   <script src="js/UserDetailCtrl.js"></script>
   <script src="js/AddDiscussionCtrl.js"></script>
+
+  <script src='js/ForumCtrl.js'></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
   <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -68,8 +70,8 @@
 </div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
 	<ul class="text-center container">
-		<li class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><a>Console</a></li>
-		<li class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><a>Forum</a></li>
+		<li class="col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-click='loadContent("console.html")'><a>Console</a></li>
+		<li class="col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-click='loadContent("forum.html")'><a>Forum</a></li>
 		<li class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><a>Inbox</a></li>
 	</ul>
 </nav>

@@ -20,6 +20,15 @@ app.controller("ForumCtrl", function ($scope, $http, $global, $uibModal) {
 			intro: "Ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
 			create_time: '19:21 20/12/2015'		}
 	];
+	var temp;
+	for (temp in $scope.elem) {
+		if (temp.intro.length<=20) {
+			temp.brief = temp.intro;
+		} else {
+			temp.brief = temp.intro.slice(0, 16) + '...';
+		}
+	}
+	console.log($scope.elems);
 
 	$scope.openDetailModal = function (html_path, elem) {
 		$scope.elem = elem;
