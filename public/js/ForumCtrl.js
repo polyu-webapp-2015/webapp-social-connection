@@ -28,7 +28,8 @@ app.controller("ForumCtrl", function ($scope, $http, $global, $uibModal) {
 			temp.brief = temp.intro.slice(0, 16) + '...';
 		}
 	}
-	console.log($scope.elems);
+	console.log($scope);
+	$scope.a = 'a';
 
 	$scope.openDetailModal = function (html_path, elem) {
 		$scope.elem = elem;
@@ -74,6 +75,7 @@ app.controller("ForumCtrl", function ($scope, $http, $global, $uibModal) {
 			alert('internal error');
 		})
 	}
+
 
 });
 
