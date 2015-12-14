@@ -2,7 +2,6 @@
 app.controller("AddSessionCtrl", function ($scope, $http, $global) {
     $scope.session = {};
     $scope.session.date = new Date();
-    $scope.session.time = new Date();
     $scope.submit = function () {
         //$scope.gender = parseInt($scope.gender);
         console.log($scope.session);
@@ -31,7 +30,7 @@ app.controller("AddSessionCtrl", function ($scope, $http, $global) {
         $scope.session.dateTime = new Date(yyyy, mm, dd, HH, MM).toString();
         console.log($scope.session.dateTime);
         $http.post(serv_addr, {
-            action: "CreateSessionment",
+            action: "AddSession",
             data: {
                 session_id: $global.getSessionId(),
                 subject: $scope.session.title,

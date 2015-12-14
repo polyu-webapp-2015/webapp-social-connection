@@ -1,6 +1,9 @@
 app.controller("LoginCtrl", function ($scope, $http, $global) {
-  $scope.loginFail = false;
+  $scope.userNotExist = false;
+  $scope.wrongPassword = false;
   $scope.login = function () {
+    $scope.userNotExist = false;
+    $scope.wrongPassword = false;
       $http.post(serv_addr, {
           "action": "Login",
           "data": JSON.stringify({
@@ -12,18 +15,22 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
             console.log(data);
             if (data.result_code == "Success") {
               $scope.loginFail = false;
-              console.log(data);
-              $scope.closeModal();
               $global.setUser(data.profile);
               $global.setSessionId(data.session_id);
               $global.setUserAttr('isAnonymous', false); ;
               sessionStorage.setItem('session_id', data.session_id);
-              console.log($global.getUser());
-              console.log($global.getSessionId());
+              if (data.profile.account_type == "attendee" || data.profile.account_type == "speaker") {
+                window.location.replace("nav_client.html");
+              }
+              else if (data.profile.account_type == "admin") {
+                window.location.replace("nav_admin.html");
+              }
             }
-            else if (data.result_code == "") {
-              $scope.usernameUnique = false;
-              $scope.usernameChecked = true;
+            else if (data.result_code == "Password_Wrong") {
+              $scope.wrongPassword = true;
+            }
+            else if (data.result_code == "User_Not_Exist") {
+              $scope.userNotExist = true;
             }
             else {
               console.log("result_code: " + data.result_code);

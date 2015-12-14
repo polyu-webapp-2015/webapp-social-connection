@@ -6,6 +6,7 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
     $scope.password = '';
     $scope.password_valid = false;
     $scope.usernameChecked = false;
+    $scope.account_type = "attendee";
 
     $scope.checkUsername = function () {
         console.log("focus out of field");
@@ -84,13 +85,16 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
             }
         })
         .success(function (data, status, headers, config) {
-            alert("success!");
-            console.log(data);
+          console.log(data);
+          if (data.result_code == "Success") {
             $scope.closeModal();
+          }
+          else {
+            console.log("result_code: " + data.result_code);
+          }
         })
         .error(function (data, status, headers, config) {
-            console.log(status);
-            alert(status);
+          console.log("error result_code: " + data.result_code);
         });
     };
 

@@ -8,6 +8,7 @@ app.controller("AddAnnounceCtrl", function ($scope, $http, $global) {
         $http.post(serv_addr, {
             action: "CreateAnnouncement",
             data: {
+                session_id: $global.getSessionId(),
                 subject: $scope.announce.title,
                 description: $scope.announce.content,
             }

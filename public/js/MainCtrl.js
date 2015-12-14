@@ -1,13 +1,18 @@
 // controller of index.html
-var _$http;
-app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
-    _$http=$http;
+app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global) {
     /*
     $global: self-defined global variables, look at app.js, app.factory for reference
     You should save infomation of the user there (USING setter and getter)
 
     $uibModal: take a brief look at http://angular-ui.github.io/bootstrap/, documentation about $uibModal service
     */
+
+    $.get("/pages/console.html", {}, function (data, status, headers, config) {
+        $("#content").html($compile(data)($scope));
+    });
+
+    $scope.selectedAnchor = $("#bottom-console-anchor");
+    $scope.selectedAnchor.addClass("selected");
 
     $scope.closeModal = function () {
         $scope.modalItem.close();
@@ -55,6 +60,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         $scope.modalItem = $uibModal.open(new Modal('/pages/add_reward.html', $scope));
     }
 
+    $scope.openAddDiscussionModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        console.log("Add Discussion");
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_discussion.html', $scope));
+    }
     $scope.openAddAttractionModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         console.log("Add attraction");
@@ -106,7 +116,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
 
     $scope.openAddSessionModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
-        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html'));
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html', $scope));
     }
 
     $scope.openUsersModal = function () {
@@ -114,8 +124,36 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $global) {
         $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
     }
 
+    $scope.viewConsole = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        $.get("/pages/console.html", {}, function (data, status, headers, config) {
+            $("#content").html($compile(data)($scope));
+        });
+        $scope.selectedAnchor.removeClass("selected");
+        $scope.selectedAnchor = $("#bottom-console-anchor");
+        $scope.selectedAnchor.addClass("selected");
+    }
+
+    $scope.viewSessions = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        $.get("/pages/sessions.html", {}, function (data, status, headers, config) {
+            $("#content").html($compile(data)($scope));
+        });
+        $scope.selectedAnchor.removeClass("selected");
+        $scope.selectedAnchor = $("#bottom-sessions-anchor");
+        $scope.selectedAnchor.addClass("selected");
+    }
+
+    $scope.viewForum = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        $.get("/pages/forum.html", {}, function (data, status, headers, config) {
+            $("#content").html($compile(data)($scope));
+        });
+        $scope.selectedAnchor.removeClass("selected");
+        $scope.selectedAnchor = $("#bottom-forum-anchor");
+        $scope.selectedAnchor.addClass("selected");
+    }
     var session_id = sessionStorage.getItem('session_id');
     $scope.whoami(session_id);
 
-    //api.$http=$http;
 })
