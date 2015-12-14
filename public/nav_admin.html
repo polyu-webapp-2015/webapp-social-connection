@@ -26,6 +26,8 @@
   <script src="js/AddAttractionCtrl.js"></script>
   <script src="js/UserDetailCtrl.js"></script>
   <script src="js/AddDiscussionCtrl.js"></script>
+
+  <script src='js/ForumCtrl.js'></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
   <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
@@ -54,7 +56,7 @@
 				<li><a href="#forum">Forum</a></li>
 				<li><a href="#analytics">Analytics</a></li>
 				<li><a href="#attractions">Attractions</a></li>
-				<li ng-click="logoff()"><a>Log off</a></li>
+				<li ng-click="logoff()"><a href="index.html">Log off</a></li>
 			</ul>
 		</div>
 	</div>
@@ -70,8 +72,8 @@
 	<ul class="nav navbar text-center container">
 		<li><a href="#" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewConsole()" id="bottom-console-anchor">Console</a></li>
 		<li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewSessions()" id="bottom-sessions-anchor">Sessions</a></li>
-		<li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor">Forum</a></li>
-		<li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor">Inbox</a></li>
+		<li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewForum()" id="bottom-forum-anchor">Forum</a></li>
+		<li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewInbox()" id="bottom-inbox-anchor">Inbox</a></li>
 	</ul>
 </nav>
 </body>

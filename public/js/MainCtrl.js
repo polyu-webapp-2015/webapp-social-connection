@@ -144,6 +144,15 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
         $scope.selectedAnchor.addClass("selected");
     }
 
+    $scope.viewForum = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        $.get("/pages/forum.html", {}, function (data, status, headers, config) {
+            $("#content").html($compile(data)($scope));
+        });
+        $scope.selectedAnchor.removeClass("selected");
+        $scope.selectedAnchor = $("#bottom-forum-anchor");
+        $scope.selectedAnchor.addClass("selected");
+    }
     var session_id = sessionStorage.getItem('session_id');
     $scope.whoami(session_id);
 

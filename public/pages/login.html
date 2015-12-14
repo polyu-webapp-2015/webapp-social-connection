@@ -6,8 +6,11 @@
 	<h4 class="modal-title">Log In</h4>
     </div>			<!-- /modal-header -->
     <div class="center">
-      <div class="alert alert-danger alert-auto login" ng-show="loginFail">
-        <strong>Incorrect username or password.</strong>
+      <div class="alert alert-danger alert-auto login" ng-show="userNotExist">
+        <strong>Username does not exist.</strong>
+      </div>
+      <div class="alert alert-danger alert-auto login" ng-show="wrongPassword">
+        <strong>Incorrect password.</strong>
       </div>
     </div>
     <form id="loginForm" name="loginForm" role="form" ng-submit="login()" autocomplete="off">
