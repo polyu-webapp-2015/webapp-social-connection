@@ -378,7 +378,7 @@ class DatabaseHelper
 
     public static function generate_table_stub_typescript($table_name, array $field_array)
     {
-        //TODO
+        //TODO implement isSame(another) method
         $stub_name = $table_name . "_stub";
         $file_name = $stub_name . ".ts";
         $code = "///<reference path=\"DataObject.ts\"/>";

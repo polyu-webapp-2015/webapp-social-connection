@@ -42,7 +42,7 @@ app.controller("ForumCtrl", function ($scope, $http, $global, $uibModal) {
 		console.log($scope.id_array);
 		$http.post(serv_addr, {
 			'action': action,
-			//TODO  .................
+			//TODO get all forum info (server)
 			//not sure what info I should sent you (I want to get all forum info)
 			'data': JSON.stringify({
 				session_id: $global.getSessionId(),
@@ -52,7 +52,7 @@ app.controller("ForumCtrl", function ($scope, $http, $global, $uibModal) {
 		})
 		.success(function (data, status, headers, config) {
 			if (data.result_code === "Success") {
-				//TODO ......................
+				//TODO process forum info (from server)
 				//the data format I want is shown above in $scope.elems
 				//$scope.elems = data.element_array;
 

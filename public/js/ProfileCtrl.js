@@ -70,7 +70,7 @@ app.controller('ProfileCtrl', function  ($scope, $http, $global, $uibModal) {
 	}
 
 	$scope.profileSave = function() {
-		//TODO 
+		//TODO edit profile (server)
 		$http.post(serv_addr, {
 			'action': 'EditProfile',
 			'data': JSON.stringify({

@@ -6,7 +6,7 @@ app.controller('AddDiscussionCtrl', function ($scope, $http, $global, $uibModal)
 
     $scope.submit = function () {
         $http.post(serv_addr, {
-            //TODO .............................................
+            //TODO create discussion (server)
             "action": "createDiscussion",
             "data": {
                 // session_id: $global.getSessionId(),
