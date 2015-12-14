@@ -6,6 +6,7 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
     $scope.password = '';
     $scope.password_valid = false;
     $scope.usernameChecked = false;
+    $scope.account_type = "attendee";
 
     $scope.checkUsername = function () {
         console.log("focus out of field");

@@ -8,10 +8,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     */
 
     $.get("/pages/console.html", {}, function (data, status, headers, config) {
-        $("#content").html(
-            $compile(data)($scope)
-        );
+        $("#content").html($compile(data)($scope));
     });
+
+    $scope.selectedAnchor = $("#bottom-console-anchor");
+    $scope.selectedAnchor.addClass("selected");
 
     $scope.closeModal = function () {
         $scope.modalItem.close();
@@ -115,12 +116,32 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
 
     $scope.openAddSessionModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
-        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html'));
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html', $scope));
     }
 
     $scope.openUsersModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
         $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
+    }
+
+    $scope.viewConsole = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        $.get("/pages/console.html", {}, function (data, status, headers, config) {
+            $("#content").html($compile(data)($scope));
+        });
+        $scope.selectedAnchor.removeClass("selected");
+        $scope.selectedAnchor = $("#bottom-console-anchor");
+        $scope.selectedAnchor.addClass("selected");
+    }
+
+    $scope.viewSessions = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        $.get("/pages/sessions.html", {}, function (data, status, headers, config) {
+            $("#content").html($compile(data)($scope));
+        });
+        $scope.selectedAnchor.removeClass("selected");
+        $scope.selectedAnchor = $("#bottom-sessions-anchor");
+        $scope.selectedAnchor.addClass("selected");
     }
 
     var session_id = sessionStorage.getItem('session_id');
