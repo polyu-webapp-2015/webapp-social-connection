@@ -2,6 +2,7 @@
 ///<reference path="../js/enum/APIFieldEnum.ts"/>
 ///<reference path="../js/api_list.ts"/>
 ///<reference path="utils.ts"/>
+//declare var _$global:any;
 var api;
 (function (api) {
     var extras = [];
@@ -20,7 +21,8 @@ var api;
         });
     }
     api.removeExtra = removeExtra;
-    var _api_url = "http://localhost:8000/api/main.php";
+    //var _api_url = "http://localhost:8000/api/main.php";
+    var _api_url = serv_addr;
     function set_api_url(url) {
         _api_url = url;
     }

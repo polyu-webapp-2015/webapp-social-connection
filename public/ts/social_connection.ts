@@ -16,19 +16,26 @@
 module social_connection {
   /** @unsafe should not disclose this sensitive info */
   export module config {
-    var session_id:string;
-    export var login:boolean = false;
-
+    //var session_id:string;
+    //export var login:boolean = false;
+    const __session_id = "session_id";
 
     export function save_login(new_session_id:string) {
-      this.session_id = new_session_id;
-      this.login = true;
-      api.addExtra([APIField.session_id, new_session_id]);
+      sessionStorage.setItem(__session_id, new_session_id);
+      //this.session_id = new_session_id;
+      //this.login = true;
+      api.setExtra([APIField.session_id, new_session_id]);
+      utils.log("saved session id");
     }
 
     export function getSessionId():string {
-      if (this.login)
-        return this.session_id;
+      //if (this.login)
+      //  return this.session_id;
+      //else
+      //  throw new debug.IllegalStatusError();
+      var session_id = sessionStorage.getItem(__session_id);
+      if (session_id != null)
+        return session_id;
       else
         throw new debug.IllegalStatusError();
     }
@@ -148,9 +155,9 @@ module social_connection {
 }
 
 function main_init() {
-  utils.log("stub_test:start");
-  var id = "98765432";
-  var password = "123456";
-  social_connection.asynchronous_logic.login(id, password);
-  utils.log("stub_test:end");
+  utils.log("main_init:start");
+  //var id = "98765432";
+  //var password = "123456";
+  //social_connection.asynchronous_logic.login(id, password);
+  utils.log("main_init:end");
 }
