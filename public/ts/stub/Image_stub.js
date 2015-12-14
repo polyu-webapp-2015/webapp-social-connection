@@ -29,14 +29,16 @@ var stub;
         };
         Image_stub.prototype.parseObject = function (rawObject) {
             var instance = new Image_stub();
-            instance.image_id = rawObject[Image_stub.__image_id()];
-            instance.url = rawObject[Image_stub.__url()];
+            instance.image_id = rawObject.image_id;
+            instance.url = rawObject.url;
             return instance;
         };
-        Image_stub.prototype.toObject = function (instant) {
+        Image_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Image_stub.__image_id()] = instant.image_id;
-            rawObject[Image_stub.__url()] = instant.url;
+            rawObject[Image_stub.__image_id()] = instance.image_id;
+            rawObject[Image_stub.__url()] = instance.url;
             return rawObject;
         };
         /* getter and setter */

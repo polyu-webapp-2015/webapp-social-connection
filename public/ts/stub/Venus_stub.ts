@@ -28,15 +28,16 @@ module stub {
     
     parseObject(rawObject:any):Venus_stub {
       var instance = new Venus_stub();
-      instance.venue_id = rawObject[Venus_stub.__venue_id()];
-      instance.floor_id = rawObject[Venus_stub.__floor_id()];
+      instance.venue_id = rawObject.venue_id;
+      instance.floor_id = rawObject.floor_id;
       return instance;
     }
     
-    toObject(instant:Venus_stub):any {
+    toObject(instance:Venus_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Venus_stub.__venue_id()] = instant.venue_id;
-      rawObject[Venus_stub.__floor_id()] = instant.floor_id;
+      rawObject[Venus_stub.__venue_id()] = instance.venue_id;
+      rawObject[Venus_stub.__floor_id()] = instance.floor_id;
       return rawObject;
     }
 

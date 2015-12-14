@@ -47,26 +47,28 @@ var stub;
         };
         User_stub.prototype.parseObject = function (rawObject) {
             var instance = new User_stub();
-            instance.account_id = rawObject[User_stub.__account_id()];
-            instance.sex = rawObject[User_stub.__sex()];
-            instance.first_name = rawObject[User_stub.__first_name()];
-            instance.last_name = rawObject[User_stub.__last_name()];
-            instance.organization_id = rawObject[User_stub.__organization_id()];
-            instance.title_id = rawObject[User_stub.__title_id()];
-            instance.city_id = rawObject[User_stub.__city_id()];
-            instance.last_announcement_datetime = rawObject[User_stub.__last_announcement_datetime()];
+            instance.account_id = rawObject.account_id;
+            instance.sex = rawObject.sex;
+            instance.first_name = rawObject.first_name;
+            instance.last_name = rawObject.last_name;
+            instance.organization_id = rawObject.organization_id;
+            instance.title_id = rawObject.title_id;
+            instance.city_id = rawObject.city_id;
+            instance.last_announcement_datetime = rawObject.last_announcement_datetime;
             return instance;
         };
-        User_stub.prototype.toObject = function (instant) {
+        User_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[User_stub.__account_id()] = instant.account_id;
-            rawObject[User_stub.__sex()] = instant.sex;
-            rawObject[User_stub.__first_name()] = instant.first_name;
-            rawObject[User_stub.__last_name()] = instant.last_name;
-            rawObject[User_stub.__organization_id()] = instant.organization_id;
-            rawObject[User_stub.__title_id()] = instant.title_id;
-            rawObject[User_stub.__city_id()] = instant.city_id;
-            rawObject[User_stub.__last_announcement_datetime()] = instant.last_announcement_datetime;
+            rawObject[User_stub.__account_id()] = instance.account_id;
+            rawObject[User_stub.__sex()] = instance.sex;
+            rawObject[User_stub.__first_name()] = instance.first_name;
+            rawObject[User_stub.__last_name()] = instance.last_name;
+            rawObject[User_stub.__organization_id()] = instance.organization_id;
+            rawObject[User_stub.__title_id()] = instance.title_id;
+            rawObject[User_stub.__city_id()] = instance.city_id;
+            rawObject[User_stub.__last_announcement_datetime()] = instance.last_announcement_datetime;
             return rawObject;
         };
         /* getter and setter */

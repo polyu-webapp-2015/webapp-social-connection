@@ -190,6 +190,13 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     var session_id = sessionStorage.getItem('session_id');
     $scope.whoami(session_id);
 
-    /* add onload event here ? */
+    /* add more modal function here ? */
+    $scope.openDiscussBoardsModal = function () {
+        if ($global.loggedIn() === false) {
+            $scope.openLoginModal();
+            return;
+        }
+        $scope.modalItem = $uibModal.open(new Modal('/pages/discussboard_list.html', $scope));
+    };
 
 });

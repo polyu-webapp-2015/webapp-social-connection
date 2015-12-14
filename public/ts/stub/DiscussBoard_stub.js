@@ -32,16 +32,18 @@ var stub;
         };
         DiscussBoard_stub.prototype.parseObject = function (rawObject) {
             var instance = new DiscussBoard_stub();
-            instance.discussboard_id = rawObject[DiscussBoard_stub.__discussboard_id()];
-            instance.subject = rawObject[DiscussBoard_stub.__subject()];
-            instance.description = rawObject[DiscussBoard_stub.__description()];
+            instance.discussboard_id = rawObject.discussboard_id;
+            instance.subject = rawObject.subject;
+            instance.description = rawObject.description;
             return instance;
         };
-        DiscussBoard_stub.prototype.toObject = function (instant) {
+        DiscussBoard_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[DiscussBoard_stub.__discussboard_id()] = instant.discussboard_id;
-            rawObject[DiscussBoard_stub.__subject()] = instant.subject;
-            rawObject[DiscussBoard_stub.__description()] = instant.description;
+            rawObject[DiscussBoard_stub.__discussboard_id()] = instance.discussboard_id;
+            rawObject[DiscussBoard_stub.__subject()] = instance.subject;
+            rawObject[DiscussBoard_stub.__description()] = instance.description;
             return rawObject;
         };
         /* getter and setter */

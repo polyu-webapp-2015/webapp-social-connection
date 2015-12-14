@@ -28,15 +28,16 @@ module stub {
     
     parseObject(rawObject:any):JsonArray_stub {
       var instance = new JsonArray_stub();
-      instance.JsonArray_id = rawObject[JsonArray_stub.__JsonArray_id()];
-      instance.JsonArray_content = rawObject[JsonArray_stub.__JsonArray_content()];
+      instance.JsonArray_id = rawObject.JsonArray_id;
+      instance.JsonArray_content = rawObject.JsonArray_content;
       return instance;
     }
     
-    toObject(instant:JsonArray_stub):any {
+    toObject(instance:JsonArray_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[JsonArray_stub.__JsonArray_id()] = instant.JsonArray_id;
-      rawObject[JsonArray_stub.__JsonArray_content()] = instant.JsonArray_content;
+      rawObject[JsonArray_stub.__JsonArray_id()] = instance.JsonArray_id;
+      rawObject[JsonArray_stub.__JsonArray_content()] = instance.JsonArray_content;
       return rawObject;
     }
 

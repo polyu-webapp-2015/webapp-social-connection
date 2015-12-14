@@ -47,13 +47,15 @@ var api;
         function commSuccess(data) {
             try {
                 var apiResult = [data[APIField.result_code], data];
+                /* process data (transform) */
                 var t = handler[0](apiResult);
-                handler[1](t);
             }
             catch (exception) {
                 utils.log("Failed to parse result from api call");
                 commFailed(data);
             }
+            /* use data (consume) */
+            handler[1](t);
         }
         if (api.$http == null)
             api.$http = _$http;

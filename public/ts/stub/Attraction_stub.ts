@@ -24,13 +24,14 @@ module stub {
     
     parseObject(rawObject:any):Attraction_stub {
       var instance = new Attraction_stub();
-      instance.event_id = rawObject[Attraction_stub.__event_id()];
+      instance.event_id = rawObject.event_id;
       return instance;
     }
     
-    toObject(instant:Attraction_stub):any {
+    toObject(instance:Attraction_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Attraction_stub.__event_id()] = instant.event_id;
+      rawObject[Attraction_stub.__event_id()] = instance.event_id;
       return rawObject;
     }
 

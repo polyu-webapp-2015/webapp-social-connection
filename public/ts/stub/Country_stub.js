@@ -30,14 +30,16 @@ var stub;
         };
         Country_stub.prototype.parseObject = function (rawObject) {
             var instance = new Country_stub();
-            instance.country_id = rawObject[Country_stub.__country_id()];
-            instance.country_name = rawObject[Country_stub.__country_name()];
+            instance.country_id = rawObject.country_id;
+            instance.country_name = rawObject.country_name;
             return instance;
         };
-        Country_stub.prototype.toObject = function (instant) {
+        Country_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Country_stub.__country_id()] = instant.country_id;
-            rawObject[Country_stub.__country_name()] = instant.country_name;
+            rawObject[Country_stub.__country_id()] = instance.country_id;
+            rawObject[Country_stub.__country_name()] = instance.country_name;
             return rawObject;
         };
         /* getter and setter */

@@ -37,18 +37,20 @@ var stub;
         };
         Friendship_stub.prototype.parseObject = function (rawObject) {
             var instance = new Friendship_stub();
-            instance.friendship_id = rawObject[Friendship_stub.__friendship_id()];
-            instance.host_id = rawObject[Friendship_stub.__host_id()];
-            instance.guest_id = rawObject[Friendship_stub.__guest_id()];
-            instance.remark = rawObject[Friendship_stub.__remark()];
+            instance.friendship_id = rawObject.friendship_id;
+            instance.host_id = rawObject.host_id;
+            instance.guest_id = rawObject.guest_id;
+            instance.remark = rawObject.remark;
             return instance;
         };
-        Friendship_stub.prototype.toObject = function (instant) {
+        Friendship_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Friendship_stub.__friendship_id()] = instant.friendship_id;
-            rawObject[Friendship_stub.__host_id()] = instant.host_id;
-            rawObject[Friendship_stub.__guest_id()] = instant.guest_id;
-            rawObject[Friendship_stub.__remark()] = instant.remark;
+            rawObject[Friendship_stub.__friendship_id()] = instance.friendship_id;
+            rawObject[Friendship_stub.__host_id()] = instance.host_id;
+            rawObject[Friendship_stub.__guest_id()] = instance.guest_id;
+            rawObject[Friendship_stub.__remark()] = instance.remark;
             return rawObject;
         };
         /* getter and setter */

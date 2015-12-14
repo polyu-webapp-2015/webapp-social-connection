@@ -36,19 +36,20 @@ module stub {
     
     parseObject(rawObject:any):Reply_stub {
       var instance = new Reply_stub();
-      instance.reply_id = rawObject[Reply_stub.__reply_id()];
-      instance.post_Id = rawObject[Reply_stub.__post_Id()];
-      instance.message = rawObject[Reply_stub.__message()];
-      instance.account_id = rawObject[Reply_stub.__account_id()];
+      instance.reply_id = rawObject.reply_id;
+      instance.post_Id = rawObject.post_Id;
+      instance.message = rawObject.message;
+      instance.account_id = rawObject.account_id;
       return instance;
     }
     
-    toObject(instant:Reply_stub):any {
+    toObject(instance:Reply_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Reply_stub.__reply_id()] = instant.reply_id;
-      rawObject[Reply_stub.__post_Id()] = instant.post_Id;
-      rawObject[Reply_stub.__message()] = instant.message;
-      rawObject[Reply_stub.__account_id()] = instant.account_id;
+      rawObject[Reply_stub.__reply_id()] = instance.reply_id;
+      rawObject[Reply_stub.__post_Id()] = instance.post_Id;
+      rawObject[Reply_stub.__message()] = instance.message;
+      rawObject[Reply_stub.__account_id()] = instance.account_id;
       return rawObject;
     }
 

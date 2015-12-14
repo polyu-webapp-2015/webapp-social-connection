@@ -40,21 +40,22 @@ module stub {
     
     parseObject(rawObject:any):Message_stub {
       var instance = new Message_stub();
-      instance.msg_id = rawObject[Message_stub.__msg_id()];
-      instance.from_account_id = rawObject[Message_stub.__from_account_id()];
-      instance.to_account_id = rawObject[Message_stub.__to_account_id()];
-      instance.create_time = rawObject[Message_stub.__create_time()];
-      instance.read_time = rawObject[Message_stub.__read_time()];
+      instance.msg_id = rawObject.msg_id;
+      instance.from_account_id = rawObject.from_account_id;
+      instance.to_account_id = rawObject.to_account_id;
+      instance.create_time = rawObject.create_time;
+      instance.read_time = rawObject.read_time;
       return instance;
     }
     
-    toObject(instant:Message_stub):any {
+    toObject(instance:Message_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Message_stub.__msg_id()] = instant.msg_id;
-      rawObject[Message_stub.__from_account_id()] = instant.from_account_id;
-      rawObject[Message_stub.__to_account_id()] = instant.to_account_id;
-      rawObject[Message_stub.__create_time()] = instant.create_time;
-      rawObject[Message_stub.__read_time()] = instant.read_time;
+      rawObject[Message_stub.__msg_id()] = instance.msg_id;
+      rawObject[Message_stub.__from_account_id()] = instance.from_account_id;
+      rawObject[Message_stub.__to_account_id()] = instance.to_account_id;
+      rawObject[Message_stub.__create_time()] = instance.create_time;
+      rawObject[Message_stub.__read_time()] = instance.read_time;
       return rawObject;
     }
 

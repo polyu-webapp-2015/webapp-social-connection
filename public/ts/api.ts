@@ -59,12 +59,14 @@ module api {
     function commSuccess(data:any) {
       try {
         var apiResult:APIResult = [data[APIField.result_code], data];
+        /* process data (transform) */
         var t:T = handler[0](apiResult);
-        handler[1](t);
       } catch (exception) {
         utils.log("Failed to parse result from api call");
         commFailed(data);
       }
+      /* use data (consume) */
+      handler[1](t);
     }
 
     if ($http == null)

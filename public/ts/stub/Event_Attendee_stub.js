@@ -30,14 +30,16 @@ var stub;
         };
         Event_Attendee_stub.prototype.parseObject = function (rawObject) {
             var instance = new Event_Attendee_stub();
-            instance.event_id = rawObject[Event_Attendee_stub.__event_id()];
-            instance.account_id = rawObject[Event_Attendee_stub.__account_id()];
+            instance.event_id = rawObject.event_id;
+            instance.account_id = rawObject.account_id;
             return instance;
         };
-        Event_Attendee_stub.prototype.toObject = function (instant) {
+        Event_Attendee_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Event_Attendee_stub.__event_id()] = instant.event_id;
-            rawObject[Event_Attendee_stub.__account_id()] = instant.account_id;
+            rawObject[Event_Attendee_stub.__event_id()] = instance.event_id;
+            rawObject[Event_Attendee_stub.__account_id()] = instance.account_id;
             return rawObject;
         };
         /* getter and setter */

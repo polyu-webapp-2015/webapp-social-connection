@@ -28,15 +28,16 @@ module stub {
     
     parseObject(rawObject:any):Floor_stub {
       var instance = new Floor_stub();
-      instance.floor_id = rawObject[Floor_stub.__floor_id()];
-      instance.name = rawObject[Floor_stub.__name()];
+      instance.floor_id = rawObject.floor_id;
+      instance.name = rawObject.name;
       return instance;
     }
     
-    toObject(instant:Floor_stub):any {
+    toObject(instance:Floor_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Floor_stub.__floor_id()] = instant.floor_id;
-      rawObject[Floor_stub.__name()] = instant.name;
+      rawObject[Floor_stub.__floor_id()] = instance.floor_id;
+      rawObject[Floor_stub.__name()] = instance.name;
       return rawObject;
     }
 

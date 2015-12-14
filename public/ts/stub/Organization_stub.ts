@@ -36,19 +36,20 @@ module stub {
     
     parseObject(rawObject:any):Organization_stub {
       var instance = new Organization_stub();
-      instance.organization_id = rawObject[Organization_stub.__organization_id()];
-      instance.organization_type = rawObject[Organization_stub.__organization_type()];
-      instance.name = rawObject[Organization_stub.__name()];
-      instance.main_country = rawObject[Organization_stub.__main_country()];
+      instance.organization_id = rawObject.organization_id;
+      instance.organization_type = rawObject.organization_type;
+      instance.name = rawObject.name;
+      instance.main_country = rawObject.main_country;
       return instance;
     }
     
-    toObject(instant:Organization_stub):any {
+    toObject(instance:Organization_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Organization_stub.__organization_id()] = instant.organization_id;
-      rawObject[Organization_stub.__organization_type()] = instant.organization_type;
-      rawObject[Organization_stub.__name()] = instant.name;
-      rawObject[Organization_stub.__main_country()] = instant.main_country;
+      rawObject[Organization_stub.__organization_id()] = instance.organization_id;
+      rawObject[Organization_stub.__organization_type()] = instance.organization_type;
+      rawObject[Organization_stub.__name()] = instance.name;
+      rawObject[Organization_stub.__main_country()] = instance.main_country;
       return rawObject;
     }
 

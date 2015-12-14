@@ -60,31 +60,32 @@ module stub {
     
     parseObject(rawObject:any):Event_stub {
       var instance = new Event_stub();
-      instance.event_id = rawObject[Event_stub.__event_id()];
-      instance.create_time = rawObject[Event_stub.__create_time()];
-      instance.edit_time = rawObject[Event_stub.__edit_time()];
-      instance.event_type = rawObject[Event_stub.__event_type()];
-      instance.venue_id = rawObject[Event_stub.__venue_id()];
-      instance.event_time = rawObject[Event_stub.__event_time()];
-      instance.creator_account_id = rawObject[Event_stub.__creator_account_id()];
-      instance.editor_account_id = rawObject[Event_stub.__editor_account_id()];
-      instance.subject = rawObject[Event_stub.__subject()];
-      instance.description = rawObject[Event_stub.__description()];
+      instance.event_id = rawObject.event_id;
+      instance.create_time = rawObject.create_time;
+      instance.edit_time = rawObject.edit_time;
+      instance.event_type = rawObject.event_type;
+      instance.venue_id = rawObject.venue_id;
+      instance.event_time = rawObject.event_time;
+      instance.creator_account_id = rawObject.creator_account_id;
+      instance.editor_account_id = rawObject.editor_account_id;
+      instance.subject = rawObject.subject;
+      instance.description = rawObject.description;
       return instance;
     }
     
-    toObject(instant:Event_stub):any {
+    toObject(instance:Event_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Event_stub.__event_id()] = instant.event_id;
-      rawObject[Event_stub.__create_time()] = instant.create_time;
-      rawObject[Event_stub.__edit_time()] = instant.edit_time;
-      rawObject[Event_stub.__event_type()] = instant.event_type;
-      rawObject[Event_stub.__venue_id()] = instant.venue_id;
-      rawObject[Event_stub.__event_time()] = instant.event_time;
-      rawObject[Event_stub.__creator_account_id()] = instant.creator_account_id;
-      rawObject[Event_stub.__editor_account_id()] = instant.editor_account_id;
-      rawObject[Event_stub.__subject()] = instant.subject;
-      rawObject[Event_stub.__description()] = instant.description;
+      rawObject[Event_stub.__event_id()] = instance.event_id;
+      rawObject[Event_stub.__create_time()] = instance.create_time;
+      rawObject[Event_stub.__edit_time()] = instance.edit_time;
+      rawObject[Event_stub.__event_type()] = instance.event_type;
+      rawObject[Event_stub.__venue_id()] = instance.venue_id;
+      rawObject[Event_stub.__event_time()] = instance.event_time;
+      rawObject[Event_stub.__creator_account_id()] = instance.creator_account_id;
+      rawObject[Event_stub.__editor_account_id()] = instance.editor_account_id;
+      rawObject[Event_stub.__subject()] = instance.subject;
+      rawObject[Event_stub.__description()] = instance.description;
       return rawObject;
     }
 

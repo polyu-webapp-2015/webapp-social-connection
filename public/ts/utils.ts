@@ -26,9 +26,10 @@ module utils {
   }
 
   export function loadModel(full_path:string, onload:Function) {
-    console.log("loading model " + full_path);
+    //utils.log("loading model " + full_path);
     var script = document.createElement("script");
     script.onload = function () {
+      //utils.log("loaded model " + full_path);
       onload();
     };
     script.src = full_path;

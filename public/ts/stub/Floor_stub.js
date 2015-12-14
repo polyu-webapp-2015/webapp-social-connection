@@ -29,14 +29,16 @@ var stub;
         };
         Floor_stub.prototype.parseObject = function (rawObject) {
             var instance = new Floor_stub();
-            instance.floor_id = rawObject[Floor_stub.__floor_id()];
-            instance.name = rawObject[Floor_stub.__name()];
+            instance.floor_id = rawObject.floor_id;
+            instance.name = rawObject.name;
             return instance;
         };
-        Floor_stub.prototype.toObject = function (instant) {
+        Floor_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Floor_stub.__floor_id()] = instant.floor_id;
-            rawObject[Floor_stub.__name()] = instant.name;
+            rawObject[Floor_stub.__floor_id()] = instance.floor_id;
+            rawObject[Floor_stub.__name()] = instance.name;
             return rawObject;
         };
         /* getter and setter */

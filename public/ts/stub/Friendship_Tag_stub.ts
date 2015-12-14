@@ -29,15 +29,16 @@ module stub {
     
     parseObject(rawObject:any):Friendship_Tag_stub {
       var instance = new Friendship_Tag_stub();
-      instance.friendship_id = rawObject[Friendship_Tag_stub.__friendship_id()];
-      instance.tag_id = rawObject[Friendship_Tag_stub.__tag_id()];
+      instance.friendship_id = rawObject.friendship_id;
+      instance.tag_id = rawObject.tag_id;
       return instance;
     }
     
-    toObject(instant:Friendship_Tag_stub):any {
+    toObject(instance:Friendship_Tag_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Friendship_Tag_stub.__friendship_id()] = instant.friendship_id;
-      rawObject[Friendship_Tag_stub.__tag_id()] = instant.tag_id;
+      rawObject[Friendship_Tag_stub.__friendship_id()] = instance.friendship_id;
+      rawObject[Friendship_Tag_stub.__tag_id()] = instance.tag_id;
       return rawObject;
     }
 

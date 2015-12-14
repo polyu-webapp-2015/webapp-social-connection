@@ -30,14 +30,16 @@ var stub;
         };
         Tag_stub.prototype.parseObject = function (rawObject) {
             var instance = new Tag_stub();
-            instance.tag_id = rawObject[Tag_stub.__tag_id()];
-            instance.tag_content = rawObject[Tag_stub.__tag_content()];
+            instance.tag_id = rawObject.tag_id;
+            instance.tag_content = rawObject.tag_content;
             return instance;
         };
-        Tag_stub.prototype.toObject = function (instant) {
+        Tag_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Tag_stub.__tag_id()] = instant.tag_id;
-            rawObject[Tag_stub.__tag_content()] = instant.tag_content;
+            rawObject[Tag_stub.__tag_id()] = instance.tag_id;
+            rawObject[Tag_stub.__tag_content()] = instance.tag_content;
             return rawObject;
         };
         /* getter and setter */

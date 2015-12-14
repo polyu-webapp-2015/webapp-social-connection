@@ -40,20 +40,22 @@ var stub;
         };
         Account_stub.prototype.parseObject = function (rawObject) {
             var instance = new Account_stub();
-            instance.account_id = rawObject[Account_stub.__account_id()];
-            instance.password = rawObject[Account_stub.__password()];
-            instance.account_type = rawObject[Account_stub.__account_type()];
-            instance.email = rawObject[Account_stub.__email()];
-            instance.phone_num = rawObject[Account_stub.__phone_num()];
+            instance.account_id = rawObject.account_id;
+            instance.password = rawObject.password;
+            instance.account_type = rawObject.account_type;
+            instance.email = rawObject.email;
+            instance.phone_num = rawObject.phone_num;
             return instance;
         };
-        Account_stub.prototype.toObject = function (instant) {
+        Account_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Account_stub.__account_id()] = instant.account_id;
-            rawObject[Account_stub.__password()] = instant.password;
-            rawObject[Account_stub.__account_type()] = instant.account_type;
-            rawObject[Account_stub.__email()] = instant.email;
-            rawObject[Account_stub.__phone_num()] = instant.phone_num;
+            rawObject[Account_stub.__account_id()] = instance.account_id;
+            rawObject[Account_stub.__password()] = instance.password;
+            rawObject[Account_stub.__account_type()] = instance.account_type;
+            rawObject[Account_stub.__email()] = instance.email;
+            rawObject[Account_stub.__phone_num()] = instance.phone_num;
             return rawObject;
         };
         /* getter and setter */

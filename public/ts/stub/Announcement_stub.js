@@ -35,18 +35,20 @@ var stub;
         };
         Announcement_stub.prototype.parseObject = function (rawObject) {
             var instance = new Announcement_stub();
-            instance.announcement_id = rawObject[Announcement_stub.__announcement_id()];
-            instance.subject = rawObject[Announcement_stub.__subject()];
-            instance.description = rawObject[Announcement_stub.__description()];
-            instance.create_time = rawObject[Announcement_stub.__create_time()];
+            instance.announcement_id = rawObject.announcement_id;
+            instance.subject = rawObject.subject;
+            instance.description = rawObject.description;
+            instance.create_time = rawObject.create_time;
             return instance;
         };
-        Announcement_stub.prototype.toObject = function (instant) {
+        Announcement_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Announcement_stub.__announcement_id()] = instant.announcement_id;
-            rawObject[Announcement_stub.__subject()] = instant.subject;
-            rawObject[Announcement_stub.__description()] = instant.description;
-            rawObject[Announcement_stub.__create_time()] = instant.create_time;
+            rawObject[Announcement_stub.__announcement_id()] = instance.announcement_id;
+            rawObject[Announcement_stub.__subject()] = instance.subject;
+            rawObject[Announcement_stub.__description()] = instance.description;
+            rawObject[Announcement_stub.__create_time()] = instance.create_time;
             return rawObject;
         };
         /* getter and setter */
