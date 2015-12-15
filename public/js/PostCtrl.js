@@ -95,7 +95,8 @@ app.controller("PostCtrl", function ($scope, $http, $global, $uibModal) {
 
   $scope.loadElements = function () {
     //console.log("loading elements");
-    var target_discussionboard_id = parentParam.list[parentParam.index].get_discussboard_id();
+    var list = parentParam.list[parentParam.index];
+    var target_discussionboard_id = list.get_discussboard_id();
     var filter = function (post) {
       return post.get_discussboard_id() == target_discussionboard_id;
     };

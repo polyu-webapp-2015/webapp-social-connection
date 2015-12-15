@@ -106,9 +106,9 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
     $scope.current_post.description=post.get_description();
     /* request creator name */
     /* request reply list */
-    var target_discussionboard_id = post.get_discussboard_id();
-    var filter = function (post) {
-      return post.get_discussboard_id() == target_discussionboard_id;
+    var target_post_id = post.get_post_Id();
+    var filter = function (reply) {
+      return reply.get_post_Id() == target_post_id;
     };
     var forceUpdate = false;
     DataObjectManager.request(instance(), filter, onDataObjectsReceived, forceUpdate);
