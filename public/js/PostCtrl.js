@@ -1,4 +1,4 @@
-app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) {
+app.controller("PostCtrl", function ($scope, $http, $global, $uibModal) {
 
   /**
    * This is stack of param to exchange data across multi-layer of modal
@@ -13,13 +13,14 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
   $scope.myParamStack.push(myParam);
   var parentParam = $scope.myParamStack[myParamStackOffset - 1];
 
+
   /**
    * This function cannot be replaced by constant,
    * because this controller instance is created
    * before the stub scrips are loaded
    * */
   function instance() {
-    return new stub.DiscussBoard_stub();
+    return new stub.Post_stub();
   }
 
   /**
@@ -32,13 +33,14 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
 
   function onDataObjectsReceived(dataObjects) {
     myParam.list = dataObjects;
-    update_modal_title(element_name());
+    var elementName = element_name();
+    update_modal_title(elementName);
     if (dataObjects.length == 0) {
-      $scope.text_before_list = "There are no " + element_name();
+      $scope.text_before_list = "There are no " + elementName;
       $scope.elems = [];
     }
     else {
-      $scope.text_before_list = "There are " + dataObjects.length + " " + element_name();
+      $scope.text_before_list = "There are " + dataObjects.length + " " + elementName;
       if (dataObjects.length > 1)
         $scope.text_before_list += "s";
       var elements = dataObjects.map(function (dataObject) {
@@ -95,8 +97,9 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
 
   $scope.loadElements = function () {
     //console.log("loading elements");
-    var filter = function (discussboard) {
-      return true;
+    var target_discussionboard_id = parentParam.list[parentParam.index].get_discussboard_id();
+    var filter = function (post) {
+      return post.get_discussboard_id() == target_discussionboard_id;
     };
     var forceUpdate = false;
     DataObjectManager.request(instance(), filter, onDataObjectsReceived, forceUpdate);
