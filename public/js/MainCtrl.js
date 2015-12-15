@@ -16,6 +16,8 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
   $scope.selectedAnchor.addClass("selected");
 
   $scope.closeModal = function () {
+    console.log($scope);
+    console.log($scope.modalItem);
     $scope.modalItem.close();
   };
 
