@@ -28,15 +28,16 @@ module stub {
     
     parseObject(rawObject:any):Session_stub {
       var instance = new Session_stub();
-      instance.event_id = rawObject[Session_stub.__event_id()];
-      instance.quota = rawObject[Session_stub.__quota()];
+      instance.event_id = rawObject.event_id;
+      instance.quota = rawObject.quota;
       return instance;
     }
     
-    toObject(instant:Session_stub):any {
+    toObject(instance:Session_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Session_stub.__event_id()] = instant.event_id;
-      rawObject[Session_stub.__quota()] = instant.quota;
+      rawObject[Session_stub.__event_id()] = instance.event_id;
+      rawObject[Session_stub.__quota()] = instance.quota;
       return rawObject;
     }
 

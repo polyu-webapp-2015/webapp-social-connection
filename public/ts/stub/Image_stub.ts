@@ -28,15 +28,16 @@ module stub {
     
     parseObject(rawObject:any):Image_stub {
       var instance = new Image_stub();
-      instance.image_id = rawObject[Image_stub.__image_id()];
-      instance.url = rawObject[Image_stub.__url()];
+      instance.image_id = rawObject.image_id;
+      instance.url = rawObject.url;
       return instance;
     }
     
-    toObject(instant:Image_stub):any {
+    toObject(instance:Image_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Image_stub.__image_id()] = instant.image_id;
-      rawObject[Image_stub.__url()] = instant.url;
+      rawObject[Image_stub.__image_id()] = instance.image_id;
+      rawObject[Image_stub.__url()] = instance.url;
       return rawObject;
     }
 

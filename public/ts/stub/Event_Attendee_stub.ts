@@ -29,15 +29,16 @@ module stub {
     
     parseObject(rawObject:any):Event_Attendee_stub {
       var instance = new Event_Attendee_stub();
-      instance.event_id = rawObject[Event_Attendee_stub.__event_id()];
-      instance.account_id = rawObject[Event_Attendee_stub.__account_id()];
+      instance.event_id = rawObject.event_id;
+      instance.account_id = rawObject.account_id;
       return instance;
     }
     
-    toObject(instant:Event_Attendee_stub):any {
+    toObject(instance:Event_Attendee_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Event_Attendee_stub.__event_id()] = instant.event_id;
-      rawObject[Event_Attendee_stub.__account_id()] = instant.account_id;
+      rawObject[Event_Attendee_stub.__event_id()] = instance.event_id;
+      rawObject[Event_Attendee_stub.__account_id()] = instance.account_id;
       return rawObject;
     }
 

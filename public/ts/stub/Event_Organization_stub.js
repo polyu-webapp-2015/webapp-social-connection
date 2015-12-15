@@ -30,14 +30,16 @@ var stub;
         };
         Event_Organization_stub.prototype.parseObject = function (rawObject) {
             var instance = new Event_Organization_stub();
-            instance.event_id = rawObject[Event_Organization_stub.__event_id()];
-            instance.organization_id = rawObject[Event_Organization_stub.__organization_id()];
+            instance.event_id = rawObject.event_id;
+            instance.organization_id = rawObject.organization_id;
             return instance;
         };
-        Event_Organization_stub.prototype.toObject = function (instant) {
+        Event_Organization_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Event_Organization_stub.__event_id()] = instant.event_id;
-            rawObject[Event_Organization_stub.__organization_id()] = instant.organization_id;
+            rawObject[Event_Organization_stub.__event_id()] = instance.event_id;
+            rawObject[Event_Organization_stub.__organization_id()] = instance.organization_id;
             return rawObject;
         };
         /* getter and setter */

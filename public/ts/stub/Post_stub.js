@@ -35,18 +35,20 @@ var stub;
         };
         Post_stub.prototype.parseObject = function (rawObject) {
             var instance = new Post_stub();
-            instance.post_Id = rawObject[Post_stub.__post_Id()];
-            instance.subject = rawObject[Post_stub.__subject()];
-            instance.description = rawObject[Post_stub.__description()];
-            instance.discussboard_id = rawObject[Post_stub.__discussboard_id()];
+            instance.post_Id = rawObject.post_Id;
+            instance.subject = rawObject.subject;
+            instance.description = rawObject.description;
+            instance.discussboard_id = rawObject.discussboard_id;
             return instance;
         };
-        Post_stub.prototype.toObject = function (instant) {
+        Post_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Post_stub.__post_Id()] = instant.post_Id;
-            rawObject[Post_stub.__subject()] = instant.subject;
-            rawObject[Post_stub.__description()] = instant.description;
-            rawObject[Post_stub.__discussboard_id()] = instant.discussboard_id;
+            rawObject[Post_stub.__post_Id()] = instance.post_Id;
+            rawObject[Post_stub.__subject()] = instance.subject;
+            rawObject[Post_stub.__description()] = instance.description;
+            rawObject[Post_stub.__discussboard_id()] = instance.discussboard_id;
             return rawObject;
         };
         /* getter and setter */

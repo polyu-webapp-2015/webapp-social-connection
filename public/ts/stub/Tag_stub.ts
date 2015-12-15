@@ -29,15 +29,16 @@ module stub {
     
     parseObject(rawObject:any):Tag_stub {
       var instance = new Tag_stub();
-      instance.tag_id = rawObject[Tag_stub.__tag_id()];
-      instance.tag_content = rawObject[Tag_stub.__tag_content()];
+      instance.tag_id = rawObject.tag_id;
+      instance.tag_content = rawObject.tag_content;
       return instance;
     }
     
-    toObject(instant:Tag_stub):any {
+    toObject(instance:Tag_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Tag_stub.__tag_id()] = instant.tag_id;
-      rawObject[Tag_stub.__tag_content()] = instant.tag_content;
+      rawObject[Tag_stub.__tag_id()] = instance.tag_id;
+      rawObject[Tag_stub.__tag_content()] = instance.tag_content;
       return rawObject;
     }
 

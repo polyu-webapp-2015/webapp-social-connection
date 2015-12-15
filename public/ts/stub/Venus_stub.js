@@ -29,14 +29,16 @@ var stub;
         };
         Venus_stub.prototype.parseObject = function (rawObject) {
             var instance = new Venus_stub();
-            instance.venue_id = rawObject[Venus_stub.__venue_id()];
-            instance.floor_id = rawObject[Venus_stub.__floor_id()];
+            instance.venue_id = rawObject.venue_id;
+            instance.floor_id = rawObject.floor_id;
             return instance;
         };
-        Venus_stub.prototype.toObject = function (instant) {
+        Venus_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Venus_stub.__venue_id()] = instant.venue_id;
-            rawObject[Venus_stub.__floor_id()] = instant.floor_id;
+            rawObject[Venus_stub.__venue_id()] = instance.venue_id;
+            rawObject[Venus_stub.__floor_id()] = instance.floor_id;
             return rawObject;
         };
         /* getter and setter */

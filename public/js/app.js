@@ -1,93 +1,88 @@
-
-/*@deprecated ("AngularJS does not support cross-origin?")*/
+/**
+ * global variables here
+ * */
 serv_addr = "http://58.96.176.223:9000/api/main.php";
-// serv_address = "";
+var _$http;
+var _$global;
 
 var app = angular.module('myApp', ['ui.bootstrap']);
 
 /*
-function site_join(path) {
-	return serv_address+path;
-}
-*/
+ function site_join(path) {
+ return serv_address+path;
+ }
+ */
 
 function Modal(url, scope, settings) {
   this.templateUrl = url;
   this.scope = scope;
 
   if (settings === undefined) settings = {};  // if no settings passed, default values
-  this.backdrop = settings.backdrop === undefined? true: settings.backdrop;
-  this.backdropClick = settings.backdropClick === undefined? true: settings.backdropClick;
-  this.dialogFade = settings.dialogFade === undefined? false: settings.dialogFade;
-  this.keyboard = settings.keyboard === undefined? true: settings.keyboard;
-  this.size = settings.size === undefined? 'md': settings.size;
+  this.backdrop = settings.backdrop === undefined ? true : settings.backdrop;
+  this.backdropClick = settings.backdropClick === undefined ? true : settings.backdropClick;
+  this.dialogFade = settings.dialogFade === undefined ? false : settings.dialogFade;
+  this.keyboard = settings.keyboard === undefined ? true : settings.keyboard;
+  this.size = settings.size === undefined ? 'md' : settings.size;
 }
 
-app.config(['$httpProvider', function($httpProvider) {
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    // setup CSRF support
-    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-    // http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/
-    // Rewrite POST body data
-    $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-    // $httpProvider.defaults.withCredentials = true;
-    // Override $http service's default transformRequest
-    $httpProvider.defaults.transformRequest = [function(data)
-    {
-      /**
-       * The workhorse; converts an object to x-www-form-urlencoded serialization.
-       * @param {Object} obj
-       * @return {String}
-       */
-      var param = function(obj)
-      {
-        var query = '';
-        var name, value, fullSubName, subName, subValue, innerObj, i;
+app.config(['$httpProvider', function ($httpProvider) {
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  // setup CSRF support
+  $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+  $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+  // http://victorblog.com/2012/12/20/make-angularjs-http-service-behave-like-jquery-ajax/
+  // Rewrite POST body data
+  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+  // $httpProvider.defaults.withCredentials = true;
+  // Override $http service's default transformRequest
+  $httpProvider.defaults.transformRequest = [function (data) {
+    /**
+     * The workhorse; converts an object to x-www-form-urlencoded serialization.
+     * @param {Object} obj
+     * @return {String}
+     */
+    var param = function (obj) {
+      var query = '';
+      var name, value, fullSubName, subName, subValue, innerObj, i;
 
-        for(name in obj)
-        {
-          value = obj[name];
+      for (name in obj) {
+        value = obj[name];
 
-          if(value instanceof Array)
-          {
-            for(i=0; i<value.length; ++i)
-            {
-              subValue = value[i];
-              fullSubName = name + '[' + i + ']';
-              innerObj = {};
-              innerObj[fullSubName] = subValue;
-              query += param(innerObj) + '&';
-            }
-          }
-          else if(value instanceof Object)
-          {
-            for(subName in value)
-            {
-              subValue = value[subName];
-              fullSubName = name + '[' + subName + ']';
-              innerObj = {};
-              innerObj[fullSubName] = subValue;
-              query += param(innerObj) + '&';
-            }
-          }
-          else if(value !== undefined && value !== null)
-          {
-            query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+        if (value instanceof Array) {
+          for (i = 0; i < value.length; ++i) {
+            subValue = value[i];
+            fullSubName = name + '[' + i + ']';
+            innerObj = {};
+            innerObj[fullSubName] = subValue;
+            query += param(innerObj) + '&';
           }
         }
+        else if (value instanceof Object) {
+          for (subName in value) {
+            subValue = value[subName];
+            fullSubName = name + '[' + subName + ']';
+            innerObj = {};
+            innerObj[fullSubName] = subValue;
+            query += param(innerObj) + '&';
+          }
+        }
+        else if (value !== undefined && value !== null) {
+          query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+        }
+      }
 
-        return query.length ? query.substr(0, query.length - 1) : query;
-      };
+      return query.length ? query.substr(0, query.length - 1) : query;
+    };
 
-      return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
-    }];
-  }
+    return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+  }];
+}
 ]);
 
 
-app.factory("$global", function($uibModal) {
+app.factory("$global", function ($uibModal) {
+  _$global = this;
 
   var user = {isAnonymous: true, account_id: "-1"};
   var session_id = null;
@@ -95,15 +90,15 @@ app.factory("$global", function($uibModal) {
   return {
 
     getUser: function () {
-    // objects in javascript are volatile,
-    // so it might be safer to use user like this
+      // objects in javascript are volatile,
+      // so it might be safer to use user like this
       return angular.copy(user);
     },
 
     setUser: function (theUser) {
-      if (!theUser) 
-        user = {isAnonymous: true, account_id: "-1"}
-      else 
+      if (!theUser)
+        user = {isAnonymous: true, account_id: "-1"};
+      else
         user = theUser; // set it when user is got from the server
     },
 
@@ -123,6 +118,16 @@ app.factory("$global", function($uibModal) {
 
     setSessionId: function (id) {
       session_id = id;
+      function send_to_api() {
+        try {
+          social_connection.config.save_login(session_id);
+        } catch (exception) {
+          /* the script has not been loaded, wait to try again */
+          setTimeout(send_to_api);
+        }
+      }
+
+      setTimeout(send_to_api);
     },
 
     getSessionId: function () {
@@ -130,4 +135,4 @@ app.factory("$global", function($uibModal) {
     }
 
   };
-})
+});

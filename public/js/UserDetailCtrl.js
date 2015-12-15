@@ -23,7 +23,7 @@ app.controller('UserDetailCtrl', function  ($scope, $http, $global, $uibModal) {
 		.error (function (data, status, headers, config) {
 			alert('internal error');
 		})
-	}
+	};
 
 	$scope.profileInit = function() {
 
@@ -37,7 +37,7 @@ app.controller('UserDetailCtrl', function  ($scope, $http, $global, $uibModal) {
 		document.getElementById('sex').disabled = true;
 		document.getElementById('saveButton').style.display = 'none';
 		document.getElementById('updateButton').style.display = 'block';
-	}
+	};
 
 	$scope.profileUpdate = function() {
 		var inputField;
@@ -50,19 +50,19 @@ app.controller('UserDetailCtrl', function  ($scope, $http, $global, $uibModal) {
 		document.getElementById('sex').disabled = false;
 		document.getElementById('updateButton').style.display = 'none';
 		document.getElementById('saveButton').style.display = 'block';
-	}
+	};
 
 	$scope.profileSave = function() {
 		//get data
 		//save data
 		$scope.profileInit();
-	}
+	};
 
 	$scope.log = function () {
 		console.log($scope);
 		console.log($scope.elem);
 		console.log("momoda");
-	}
+	};
 
 	$scope.log();
 });

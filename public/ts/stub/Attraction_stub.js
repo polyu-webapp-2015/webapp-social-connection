@@ -26,12 +26,14 @@ var stub;
         };
         Attraction_stub.prototype.parseObject = function (rawObject) {
             var instance = new Attraction_stub();
-            instance.event_id = rawObject[Attraction_stub.__event_id()];
+            instance.event_id = rawObject.event_id;
             return instance;
         };
-        Attraction_stub.prototype.toObject = function (instant) {
+        Attraction_stub.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
             var rawObject = {};
-            rawObject[Attraction_stub.__event_id()] = instant.event_id;
+            rawObject[Attraction_stub.__event_id()] = instance.event_id;
             return rawObject;
         };
         /* getter and setter */

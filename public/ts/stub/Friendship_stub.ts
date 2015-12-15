@@ -38,19 +38,20 @@ module stub {
     
     parseObject(rawObject:any):Friendship_stub {
       var instance = new Friendship_stub();
-      instance.friendship_id = rawObject[Friendship_stub.__friendship_id()];
-      instance.host_id = rawObject[Friendship_stub.__host_id()];
-      instance.guest_id = rawObject[Friendship_stub.__guest_id()];
-      instance.remark = rawObject[Friendship_stub.__remark()];
+      instance.friendship_id = rawObject.friendship_id;
+      instance.host_id = rawObject.host_id;
+      instance.guest_id = rawObject.guest_id;
+      instance.remark = rawObject.remark;
       return instance;
     }
     
-    toObject(instant:Friendship_stub):any {
+    toObject(instance:Friendship_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Friendship_stub.__friendship_id()] = instant.friendship_id;
-      rawObject[Friendship_stub.__host_id()] = instant.host_id;
-      rawObject[Friendship_stub.__guest_id()] = instant.guest_id;
-      rawObject[Friendship_stub.__remark()] = instant.remark;
+      rawObject[Friendship_stub.__friendship_id()] = instance.friendship_id;
+      rawObject[Friendship_stub.__host_id()] = instance.host_id;
+      rawObject[Friendship_stub.__guest_id()] = instance.guest_id;
+      rawObject[Friendship_stub.__remark()] = instance.remark;
       return rawObject;
     }
 

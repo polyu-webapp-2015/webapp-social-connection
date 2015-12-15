@@ -2,20 +2,22 @@
 ///<reference path="../js/enum/APIFieldEnum.ts"/>
 ///<reference path="../js/api_list.ts"/>
 ///<reference path="utils.ts"/>
+declare var serv_addr:string;
 declare var _$http:any;
+//declare var _$global:any;
 module api {
   import Consumer = lang.Consumer;
   import KeyValue = lang.KeyValue;
   export var $http:any;
   declare var $:any;
 
-  var extras:KeyValue[] = [];
+  var extras:KeyValue<string,string>[] = [];
 
-  export function addExtra(extra:KeyValue) {
+  export function addExtra(extra:KeyValue<string,string>) {
     extras.push(extra);
   }
 
-  export function setExtra(extra:KeyValue) {
+  export function setExtra(extra:KeyValue<string,string>) {
     removeExtra(extra[0]);
     addExtra(extra);
   }
@@ -29,7 +31,8 @@ module api {
   export type APIResult=[string,any];
   export type APIResultHandler<T>=[lang.Producer<APIResult,T>,lang.Consumer<T>];
 
-  var _api_url = "http://localhost:8000/api/main.php";
+  //var _api_url = "http://localhost:8000/api/main.php";
+  var _api_url = serv_addr;
 
   export function set_api_url(url:string) {
     _api_url = url
@@ -56,12 +59,14 @@ module api {
     function commSuccess(data:any) {
       try {
         var apiResult:APIResult = [data[APIField.result_code], data];
+        /* process data (transform) */
         var t:T = handler[0](apiResult);
-        handler[1](t);
       } catch (exception) {
         utils.log("Failed to parse result from api call");
         commFailed(data);
       }
+      /* use data (consume) */
+      handler[1](t);
     }
 
     if ($http == null)

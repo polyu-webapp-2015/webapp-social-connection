@@ -1,6 +1,7 @@
 module utils {
   var indentText = " ";
   var indentCount = 0;
+  export var debug = true;
 
   function getIndentPrefix():string {
     var indent = "";
@@ -13,9 +14,11 @@ module utils {
     message = message.toString();
     message = getIndentPrefix() + message;
     console.log(message);
-    var element = document.createElement("span");
-    element.innerHTML = "<pre>\n" + message + "</pre>";
-    document.body.appendChild(element);
+    if (debug) {
+      var element = document.createElement("span");
+      element.innerHTML = "<pre>\n" + message + "</pre>";
+      document.body.appendChild(element);
+    }
   }
 
   export function indent(delta:number) {
@@ -23,9 +26,10 @@ module utils {
   }
 
   export function loadModel(full_path:string, onload:Function) {
-    console.log("loading model " + full_path);
+    //utils.log("loading model " + full_path);
     var script = document.createElement("script");
     script.onload = function () {
+      //utils.log("loaded model " + full_path);
       onload();
     };
     script.src = full_path;

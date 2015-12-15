@@ -29,15 +29,16 @@ module stub {
     
     parseObject(rawObject:any):Title_stub {
       var instance = new Title_stub();
-      instance.title_id = rawObject[Title_stub.__title_id()];
-      instance.title_text = rawObject[Title_stub.__title_text()];
+      instance.title_id = rawObject.title_id;
+      instance.title_text = rawObject.title_text;
       return instance;
     }
     
-    toObject(instant:Title_stub):any {
+    toObject(instance:Title_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[Title_stub.__title_id()] = instant.title_id;
-      rawObject[Title_stub.__title_text()] = instant.title_text;
+      rawObject[Title_stub.__title_id()] = instance.title_id;
+      rawObject[Title_stub.__title_text()] = instance.title_text;
       return rawObject;
     }
 

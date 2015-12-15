@@ -33,17 +33,18 @@ module stub {
     
     parseObject(rawObject:any):City_stub {
       var instance = new City_stub();
-      instance.city_id = rawObject[City_stub.__city_id()];
-      instance.country_id = rawObject[City_stub.__country_id()];
-      instance.city_name = rawObject[City_stub.__city_name()];
+      instance.city_id = rawObject.city_id;
+      instance.country_id = rawObject.country_id;
+      instance.city_name = rawObject.city_name;
       return instance;
     }
     
-    toObject(instant:City_stub):any {
+    toObject(instance:City_stub):any {
+      if (instance == null) instance = this;
       var rawObject = {};
-      rawObject[City_stub.__city_id()] = instant.city_id;
-      rawObject[City_stub.__country_id()] = instant.country_id;
-      rawObject[City_stub.__city_name()] = instant.city_name;
+      rawObject[City_stub.__city_id()] = instance.city_id;
+      rawObject[City_stub.__country_id()] = instance.country_id;
+      rawObject[City_stub.__city_name()] = instance.city_name;
       return rawObject;
     }
 

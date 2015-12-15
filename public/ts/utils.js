@@ -2,6 +2,7 @@ var utils;
 (function (utils) {
     var indentText = " ";
     var indentCount = 0;
+    utils.debug = true;
     function getIndentPrefix() {
         var indent = "";
         for (var i = 0; i < indentCount; i++)
@@ -13,9 +14,11 @@ var utils;
         message = message.toString();
         message = getIndentPrefix() + message;
         console.log(message);
-        var element = document.createElement("span");
-        element.innerHTML = "<pre>\n" + message + "</pre>";
-        document.body.appendChild(element);
+        if (utils.debug) {
+            var element = document.createElement("span");
+            element.innerHTML = "<pre>\n" + message + "</pre>";
+            document.body.appendChild(element);
+        }
     }
     utils.log = log;
     function indent(delta) {
@@ -23,9 +26,10 @@ var utils;
     }
     utils.indent = indent;
     function loadModel(full_path, onload) {
-        console.log("loading model " + full_path);
+        //utils.log("loading model " + full_path);
         var script = document.createElement("script");
         script.onload = function () {
+            //utils.log("loaded model " + full_path);
             onload();
         };
         script.src = full_path;

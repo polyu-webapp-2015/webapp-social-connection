@@ -52,7 +52,7 @@ module DataObjectManager {
     //cachedTables[tableName] = lang.Dictionary.filter(cachedTables[tableName], uniqueFilter);
     /* store new objects */
     //newDataObjects.forEach(e=>cachedTables[tableName].push([invalidTime, e]));
-    newDataObjects.forEach(e=>cachedTables[tableName][e.hashCode()]=([invalidTime, e]));
+    newDataObjects.forEach(e=>cachedTables[tableName][e.hashCode()] = ([invalidTime, e]));
   }
 
   function hasOutDated(tableName:string) {
@@ -70,7 +70,11 @@ module DataObjectManager {
     //else
     // removeOutDatedObjects(tableName);
     //var matchedList:T[] = cachedTables[tableName].map(e=><T>e[1]).filter(filter);
-    var matchedList:T[] = lang.Dictionary.map(cachedTables[tableName], (e=><T>e[1])) .filter(filter);
+    var matchedList:T[] = lang.Dictionary.map(cachedTables[tableName], (cachedObjectItem=> {
+      var cachedObject = cachedObjectItem[1];
+      var dataObject = cachedObject[1];
+      return <T> dataObject;
+    })) .filter(filter);
     if (matchedList.length > 0 && !forceUpdate) {
       /* satisfy by the local version */
       consumer(matchedList);

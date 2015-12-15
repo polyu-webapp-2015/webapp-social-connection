@@ -378,7 +378,7 @@ class DatabaseHelper
 
     public static function generate_table_stub_typescript($table_name, array $field_array)
     {
-        //TODO
+        //TODO implement isSame(another) method
         $stub_name = $table_name . "_stub";
         $file_name = $stub_name . ".ts";
         $code = "///<reference path=\"DataObject.ts\"/>";
@@ -417,16 +417,17 @@ class DatabaseHelper
         $code = $code . "\n      var instance = new $stub_name();";
         foreach ($field_array as $field) {
             $field_name = $field[self::__field_name];
-            $code = $code . "\n      instance.$field_name = rawObject[$stub_name.__$field_name()];";
+            $code = $code . "\n      instance.$field_name = rawObject.$field_name;";
         }
         $code = $code . "\n      return instance;";
         $code = $code . "\n    }";
         $code = $code . "\n    ";
-        $code = $code . "\n    toObject(instant:$stub_name):any {";
+        $code = $code . "\n    toObject(instance:$stub_name):any {";
+        $code = $code . "\n      if (instance == null) instance = this;";
         $code = $code . "\n      var rawObject = {};";
         foreach ($field_array as $field) {
             $field_name = $field[self::__field_name];
-            $code = $code . "\n      rawObject[$stub_name.__$field_name()] = instant.$field_name;";
+            $code = $code . "\n      rawObject[$stub_name.__$field_name()] = instance.$field_name;";
         }
         $code = $code . "\n      return rawObject;";
         $code = $code . "\n    }";

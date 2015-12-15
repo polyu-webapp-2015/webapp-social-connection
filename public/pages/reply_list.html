@@ -1,9 +1,25 @@
-<div ng-controller="DiscussBoardCtrl">
+<div ng-controller="ReplyCtrl">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
     <h4 class="modal-title" ng-bind="modal_title"></h4>
   </div>
   <div class="modal-body">
+    <div class="table-responsive">
+      <table class="table">
+        <tbody>
+        <tr>
+          <td><h4> {{ subject }} </h4></td>
+        </tr>
+        <tr>
+          <td><b> {{ creator }}</b></td>
+        </tr>
+        <tr>
+          <td><b>City: </b></td>
+          <td> {{ elem.description }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
     <div class="well well-lg">
       <span ng-bind="text_before_list"></span>
       <div class="list-group"
@@ -11,8 +27,9 @@
         <button class="list-group-item"
                 ng-repeat="elem in elems"
                 ng-class="rowClass(elem, elems)"
-                ng-click="openDetailModal('/pages/post_list.html', $index)">
+                ng-click="openDetailModal('/pages/user_detail.html', $index)">
           <h4 class="list-item-title">
+            {{ 'Subject : ' }}
             {{ elem.subject }}
           </h4>
           <p class="list-item-remarks"

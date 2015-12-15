@@ -53,7 +53,11 @@ var DataObjectManager;
         //else
         // removeOutDatedObjects(tableName);
         //var matchedList:T[] = cachedTables[tableName].map(e=><T>e[1]).filter(filter);
-        var matchedList = lang.Dictionary.map(cachedTables[tableName], (function (e) { return e[1]; })).filter(filter);
+        var matchedList = lang.Dictionary.map(cachedTables[tableName], (function (cachedObjectItem) {
+            var cachedObject = cachedObjectItem[1];
+            var dataObject = cachedObject[1];
+            return dataObject;
+        })).filter(filter);
         if (matchedList.length > 0 && !forceUpdate) {
             /* satisfy by the local version */
             consumer(matchedList);

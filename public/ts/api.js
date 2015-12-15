@@ -2,6 +2,7 @@
 ///<reference path="../js/enum/APIFieldEnum.ts"/>
 ///<reference path="../js/api_list.ts"/>
 ///<reference path="utils.ts"/>
+//declare var _$global:any;
 var api;
 (function (api) {
     var extras = [];
@@ -20,7 +21,8 @@ var api;
         });
     }
     api.removeExtra = removeExtra;
-    var _api_url = "http://localhost:8000/api/main.php";
+    //var _api_url = "http://localhost:8000/api/main.php";
+    var _api_url = serv_addr;
     function set_api_url(url) {
         _api_url = url;
     }
@@ -45,13 +47,15 @@ var api;
         function commSuccess(data) {
             try {
                 var apiResult = [data[APIField.result_code], data];
+                /* process data (transform) */
                 var t = handler[0](apiResult);
-                handler[1](t);
             }
             catch (exception) {
                 utils.log("Failed to parse result from api call");
                 commFailed(data);
             }
+            /* use data (consume) */
+            handler[1](t);
         }
         if (api.$http == null)
             api.$http = _$http;
