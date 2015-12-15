@@ -1,6 +1,7 @@
-///<reference path="../api.ts"/>
-///<reference path="../../js/enum/ResultCodeEnum.ts"/>
-///<reference path="../debug.ts"/>
+///<reference path="../../api.ts"/>
+///<reference path="../../../js/enum/ResultCodeEnum.ts"/>
+///<reference path="../../debug.ts"/>
+///<reference path="../DataObject.ts"/>
 
 
 module stub {
@@ -11,53 +12,16 @@ module stub {
   import APIParseResultError = debug.APIParseResultError;
   import KeyValue = lang.KeyValue;
   import use_all_row = api.use_all_row;
-  export class DataObjectError extends Error {
-    public name = "DataObjectError";
-
-    constructor(public dataObject:DataObject, public message?:string) {
-      super(message);
-    }
-  }
-  export class DataObjectEditError extends DataObjectError {
-    public name = "DataObjectEditError";
-
-    constructor(public dataObject:DataObject, public message:string = "This Object can not be edited") {
-      super(dataObject, message);
-    }
-  }
-  export class DataObjectSaveError extends DataObjectError {
-    public name = "DataObjectSaveError";
-
-    constructor(public dataObject:DataObject, public message:string = "Failed to save this object") {
-      super(dataObject, message);
-    }
-  }
-  export abstract class DataObject {
-    abstract tableName():string;
-
-    abstract uniqueKeyList():string[];
-
-    //abstract fullKeyList():string[];
-
-    //abstract getValueByKey(key:string):any;
+  export abstract class ComplexDataObject extends stub.DataObject {
 
     abstract toObject(instant:DataObject):any;
 
     abstract parseObject(rawObject:any):DataObject ;
 
-    //public isEveryMatch(patterns:KeyValue[]):boolean {
-    //  return patterns.every(pair=>this.getValueByKey(pair[0]) == pair[1]);
-    //}
-
-    //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
-    //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
-    //}
-
     public isEditSupport():boolean {
       return this.uniqueKeyList().length > 0;
     }
 
-    //TODO implement faster method (direct compare in subclass)
     public isSame(another:DataObject):boolean {
       var keys = this.uniqueKeyList();
       if (keys.length <= 0)
@@ -77,21 +41,6 @@ module stub {
       } else {
         console.log("Warning : this hashCode might lead to collision");
         return JSON.stringify(o);
-      }
-    }
-
-    public save($http:any) {
-      this.save_all($http, [this]);
-    }
-
-    public save_all($http:any, dataObjects:DataObject[]) {
-      if (this.isEditSupport()) {
-        var rawObjects:any[] = dataObjects.map(function (dataObject:DataObject) {
-          return dataObject.toObject(dataObject);
-        });
-        api.set_all_row(this.tableName(), rawObjects);
-      } else {
-        throw new DataObjectSaveError(this);
       }
     }
 
