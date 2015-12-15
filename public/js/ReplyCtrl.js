@@ -30,10 +30,10 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
     return "Reply";
   }
 
-  $scope.current_post={
-    subject:"loading",
-    description:"loading",
-    creator:"loading"
+  $scope.current_post = {
+    subject: "loading",
+    description: "loading",
+    creator: "loading"
   };
 
   function onDataObjectsReceived(dataObjects) {
@@ -101,10 +101,13 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
   $scope.loadElements = function () {
     /* display post info */
     var post = parentParam.list[parentParam.index];
-    $scope.current_post.creator=post.get_creator_account_id();
-    $scope.current_post.subject=post.get_subject();
-    $scope.current_post.description=post.get_description();
+    //$scope.current_post.creator=post.get_creator_account_id();
+    $scope.current_post.subject = post.get_subject();
+    $scope.current_post.description = post.get_description();
     /* request creator name */
+    use_creator_name(post, function (name) {
+      $scope.current_post.creator = name;
+    });
     /* request reply list */
     var target_post_id = post.get_post_Id();
     var filter = function (reply) {
@@ -113,6 +116,31 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
     var forceUpdate = false;
     DataObjectManager.request(instance(), filter, onDataObjectsReceived, forceUpdate);
   };
+
+  function use_creator_name(post, consumer) {
+    var instance = new stub.User_stub();
+    var creatorAccountId = post.get_creator_account_id();
+    var userFilter = function (user) {
+      return user.get_account_id() == creatorAccountId
+    };
+    var userConsumer = function (users) {
+      if (users.length < 1) {
+        consumer("Cannot Find User");
+      } else {
+        var user=users[0];
+        var instance = new stub.Title_stub();
+        var titleFilter = function (title) {
+          return title.get_title_id()==user.get_title_id();
+        };
+        var titleConsumer=function(titles){
+          var title="";
+          if(titles.length<1){}else{}
+        };
+        DataObjectManager.request(instance, titleFilter, titleConsumer);
+      }
+    };
+    DataObjectManager.request(instance, userFilter, userConsumer);
+  }
 
 });
 
