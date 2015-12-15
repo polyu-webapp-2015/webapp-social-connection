@@ -26,10 +26,10 @@ var utils;
     }
     utils.indent = indent;
     function loadModel(full_path, onload) {
-        //utils.log("loading model " + full_path);
+        utils.log("loading model " + full_path);
         var script = document.createElement("script");
         script.onload = function () {
-            //utils.log("loaded model " + full_path);
+            utils.log("loaded model " + full_path);
             onload();
         };
         script.src = full_path;

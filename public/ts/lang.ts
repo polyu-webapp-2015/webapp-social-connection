@@ -8,6 +8,9 @@ module lang {
   export interface Supplier<T> {
     ():T;
   }
+  export interface Function {
+    ();
+  }
   export type KeyValue<K,V> = [K,V];
   export module Dictionary {
     /** @deprecated does not work */
@@ -118,6 +121,29 @@ module lang {
         if (dict.hasOwnProperty(key))
           consumer([key, dict[key]])
       }
+    }
+  }
+  export module async {
+    /**
+     * @param process_array array : async functions to execute,
+     *  each 'process' should consume the loadOne exactly once when it has finish the life cycle,
+     *  typical example are a bunch of http request
+     * @param callback Function : this function will be called when all process has finished
+     * */
+    export function fork_and_join(process_array:Consumer<Function>[], callback:Function) {
+      var done = 0;
+      var total = process_array.length;
+
+      function doneOne() {
+        done++;
+        if (done == total)
+          callback();
+      }
+
+      if (total == 0)
+        callback();
+      else
+        process_array.forEach(process=>process(doneOne));
     }
   }
 }

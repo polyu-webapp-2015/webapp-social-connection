@@ -1,12 +1,5 @@
-///<reference path="../js/enum/APIFieldEnum.ts"/>
-///<reference path="../js/enum/ResultCodeEnum.ts"/>
-///<reference path="../js/api_list.ts"/>
-///<reference path="stub/City_stub.ts"/>
-///<reference path="../js/enum/account_type_Enum.ts"/>
-///<reference path="stub/Account_stub.ts"/>
-///<reference path="utils.ts"/>
-///<reference path="debug.ts"/>
-///<reference path="api.ts"/>
+///<reference path="lang.ts"/>
+///<reference path="stub/DataObject.ts"/>
 /**
  * manage cached data object in the memory.
  * it will only delete outdated object when new version is available.

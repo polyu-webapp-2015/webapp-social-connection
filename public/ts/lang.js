@@ -113,5 +113,28 @@ var lang;
         }
         Dictionary.forEach = forEach;
     })(Dictionary = lang.Dictionary || (lang.Dictionary = {}));
+    var async;
+    (function (async) {
+        /**
+         * @param process_array array : async functions to execute,
+         *  each 'process' should consume the loadOne exactly once when it has finish the life cycle,
+         *  typical example are a bunch of http request
+         * @param callback Function : this function will be called when all process has finished
+         * */
+        function fork_and_join(process_array, callback) {
+            var done = 0;
+            var total = process_array.length;
+            function doneOne() {
+                done++;
+                if (done == total)
+                    callback();
+            }
+            if (total == 0)
+                callback();
+            else
+                process_array.forEach(function (process) { return process(doneOne); });
+        }
+        async.fork_and_join = fork_and_join;
+    })(async = lang.async || (lang.async = {}));
 })(lang || (lang = {}));
 //# sourceMappingURL=lang.js.map
