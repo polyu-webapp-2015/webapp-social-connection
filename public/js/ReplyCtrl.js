@@ -117,6 +117,9 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
     DataObjectManager.request(instance(), filter, onDataObjectsReceived, forceUpdate);
   };
 
+  $scope.closeModal = function () {
+    $scope.modalItem.close();
+  }
   function use_creator_name(post, consumer) {
     var instance = new stub.User_stub();
     var creatorAccountId = post.get_creator_account_id();

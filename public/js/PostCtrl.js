@@ -104,5 +104,9 @@ app.controller("PostCtrl", function ($scope, $http, $global, $uibModal) {
     DataObjectManager.request(instance(), filter, onDataObjectsReceived, forceUpdate);
   }
 
+  $scope.closeModal = function () {
+    $scope.modalItem.close();
+  }
+
 });
 

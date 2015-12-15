@@ -30,6 +30,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
   $scope.openDetailModal = function (html_path, elem) {
     $scope.elem = elem;
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
+    console.log($scope);
   };
 
   $scope.loadElements = function (action) {
@@ -56,6 +57,10 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         alert('internal error');
       })
   }
+  $scope.closeModal = function () {
+  	$scope.modalItem.close();
+  }
+
 
 });
 
