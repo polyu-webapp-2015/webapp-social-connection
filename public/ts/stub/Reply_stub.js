@@ -21,8 +21,20 @@ var stub;
         Reply_stub.__message = function () {
             return "message";
         };
-        Reply_stub.__account_id = function () {
-            return "account_id";
+        Reply_stub.__creator_account_id = function () {
+            return "creator_account_id";
+        };
+        Reply_stub.__editor_account_id = function () {
+            return "editor_account_id";
+        };
+        Reply_stub.__create_time = function () {
+            return "create_time";
+        };
+        Reply_stub.__edit_time = function () {
+            return "edit_time";
+        };
+        Reply_stub.__deleted = function () {
+            return "deleted";
         };
         /* implement DataObject */
         Reply_stub.prototype.tableName = function () {
@@ -38,7 +50,11 @@ var stub;
             instance.reply_id = rawObject.reply_id;
             instance.post_Id = rawObject.post_Id;
             instance.message = rawObject.message;
-            instance.account_id = rawObject.account_id;
+            instance.creator_account_id = rawObject.creator_account_id;
+            instance.editor_account_id = rawObject.editor_account_id;
+            instance.create_time = rawObject.create_time;
+            instance.edit_time = rawObject.edit_time;
+            instance.deleted = rawObject.deleted;
             return instance;
         };
         Reply_stub.prototype.toObject = function (instance) {
@@ -48,7 +64,11 @@ var stub;
             rawObject[Reply_stub.__reply_id()] = instance.reply_id;
             rawObject[Reply_stub.__post_Id()] = instance.post_Id;
             rawObject[Reply_stub.__message()] = instance.message;
-            rawObject[Reply_stub.__account_id()] = instance.account_id;
+            rawObject[Reply_stub.__creator_account_id()] = instance.creator_account_id;
+            rawObject[Reply_stub.__editor_account_id()] = instance.editor_account_id;
+            rawObject[Reply_stub.__create_time()] = instance.create_time;
+            rawObject[Reply_stub.__edit_time()] = instance.edit_time;
+            rawObject[Reply_stub.__deleted()] = instance.deleted;
             return rawObject;
         };
         /* getter and setter */
@@ -85,12 +105,56 @@ var stub;
                 throw new stub.DataObjectEditError(this);
             }
         };
-        Reply_stub.prototype.get_account_id = function () {
-            return this.account_id;
+        Reply_stub.prototype.get_creator_account_id = function () {
+            return this.creator_account_id;
         };
-        Reply_stub.prototype.set_account_id = function (newValue) {
+        Reply_stub.prototype.set_creator_account_id = function (newValue) {
             if (this.isEditSupport()) {
-                this.account_id = newValue;
+                this.creator_account_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Reply_stub.prototype.get_editor_account_id = function () {
+            return this.editor_account_id;
+        };
+        Reply_stub.prototype.set_editor_account_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.editor_account_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Reply_stub.prototype.get_create_time = function () {
+            return this.create_time;
+        };
+        Reply_stub.prototype.set_create_time = function (newValue) {
+            if (this.isEditSupport()) {
+                this.create_time = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Reply_stub.prototype.get_edit_time = function () {
+            return this.edit_time;
+        };
+        Reply_stub.prototype.set_edit_time = function (newValue) {
+            if (this.isEditSupport()) {
+                this.edit_time = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Reply_stub.prototype.get_deleted = function () {
+            return this.deleted;
+        };
+        Reply_stub.prototype.set_deleted = function (newValue) {
+            if (this.isEditSupport()) {
+                this.deleted = newValue;
             }
             else {
                 throw new stub.DataObjectEditError(this);

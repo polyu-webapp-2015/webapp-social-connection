@@ -6,7 +6,10 @@
 	<div class="modal-body">
 		<div class="well well-lg">
 			<div class="list-group" ng-controller="ListCtrl">
-				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/coupon_detail.html')"><h4>{{ elem.name }}</h4>{{ elem.content }}</button>
+				<button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/coupon_detail.html')">
+					<h4>{{ elem.name }}</h4>
+					{{ elem.content }}
+				</button>
 			</div>
 		</div>
 	</div>

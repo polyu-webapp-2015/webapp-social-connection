@@ -27,8 +27,8 @@ app.controller("PostCtrl", function ($scope, $http, $global, $uibModal) {
    * @return string : user friendly display name
    * */
   function element_name() {
-    //TODO[Optional] replace this value manually for each controller
-    return instance().tableName();
+    //return instance().tableName();
+    return "Post";
   }
 
   function onDataObjectsReceived(dataObjects) {
@@ -80,8 +80,6 @@ app.controller("PostCtrl", function ($scope, $http, $global, $uibModal) {
     }
   ];
 
-  $scope.id_array = [];
-  $scope.field_array = [];
   $scope.elems = []; // get output from server
 
   $scope.rowClass = function (elem, elems) {
@@ -89,9 +87,9 @@ app.controller("PostCtrl", function ($scope, $http, $global, $uibModal) {
     else return 'alt';
   };
 
-  $scope.openDetailModal = function (html_path, index) {
-    //$scope.elem = elem;
-    myParam.index = index;
+  $scope.openDetailModal = function (html_path, elem) {
+    $scope.elem = elem;
+    myParam.index = $scope.elems.indexOf(elem);
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
   };
 

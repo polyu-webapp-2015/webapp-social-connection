@@ -24,6 +24,9 @@ var stub;
         Announcement_stub.__create_time = function () {
             return "create_time";
         };
+        Announcement_stub.__creator_account_id = function () {
+            return "creator_account_id";
+        };
         /* implement DataObject */
         Announcement_stub.prototype.tableName = function () {
             return "Announcement";
@@ -39,6 +42,7 @@ var stub;
             instance.subject = rawObject.subject;
             instance.description = rawObject.description;
             instance.create_time = rawObject.create_time;
+            instance.creator_account_id = rawObject.creator_account_id;
             return instance;
         };
         Announcement_stub.prototype.toObject = function (instance) {
@@ -49,6 +53,7 @@ var stub;
             rawObject[Announcement_stub.__subject()] = instance.subject;
             rawObject[Announcement_stub.__description()] = instance.description;
             rawObject[Announcement_stub.__create_time()] = instance.create_time;
+            rawObject[Announcement_stub.__creator_account_id()] = instance.creator_account_id;
             return rawObject;
         };
         /* getter and setter */
@@ -91,6 +96,17 @@ var stub;
         Announcement_stub.prototype.set_create_time = function (newValue) {
             if (this.isEditSupport()) {
                 this.create_time = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Announcement_stub.prototype.get_creator_account_id = function () {
+            return this.creator_account_id;
+        };
+        Announcement_stub.prototype.set_creator_account_id = function (newValue) {
+            if (this.isEditSupport()) {
+                this.creator_account_id = newValue;
             }
             else {
                 throw new stub.DataObjectEditError(this);

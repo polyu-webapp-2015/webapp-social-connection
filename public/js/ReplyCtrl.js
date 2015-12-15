@@ -13,23 +13,28 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
   $scope.myParamStack.push(myParam);
   var parentParam = $scope.myParamStack[myParamStackOffset - 1];
 
-
   /**
    * This function cannot be replaced by constant,
    * because this controller instance is created
    * before the stub scrips are loaded
    * */
   function instance() {
-    return new stub.Post_stub();
+    return new stub.Reply_stub();
   }
 
   /**
    * @return string : user friendly display name
    * */
   function element_name() {
-    //TODO[Optional] replace this value manually for each controller
-    return instance().tableName();
+    //return instance().tableName();
+    return "Reply";
   }
+
+  $scope.current_post={
+    subject:"loading",
+    description:"loading",
+    creator:"loading"
+  };
 
   function onDataObjectsReceived(dataObjects) {
     myParam.list = dataObjects;
@@ -80,8 +85,6 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
     }
   ];
 
-  $scope.id_array = [];
-  $scope.field_array = [];
   $scope.elems = []; // get output from server
 
   $scope.rowClass = function (elem, elems) {
@@ -89,21 +92,27 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
     else return 'alt';
   };
 
-  $scope.openDetailModal = function (html_path, index) {
-    //$scope.elem = elem;
-    myParam.index = index;
+  $scope.openDetailModal = function (html_path, elem) {
+    $scope.elem = elem;
+    myParam.index = $scope.elems.indexOf(elem);
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
   };
 
   $scope.loadElements = function () {
-    //console.log("loading elements");
-    var target_discussionboard_id = parentParam.list[parentParam.index].get_discussboard_id();
+    /* display post info */
+    var post = parentParam.list[parentParam.index];
+    $scope.current_post.creator=post.get_creator_account_id();
+    $scope.current_post.subject=post.get_subject();
+    $scope.current_post.description=post.get_description();
+    /* request creator name */
+    /* request reply list */
+    var target_discussionboard_id = post.get_discussboard_id();
     var filter = function (post) {
       return post.get_discussboard_id() == target_discussionboard_id;
     };
     var forceUpdate = false;
     DataObjectManager.request(instance(), filter, onDataObjectsReceived, forceUpdate);
-  }
+  };
 
 });
 

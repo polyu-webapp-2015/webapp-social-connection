@@ -11,7 +11,7 @@
         <button class="list-group-item"
                 ng-repeat="elem in elems"
                 ng-class="rowClass(elem, elems)"
-                ng-click="openDetailModal('/pages/post_list.html', $index)">
+                ng-click="openDetailModal('/pages/post_list.html', elem)">
           <h4 class="list-item-title">
             {{ elem.subject }}
           </h4>

@@ -8,5 +8,9 @@ class Reply_Fields {
     const __reply_id = "reply_id" ;
     const __post_Id = "post_Id" ;
     const __message = "message" ;
-    const __account_id = "account_id" ;
+    const __creator_account_id = "creator_account_id" ;
+    const __editor_account_id = "editor_account_id" ;
+    const __create_time = "create_time" ;
+    const __edit_time = "edit_time" ;
+    const __deleted = "deleted" ;
 }

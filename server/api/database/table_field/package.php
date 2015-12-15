@@ -21,6 +21,7 @@ include_once 'Message_Field.php';
 include_once 'Organization_Field.php';
 include_once 'Post_Field.php';
 include_once 'Reply_Field.php';
+include_once 'Reward_Field.php';
 include_once 'Session_Field.php';
 include_once 'Tag_Field.php';
 include_once 'Title_Field.php';

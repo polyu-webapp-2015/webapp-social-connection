@@ -21,6 +21,7 @@ var TableNameEnum = function (){
     this.Organization = "Organization" ;
     this.Post = "Post" ;
     this.Reply = "Reply" ;
+    this.Reward = "Reward" ;
     this.Session = "Session" ;
     this.Tag = "Tag" ;
     this.Title = "Title" ;

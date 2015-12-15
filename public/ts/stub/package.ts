@@ -4,7 +4,7 @@
 ///<reference path="../utils.ts"/>
 function load_all_stub_script(callback) {
   var done = 0;
-  var total = 24;
+  var total = 25;
   var lastFired = false;
 
   function loadOne() {
@@ -69,6 +69,9 @@ function load_all_stub_script(callback) {
 
 //  total++;
   utils.loadModel('ts/stub/Reply_stub.js',loadOne);
+
+//  total++;
+  utils.loadModel('ts/stub/Reward_stub.js',loadOne);
 
 //  total++;
   utils.loadModel('ts/stub/Session_stub.js',loadOne);

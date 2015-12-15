@@ -23,6 +23,10 @@ module stub {
       return "create_time";
     }
 
+    protected static __creator_account_id():string {
+      return "creator_account_id";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "Announcement";
@@ -40,6 +44,7 @@ module stub {
       instance.subject = rawObject.subject;
       instance.description = rawObject.description;
       instance.create_time = rawObject.create_time;
+      instance.creator_account_id = rawObject.creator_account_id;
       return instance;
     }
     
@@ -50,6 +55,7 @@ module stub {
       rawObject[Announcement_stub.__subject()] = instance.subject;
       rawObject[Announcement_stub.__description()] = instance.description;
       rawObject[Announcement_stub.__create_time()] = instance.create_time;
+      rawObject[Announcement_stub.__creator_account_id()] = instance.creator_account_id;
       return rawObject;
     }
 
@@ -58,6 +64,7 @@ module stub {
     private subject:string;
     private description:string;
     private create_time:string;
+    private creator_account_id:number;
 
     /* getter and setter */
     public get_announcement_id():number {
@@ -103,6 +110,18 @@ module stub {
     public set_create_time(newValue:string) {
       if (this.isEditSupport()) {
         this.create_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_creator_account_id():number {
+      return this.creator_account_id;
+    }
+
+    public set_creator_account_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.creator_account_id = newValue;
       } else {
         throw new DataObjectEditError(this);
       }

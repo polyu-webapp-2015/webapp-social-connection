@@ -19,8 +19,24 @@ module stub {
       return "message";
     }
 
-    protected static __account_id():string {
-      return "account_id";
+    protected static __creator_account_id():string {
+      return "creator_account_id";
+    }
+
+    protected static __editor_account_id():string {
+      return "editor_account_id";
+    }
+
+    protected static __create_time():string {
+      return "create_time";
+    }
+
+    protected static __edit_time():string {
+      return "edit_time";
+    }
+
+    protected static __deleted():string {
+      return "deleted";
     }
 
     /* implement DataObject */
@@ -39,7 +55,11 @@ module stub {
       instance.reply_id = rawObject.reply_id;
       instance.post_Id = rawObject.post_Id;
       instance.message = rawObject.message;
-      instance.account_id = rawObject.account_id;
+      instance.creator_account_id = rawObject.creator_account_id;
+      instance.editor_account_id = rawObject.editor_account_id;
+      instance.create_time = rawObject.create_time;
+      instance.edit_time = rawObject.edit_time;
+      instance.deleted = rawObject.deleted;
       return instance;
     }
     
@@ -49,7 +69,11 @@ module stub {
       rawObject[Reply_stub.__reply_id()] = instance.reply_id;
       rawObject[Reply_stub.__post_Id()] = instance.post_Id;
       rawObject[Reply_stub.__message()] = instance.message;
-      rawObject[Reply_stub.__account_id()] = instance.account_id;
+      rawObject[Reply_stub.__creator_account_id()] = instance.creator_account_id;
+      rawObject[Reply_stub.__editor_account_id()] = instance.editor_account_id;
+      rawObject[Reply_stub.__create_time()] = instance.create_time;
+      rawObject[Reply_stub.__edit_time()] = instance.edit_time;
+      rawObject[Reply_stub.__deleted()] = instance.deleted;
       return rawObject;
     }
 
@@ -57,7 +81,11 @@ module stub {
     private reply_id:number;
     private post_Id:number;
     private message:string;
-    private account_id:number;
+    private creator_account_id:number;
+    private editor_account_id:number;
+    private create_time:string;
+    private edit_time:string;
+    private deleted:any;
 
     /* getter and setter */
     public get_reply_id():number {
@@ -96,13 +124,61 @@ module stub {
       }
     }
 
-    public get_account_id():number {
-      return this.account_id;
+    public get_creator_account_id():number {
+      return this.creator_account_id;
     }
 
-    public set_account_id(newValue:number) {
+    public set_creator_account_id(newValue:number) {
       if (this.isEditSupport()) {
-        this.account_id = newValue;
+        this.creator_account_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_editor_account_id():number {
+      return this.editor_account_id;
+    }
+
+    public set_editor_account_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.editor_account_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_create_time():string {
+      return this.create_time;
+    }
+
+    public set_create_time(newValue:string) {
+      if (this.isEditSupport()) {
+        this.create_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_edit_time():string {
+      return this.edit_time;
+    }
+
+    public set_edit_time(newValue:string) {
+      if (this.isEditSupport()) {
+        this.edit_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_deleted():any {
+      return this.deleted;
+    }
+
+    public set_deleted(newValue:any) {
+      if (this.isEditSupport()) {
+        this.deleted = newValue;
       } else {
         throw new DataObjectEditError(this);
       }
