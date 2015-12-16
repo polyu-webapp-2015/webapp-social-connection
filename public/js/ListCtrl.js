@@ -23,32 +23,45 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     $scope.modalItem.close();
   };
 
+  $scope.loadElements_legacy = function (action) {
+    console.log("loading elements");
+    console.log($scope.id_array);
+    $http.post(serv_addr, {
+        'action': action,
+        'data': JSON.stringify({
+          session_id: $global.getSessionId(),
+          id_array: $scope.id_array,
+          field_array: $scope.field_array
+        })
+      })
+      .success(function (data, status, headers, config) {
+        if (data.result_code === "Success")
+          $scope.elems = data.element_array;
+        else {
+          alert('something wrong happens');
+          console.log(data);
+        }
+        console.log($scope.elems);
+      })
+      .error(function (data, status, headers, config) {
+        alert('internal error');
+      })
+  };
+
+  function isLegacy(action) {
+    switch (action) {
+      case 'GetProfileList':
+      case 'GetAnnouncementList':
+        return true;
+      default:
+        return false;
+    }
+  }
+
   $scope.loadElements = function (action) {
     if (action == null)
       throw new Error("ListCtrl::loadElements param action must be string! (now is null)");
     utils.log("loading elements of " + action);
-    //console.log("loading elements");
-    //console.log($scope.id_array);
-    /*$http.post(serv_addr, {
-     'action': action,
-     'data': JSON.stringify({
-     session_id: $global.getSessionId(),
-     id_array: $scope.id_array,
-     field_array: $scope.field_array
-     })
-     })
-     .success(function (data, status, headers, config) {
-     if (data.result_code === "Success")
-     $scope.elems = data.element_array;
-     else {
-     alert('something wrong happens');
-     console.log(data);
-     }
-     console.log($scope.elems);
-     })
-     .error(function (data, status, headers, config) {
-     alert('internal error');
-     })*/
 
     /* find stub instance */
     var stub_name = action.toLowerCase();
@@ -56,8 +69,15 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     if (stub_name.indexOf("get") == 0)
       prefix = "get";
     var stub_array = stub.match_by_tableName(stub_name);
-    if (stub_array.length == 0)
-      utils.log("this is not supported by ListCtrl (" + stub_name + ")");
+    if (stub_array.length == 0) {
+      if (isLegacy(action)) {
+        $scope.loadElements_legacy(action);
+      } else {
+        var message = "this is not supported by ListCtrl (" + action + ")";
+        utils.log(message);
+        throw new Error(message);
+      }
+    }
     else {
       var stub_instance = stub_array[0];
       var consumer = function (dataObject_array) {

@@ -145,7 +145,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     if ($global.loggedIn() === false) {$scope.openLoginModal(); return; }
 
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_exhibition.html', $scope));
-  }
+  };
 
   $scope.openUsersModal = function () {
     if ($global.loggedIn() === false) {
