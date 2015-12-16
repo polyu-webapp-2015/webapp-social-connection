@@ -118,7 +118,11 @@ textarea {
 .detail-avatar {
 	width: 150px;
 	height: 150px;	
-	color: #aaaaaa;
+}
+
+.detail-action-toggle {
+	font-size: 20px;
+	color: #777777;
 }
 
 .navbar-brand {
