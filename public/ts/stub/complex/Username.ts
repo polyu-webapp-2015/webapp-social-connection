@@ -56,5 +56,9 @@ module stub {
         + ' ' + this.user.get_first_name()
         + ' ' + this.user.get_last_name();
     }
+
+    public get_account_id():number{
+      return this.user.get_account_id();
+    }
   }
 }

@@ -6,5 +6,8 @@ function load_complex_stub_script(callback) {
   pool.push(function (reportDone) {
     utils.loadModel('ts/stub/complex/Profile.js', reportDone)
   });
+  pool.push(function (reportDone) {
+    utils.loadModel('ts/stub/complex/Username.js', reportDone)
+  });
   lang.async.fork_and_join(pool, callback);
 }

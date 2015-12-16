@@ -53,6 +53,9 @@ var stub;
                 + ' ' + this.user.get_first_name()
                 + ' ' + this.user.get_last_name();
         };
+        Username.prototype.get_account_id = function () {
+            return this.user.get_account_id();
+        };
         return Username;
     })(stub.ComplexDataObject);
     stub.Username = Username;
