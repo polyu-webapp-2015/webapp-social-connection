@@ -12,7 +12,7 @@ class CreateSessionActor extends Actor
         Event_Fields::__event_time => '2015-12-09 20:25:21',
         Event_Fields::__subject => "Eco-friendly Hotel in Asia",
         Event_Fields::__description => "This session discuss about the eco-friendly hotels in Asia. ...",
-        Session_Fields::__quota => 200
+        Event_Fields::__quota => -1
     );
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
@@ -37,13 +37,13 @@ class CreateSessionActor extends Actor
         $field_array[Event_Fields::__event_type] = event_type_Enum::__S;
         $field_array[Event_Fields::__creator_account_id] = $account_id;
         $field_array[Event_Fields::__editor_account_id] = $account_id;
+        $field_array[Event_Fields::__quota] = $this->params[Event_Fields::__quota];
         $result = DatabaseHelper::table_insert(Event_Fields::_, $field_array);
         $event_id = DatabaseHelper::pdo()->lastInsertId();
         log_object_from_named($event_id, "new Event id");
         /* create Conference Session */
         $field_array = [];
         $field_array[Session_Fields::__event_id] = $event_id;
-        $field_array[Session_Fields::__quota] = $this->params[Session_Fields::__quota];
         DatabaseHelper::table_insert(Session_Fields::_, $field_array);
         log_object_from_named($event_id, "new Session id");
         $this->output[Event_Fields::__event_id] = $event_id;

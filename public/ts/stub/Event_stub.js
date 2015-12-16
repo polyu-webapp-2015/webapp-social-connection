@@ -42,6 +42,9 @@ var stub;
         Event_stub.__description = function () {
             return "description";
         };
+        Event_stub.__quota = function () {
+            return "quota";
+        };
         /* implement DataObject */
         Event_stub.prototype.tableName = function () {
             return "Event";
@@ -53,21 +56,54 @@ var stub;
         };
         Event_stub.prototype.parseObject = function (rawObject) {
             var instance = new Event_stub();
-            instance.event_id = rawObject.event_id;
-            instance.create_time = rawObject.create_time;
-            instance.edit_time = rawObject.edit_time;
-            instance.event_type = rawObject.event_type;
-            instance.venue_id = rawObject.venue_id;
-            instance.event_time = rawObject.event_time;
-            instance.creator_account_id = rawObject.creator_account_id;
-            instance.editor_account_id = rawObject.editor_account_id;
-            instance.subject = rawObject.subject;
-            instance.description = rawObject.description;
+            if (rawObject.hasOwnProperty('event_id'))
+                instance.event_id = rawObject.event_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('create_time'))
+                instance.create_time = rawObject.create_time;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('edit_time'))
+                instance.edit_time = rawObject.edit_time;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('event_type'))
+                instance.event_type = rawObject.event_type;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('venue_id'))
+                instance.venue_id = rawObject.venue_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('event_time'))
+                instance.event_time = rawObject.event_time;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('creator_account_id'))
+                instance.creator_account_id = rawObject.creator_account_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('editor_account_id'))
+                instance.editor_account_id = rawObject.editor_account_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('subject'))
+                instance.subject = rawObject.subject;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('description'))
+                instance.description = rawObject.description;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('quota'))
+                instance.quota = rawObject.quota;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Event_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Event_stub.__event_id()] = instance.event_id;
             rawObject[Event_stub.__create_time()] = instance.create_time;
@@ -79,11 +115,12 @@ var stub;
             rawObject[Event_stub.__editor_account_id()] = instance.editor_account_id;
             rawObject[Event_stub.__subject()] = instance.subject;
             rawObject[Event_stub.__description()] = instance.description;
+            rawObject[Event_stub.__quota()] = instance.quota;
             return rawObject;
         };
         /* getter and setter */
         Event_stub.prototype.get_event_id = function () {
-            return this.event_id;
+            return this.event_id * 1;
         };
         Event_stub.prototype.set_event_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -127,7 +164,7 @@ var stub;
             }
         };
         Event_stub.prototype.get_venue_id = function () {
-            return this.venue_id;
+            return this.venue_id * 1;
         };
         Event_stub.prototype.set_venue_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -149,7 +186,7 @@ var stub;
             }
         };
         Event_stub.prototype.get_creator_account_id = function () {
-            return this.creator_account_id;
+            return this.creator_account_id * 1;
         };
         Event_stub.prototype.set_creator_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -160,7 +197,7 @@ var stub;
             }
         };
         Event_stub.prototype.get_editor_account_id = function () {
-            return this.editor_account_id;
+            return this.editor_account_id * 1;
         };
         Event_stub.prototype.set_editor_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -192,8 +229,20 @@ var stub;
                 throw new stub.DataObjectEditError(this);
             }
         };
+        Event_stub.prototype.get_quota = function () {
+            return this.quota * 1;
+        };
+        Event_stub.prototype.set_quota = function (newValue) {
+            if (this.isEditSupport()) {
+                this.quota = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Event_stub;
     })(stub.DataObject);
     stub.Event_stub = Event_stub;
+    stub.add_stub_instance(new Event_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Event_stub.js.map

@@ -1,3 +1,6 @@
+/**
+ * @deprecated this controller is replaced by DiscussBoardCtrl
+ * */
 app.controller("ForumCtrl", function ($scope, $http, $global, $uibModal) {
 
   $scope.id_array = [];

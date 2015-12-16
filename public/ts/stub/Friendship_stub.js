@@ -37,15 +37,26 @@ var stub;
         };
         Friendship_stub.prototype.parseObject = function (rawObject) {
             var instance = new Friendship_stub();
-            instance.friendship_id = rawObject.friendship_id;
-            instance.host_id = rawObject.host_id;
-            instance.guest_id = rawObject.guest_id;
-            instance.remark = rawObject.remark;
+            if (rawObject.hasOwnProperty('friendship_id'))
+                instance.friendship_id = rawObject.friendship_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('host_id'))
+                instance.host_id = rawObject.host_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('guest_id'))
+                instance.guest_id = rawObject.guest_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('remark'))
+                instance.remark = rawObject.remark;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Friendship_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Friendship_stub.__friendship_id()] = instance.friendship_id;
             rawObject[Friendship_stub.__host_id()] = instance.host_id;
@@ -55,7 +66,7 @@ var stub;
         };
         /* getter and setter */
         Friendship_stub.prototype.get_friendship_id = function () {
-            return this.friendship_id;
+            return this.friendship_id * 1;
         };
         Friendship_stub.prototype.set_friendship_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -66,7 +77,7 @@ var stub;
             }
         };
         Friendship_stub.prototype.get_host_id = function () {
-            return this.host_id;
+            return this.host_id * 1;
         };
         Friendship_stub.prototype.set_host_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -77,7 +88,7 @@ var stub;
             }
         };
         Friendship_stub.prototype.get_guest_id = function () {
-            return this.guest_id;
+            return this.guest_id * 1;
         };
         Friendship_stub.prototype.set_guest_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -101,5 +112,6 @@ var stub;
         return Friendship_stub;
     })(stub.DataObject);
     stub.Friendship_stub = Friendship_stub;
+    stub.add_stub_instance(new Friendship_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Friendship_stub.js.map

@@ -36,15 +36,26 @@ module stub {
     
     parseObject(rawObject:any):Organization_stub {
       var instance = new Organization_stub();
-      instance.organization_id = rawObject.organization_id;
-      instance.organization_type = rawObject.organization_type;
-      instance.name = rawObject.name;
-      instance.main_country = rawObject.main_country;
+      if(rawObject.hasOwnProperty('organization_id'))
+        instance.organization_id = rawObject.organization_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('organization_type'))
+        instance.organization_type = rawObject.organization_type;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('name'))
+        instance.name = rawObject.name;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('main_country'))
+        instance.main_country = rawObject.main_country;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Organization_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Organization_stub=this):any {
       var rawObject = {};
       rawObject[Organization_stub.__organization_id()] = instance.organization_id;
       rawObject[Organization_stub.__organization_type()] = instance.organization_type;
@@ -61,7 +72,7 @@ module stub {
 
     /* getter and setter */
     public get_organization_id():number {
-      return this.organization_id;
+      return this.organization_id * 1;
     }
 
     public set_organization_id(newValue:number) {
@@ -73,7 +84,7 @@ module stub {
     }
 
     public get_organization_type():string {
-      return this.organization_type;
+      return this.organization_type ;
     }
 
     public set_organization_type(newValue:string) {
@@ -85,7 +96,7 @@ module stub {
     }
 
     public get_name():string {
-      return this.name;
+      return this.name ;
     }
 
     public set_name(newValue:string) {
@@ -97,7 +108,7 @@ module stub {
     }
 
     public get_main_country():number {
-      return this.main_country;
+      return this.main_country * 1;
     }
 
     public set_main_country(newValue:number) {
@@ -109,4 +120,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Organization_stub());
 }

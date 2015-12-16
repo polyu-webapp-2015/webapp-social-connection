@@ -8,4 +8,9 @@ class DiscussBoard_Fields {
     const __discussboard_id = "discussboard_id" ;
     const __subject = "subject" ;
     const __description = "description" ;
+    const __creator_account_id = "creator_account_id" ;
+    const __editor_account_id = "editor_account_id" ;
+    const __create_time = "create_time" ;
+    const __edit_time = "edit_time" ;
+    const __deleted = "deleted" ;
 }

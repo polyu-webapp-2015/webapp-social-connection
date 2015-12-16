@@ -28,13 +28,18 @@ module stub {
     
     parseObject(rawObject:any):Image_stub {
       var instance = new Image_stub();
-      instance.image_id = rawObject.image_id;
-      instance.url = rawObject.url;
+      if(rawObject.hasOwnProperty('image_id'))
+        instance.image_id = rawObject.image_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('url'))
+        instance.url = rawObject.url;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Image_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Image_stub=this):any {
       var rawObject = {};
       rawObject[Image_stub.__image_id()] = instance.image_id;
       rawObject[Image_stub.__url()] = instance.url;
@@ -47,7 +52,7 @@ module stub {
 
     /* getter and setter */
     public get_image_id():number {
-      return this.image_id;
+      return this.image_id * 1;
     }
 
     public set_image_id(newValue:number) {
@@ -59,7 +64,7 @@ module stub {
     }
 
     public get_url():string {
-      return this.url;
+      return this.url ;
     }
 
     public set_url(newValue:string) {
@@ -71,4 +76,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Image_stub());
 }

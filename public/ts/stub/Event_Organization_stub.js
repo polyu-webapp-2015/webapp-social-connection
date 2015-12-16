@@ -30,13 +30,18 @@ var stub;
         };
         Event_Organization_stub.prototype.parseObject = function (rawObject) {
             var instance = new Event_Organization_stub();
-            instance.event_id = rawObject.event_id;
-            instance.organization_id = rawObject.organization_id;
+            if (rawObject.hasOwnProperty('event_id'))
+                instance.event_id = rawObject.event_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('organization_id'))
+                instance.organization_id = rawObject.organization_id;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Event_Organization_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Event_Organization_stub.__event_id()] = instance.event_id;
             rawObject[Event_Organization_stub.__organization_id()] = instance.organization_id;
@@ -44,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Event_Organization_stub.prototype.get_event_id = function () {
-            return this.event_id;
+            return this.event_id * 1;
         };
         Event_Organization_stub.prototype.set_event_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -55,7 +60,7 @@ var stub;
             }
         };
         Event_Organization_stub.prototype.get_organization_id = function () {
-            return this.organization_id;
+            return this.organization_id * 1;
         };
         Event_Organization_stub.prototype.set_organization_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -68,5 +73,6 @@ var stub;
         return Event_Organization_stub;
     })(stub.DataObject);
     stub.Event_Organization_stub = Event_Organization_stub;
+    stub.add_stub_instance(new Event_Organization_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Event_Organization_stub.js.map

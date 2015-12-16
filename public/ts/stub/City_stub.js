@@ -33,14 +33,22 @@ var stub;
         };
         City_stub.prototype.parseObject = function (rawObject) {
             var instance = new City_stub();
-            instance.city_id = rawObject.city_id;
-            instance.country_id = rawObject.country_id;
-            instance.city_name = rawObject.city_name;
+            if (rawObject.hasOwnProperty('city_id'))
+                instance.city_id = rawObject.city_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('country_id'))
+                instance.country_id = rawObject.country_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('city_name'))
+                instance.city_name = rawObject.city_name;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         City_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[City_stub.__city_id()] = instance.city_id;
             rawObject[City_stub.__country_id()] = instance.country_id;
@@ -49,7 +57,7 @@ var stub;
         };
         /* getter and setter */
         City_stub.prototype.get_city_id = function () {
-            return this.city_id;
+            return this.city_id * 1;
         };
         City_stub.prototype.set_city_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -60,7 +68,7 @@ var stub;
             }
         };
         City_stub.prototype.get_country_id = function () {
-            return this.country_id;
+            return this.country_id * 1;
         };
         City_stub.prototype.set_country_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -84,5 +92,6 @@ var stub;
         return City_stub;
     })(stub.DataObject);
     stub.City_stub = City_stub;
+    stub.add_stub_instance(new City_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=City_stub.js.map

@@ -47,19 +47,42 @@ var stub;
         };
         User_stub.prototype.parseObject = function (rawObject) {
             var instance = new User_stub();
-            instance.account_id = rawObject.account_id;
-            instance.sex = rawObject.sex;
-            instance.first_name = rawObject.first_name;
-            instance.last_name = rawObject.last_name;
-            instance.organization_id = rawObject.organization_id;
-            instance.title_id = rawObject.title_id;
-            instance.city_id = rawObject.city_id;
-            instance.last_announcement_datetime = rawObject.last_announcement_datetime;
+            if (rawObject.hasOwnProperty('account_id'))
+                instance.account_id = rawObject.account_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('sex'))
+                instance.sex = rawObject.sex;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('first_name'))
+                instance.first_name = rawObject.first_name;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('last_name'))
+                instance.last_name = rawObject.last_name;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('organization_id'))
+                instance.organization_id = rawObject.organization_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('title_id'))
+                instance.title_id = rawObject.title_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('city_id'))
+                instance.city_id = rawObject.city_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('last_announcement_datetime'))
+                instance.last_announcement_datetime = rawObject.last_announcement_datetime;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         User_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[User_stub.__account_id()] = instance.account_id;
             rawObject[User_stub.__sex()] = instance.sex;
@@ -73,7 +96,7 @@ var stub;
         };
         /* getter and setter */
         User_stub.prototype.get_account_id = function () {
-            return this.account_id;
+            return this.account_id * 1;
         };
         User_stub.prototype.set_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -117,7 +140,7 @@ var stub;
             }
         };
         User_stub.prototype.get_organization_id = function () {
-            return this.organization_id;
+            return this.organization_id * 1;
         };
         User_stub.prototype.set_organization_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -128,7 +151,7 @@ var stub;
             }
         };
         User_stub.prototype.get_title_id = function () {
-            return this.title_id;
+            return this.title_id * 1;
         };
         User_stub.prototype.set_title_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -139,7 +162,7 @@ var stub;
             }
         };
         User_stub.prototype.get_city_id = function () {
-            return this.city_id;
+            return this.city_id * 1;
         };
         User_stub.prototype.set_city_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -163,5 +186,6 @@ var stub;
         return User_stub;
     })(stub.DataObject);
     stub.User_stub = User_stub;
+    stub.add_stub_instance(new User_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=User_stub.js.map

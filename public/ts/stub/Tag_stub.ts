@@ -29,13 +29,18 @@ module stub {
     
     parseObject(rawObject:any):Tag_stub {
       var instance = new Tag_stub();
-      instance.tag_id = rawObject.tag_id;
-      instance.tag_content = rawObject.tag_content;
+      if(rawObject.hasOwnProperty('tag_id'))
+        instance.tag_id = rawObject.tag_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('tag_content'))
+        instance.tag_content = rawObject.tag_content;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Tag_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Tag_stub=this):any {
       var rawObject = {};
       rawObject[Tag_stub.__tag_id()] = instance.tag_id;
       rawObject[Tag_stub.__tag_content()] = instance.tag_content;
@@ -48,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_tag_id():number {
-      return this.tag_id;
+      return this.tag_id * 1;
     }
 
     public set_tag_id(newValue:number) {
@@ -60,7 +65,7 @@ module stub {
     }
 
     public get_tag_content():string {
-      return this.tag_content;
+      return this.tag_content ;
     }
 
     public set_tag_content(newValue:string) {
@@ -72,4 +77,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Tag_stub());
 }

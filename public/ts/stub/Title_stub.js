@@ -30,13 +30,18 @@ var stub;
         };
         Title_stub.prototype.parseObject = function (rawObject) {
             var instance = new Title_stub();
-            instance.title_id = rawObject.title_id;
-            instance.title_text = rawObject.title_text;
+            if (rawObject.hasOwnProperty('title_id'))
+                instance.title_id = rawObject.title_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('title_text'))
+                instance.title_text = rawObject.title_text;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Title_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Title_stub.__title_id()] = instance.title_id;
             rawObject[Title_stub.__title_text()] = instance.title_text;
@@ -44,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Title_stub.prototype.get_title_id = function () {
-            return this.title_id;
+            return this.title_id * 1;
         };
         Title_stub.prototype.set_title_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -68,5 +73,6 @@ var stub;
         return Title_stub;
     })(stub.DataObject);
     stub.Title_stub = Title_stub;
+    stub.add_stub_instance(new Title_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Title_stub.js.map

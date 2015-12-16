@@ -11,27 +11,40 @@ module stub {
   import APIParseResultError = debug.APIParseResultError;
   import KeyValue = lang.KeyValue;
   import use_all_row = api.use_all_row;
-  export class DataObjectError extends Error {
+
+  export class DataObjectError extends TypeError {
     public name = "DataObjectError";
 
     constructor(public dataObject:DataObject, public message?:string) {
       super(message);
     }
   }
+
   export class DataObjectEditError extends DataObjectError {
     public name = "DataObjectEditError";
 
-    constructor(public dataObject:DataObject, public message:string = "This Object can not be edited") {
+    constructor(public dataObject:DataObject, public message:string = "This Object (" + dataObject.tableName() + ") can not be edited") {
       super(dataObject, message);
     }
   }
+
   export class DataObjectSaveError extends DataObjectError {
     public name = "DataObjectSaveError";
 
-    constructor(public dataObject:DataObject, public message:string = "Failed to save this object") {
+    constructor(public dataObject:DataObject, public message:string = "Failed to save this object (" + dataObject.tableName() + ")") {
       super(dataObject, message);
     }
   }
+
+  export class DataObjectParseError extends DataObjectError {
+    public name = "DataObjectParseError";
+
+    constructor(public dataObject:DataObject, public message:string = "Failed to parse this object (" + dataObject.tableName() + ")") {
+      super(dataObject, message);
+    }
+  }
+
+
   export abstract class DataObject {
     abstract tableName():string;
 
@@ -41,8 +54,18 @@ module stub {
 
     //abstract getValueByKey(key:string):any;
 
-    abstract toObject(instant:DataObject):any;
+    /**
+     * used to sent back to server (update and create)
+     *
+     * also for 'AngularJS html' 'easy access'
+     * */
+    abstract toObject(instance?:DataObject):any;
 
+    /**
+     * @param rawObject : object from API response (return from JSON.parse)
+     * @return concrete instance of DataObject
+     * @throw stub.DataObjectParseError
+     * */
     abstract parseObject(rawObject:any):DataObject ;
 
     //public isEveryMatch(patterns:KeyValue[]):boolean {
@@ -52,6 +75,10 @@ module stub {
     //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
     //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
     //}
+
+    public isComplex():boolean {
+      return false;
+    }
 
     public isEditSupport():boolean {
       return this.uniqueKeyList().length > 0;
@@ -75,7 +102,7 @@ module stub {
       if (keys.length > 0) {
         return JSON.stringify(keys.map(key=>o[key]));
       } else {
-        console.log("Warning : this hashCode might lead to collision");
+        utils.log("Warning : this hashCode might lead to collision ("+this.tableName()+")");
         return JSON.stringify(o);
       }
     }
@@ -111,8 +138,8 @@ module stub {
       api.use_all_row<DataObject[]>(this.tableName(), handler);
     }
 
-    //TODO to implment the filter logic on server (php)
-    public use_fully_matched_instance_list(queryKeyValues:KeyValue[], consumer:Consumer<DataObject[]>) {
+    //TODO to implement the filter logic on server (php)
+    public use_fully_matched_instance_list(queryKeyValues:KeyValue<string,any>[], consumer:Consumer<DataObject[]>) {
       throw new TypeError("Operation not support yet");
       //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {
       //  consumer(fullList.filter(function (dataObject:DataObject) {
@@ -123,9 +150,20 @@ module stub {
     }
 
     //TODO to implement the filter logic on server (php)
-    public use_partially_matched_instance_list(queryKeyValues:KeyValue[], consumer:Consumer<DataObject[]>) {
+    public use_partially_matched_instance_list(queryKeyValues:KeyValue<string,any>[], consumer:Consumer<DataObject[]>) {
       throw new TypeError("Operation not support yet");
     }
+  }
+  var stub_instance_list:DataObject[] = [];
 
+  export function add_stub_instance(instance:DataObject) {
+    //utils.log("adding " + instance.tableName());
+    if (!stub_instance_list.some(e=>e.tableName() == instance.tableName()))
+      stub_instance_list.push(instance);
+  }
+
+  export function match_by_tableName(table_name:string, prefix:string = ""):DataObject[] {
+    var target = table_name.toLowerCase();
+    return stub_instance_list.filter(e=>(prefix + e.tableName()).toLowerCase() == target);
   }
 }

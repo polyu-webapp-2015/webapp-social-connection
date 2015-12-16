@@ -112,6 +112,7 @@ app.factory("$global", function ($uibModal) {
     },
 
     loggedIn: function () {
+      console.log('user is Announcement = ');
       console.log(user.isAnonymous);
       return !user.isAnonymous;
     },

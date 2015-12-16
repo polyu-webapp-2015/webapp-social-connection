@@ -42,16 +42,30 @@ module stub {
     
     parseObject(rawObject:any):Account_stub {
       var instance = new Account_stub();
-      instance.account_id = rawObject.account_id;
-      instance.password = rawObject.password;
-      instance.account_type = rawObject.account_type;
-      instance.email = rawObject.email;
-      instance.phone_num = rawObject.phone_num;
+      if(rawObject.hasOwnProperty('account_id'))
+        instance.account_id = rawObject.account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('password'))
+        instance.password = rawObject.password;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('account_type'))
+        instance.account_type = rawObject.account_type;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('email'))
+        instance.email = rawObject.email;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('phone_num'))
+        instance.phone_num = rawObject.phone_num;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Account_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Account_stub=this):any {
       var rawObject = {};
       rawObject[Account_stub.__account_id()] = instance.account_id;
       rawObject[Account_stub.__password()] = instance.password;
@@ -70,7 +84,7 @@ module stub {
 
     /* getter and setter */
     public get_account_id():number {
-      return this.account_id;
+      return this.account_id * 1;
     }
 
     public set_account_id(newValue:number) {
@@ -82,7 +96,7 @@ module stub {
     }
 
     public get_password():string {
-      return this.password;
+      return this.password ;
     }
 
     public set_password(newValue:string) {
@@ -94,7 +108,7 @@ module stub {
     }
 
     public get_account_type():string {
-      return this.account_type;
+      return this.account_type ;
     }
 
     public set_account_type(newValue:string) {
@@ -106,7 +120,7 @@ module stub {
     }
 
     public get_email():string {
-      return this.email;
+      return this.email ;
     }
 
     public set_email(newValue:string) {
@@ -118,7 +132,7 @@ module stub {
     }
 
     public get_phone_num():string {
-      return this.phone_num;
+      return this.phone_num ;
     }
 
     public set_phone_num(newValue:string) {
@@ -130,4 +144,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Account_stub());
 }

@@ -24,12 +24,14 @@ module stub {
     
     parseObject(rawObject:any):Attraction_stub {
       var instance = new Attraction_stub();
-      instance.event_id = rawObject.event_id;
+      if(rawObject.hasOwnProperty('event_id'))
+        instance.event_id = rawObject.event_id;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Attraction_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Attraction_stub=this):any {
       var rawObject = {};
       rawObject[Attraction_stub.__event_id()] = instance.event_id;
       return rawObject;
@@ -40,7 +42,7 @@ module stub {
 
     /* getter and setter */
     public get_event_id():number {
-      return this.event_id;
+      return this.event_id * 1;
     }
 
     public set_event_id(newValue:number) {
@@ -52,4 +54,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Attraction_stub());
 }

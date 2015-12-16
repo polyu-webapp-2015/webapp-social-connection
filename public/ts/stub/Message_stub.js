@@ -38,16 +38,30 @@ var stub;
         };
         Message_stub.prototype.parseObject = function (rawObject) {
             var instance = new Message_stub();
-            instance.msg_id = rawObject.msg_id;
-            instance.from_account_id = rawObject.from_account_id;
-            instance.to_account_id = rawObject.to_account_id;
-            instance.create_time = rawObject.create_time;
-            instance.read_time = rawObject.read_time;
+            if (rawObject.hasOwnProperty('msg_id'))
+                instance.msg_id = rawObject.msg_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('from_account_id'))
+                instance.from_account_id = rawObject.from_account_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('to_account_id'))
+                instance.to_account_id = rawObject.to_account_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('create_time'))
+                instance.create_time = rawObject.create_time;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('read_time'))
+                instance.read_time = rawObject.read_time;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Message_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Message_stub.__msg_id()] = instance.msg_id;
             rawObject[Message_stub.__from_account_id()] = instance.from_account_id;
@@ -58,7 +72,7 @@ var stub;
         };
         /* getter and setter */
         Message_stub.prototype.get_msg_id = function () {
-            return this.msg_id;
+            return this.msg_id * 1;
         };
         Message_stub.prototype.set_msg_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -69,7 +83,7 @@ var stub;
             }
         };
         Message_stub.prototype.get_from_account_id = function () {
-            return this.from_account_id;
+            return this.from_account_id * 1;
         };
         Message_stub.prototype.set_from_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -80,7 +94,7 @@ var stub;
             }
         };
         Message_stub.prototype.get_to_account_id = function () {
-            return this.to_account_id;
+            return this.to_account_id * 1;
         };
         Message_stub.prototype.set_to_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -115,5 +129,6 @@ var stub;
         return Message_stub;
     })(stub.DataObject);
     stub.Message_stub = Message_stub;
+    stub.add_stub_instance(new Message_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Message_stub.js.map

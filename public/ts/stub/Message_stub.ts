@@ -40,16 +40,30 @@ module stub {
     
     parseObject(rawObject:any):Message_stub {
       var instance = new Message_stub();
-      instance.msg_id = rawObject.msg_id;
-      instance.from_account_id = rawObject.from_account_id;
-      instance.to_account_id = rawObject.to_account_id;
-      instance.create_time = rawObject.create_time;
-      instance.read_time = rawObject.read_time;
+      if(rawObject.hasOwnProperty('msg_id'))
+        instance.msg_id = rawObject.msg_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('from_account_id'))
+        instance.from_account_id = rawObject.from_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('to_account_id'))
+        instance.to_account_id = rawObject.to_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('create_time'))
+        instance.create_time = rawObject.create_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('read_time'))
+        instance.read_time = rawObject.read_time;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Message_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Message_stub=this):any {
       var rawObject = {};
       rawObject[Message_stub.__msg_id()] = instance.msg_id;
       rawObject[Message_stub.__from_account_id()] = instance.from_account_id;
@@ -68,7 +82,7 @@ module stub {
 
     /* getter and setter */
     public get_msg_id():number {
-      return this.msg_id;
+      return this.msg_id * 1;
     }
 
     public set_msg_id(newValue:number) {
@@ -80,7 +94,7 @@ module stub {
     }
 
     public get_from_account_id():number {
-      return this.from_account_id;
+      return this.from_account_id * 1;
     }
 
     public set_from_account_id(newValue:number) {
@@ -92,7 +106,7 @@ module stub {
     }
 
     public get_to_account_id():number {
-      return this.to_account_id;
+      return this.to_account_id * 1;
     }
 
     public set_to_account_id(newValue:number) {
@@ -104,7 +118,7 @@ module stub {
     }
 
     public get_create_time():string {
-      return this.create_time;
+      return this.create_time ;
     }
 
     public set_create_time(newValue:string) {
@@ -116,7 +130,7 @@ module stub {
     }
 
     public get_read_time():string {
-      return this.read_time;
+      return this.read_time ;
     }
 
     public set_read_time(newValue:string) {
@@ -128,4 +142,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Message_stub());
 }

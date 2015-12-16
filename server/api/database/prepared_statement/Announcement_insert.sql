@@ -1,1 +1,1 @@
-INSERT INTO Announcement (announcement_id, subject, description, create_time) VALUES (:announcement_id, :subject, :description, :create_time);
+INSERT INTO Announcement (announcement_id, subject, description, create_time, creator_account_id) VALUES (:announcement_id, :subject, :description, :create_time, :creator_account_id);

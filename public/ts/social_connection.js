@@ -77,17 +77,6 @@ var social_connection;
             DataObjectManager.request(instance, filter, consumer, forceUpdate);
         }
     })(ui || (ui = {}));
-    var model;
-    (function (model) {
-        var Profile = (function () {
-            function Profile(first_name, last_name) {
-                this.first_name = first_name;
-                this.last_name = last_name;
-            }
-            return Profile;
-        })();
-        model.Profile = Profile;
-    })(model = social_connection.model || (social_connection.model = {}));
     var asynchronous_logic;
     (function (asynchronous_logic) {
         var Account = stub.Account_stub;

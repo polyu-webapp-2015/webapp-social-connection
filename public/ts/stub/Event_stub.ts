@@ -47,6 +47,10 @@ module stub {
       return "description";
     }
 
+    protected static __quota():string {
+      return "quota";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "Event";
@@ -60,21 +64,54 @@ module stub {
     
     parseObject(rawObject:any):Event_stub {
       var instance = new Event_stub();
-      instance.event_id = rawObject.event_id;
-      instance.create_time = rawObject.create_time;
-      instance.edit_time = rawObject.edit_time;
-      instance.event_type = rawObject.event_type;
-      instance.venue_id = rawObject.venue_id;
-      instance.event_time = rawObject.event_time;
-      instance.creator_account_id = rawObject.creator_account_id;
-      instance.editor_account_id = rawObject.editor_account_id;
-      instance.subject = rawObject.subject;
-      instance.description = rawObject.description;
+      if(rawObject.hasOwnProperty('event_id'))
+        instance.event_id = rawObject.event_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('create_time'))
+        instance.create_time = rawObject.create_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('edit_time'))
+        instance.edit_time = rawObject.edit_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('event_type'))
+        instance.event_type = rawObject.event_type;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('venue_id'))
+        instance.venue_id = rawObject.venue_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('event_time'))
+        instance.event_time = rawObject.event_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('creator_account_id'))
+        instance.creator_account_id = rawObject.creator_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('editor_account_id'))
+        instance.editor_account_id = rawObject.editor_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('subject'))
+        instance.subject = rawObject.subject;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('description'))
+        instance.description = rawObject.description;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('quota'))
+        instance.quota = rawObject.quota;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Event_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Event_stub=this):any {
       var rawObject = {};
       rawObject[Event_stub.__event_id()] = instance.event_id;
       rawObject[Event_stub.__create_time()] = instance.create_time;
@@ -86,6 +123,7 @@ module stub {
       rawObject[Event_stub.__editor_account_id()] = instance.editor_account_id;
       rawObject[Event_stub.__subject()] = instance.subject;
       rawObject[Event_stub.__description()] = instance.description;
+      rawObject[Event_stub.__quota()] = instance.quota;
       return rawObject;
     }
 
@@ -100,10 +138,11 @@ module stub {
     private editor_account_id:number;
     private subject:string;
     private description:string;
+    private quota:number;
 
     /* getter and setter */
     public get_event_id():number {
-      return this.event_id;
+      return this.event_id * 1;
     }
 
     public set_event_id(newValue:number) {
@@ -115,7 +154,7 @@ module stub {
     }
 
     public get_create_time():string {
-      return this.create_time;
+      return this.create_time ;
     }
 
     public set_create_time(newValue:string) {
@@ -127,7 +166,7 @@ module stub {
     }
 
     public get_edit_time():string {
-      return this.edit_time;
+      return this.edit_time ;
     }
 
     public set_edit_time(newValue:string) {
@@ -139,7 +178,7 @@ module stub {
     }
 
     public get_event_type():string {
-      return this.event_type;
+      return this.event_type ;
     }
 
     public set_event_type(newValue:string) {
@@ -151,7 +190,7 @@ module stub {
     }
 
     public get_venue_id():number {
-      return this.venue_id;
+      return this.venue_id * 1;
     }
 
     public set_venue_id(newValue:number) {
@@ -163,7 +202,7 @@ module stub {
     }
 
     public get_event_time():string {
-      return this.event_time;
+      return this.event_time ;
     }
 
     public set_event_time(newValue:string) {
@@ -175,7 +214,7 @@ module stub {
     }
 
     public get_creator_account_id():number {
-      return this.creator_account_id;
+      return this.creator_account_id * 1;
     }
 
     public set_creator_account_id(newValue:number) {
@@ -187,7 +226,7 @@ module stub {
     }
 
     public get_editor_account_id():number {
-      return this.editor_account_id;
+      return this.editor_account_id * 1;
     }
 
     public set_editor_account_id(newValue:number) {
@@ -199,7 +238,7 @@ module stub {
     }
 
     public get_subject():string {
-      return this.subject;
+      return this.subject ;
     }
 
     public set_subject(newValue:string) {
@@ -211,7 +250,7 @@ module stub {
     }
 
     public get_description():string {
-      return this.description;
+      return this.description ;
     }
 
     public set_description(newValue:string) {
@@ -222,5 +261,18 @@ module stub {
       }
     }
 
+    public get_quota():number {
+      return this.quota * 1;
+    }
+
+    public set_quota(newValue:number) {
+      if (this.isEditSupport()) {
+        this.quota = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
   }
+  stub.add_stub_instance(new Event_stub());
 }

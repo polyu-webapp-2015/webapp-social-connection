@@ -29,13 +29,18 @@ module stub {
     
     parseObject(rawObject:any):Event_Attendee_stub {
       var instance = new Event_Attendee_stub();
-      instance.event_id = rawObject.event_id;
-      instance.account_id = rawObject.account_id;
+      if(rawObject.hasOwnProperty('event_id'))
+        instance.event_id = rawObject.event_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('account_id'))
+        instance.account_id = rawObject.account_id;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Event_Attendee_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Event_Attendee_stub=this):any {
       var rawObject = {};
       rawObject[Event_Attendee_stub.__event_id()] = instance.event_id;
       rawObject[Event_Attendee_stub.__account_id()] = instance.account_id;
@@ -48,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_event_id():number {
-      return this.event_id;
+      return this.event_id * 1;
     }
 
     public set_event_id(newValue:number) {
@@ -60,7 +65,7 @@ module stub {
     }
 
     public get_account_id():number {
-      return this.account_id;
+      return this.account_id * 1;
     }
 
     public set_account_id(newValue:number) {
@@ -72,4 +77,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Event_Attendee_stub());
 }

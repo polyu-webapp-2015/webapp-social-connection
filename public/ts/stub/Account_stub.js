@@ -40,16 +40,30 @@ var stub;
         };
         Account_stub.prototype.parseObject = function (rawObject) {
             var instance = new Account_stub();
-            instance.account_id = rawObject.account_id;
-            instance.password = rawObject.password;
-            instance.account_type = rawObject.account_type;
-            instance.email = rawObject.email;
-            instance.phone_num = rawObject.phone_num;
+            if (rawObject.hasOwnProperty('account_id'))
+                instance.account_id = rawObject.account_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('password'))
+                instance.password = rawObject.password;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('account_type'))
+                instance.account_type = rawObject.account_type;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('email'))
+                instance.email = rawObject.email;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('phone_num'))
+                instance.phone_num = rawObject.phone_num;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Account_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Account_stub.__account_id()] = instance.account_id;
             rawObject[Account_stub.__password()] = instance.password;
@@ -60,7 +74,7 @@ var stub;
         };
         /* getter and setter */
         Account_stub.prototype.get_account_id = function () {
-            return this.account_id;
+            return this.account_id * 1;
         };
         Account_stub.prototype.set_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -117,5 +131,6 @@ var stub;
         return Account_stub;
     })(stub.DataObject);
     stub.Account_stub = Account_stub;
+    stub.add_stub_instance(new Account_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Account_stub.js.map

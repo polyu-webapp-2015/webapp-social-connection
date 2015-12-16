@@ -18,12 +18,12 @@ var stub;
             this.name = "DataObjectError";
         }
         return DataObjectError;
-    })(Error);
+    })(TypeError);
     stub.DataObjectError = DataObjectError;
     var DataObjectEditError = (function (_super) {
         __extends(DataObjectEditError, _super);
         function DataObjectEditError(dataObject, message) {
-            if (message === void 0) { message = "This Object can not be edited"; }
+            if (message === void 0) { message = "This Object (" + dataObject.tableName() + ") can not be edited"; }
             _super.call(this, dataObject, message);
             this.dataObject = dataObject;
             this.message = message;
@@ -35,7 +35,7 @@ var stub;
     var DataObjectSaveError = (function (_super) {
         __extends(DataObjectSaveError, _super);
         function DataObjectSaveError(dataObject, message) {
-            if (message === void 0) { message = "Failed to save this object"; }
+            if (message === void 0) { message = "Failed to save this object (" + dataObject.tableName() + ")"; }
             _super.call(this, dataObject, message);
             this.dataObject = dataObject;
             this.message = message;
@@ -44,6 +44,18 @@ var stub;
         return DataObjectSaveError;
     })(DataObjectError);
     stub.DataObjectSaveError = DataObjectSaveError;
+    var DataObjectParseError = (function (_super) {
+        __extends(DataObjectParseError, _super);
+        function DataObjectParseError(dataObject, message) {
+            if (message === void 0) { message = "Failed to parse this object (" + dataObject.tableName() + ")"; }
+            _super.call(this, dataObject, message);
+            this.dataObject = dataObject;
+            this.message = message;
+            this.name = "DataObjectParseError";
+        }
+        return DataObjectParseError;
+    })(DataObjectError);
+    stub.DataObjectParseError = DataObjectParseError;
     var DataObject = (function () {
         function DataObject() {
         }
@@ -53,6 +65,9 @@ var stub;
         //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
         //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
         //}
+        DataObject.prototype.isComplex = function () {
+            return false;
+        };
         DataObject.prototype.isEditSupport = function () {
             return this.uniqueKeyList().length > 0;
         };
@@ -74,7 +89,7 @@ var stub;
                 return JSON.stringify(keys.map(function (key) { return o[key]; }));
             }
             else {
-                console.log("Warning : this hashCode might lead to collision");
+                utils.log("Warning : this hashCode might lead to collision (" + this.tableName() + ")");
                 return JSON.stringify(o);
             }
         };
@@ -108,7 +123,7 @@ var stub;
             var handler = [producer, consumer];
             api.use_all_row(this.tableName(), handler);
         };
-        //TODO to implment the filter logic on server (php)
+        //TODO to implement the filter logic on server (php)
         DataObject.prototype.use_fully_matched_instance_list = function (queryKeyValues, consumer) {
             throw new TypeError("Operation not support yet");
             //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {
@@ -125,5 +140,18 @@ var stub;
         return DataObject;
     })();
     stub.DataObject = DataObject;
+    var stub_instance_list = [];
+    function add_stub_instance(instance) {
+        //utils.log("adding " + instance.tableName());
+        if (!stub_instance_list.some(function (e) { return e.tableName() == instance.tableName(); }))
+            stub_instance_list.push(instance);
+    }
+    stub.add_stub_instance = add_stub_instance;
+    function match_by_tableName(table_name, prefix) {
+        if (prefix === void 0) { prefix = ""; }
+        var target = table_name.toLowerCase();
+        return stub_instance_list.filter(function (e) { return (prefix + e.tableName()).toLowerCase() == target; });
+    }
+    stub.match_by_tableName = match_by_tableName;
 })(stub || (stub = {}));
 //# sourceMappingURL=DataObject.js.map

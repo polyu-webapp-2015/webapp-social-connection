@@ -38,15 +38,26 @@ module stub {
     
     parseObject(rawObject:any):Friendship_stub {
       var instance = new Friendship_stub();
-      instance.friendship_id = rawObject.friendship_id;
-      instance.host_id = rawObject.host_id;
-      instance.guest_id = rawObject.guest_id;
-      instance.remark = rawObject.remark;
+      if(rawObject.hasOwnProperty('friendship_id'))
+        instance.friendship_id = rawObject.friendship_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('host_id'))
+        instance.host_id = rawObject.host_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('guest_id'))
+        instance.guest_id = rawObject.guest_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('remark'))
+        instance.remark = rawObject.remark;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Friendship_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Friendship_stub=this):any {
       var rawObject = {};
       rawObject[Friendship_stub.__friendship_id()] = instance.friendship_id;
       rawObject[Friendship_stub.__host_id()] = instance.host_id;
@@ -63,7 +74,7 @@ module stub {
 
     /* getter and setter */
     public get_friendship_id():number {
-      return this.friendship_id;
+      return this.friendship_id * 1;
     }
 
     public set_friendship_id(newValue:number) {
@@ -75,7 +86,7 @@ module stub {
     }
 
     public get_host_id():number {
-      return this.host_id;
+      return this.host_id * 1;
     }
 
     public set_host_id(newValue:number) {
@@ -87,7 +98,7 @@ module stub {
     }
 
     public get_guest_id():number {
-      return this.guest_id;
+      return this.guest_id * 1;
     }
 
     public set_guest_id(newValue:number) {
@@ -99,7 +110,7 @@ module stub {
     }
 
     public get_remark():string {
-      return this.remark;
+      return this.remark ;
     }
 
     public set_remark(newValue:string) {
@@ -111,4 +122,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Friendship_stub());
 }

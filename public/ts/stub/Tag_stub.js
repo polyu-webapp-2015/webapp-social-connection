@@ -30,13 +30,18 @@ var stub;
         };
         Tag_stub.prototype.parseObject = function (rawObject) {
             var instance = new Tag_stub();
-            instance.tag_id = rawObject.tag_id;
-            instance.tag_content = rawObject.tag_content;
+            if (rawObject.hasOwnProperty('tag_id'))
+                instance.tag_id = rawObject.tag_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('tag_content'))
+                instance.tag_content = rawObject.tag_content;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Tag_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Tag_stub.__tag_id()] = instance.tag_id;
             rawObject[Tag_stub.__tag_content()] = instance.tag_content;
@@ -44,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Tag_stub.prototype.get_tag_id = function () {
-            return this.tag_id;
+            return this.tag_id * 1;
         };
         Tag_stub.prototype.set_tag_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -68,5 +73,6 @@ var stub;
         return Tag_stub;
     })(stub.DataObject);
     stub.Tag_stub = Tag_stub;
+    stub.add_stub_instance(new Tag_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Tag_stub.js.map

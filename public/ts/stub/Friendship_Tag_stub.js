@@ -30,13 +30,18 @@ var stub;
         };
         Friendship_Tag_stub.prototype.parseObject = function (rawObject) {
             var instance = new Friendship_Tag_stub();
-            instance.friendship_id = rawObject.friendship_id;
-            instance.tag_id = rawObject.tag_id;
+            if (rawObject.hasOwnProperty('friendship_id'))
+                instance.friendship_id = rawObject.friendship_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('tag_id'))
+                instance.tag_id = rawObject.tag_id;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Friendship_Tag_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Friendship_Tag_stub.__friendship_id()] = instance.friendship_id;
             rawObject[Friendship_Tag_stub.__tag_id()] = instance.tag_id;
@@ -44,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Friendship_Tag_stub.prototype.get_friendship_id = function () {
-            return this.friendship_id;
+            return this.friendship_id * 1;
         };
         Friendship_Tag_stub.prototype.set_friendship_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -55,7 +60,7 @@ var stub;
             }
         };
         Friendship_Tag_stub.prototype.get_tag_id = function () {
-            return this.tag_id;
+            return this.tag_id * 1;
         };
         Friendship_Tag_stub.prototype.set_tag_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -68,5 +73,6 @@ var stub;
         return Friendship_Tag_stub;
     })(stub.DataObject);
     stub.Friendship_Tag_stub = Friendship_Tag_stub;
+    stub.add_stub_instance(new Friendship_Tag_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Friendship_Tag_stub.js.map

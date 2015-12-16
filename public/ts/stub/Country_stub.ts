@@ -29,13 +29,18 @@ module stub {
     
     parseObject(rawObject:any):Country_stub {
       var instance = new Country_stub();
-      instance.country_id = rawObject.country_id;
-      instance.country_name = rawObject.country_name;
+      if(rawObject.hasOwnProperty('country_id'))
+        instance.country_id = rawObject.country_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('country_name'))
+        instance.country_name = rawObject.country_name;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Country_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Country_stub=this):any {
       var rawObject = {};
       rawObject[Country_stub.__country_id()] = instance.country_id;
       rawObject[Country_stub.__country_name()] = instance.country_name;
@@ -48,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_country_id():number {
-      return this.country_id;
+      return this.country_id * 1;
     }
 
     public set_country_id(newValue:number) {
@@ -60,7 +65,7 @@ module stub {
     }
 
     public get_country_name():string {
-      return this.country_name;
+      return this.country_name ;
     }
 
     public set_country_name(newValue:string) {
@@ -72,4 +77,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Country_stub());
 }

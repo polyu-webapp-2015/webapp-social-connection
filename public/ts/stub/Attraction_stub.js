@@ -26,19 +26,21 @@ var stub;
         };
         Attraction_stub.prototype.parseObject = function (rawObject) {
             var instance = new Attraction_stub();
-            instance.event_id = rawObject.event_id;
+            if (rawObject.hasOwnProperty('event_id'))
+                instance.event_id = rawObject.event_id;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Attraction_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Attraction_stub.__event_id()] = instance.event_id;
             return rawObject;
         };
         /* getter and setter */
         Attraction_stub.prototype.get_event_id = function () {
-            return this.event_id;
+            return this.event_id * 1;
         };
         Attraction_stub.prototype.set_event_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -51,5 +53,6 @@ var stub;
         return Attraction_stub;
     })(stub.DataObject);
     stub.Attraction_stub = Attraction_stub;
+    stub.add_stub_instance(new Attraction_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Attraction_stub.js.map

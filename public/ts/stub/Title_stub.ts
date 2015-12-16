@@ -29,13 +29,18 @@ module stub {
     
     parseObject(rawObject:any):Title_stub {
       var instance = new Title_stub();
-      instance.title_id = rawObject.title_id;
-      instance.title_text = rawObject.title_text;
+      if(rawObject.hasOwnProperty('title_id'))
+        instance.title_id = rawObject.title_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('title_text'))
+        instance.title_text = rawObject.title_text;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Title_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Title_stub=this):any {
       var rawObject = {};
       rawObject[Title_stub.__title_id()] = instance.title_id;
       rawObject[Title_stub.__title_text()] = instance.title_text;
@@ -48,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_title_id():number {
-      return this.title_id;
+      return this.title_id * 1;
     }
 
     public set_title_id(newValue:number) {
@@ -60,7 +65,7 @@ module stub {
     }
 
     public get_title_text():string {
-      return this.title_text;
+      return this.title_text ;
     }
 
     public set_title_text(newValue:string) {
@@ -72,4 +77,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Title_stub());
 }

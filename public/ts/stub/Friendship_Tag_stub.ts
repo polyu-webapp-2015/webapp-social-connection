@@ -29,13 +29,18 @@ module stub {
     
     parseObject(rawObject:any):Friendship_Tag_stub {
       var instance = new Friendship_Tag_stub();
-      instance.friendship_id = rawObject.friendship_id;
-      instance.tag_id = rawObject.tag_id;
+      if(rawObject.hasOwnProperty('friendship_id'))
+        instance.friendship_id = rawObject.friendship_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('tag_id'))
+        instance.tag_id = rawObject.tag_id;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Friendship_Tag_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Friendship_Tag_stub=this):any {
       var rawObject = {};
       rawObject[Friendship_Tag_stub.__friendship_id()] = instance.friendship_id;
       rawObject[Friendship_Tag_stub.__tag_id()] = instance.tag_id;
@@ -48,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_friendship_id():number {
-      return this.friendship_id;
+      return this.friendship_id * 1;
     }
 
     public set_friendship_id(newValue:number) {
@@ -60,7 +65,7 @@ module stub {
     }
 
     public get_tag_id():number {
-      return this.tag_id;
+      return this.tag_id * 1;
     }
 
     public set_tag_id(newValue:number) {
@@ -72,4 +77,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Friendship_Tag_stub());
 }

@@ -30,13 +30,18 @@ var stub;
         };
         Event_Attendee_stub.prototype.parseObject = function (rawObject) {
             var instance = new Event_Attendee_stub();
-            instance.event_id = rawObject.event_id;
-            instance.account_id = rawObject.account_id;
+            if (rawObject.hasOwnProperty('event_id'))
+                instance.event_id = rawObject.event_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('account_id'))
+                instance.account_id = rawObject.account_id;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Event_Attendee_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Event_Attendee_stub.__event_id()] = instance.event_id;
             rawObject[Event_Attendee_stub.__account_id()] = instance.account_id;
@@ -44,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Event_Attendee_stub.prototype.get_event_id = function () {
-            return this.event_id;
+            return this.event_id * 1;
         };
         Event_Attendee_stub.prototype.set_event_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -55,7 +60,7 @@ var stub;
             }
         };
         Event_Attendee_stub.prototype.get_account_id = function () {
-            return this.account_id;
+            return this.account_id * 1;
         };
         Event_Attendee_stub.prototype.set_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -68,5 +73,6 @@ var stub;
         return Event_Attendee_stub;
     })(stub.DataObject);
     stub.Event_Attendee_stub = Event_Attendee_stub;
+    stub.add_stub_instance(new Event_Attendee_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Event_Attendee_stub.js.map

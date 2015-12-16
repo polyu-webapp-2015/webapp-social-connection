@@ -15,9 +15,6 @@ var stub;
         Session_stub.__event_id = function () {
             return "event_id";
         };
-        Session_stub.__quota = function () {
-            return "quota";
-        };
         /* implement DataObject */
         Session_stub.prototype.tableName = function () {
             return "Session";
@@ -29,21 +26,21 @@ var stub;
         };
         Session_stub.prototype.parseObject = function (rawObject) {
             var instance = new Session_stub();
-            instance.event_id = rawObject.event_id;
-            instance.quota = rawObject.quota;
+            if (rawObject.hasOwnProperty('event_id'))
+                instance.event_id = rawObject.event_id;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Session_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Session_stub.__event_id()] = instance.event_id;
-            rawObject[Session_stub.__quota()] = instance.quota;
             return rawObject;
         };
         /* getter and setter */
         Session_stub.prototype.get_event_id = function () {
-            return this.event_id;
+            return this.event_id * 1;
         };
         Session_stub.prototype.set_event_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -53,19 +50,9 @@ var stub;
                 throw new stub.DataObjectEditError(this);
             }
         };
-        Session_stub.prototype.get_quota = function () {
-            return this.quota;
-        };
-        Session_stub.prototype.set_quota = function (newValue) {
-            if (this.isEditSupport()) {
-                this.quota = newValue;
-            }
-            else {
-                throw new stub.DataObjectEditError(this);
-            }
-        };
         return Session_stub;
     })(stub.DataObject);
     stub.Session_stub = Session_stub;
+    stub.add_stub_instance(new Session_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Session_stub.js.map

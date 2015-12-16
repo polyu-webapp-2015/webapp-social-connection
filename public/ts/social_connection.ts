@@ -84,10 +84,10 @@ module social_connection {
     }
   }
   export module model {
-    export class Profile {
-      constructor(public first_name:string, public last_name:string) {
-      }
-    }
+    //export class Profile {
+    //  constructor(public first_name:string, public last_name:string) {
+    //  }
+    //}
   }
   export module asynchronous_logic {
     //TODO test import DiscussBoard_stub = stub.DiscussBoard_stub;

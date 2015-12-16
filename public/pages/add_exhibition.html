@@ -1,0 +1,41 @@
+
+<div ng-controller="AddSessionCtrl">
+  <!-- the scope of "AddAnnounceCtrl" should be a child of the scope of "MainCtrl" -->
+  <div class="modal-header">
+  	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+    <!-- method "closeModal()" inheritated from its parent scope -->
+  	<h4 class="modal-title">Create Exhibition</h4>
+  </div>			<!-- /modal-header -->
+    <form id="addSessionForm" name="addSessionForm" role="form" ng-submit="submit()" autocomplete="off">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" class="form-control" name="subject" id="subject" ng-model="session.subject" placeholder="Enter the title here..." required/>
+      </div>
+      <div class="form-group">
+        <label for="subject">Venue</label>
+        <input type="text" class="form-control" name="venue" id="venue" ng-model="session.venue" placeholder="Enter the venue here..." required/>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" rows="5" name="description" id="description" ng-model="session.description" placeholder="Enter the description here..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="quota"> Quota</label>
+        <input type="number" name="quota" id="quota" min="1" max="100000" ng-model="session.quota" required/>
+      </div>
+      <div class="form-group">
+        <label for="time"> Time</label>
+        <input type="time" name="time" id="time" ng-model="session.time" required/>
+      </div>
+      <div class="form-group">
+        <label for="date"> Date</label>
+        <input type="date" name="date" id="date" ng-model="session.date" required/>
+      </div>
+    </div>			<!-- /modal-body -->
+    <div class="modal-footer">
+    	<button class="btn btn-sm my-btn my-btn-round" type="submit">Sumbit</button>
+    	<a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+    </div>			<!-- /modal-footer -->
+    </form>
+</div>

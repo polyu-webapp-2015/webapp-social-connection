@@ -35,15 +35,26 @@ var stub;
         };
         Organization_stub.prototype.parseObject = function (rawObject) {
             var instance = new Organization_stub();
-            instance.organization_id = rawObject.organization_id;
-            instance.organization_type = rawObject.organization_type;
-            instance.name = rawObject.name;
-            instance.main_country = rawObject.main_country;
+            if (rawObject.hasOwnProperty('organization_id'))
+                instance.organization_id = rawObject.organization_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('organization_type'))
+                instance.organization_type = rawObject.organization_type;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('name'))
+                instance.name = rawObject.name;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('main_country'))
+                instance.main_country = rawObject.main_country;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Organization_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Organization_stub.__organization_id()] = instance.organization_id;
             rawObject[Organization_stub.__organization_type()] = instance.organization_type;
@@ -53,7 +64,7 @@ var stub;
         };
         /* getter and setter */
         Organization_stub.prototype.get_organization_id = function () {
-            return this.organization_id;
+            return this.organization_id * 1;
         };
         Organization_stub.prototype.set_organization_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -86,7 +97,7 @@ var stub;
             }
         };
         Organization_stub.prototype.get_main_country = function () {
-            return this.main_country;
+            return this.main_country * 1;
         };
         Organization_stub.prototype.set_main_country = function (newValue) {
             if (this.isEditSupport()) {
@@ -99,5 +110,6 @@ var stub;
         return Organization_stub;
     })(stub.DataObject);
     stub.Organization_stub = Organization_stub;
+    stub.add_stub_instance(new Organization_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Organization_stub.js.map

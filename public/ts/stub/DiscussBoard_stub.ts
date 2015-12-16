@@ -19,6 +19,26 @@ module stub {
       return "description";
     }
 
+    protected static __creator_account_id():string {
+      return "creator_account_id";
+    }
+
+    protected static __editor_account_id():string {
+      return "editor_account_id";
+    }
+
+    protected static __create_time():string {
+      return "create_time";
+    }
+
+    protected static __edit_time():string {
+      return "edit_time";
+    }
+
+    protected static __deleted():string {
+      return "deleted";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "DiscussBoard";
@@ -32,18 +52,51 @@ module stub {
     
     parseObject(rawObject:any):DiscussBoard_stub {
       var instance = new DiscussBoard_stub();
-      instance.discussboard_id = rawObject.discussboard_id;
-      instance.subject = rawObject.subject;
-      instance.description = rawObject.description;
+      if(rawObject.hasOwnProperty('discussboard_id'))
+        instance.discussboard_id = rawObject.discussboard_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('subject'))
+        instance.subject = rawObject.subject;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('description'))
+        instance.description = rawObject.description;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('creator_account_id'))
+        instance.creator_account_id = rawObject.creator_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('editor_account_id'))
+        instance.editor_account_id = rawObject.editor_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('create_time'))
+        instance.create_time = rawObject.create_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('edit_time'))
+        instance.edit_time = rawObject.edit_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('deleted'))
+        instance.deleted = rawObject.deleted;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:DiscussBoard_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:DiscussBoard_stub=this):any {
       var rawObject = {};
       rawObject[DiscussBoard_stub.__discussboard_id()] = instance.discussboard_id;
       rawObject[DiscussBoard_stub.__subject()] = instance.subject;
       rawObject[DiscussBoard_stub.__description()] = instance.description;
+      rawObject[DiscussBoard_stub.__creator_account_id()] = instance.creator_account_id;
+      rawObject[DiscussBoard_stub.__editor_account_id()] = instance.editor_account_id;
+      rawObject[DiscussBoard_stub.__create_time()] = instance.create_time;
+      rawObject[DiscussBoard_stub.__edit_time()] = instance.edit_time;
+      rawObject[DiscussBoard_stub.__deleted()] = instance.deleted;
       return rawObject;
     }
 
@@ -51,10 +104,15 @@ module stub {
     private discussboard_id:number;
     private subject:string;
     private description:string;
+    private creator_account_id:number;
+    private editor_account_id:number;
+    private create_time:string;
+    private edit_time:string;
+    private deleted:any;
 
     /* getter and setter */
     public get_discussboard_id():number {
-      return this.discussboard_id;
+      return this.discussboard_id * 1;
     }
 
     public set_discussboard_id(newValue:number) {
@@ -66,7 +124,7 @@ module stub {
     }
 
     public get_subject():string {
-      return this.subject;
+      return this.subject ;
     }
 
     public set_subject(newValue:string) {
@@ -78,7 +136,7 @@ module stub {
     }
 
     public get_description():string {
-      return this.description;
+      return this.description ;
     }
 
     public set_description(newValue:string) {
@@ -89,5 +147,66 @@ module stub {
       }
     }
 
+    public get_creator_account_id():number {
+      return this.creator_account_id * 1;
+    }
+
+    public set_creator_account_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.creator_account_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_editor_account_id():number {
+      return this.editor_account_id * 1;
+    }
+
+    public set_editor_account_id(newValue:number) {
+      if (this.isEditSupport()) {
+        this.editor_account_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_create_time():string {
+      return this.create_time ;
+    }
+
+    public set_create_time(newValue:string) {
+      if (this.isEditSupport()) {
+        this.create_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_edit_time():string {
+      return this.edit_time ;
+    }
+
+    public set_edit_time(newValue:string) {
+      if (this.isEditSupport()) {
+        this.edit_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_deleted():any {
+      return this.deleted ;
+    }
+
+    public set_deleted(newValue:any) {
+      if (this.isEditSupport()) {
+        this.deleted = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
   }
+  stub.add_stub_instance(new DiscussBoard_stub());
 }

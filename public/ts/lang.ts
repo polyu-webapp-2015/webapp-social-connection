@@ -8,45 +8,27 @@ module lang {
   export interface Supplier<T> {
     ():T;
   }
+  export interface SimpleFunction {
+    ();
+  }
   export type KeyValue<K,V> = [K,V];
-  export module Dictionary {
-    /** @deprecated does not work */
+  export module DictionaryHelper {
+    /** @deprecated the created object will have functions being looped, the consumer need to skip function items */
     export function create() {
       var o = {};
       inject(o);
       return o;
     }
 
-    /** @deprecated does not work */
+    /** @deprecated the injected function will be looped */
     export function inject(dict:any) {
-      //dict.reduce = (producer)=>reduce(dict, producer);
-      //dict.fold = (p, initial)=>fold(dict, p, initial);
-      //dict.map = (producer)=>map(dict, producer);
-      //dict.filter = (producer)=>filter(dict, producer);
-      //dict.some = (producer)=>some(dict, producer);
-      //dict.every = (producer)=>every(dict, producer);
-      //dict.forEach = (producer)=>forEach(dict, producer);
-      dict.reduce = function (producer) {
-        return reduce(dict, producer);
-      };
-      dict.fold = function (p, initial) {
-        return fold(dict, p, initial);
-      };
-      dict.map = function (producer) {
-        return map(dict, producer);
-      };
-      dict.filter = function (producer) {
-        return filter(dict, producer);
-      };
-      dict.some = function (producer) {
-        return some(dict, producer);
-      };
-      dict.every = function (producer) {
-        return every(dict, producer);
-      };
-      dict.forEach = function (producer) {
-        return forEach(dict, producer);
-      };
+      dict.reduce = (producer)=>reduce(dict, producer);
+      dict.fold = (p, initial)=>fold(dict, p, initial);
+      dict.map = (producer)=>map(dict, producer);
+      dict.filter = (producer)=>filter(dict, producer);
+      dict.some = (producer)=>some(dict, producer);
+      dict.every = (producer)=>every(dict, producer);
+      dict.forEach = (producer)=>forEach(dict, producer);
     }
 
     export function reduce<K,V>(dict:{}, producer:Producer<KeyValue<KeyValue<K,V>,KeyValue<K,V>> ,KeyValue<K,V>>):KeyValue<K,V> {
@@ -118,6 +100,47 @@ module lang {
         if (dict.hasOwnProperty(key))
           consumer([key, dict[key]])
       }
+    }
+  }
+  export module ArrayHelper {
+    export function flatten<T>(arrays:Array<Array<T>>):T[] {
+      return arrays.reduce((a, c)=>a.concat(c));
+    }
+
+    export function zip(arrays:Array<any>[]):any[] {
+      if (arrays.length == 0)
+        return [];
+      var result = [];
+      var N = arrays.map(e=>e.length)
+        .reduce((a, c)=>Math.min(a, c));
+      for (var i = 0; i < N; i++) {
+        var tuple = arrays.map(array=>array[i]);
+        result.push(tuple);
+      }
+      return result;
+    }
+  }
+  export module async {
+    /**
+     * @param process_array array : async functions to execute,
+     *  each 'process' should consume the loadOne exactly once when it has finish the life cycle,
+     *  typical example are a bunch of http request
+     * @param callback SimpleFunction : this function will be called when all process has finished
+     * */
+    export function fork_and_join(process_array:Consumer<SimpleFunction>[], callback:SimpleFunction) {
+      var done = 0;
+      var total = process_array.length;
+
+      var doneOne:SimpleFunction = function () {
+        done++;
+        if (done == total)
+          callback();
+      };
+
+      if (total == 0)
+        callback();
+      else
+        process_array.forEach(process=>process(doneOne));
     }
   }
 }

@@ -28,13 +28,18 @@ module stub {
     
     parseObject(rawObject:any):JsonArray_stub {
       var instance = new JsonArray_stub();
-      instance.JsonArray_id = rawObject.JsonArray_id;
-      instance.JsonArray_content = rawObject.JsonArray_content;
+      if(rawObject.hasOwnProperty('JsonArray_id'))
+        instance.JsonArray_id = rawObject.JsonArray_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('JsonArray_content'))
+        instance.JsonArray_content = rawObject.JsonArray_content;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:JsonArray_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:JsonArray_stub=this):any {
       var rawObject = {};
       rawObject[JsonArray_stub.__JsonArray_id()] = instance.JsonArray_id;
       rawObject[JsonArray_stub.__JsonArray_content()] = instance.JsonArray_content;
@@ -47,7 +52,7 @@ module stub {
 
     /* getter and setter */
     public get_JsonArray_id():number {
-      return this.JsonArray_id;
+      return this.JsonArray_id * 1;
     }
 
     public set_JsonArray_id(newValue:number) {
@@ -59,7 +64,7 @@ module stub {
     }
 
     public get_JsonArray_content():string {
-      return this.JsonArray_content;
+      return this.JsonArray_content ;
     }
 
     public set_JsonArray_content(newValue:string) {
@@ -71,4 +76,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new JsonArray_stub());
 }

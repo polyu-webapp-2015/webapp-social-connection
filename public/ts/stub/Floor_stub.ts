@@ -11,8 +11,8 @@ module stub {
       return "floor_id";
     }
 
-    protected static __name():string {
-      return "name";
+    protected static __floor_name():string {
+      return "floor_name";
     }
 
     /* implement DataObject */
@@ -28,26 +28,31 @@ module stub {
     
     parseObject(rawObject:any):Floor_stub {
       var instance = new Floor_stub();
-      instance.floor_id = rawObject.floor_id;
-      instance.name = rawObject.name;
+      if(rawObject.hasOwnProperty('floor_id'))
+        instance.floor_id = rawObject.floor_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('floor_name'))
+        instance.floor_name = rawObject.floor_name;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Floor_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Floor_stub=this):any {
       var rawObject = {};
       rawObject[Floor_stub.__floor_id()] = instance.floor_id;
-      rawObject[Floor_stub.__name()] = instance.name;
+      rawObject[Floor_stub.__floor_name()] = instance.floor_name;
       return rawObject;
     }
 
     /* variable */
     private floor_id:number;
-    private name:string;
+    private floor_name:string;
 
     /* getter and setter */
     public get_floor_id():number {
-      return this.floor_id;
+      return this.floor_id * 1;
     }
 
     public set_floor_id(newValue:number) {
@@ -58,17 +63,18 @@ module stub {
       }
     }
 
-    public get_name():string {
-      return this.name;
+    public get_floor_name():string {
+      return this.floor_name ;
     }
 
-    public set_name(newValue:string) {
+    public set_floor_name(newValue:string) {
       if (this.isEditSupport()) {
-        this.name = newValue;
+        this.floor_name = newValue;
       } else {
         throw new DataObjectEditError(this);
       }
     }
 
   }
+  stub.add_stub_instance(new Floor_stub());
 }

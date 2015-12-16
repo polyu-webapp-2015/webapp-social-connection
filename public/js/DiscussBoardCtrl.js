@@ -3,15 +3,7 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
   /**
    * This is stack of param to exchange data across multi-layer of modal
    * */
-  if ($scope.myParamStack == null) {
-    $scope.myParamStack = [];
-  }
-  var myParamStackOffset = $scope.myParamStack.length;
-  var myParam = {};
-  myParam.list = [];
-  myParam.index = null;
-  $scope.myParamStack.push(myParam);
-  var parentParam = $scope.myParamStack[myParamStackOffset - 1];
+  $scope.myParam={list:[],index:null};
 
   /**
    * This function cannot be replaced by constant,
@@ -26,8 +18,8 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
    * @return string : user friendly display name
    * */
   function element_name() {
-    //TODO[Optional] replace this value manually for each controller
-    return instance().tableName();
+    //return instance().tableName();
+    return "Board";
   }
 
   function onDataObjectsReceived(dataObjects) {
@@ -87,9 +79,9 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
     else return 'alt';
   };
 
-  $scope.openDetailModal = function (html_path, index) {
-    //$scope.elem = elem;
-    myParam.index = index;
+  $scope.openDetailModal = function (html_path, elem) {
+    $scope.elem = elem;
+    myParam.index = $scope.elems.indexOf(elem);
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
   };
 
@@ -100,6 +92,10 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
     };
     var forceUpdate = false;
     DataObjectManager.request(instance(), filter, onDataObjectsReceived, forceUpdate);
+  };
+
+  $scope.closeModal = function () {
+    $scope.modalItem.close();
   }
 
 });

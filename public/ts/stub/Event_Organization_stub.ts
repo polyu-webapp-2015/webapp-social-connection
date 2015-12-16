@@ -29,13 +29,18 @@ module stub {
     
     parseObject(rawObject:any):Event_Organization_stub {
       var instance = new Event_Organization_stub();
-      instance.event_id = rawObject.event_id;
-      instance.organization_id = rawObject.organization_id;
+      if(rawObject.hasOwnProperty('event_id'))
+        instance.event_id = rawObject.event_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('organization_id'))
+        instance.organization_id = rawObject.organization_id;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Event_Organization_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Event_Organization_stub=this):any {
       var rawObject = {};
       rawObject[Event_Organization_stub.__event_id()] = instance.event_id;
       rawObject[Event_Organization_stub.__organization_id()] = instance.organization_id;
@@ -48,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_event_id():number {
-      return this.event_id;
+      return this.event_id * 1;
     }
 
     public set_event_id(newValue:number) {
@@ -60,7 +65,7 @@ module stub {
     }
 
     public get_organization_id():number {
-      return this.organization_id;
+      return this.organization_id * 1;
     }
 
     public set_organization_id(newValue:number) {
@@ -72,4 +77,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Event_Organization_stub());
 }

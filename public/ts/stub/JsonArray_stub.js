@@ -29,13 +29,18 @@ var stub;
         };
         JsonArray_stub.prototype.parseObject = function (rawObject) {
             var instance = new JsonArray_stub();
-            instance.JsonArray_id = rawObject.JsonArray_id;
-            instance.JsonArray_content = rawObject.JsonArray_content;
+            if (rawObject.hasOwnProperty('JsonArray_id'))
+                instance.JsonArray_id = rawObject.JsonArray_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('JsonArray_content'))
+                instance.JsonArray_content = rawObject.JsonArray_content;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         JsonArray_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[JsonArray_stub.__JsonArray_id()] = instance.JsonArray_id;
             rawObject[JsonArray_stub.__JsonArray_content()] = instance.JsonArray_content;
@@ -43,7 +48,7 @@ var stub;
         };
         /* getter and setter */
         JsonArray_stub.prototype.get_JsonArray_id = function () {
-            return this.JsonArray_id;
+            return this.JsonArray_id * 1;
         };
         JsonArray_stub.prototype.set_JsonArray_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -67,5 +72,6 @@ var stub;
         return JsonArray_stub;
     })(stub.DataObject);
     stub.JsonArray_stub = JsonArray_stub;
+    stub.add_stub_instance(new JsonArray_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=JsonArray_stub.js.map

@@ -15,6 +15,10 @@ module stub {
       return "floor_id";
     }
 
+    protected static __venue_name():string {
+      return "venue_name";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "Venus";
@@ -28,26 +32,37 @@ module stub {
     
     parseObject(rawObject:any):Venus_stub {
       var instance = new Venus_stub();
-      instance.venue_id = rawObject.venue_id;
-      instance.floor_id = rawObject.floor_id;
+      if(rawObject.hasOwnProperty('venue_id'))
+        instance.venue_id = rawObject.venue_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('floor_id'))
+        instance.floor_id = rawObject.floor_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('venue_name'))
+        instance.venue_name = rawObject.venue_name;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
-    toObject(instance:Venus_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Venus_stub=this):any {
       var rawObject = {};
       rawObject[Venus_stub.__venue_id()] = instance.venue_id;
       rawObject[Venus_stub.__floor_id()] = instance.floor_id;
+      rawObject[Venus_stub.__venue_name()] = instance.venue_name;
       return rawObject;
     }
 
     /* variable */
     private venue_id:number;
     private floor_id:number;
+    private venue_name:string;
 
     /* getter and setter */
     public get_venue_id():number {
-      return this.venue_id;
+      return this.venue_id * 1;
     }
 
     public set_venue_id(newValue:number) {
@@ -59,7 +74,7 @@ module stub {
     }
 
     public get_floor_id():number {
-      return this.floor_id;
+      return this.floor_id * 1;
     }
 
     public set_floor_id(newValue:number) {
@@ -70,5 +85,18 @@ module stub {
       }
     }
 
+    public get_venue_name():string {
+      return this.venue_name ;
+    }
+
+    public set_venue_name(newValue:string) {
+      if (this.isEditSupport()) {
+        this.venue_name = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
   }
+  stub.add_stub_instance(new Venus_stub());
 }

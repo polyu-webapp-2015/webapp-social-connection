@@ -18,6 +18,9 @@ var stub;
         Venus_stub.__floor_id = function () {
             return "floor_id";
         };
+        Venus_stub.__venue_name = function () {
+            return "venue_name";
+        };
         /* implement DataObject */
         Venus_stub.prototype.tableName = function () {
             return "Venus";
@@ -29,21 +32,31 @@ var stub;
         };
         Venus_stub.prototype.parseObject = function (rawObject) {
             var instance = new Venus_stub();
-            instance.venue_id = rawObject.venue_id;
-            instance.floor_id = rawObject.floor_id;
+            if (rawObject.hasOwnProperty('venue_id'))
+                instance.venue_id = rawObject.venue_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('floor_id'))
+                instance.floor_id = rawObject.floor_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('venue_name'))
+                instance.venue_name = rawObject.venue_name;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Venus_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Venus_stub.__venue_id()] = instance.venue_id;
             rawObject[Venus_stub.__floor_id()] = instance.floor_id;
+            rawObject[Venus_stub.__venue_name()] = instance.venue_name;
             return rawObject;
         };
         /* getter and setter */
         Venus_stub.prototype.get_venue_id = function () {
-            return this.venue_id;
+            return this.venue_id * 1;
         };
         Venus_stub.prototype.set_venue_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -54,7 +67,7 @@ var stub;
             }
         };
         Venus_stub.prototype.get_floor_id = function () {
-            return this.floor_id;
+            return this.floor_id * 1;
         };
         Venus_stub.prototype.set_floor_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -64,8 +77,20 @@ var stub;
                 throw new stub.DataObjectEditError(this);
             }
         };
+        Venus_stub.prototype.get_venue_name = function () {
+            return this.venue_name;
+        };
+        Venus_stub.prototype.set_venue_name = function (newValue) {
+            if (this.isEditSupport()) {
+                this.venue_name = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
         return Venus_stub;
     })(stub.DataObject);
     stub.Venus_stub = Venus_stub;
+    stub.add_stub_instance(new Venus_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Venus_stub.js.map
