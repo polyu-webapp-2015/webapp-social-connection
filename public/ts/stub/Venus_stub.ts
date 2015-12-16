@@ -15,6 +15,10 @@ module stub {
       return "floor_id";
     }
 
+    protected static __venue_name():string {
+      return "venue_name";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "Venus";
@@ -36,6 +40,10 @@ module stub {
         instance.floor_id = rawObject.floor_id;
       else
         throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('venue_name'))
+        instance.venue_name = rawObject.venue_name;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
@@ -43,12 +51,14 @@ module stub {
       var rawObject = {};
       rawObject[Venus_stub.__venue_id()] = instance.venue_id;
       rawObject[Venus_stub.__floor_id()] = instance.floor_id;
+      rawObject[Venus_stub.__venue_name()] = instance.venue_name;
       return rawObject;
     }
 
     /* variable */
     private venue_id:number;
     private floor_id:number;
+    private venue_name:string;
 
     /* getter and setter */
     public get_venue_id():number {
@@ -70,6 +80,18 @@ module stub {
     public set_floor_id(newValue:number) {
       if (this.isEditSupport()) {
         this.floor_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_venue_name():string {
+      return this.venue_name ;
+    }
+
+    public set_venue_name(newValue:string) {
+      if (this.isEditSupport()) {
+        this.venue_name = newValue;
       } else {
         throw new DataObjectEditError(this);
       }

@@ -42,6 +42,9 @@ var stub;
         Event_stub.__description = function () {
             return "description";
         };
+        Event_stub.__quota = function () {
+            return "quota";
+        };
         /* implement DataObject */
         Event_stub.prototype.tableName = function () {
             return "Event";
@@ -93,6 +96,10 @@ var stub;
                 instance.description = rawObject.description;
             else
                 throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('quota'))
+                instance.quota = rawObject.quota;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Event_stub.prototype.toObject = function (instance) {
@@ -108,6 +115,7 @@ var stub;
             rawObject[Event_stub.__editor_account_id()] = instance.editor_account_id;
             rawObject[Event_stub.__subject()] = instance.subject;
             rawObject[Event_stub.__description()] = instance.description;
+            rawObject[Event_stub.__quota()] = instance.quota;
             return rawObject;
         };
         /* getter and setter */
@@ -216,6 +224,17 @@ var stub;
         Event_stub.prototype.set_description = function (newValue) {
             if (this.isEditSupport()) {
                 this.description = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Event_stub.prototype.get_quota = function () {
+            return this.quota * 1;
+        };
+        Event_stub.prototype.set_quota = function (newValue) {
+            if (this.isEditSupport()) {
+                this.quota = newValue;
             }
             else {
                 throw new stub.DataObjectEditError(this);

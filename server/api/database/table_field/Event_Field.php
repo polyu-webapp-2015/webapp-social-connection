@@ -15,4 +15,5 @@ class Event_Fields {
     const __editor_account_id = "editor_account_id" ;
     const __subject = "subject" ;
     const __description = "description" ;
+    const __quota = "quota" ;
 }

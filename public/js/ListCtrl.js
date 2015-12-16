@@ -58,10 +58,12 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     }
   }
 
-  $scope.loadElements = function (action) {
+  $scope.loadElements = function (action,displayName) {
     if (action == null)
       throw new Error("ListCtrl::loadElements param action must be string! (now is null)");
     utils.log("loading elements of " + action);
+    if(displayName==null)
+    displayName=getDisplayNameFromAction(action);
 
     /* find stub instance */
     var stub_name = action.toLowerCase();
@@ -87,13 +89,12 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
           return dataObject.toObject();
         });
         var n = elements.length;
-        var displayName = getDisplayNameFromAction(action);
         if (n == 0)
-          $scope.text_before_list = "There are no " + displayName + "currently. Come again later";
+          $scope.text_before_list = "There are no " + displayName + " currently. Come again later";
         else if (n == 1)
           $scope.text_before_list = "There is 1 " + displayName;
         else
-          $scope.text_before_list = "There are " + n + " " + displayName;
+          $scope.text_before_list = "There are " + n + " " + displayName+"s";
         $scope.elems = elements;
       };
       stub_instance.use_all_instance_list(consumer);

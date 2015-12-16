@@ -11,10 +11,6 @@ module stub {
       return "event_id";
     }
 
-    protected static __quota():string {
-      return "quota";
-    }
-
     /* implement DataObject */
     tableName():string {
       return "Session";
@@ -32,23 +28,17 @@ module stub {
         instance.event_id = rawObject.event_id;
       else
         throw new stub.DataObjectParseError(this);
-      if(rawObject.hasOwnProperty('quota'))
-        instance.quota = rawObject.quota;
-      else
-        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
     toObject(instance:Session_stub=this):any {
       var rawObject = {};
       rawObject[Session_stub.__event_id()] = instance.event_id;
-      rawObject[Session_stub.__quota()] = instance.quota;
       return rawObject;
     }
 
     /* variable */
     private event_id:number;
-    private quota:number;
 
     /* getter and setter */
     public get_event_id():number {
@@ -58,18 +48,6 @@ module stub {
     public set_event_id(newValue:number) {
       if (this.isEditSupport()) {
         this.event_id = newValue;
-      } else {
-        throw new DataObjectEditError(this);
-      }
-    }
-
-    public get_quota():number {
-      return this.quota * 1;
-    }
-
-    public set_quota(newValue:number) {
-      if (this.isEditSupport()) {
-        this.quota = newValue;
       } else {
         throw new DataObjectEditError(this);
       }

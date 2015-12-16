@@ -47,6 +47,10 @@ module stub {
       return "description";
     }
 
+    protected static __quota():string {
+      return "quota";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "Event";
@@ -100,6 +104,10 @@ module stub {
         instance.description = rawObject.description;
       else
         throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('quota'))
+        instance.quota = rawObject.quota;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
@@ -115,6 +123,7 @@ module stub {
       rawObject[Event_stub.__editor_account_id()] = instance.editor_account_id;
       rawObject[Event_stub.__subject()] = instance.subject;
       rawObject[Event_stub.__description()] = instance.description;
+      rawObject[Event_stub.__quota()] = instance.quota;
       return rawObject;
     }
 
@@ -129,6 +138,7 @@ module stub {
     private editor_account_id:number;
     private subject:string;
     private description:string;
+    private quota:number;
 
     /* getter and setter */
     public get_event_id():number {
@@ -246,6 +256,18 @@ module stub {
     public set_description(newValue:string) {
       if (this.isEditSupport()) {
         this.description = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_quota():number {
+      return this.quota * 1;
+    }
+
+    public set_quota(newValue:number) {
+      if (this.isEditSupport()) {
+        this.quota = newValue;
       } else {
         throw new DataObjectEditError(this);
       }
