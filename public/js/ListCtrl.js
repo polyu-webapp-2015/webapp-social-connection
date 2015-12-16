@@ -58,12 +58,12 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     }
   }
 
-  $scope.loadElements = function (action,displayName) {
+  $scope.loadElements = function (action, displayName) {
     if (action == null)
       throw new Error("ListCtrl::loadElements param action must be string! (now is null)");
     utils.log("loading elements of " + action);
-    if(displayName==null)
-    displayName=getDisplayNameFromAction(action);
+    if (displayName == null)
+      displayName = getDisplayNameFromAction(action);
 
     /* find stub instance */
     var stub_name = action.toLowerCase();
@@ -94,12 +94,36 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         else if (n == 1)
           $scope.text_before_list = "There is 1 " + displayName;
         else
-          $scope.text_before_list = "There are " + n + " " + displayName+"s";
+          $scope.text_before_list = "There are " + n + " " + displayName + "s";
         $scope.elems = elements;
       };
-      stub_instance.use_all_instance_list(consumer);
+      //stub_instance.use_all_instance_list(consumer);
+      var filter = getMainDataObjectFilter(stub_instance);
+      DataObjectManager.request(stub_instance, filter, consumer);
     }
   };
+
+  /**
+   * @param stub_instance : DataObject instance of current level
+   * */
+  function getMainDataObjectFilter(stub_instance) {
+    switch (stub_instance.tableName()) {
+      case new stub.Post_stub().tableName():
+        var discussboardId = $scope.$parent.selectedItem.get_discussboard_id();
+        return function (post) {
+          return post.get_discussboard_id() == discussboardId;
+        };
+      case new stub.Reply_stub().tableName():
+        var postId = $scope.$parent.selectedItem.get_post_Id();
+        return function (reply) {
+          return reply.get_post_Id() == postId;
+        };
+      default:
+        return function () {
+          return true;
+        }
+    }
+  }
 
   $scope.loadExtraElements = function (action) {
     if (action == null)

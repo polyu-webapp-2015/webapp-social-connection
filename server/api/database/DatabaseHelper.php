@@ -310,7 +310,7 @@ class DatabaseHelper
             $field[self::__field_type] = $row[self::__field_type];
             $field_key = $row[self::__field_key];
             $field[self::__field_unique] = loss_match($field_key, "PRI") || loss_match($field_key, "UNI");
-            log_object_from_named($row, "full row of field in table $table_name");
+//            log_object_from_named($row, "full row of field in table $table_name");
             $field_array[] = $field;
         }
         return $field_array;
