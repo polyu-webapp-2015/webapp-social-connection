@@ -2,6 +2,7 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
 
   /**
    * This is stack of param to exchange data across multi-layer of modal
+   * @deprecated //TODO replace this part using scope hierarchy
    * */
   if ($scope.myParamStack == null) {
     $scope.myParamStack = [];
@@ -104,9 +105,19 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
     //$scope.current_post.creator=post.get_creator_account_id();
     $scope.current_post.subject = post.get_subject();
     $scope.current_post.description = post.get_description();
+    var target_account_id = post.get_creator_account_id();
     /* request creator name */
-    use_creator_name(post, function (name) {
-      $scope.current_post.creator = name;
+    //use_creator_name(post, function (name) {
+    //  $scope.current_post.creator = name;
+    //});
+    var usernameInstance = new stub.Username();
+    DataObjectManager.request(usernameInstance, function (username) {
+      return username.get_account_id() == target_account_id;
+    }, function (usernames) {
+      if (usernames.length == 0)
+        $scope.current_post.creator = "cannot found user";
+      else
+        $scope.current_post.creator = usernames[0].getDisplayName();
     });
     /* request reply list */
     var target_post_id = post.get_post_Id();
@@ -119,7 +130,9 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
 
   $scope.closeModal = function () {
     $scope.modalItem.close();
-  }
+  };
+
+  /**@deprecated use complex stub to avoid repeating the code*/
   function use_creator_name(post, consumer) {
     var instance = new stub.User_stub();
     var creatorAccountId = post.get_creator_account_id();
@@ -130,14 +143,16 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
       if (users.length < 1) {
         consumer("Cannot Find User");
       } else {
-        var user=users[0];
+        var user = users[0];
         var instance = new stub.Title_stub();
         var titleFilter = function (title) {
-          return title.get_title_id()==user.get_title_id();
+          return title.get_title_id() == user.get_title_id();
         };
-        var titleConsumer=function(titles){
-          var title="";
-          if(titles.length<1){}else{}
+        var titleConsumer = function (titles) {
+          var title = "";
+          if (titles.length < 1) {
+          } else {
+          }
         };
         DataObjectManager.request(instance, titleFilter, titleConsumer);
       }

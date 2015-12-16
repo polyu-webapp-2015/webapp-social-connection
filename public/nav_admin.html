@@ -38,13 +38,30 @@
   <!-- main scripts -->
   <script src="js/enum/APIFieldEnum.js"></script>
   <script src="js/enum/ResultCodeEnum.js"></script>
+  <script src="js/api_list.js"></script>
+  <script src="ts/lang.js"></script>
+  <script src="ts/debug.js"></script>
+  <script src="ts/utils.js"></script>
+  <script src="ts/api.js"></script>
+  <script src="ts/stub/DataObject.js"></script>
+  <script src="ts/stub/complex/ComplexDataObject.js"></script>
+  <script src="ts/stub/complex/package.ts"></script>
+  <script src="ts/stub/package.ts"></script>
+  <script src="ts/DataObjectManager.js"></script>
+  <script src="ts/social_connection.js"></script>
 
   <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/common.css">
 
+  <script>
+    function init() {
+      load_all_stub_script(main_init);
+//      utils.log("right after call for init script");
+    }
+  </script>
 </head>
 
-<body id="admin_nav_page" ng-controller="MainCtrl">
+<body id="admin_nav_page" ng-controller="MainCtrl" onload="init()">
 <!--<body id="admin_nav_page" ng-controller="MainCtrl">-->
 <nav class="navbar navbar-default navbar-fixed-top">
 
@@ -67,6 +84,7 @@
         <li><a href="#announcements">Announcements</a></li>
         <li><a href="#exhibitions">Exhibitions</a></li>
         <li><a href="#rewards">Rewards</a></li>
+        <li><a href="#forum">Forum</a></li>
         <li><a href="#analytics">Analytics</a></li>
         <li><a href="#attractions">Attractions</a></li>
         <li ng-click="logoff()"><a href="index.html">Log off</a></li>
