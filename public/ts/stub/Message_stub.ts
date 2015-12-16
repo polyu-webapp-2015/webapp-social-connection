@@ -40,11 +40,26 @@ module stub {
     
     parseObject(rawObject:any):Message_stub {
       var instance = new Message_stub();
-      instance.msg_id = rawObject.msg_id;
-      instance.from_account_id = rawObject.from_account_id;
-      instance.to_account_id = rawObject.to_account_id;
-      instance.create_time = rawObject.create_time;
-      instance.read_time = rawObject.read_time;
+      if(rawObject.hasOwnProperty('msg_id'))
+        instance.msg_id = rawObject.msg_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('from_account_id'))
+        instance.from_account_id = rawObject.from_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('to_account_id'))
+        instance.to_account_id = rawObject.to_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('create_time'))
+        instance.create_time = rawObject.create_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('read_time'))
+        instance.read_time = rawObject.read_time;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

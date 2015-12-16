@@ -30,8 +30,14 @@ var stub;
         };
         Title_stub.prototype.parseObject = function (rawObject) {
             var instance = new Title_stub();
-            instance.title_id = rawObject.title_id;
-            instance.title_text = rawObject.title_text;
+            if (rawObject.hasOwnProperty('title_id'))
+                instance.title_id = rawObject.title_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('title_text'))
+                instance.title_text = rawObject.title_text;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Title_stub.prototype.toObject = function (instance) {

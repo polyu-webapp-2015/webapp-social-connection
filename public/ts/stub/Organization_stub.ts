@@ -36,10 +36,22 @@ module stub {
     
     parseObject(rawObject:any):Organization_stub {
       var instance = new Organization_stub();
-      instance.organization_id = rawObject.organization_id;
-      instance.organization_type = rawObject.organization_type;
-      instance.name = rawObject.name;
-      instance.main_country = rawObject.main_country;
+      if(rawObject.hasOwnProperty('organization_id'))
+        instance.organization_id = rawObject.organization_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('organization_type'))
+        instance.organization_type = rawObject.organization_type;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('name'))
+        instance.name = rawObject.name;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('main_country'))
+        instance.main_country = rawObject.main_country;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

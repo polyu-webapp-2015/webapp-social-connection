@@ -30,8 +30,14 @@ var stub;
         };
         Event_Organization_stub.prototype.parseObject = function (rawObject) {
             var instance = new Event_Organization_stub();
-            instance.event_id = rawObject.event_id;
-            instance.organization_id = rawObject.organization_id;
+            if (rawObject.hasOwnProperty('event_id'))
+                instance.event_id = rawObject.event_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('organization_id'))
+                instance.organization_id = rawObject.organization_id;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Event_Organization_stub.prototype.toObject = function (instance) {

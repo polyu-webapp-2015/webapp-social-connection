@@ -29,8 +29,14 @@ var stub;
         };
         JsonArray_stub.prototype.parseObject = function (rawObject) {
             var instance = new JsonArray_stub();
-            instance.JsonArray_id = rawObject.JsonArray_id;
-            instance.JsonArray_content = rawObject.JsonArray_content;
+            if (rawObject.hasOwnProperty('JsonArray_id'))
+                instance.JsonArray_id = rawObject.JsonArray_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('JsonArray_content'))
+                instance.JsonArray_content = rawObject.JsonArray_content;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         JsonArray_stub.prototype.toObject = function (instance) {

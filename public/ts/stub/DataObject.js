@@ -18,7 +18,7 @@ var stub;
             this.name = "DataObjectError";
         }
         return DataObjectError;
-    })(Error);
+    })(TypeError);
     stub.DataObjectError = DataObjectError;
     var DataObjectEditError = (function (_super) {
         __extends(DataObjectEditError, _super);
@@ -44,6 +44,18 @@ var stub;
         return DataObjectSaveError;
     })(DataObjectError);
     stub.DataObjectSaveError = DataObjectSaveError;
+    var DataObjectParseError = (function (_super) {
+        __extends(DataObjectParseError, _super);
+        function DataObjectParseError(dataObject, message) {
+            if (message === void 0) { message = "Failed to save this object"; }
+            _super.call(this, dataObject, message);
+            this.dataObject = dataObject;
+            this.message = message;
+            this.name = "DataObjectParseError";
+        }
+        return DataObjectParseError;
+    })(DataObjectError);
+    stub.DataObjectParseError = DataObjectParseError;
     var DataObject = (function () {
         function DataObject() {
         }
@@ -53,6 +65,9 @@ var stub;
         //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
         //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
         //}
+        DataObject.prototype.isComplex = function () {
+            return false;
+        };
         DataObject.prototype.isEditSupport = function () {
             return this.uniqueKeyList().length > 0;
         };

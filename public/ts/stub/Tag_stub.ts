@@ -29,8 +29,14 @@ module stub {
     
     parseObject(rawObject:any):Tag_stub {
       var instance = new Tag_stub();
-      instance.tag_id = rawObject.tag_id;
-      instance.tag_content = rawObject.tag_content;
+      if(rawObject.hasOwnProperty('tag_id'))
+        instance.tag_id = rawObject.tag_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('tag_content'))
+        instance.tag_content = rawObject.tag_content;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

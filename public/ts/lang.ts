@@ -8,7 +8,7 @@ module lang {
   export interface Supplier<T> {
     ():T;
   }
-  export interface Function {
+  export interface SimpleFunction {
     ();
   }
   export type KeyValue<K,V> = [K,V];
@@ -106,23 +106,36 @@ module lang {
     export function flatten<T>(arrays:Array<Array<T>>):T[] {
       return arrays.reduce((a, c)=>a.concat(c));
     }
+
+    export function zip(arrays:Array<any>[]):any[] {
+      if (arrays.length == 0)
+        return [];
+      var result = [];
+      var N = arrays.map(e=>e.length)
+        .reduce((a, c)=>Math.min(a, c));
+      for (var i = 0; i < N; i++) {
+        var tuple = arrays.map(array=>array[i]);
+        result.push(tuple);
+      }
+      return result;
+    }
   }
   export module async {
     /**
      * @param process_array array : async functions to execute,
      *  each 'process' should consume the loadOne exactly once when it has finish the life cycle,
      *  typical example are a bunch of http request
-     * @param callback Function : this function will be called when all process has finished
+     * @param callback SimpleFunction : this function will be called when all process has finished
      * */
-    export function fork_and_join(process_array:Consumer<Function>[], callback:Function) {
+    export function fork_and_join(process_array:Consumer<SimpleFunction>[], callback:SimpleFunction) {
       var done = 0;
       var total = process_array.length;
 
-      function doneOne() {
+      var doneOne:SimpleFunction = function () {
         done++;
         if (done == total)
           callback();
-      }
+      };
 
       if (total == 0)
         callback();

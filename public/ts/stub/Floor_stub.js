@@ -29,8 +29,14 @@ var stub;
         };
         Floor_stub.prototype.parseObject = function (rawObject) {
             var instance = new Floor_stub();
-            instance.floor_id = rawObject.floor_id;
-            instance.name = rawObject.name;
+            if (rawObject.hasOwnProperty('floor_id'))
+                instance.floor_id = rawObject.floor_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('name'))
+                instance.name = rawObject.name;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Floor_stub.prototype.toObject = function (instance) {

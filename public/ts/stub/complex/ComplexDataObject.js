@@ -9,70 +9,99 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var stub;
 (function (stub) {
-    var APIParseResultError = debug.APIParseResultError;
+    var ComplexDataObjectParseError = (function (_super) {
+        __extends(ComplexDataObjectParseError, _super);
+        function ComplexDataObjectParseError(dataObject, message) {
+            if (message === void 0) { message = "ComplexDataObject does not support parsing"; }
+            _super.call(this, dataObject, message);
+            this.dataObject = dataObject;
+            this.message = message;
+            this.name = "ComplexDataObjectParseError";
+        }
+        return ComplexDataObjectParseError;
+    })(stub.DataObjectError);
+    stub.ComplexDataObjectParseError = ComplexDataObjectParseError;
     var ComplexDataObject = (function (_super) {
         __extends(ComplexDataObject, _super);
         function ComplexDataObject() {
             _super.apply(this, arguments);
         }
+        ComplexDataObject.prototype.isComplex = function () {
+            return true;
+        };
+        /**
+         * @deprecated in subclass, only used in super class to compute 'isSame'
+         * @return object of master instance
+         * */
         ComplexDataObject.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
-            var rawObjects = this.toBaseObjects();
-            var complexObject = {};
-            var consumer = function (keyValue) {
-                complexObject[keyValue[0]] = keyValue[1];
-            };
-            rawObjects.forEach(function (rawObject) { return lang.DictionaryHelper.forEach(rawObject, consumer); });
-            return complexObject;
+            if (instance === void 0) { instance = this; }
+            return instance.masterDataObject().toObject();
         };
         ComplexDataObject.prototype.parseObject = function (rawObject) {
-            return this.parseBaseObjects(this.baseInstances().map(function (baseInstance) { return baseInstance.parseObject(rawObject); }));
+            //return this.parseBaseObjects(this.baseInstances().map(baseInstance=>baseInstance.parseObject(rawObject)));
+            throw new stub.ComplexDataObjectParseError(this);
         };
         ComplexDataObject.prototype.uniqueKeyList = function () {
-            return this.baseInstances()
-                .map(function (baseInstance) { return baseInstance.uniqueKeyList(); })
-                .reduce(function (a, c) { return a.concat(c); });
+            //return this.baseInstances()
+            //  .map(baseInstance=>baseInstance.uniqueKeyList())
+            //  .reduce((a, c)=>a.concat(c));
+            return this.masterBaseInstance().uniqueKeyList();
         };
+        /**
+         * parse the target base object from a list of un-ordered rawObject
+         * */
+        ComplexDataObject.prototype.parseTargetBaseObject = function (rawObjects, instance) {
+            var targetBaseObject = null;
+            rawObjects.forEach(function (rawObject) {
+                try {
+                    targetBaseObject = instance.parseObject(rawObject);
+                }
+                catch (exception) {
+                }
+            });
+            if (targetBaseObject == null)
+                throw new stub.DataObjectParseError(this);
+            else
+                return targetBaseObject;
+        };
+        /**
+         * @remark security leak
+         * */
         ComplexDataObject.prototype.isEditSupport = function () {
-            return this.uniqueKeyList().length > 0;
+            return this.baseInstances().some(function (e) { return e.isEditSupport(); });
         };
         ComplexDataObject.prototype.isSame = function (another) {
-            var keys = this.uniqueKeyList();
-            if (keys.length <= 0)
-                return false;
-            else {
-                var thisO = this.toObject(this);
-                var anotherO = another.toObject(another);
-                return keys.every(function (key) { return thisO[key] == anotherO[key]; });
-            }
+            return this.masterDataObject().isSame(another.masterDataObject());
         };
         ComplexDataObject.prototype.hashCode = function () {
-            var keys = this.uniqueKeyList();
-            var o = this.toObject(this);
-            if (keys.length > 0) {
-                return JSON.stringify(keys.map(function (key) { return o[key]; }));
-            }
-            else {
-                console.log("Warning : this hashCode might lead to collision");
-                return JSON.stringify(o);
-            }
+            return this.masterDataObject().hashCode();
         };
         ComplexDataObject.prototype.use_all_instance_list = function (consumer) {
-            var instance = this;
-            var producer = function (apiResult) {
-                var resultCode = apiResult[0];
-                var data = apiResult[1];
-                if (resultCode == ResultCode.Success) {
-                    var all_row = data[APIField.element_array];
-                    return all_row.map(instance.parseObject);
-                }
-                else {
-                    throw new APIParseResultError(resultCode);
-                }
+            var complexInstance = this;
+            /* build all complex instance from all master instance */
+            var master_dataObjects_consumer = function (master_dataObject_array) {
+                /* fork and build all complex instance */
+                var complexDataObject_array = [];
+                /*   build pool */
+                var pool = [];
+                master_dataObject_array.forEach(function (master_dataObject) {
+                    pool.push(function (reportDone) {
+                        /* save instance to collector (array) */
+                        var consumer = function (complexDataObject) {
+                            complexDataObject_array.push(complexDataObject);
+                            reportDone();
+                        };
+                        complexInstance.buildFromMasterDataObject(master_dataObject, consumer);
+                    });
+                });
+                /* pass the complex instance list to consumer */
+                var allDone = function () {
+                    consumer(complexDataObject_array);
+                };
+                lang.async.fork_and_join(pool, allDone);
             };
-            var handler = [producer, consumer];
-            api.use_all_row(this.tableName(), handler);
+            /* get all master instance */
+            complexInstance.masterBaseInstance().use_all_instance_list(master_dataObjects_consumer);
         };
         //TODO to implement the filter logic on server (php)
         ComplexDataObject.prototype.use_fully_matched_instance_list = function (queryKeyValues, consumer) {

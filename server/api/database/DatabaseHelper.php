@@ -417,7 +417,10 @@ class DatabaseHelper
         $code = $code . "\n      var instance = new $stub_name();";
         foreach ($field_array as $field) {
             $field_name = $field[self::__field_name];
-            $code = $code . "\n      instance.$field_name = rawObject.$field_name;";
+            $code = $code . "\n      if(rawObject.hasOwnProperty('$field_name'))";
+            $code = $code . "\n        instance.$field_name = rawObject.$field_name;";
+            $code = $code . "\n      else";
+            $code = $code . "\n        throw new stub.DataObjectParseError(this);";
         }
         $code = $code . "\n      return instance;";
         $code = $code . "\n    }";

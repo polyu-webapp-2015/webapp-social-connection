@@ -18,12 +18,9 @@ module stub {
     }
 
     parseBaseObjects(rawObjects:any[]):Username {
-      var user = rawObjects[0];
-      var title = rawObjects[1];
       var instance:Username = new Username();
-      var baseInstances = this.baseInstances();
-      instance.user = this._user_stub.parseObject(user);
-      instance.title = this._title_stub.parseObject(title);
+      instance.user=this.parseTargetBaseObject(rawObjects,this._user_stub);
+      instance.title=this.parseTargetBaseObject(rawObjects,this._title_stub);
       return instance;
     }
 

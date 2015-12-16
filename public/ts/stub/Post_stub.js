@@ -50,15 +50,42 @@ var stub;
         };
         Post_stub.prototype.parseObject = function (rawObject) {
             var instance = new Post_stub();
-            instance.post_Id = rawObject.post_Id;
-            instance.subject = rawObject.subject;
-            instance.description = rawObject.description;
-            instance.discussboard_id = rawObject.discussboard_id;
-            instance.creator_account_id = rawObject.creator_account_id;
-            instance.editor_account_id = rawObject.editor_account_id;
-            instance.create_time = rawObject.create_time;
-            instance.edit_time = rawObject.edit_time;
-            instance.deleted = rawObject.deleted;
+            if (rawObject.hasOwnProperty('post_Id'))
+                instance.post_Id = rawObject.post_Id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('subject'))
+                instance.subject = rawObject.subject;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('description'))
+                instance.description = rawObject.description;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('discussboard_id'))
+                instance.discussboard_id = rawObject.discussboard_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('creator_account_id'))
+                instance.creator_account_id = rawObject.creator_account_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('editor_account_id'))
+                instance.editor_account_id = rawObject.editor_account_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('create_time'))
+                instance.create_time = rawObject.create_time;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('edit_time'))
+                instance.edit_time = rawObject.edit_time;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('deleted'))
+                instance.deleted = rawObject.deleted;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Post_stub.prototype.toObject = function (instance) {

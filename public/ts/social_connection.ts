@@ -155,9 +155,9 @@ module social_connection {
 }
 
 function main_init() {
-  utils.log("main_init:start");
+  //utils.log("main_init:start");
   //var id = "98765432";
   //var password = "123456";
   //social_connection.asynchronous_logic.login(id, password);
-  utils.log("main_init:end");
+  //utils.log("main_init:end");
 }

@@ -48,13 +48,34 @@ module stub {
     
     parseObject(rawObject:any):Reward_stub {
       var instance = new Reward_stub();
-      instance.reward_id = rawObject.reward_id;
-      instance.reward_type = rawObject.reward_type;
-      instance.amount = rawObject.amount;
-      instance.collection_venue = rawObject.collection_venue;
-      instance.status = rawObject.status;
-      instance.receiver_id = rawObject.receiver_id;
-      instance.sender_id = rawObject.sender_id;
+      if(rawObject.hasOwnProperty('reward_id'))
+        instance.reward_id = rawObject.reward_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('reward_type'))
+        instance.reward_type = rawObject.reward_type;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('amount'))
+        instance.amount = rawObject.amount;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('collection_venue'))
+        instance.collection_venue = rawObject.collection_venue;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('status'))
+        instance.status = rawObject.status;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('receiver_id'))
+        instance.receiver_id = rawObject.receiver_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('sender_id'))
+        instance.sender_id = rawObject.sender_id;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

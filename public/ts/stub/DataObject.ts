@@ -11,13 +11,15 @@ module stub {
   import APIParseResultError = debug.APIParseResultError;
   import KeyValue = lang.KeyValue;
   import use_all_row = api.use_all_row;
-  export class DataObjectError extends Error {
+
+  export class DataObjectError extends TypeError {
     public name = "DataObjectError";
 
     constructor(public dataObject:DataObject, public message?:string) {
       super(message);
     }
   }
+
   export class DataObjectEditError extends DataObjectError {
     public name = "DataObjectEditError";
 
@@ -25,6 +27,7 @@ module stub {
       super(dataObject, message);
     }
   }
+
   export class DataObjectSaveError extends DataObjectError {
     public name = "DataObjectSaveError";
 
@@ -32,6 +35,15 @@ module stub {
       super(dataObject, message);
     }
   }
+
+  export class DataObjectParseError extends DataObjectError {
+    public name = "DataObjectParseError";
+    constructor(public dataObject:DataObject, public message:string = "Failed to save this object") {
+      super(dataObject, message);
+    }
+  }
+
+
   export abstract class DataObject {
     abstract tableName():string;
 
@@ -41,8 +53,18 @@ module stub {
 
     //abstract getValueByKey(key:string):any;
 
+    /**
+     * used to sent back to server (update and create)
+     *
+     * also for 'AngularJS html' 'easy access'
+     * */
     abstract toObject(instance?:DataObject):any;
 
+    /**
+     * @param rawObject : object from API response (return from JSON.parse)
+     * @return concrete instance of DataObject
+     * @throw stub.DataObjectParseError
+     * */
     abstract parseObject(rawObject:any):DataObject ;
 
     //public isEveryMatch(patterns:KeyValue[]):boolean {
@@ -52,6 +74,10 @@ module stub {
     //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
     //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
     //}
+
+    public isComplex():boolean{
+      return false;
+    }
 
     public isEditSupport():boolean {
       return this.uniqueKeyList().length > 0;
@@ -126,6 +152,6 @@ module stub {
     public use_partially_matched_instance_list(queryKeyValues:KeyValue<string,any>[], consumer:Consumer<DataObject[]>) {
       throw new TypeError("Operation not support yet");
     }
-
   }
+
 }

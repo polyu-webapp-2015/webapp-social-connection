@@ -38,10 +38,22 @@ module stub {
     
     parseObject(rawObject:any):Friendship_stub {
       var instance = new Friendship_stub();
-      instance.friendship_id = rawObject.friendship_id;
-      instance.host_id = rawObject.host_id;
-      instance.guest_id = rawObject.guest_id;
-      instance.remark = rawObject.remark;
+      if(rawObject.hasOwnProperty('friendship_id'))
+        instance.friendship_id = rawObject.friendship_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('host_id'))
+        instance.host_id = rawObject.host_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('guest_id'))
+        instance.guest_id = rawObject.guest_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('remark'))
+        instance.remark = rawObject.remark;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

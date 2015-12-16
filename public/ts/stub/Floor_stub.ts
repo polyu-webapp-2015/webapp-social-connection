@@ -28,8 +28,14 @@ module stub {
     
     parseObject(rawObject:any):Floor_stub {
       var instance = new Floor_stub();
-      instance.floor_id = rawObject.floor_id;
-      instance.name = rawObject.name;
+      if(rawObject.hasOwnProperty('floor_id'))
+        instance.floor_id = rawObject.floor_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('name'))
+        instance.name = rawObject.name;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

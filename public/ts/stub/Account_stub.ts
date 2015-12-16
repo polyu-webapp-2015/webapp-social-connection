@@ -42,11 +42,26 @@ module stub {
     
     parseObject(rawObject:any):Account_stub {
       var instance = new Account_stub();
-      instance.account_id = rawObject.account_id;
-      instance.password = rawObject.password;
-      instance.account_type = rawObject.account_type;
-      instance.email = rawObject.email;
-      instance.phone_num = rawObject.phone_num;
+      if(rawObject.hasOwnProperty('account_id'))
+        instance.account_id = rawObject.account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('password'))
+        instance.password = rawObject.password;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('account_type'))
+        instance.account_type = rawObject.account_type;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('email'))
+        instance.email = rawObject.email;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('phone_num'))
+        instance.phone_num = rawObject.phone_num;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

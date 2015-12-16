@@ -28,8 +28,14 @@ module stub {
     
     parseObject(rawObject:any):Image_stub {
       var instance = new Image_stub();
-      instance.image_id = rawObject.image_id;
-      instance.url = rawObject.url;
+      if(rawObject.hasOwnProperty('image_id'))
+        instance.image_id = rawObject.image_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('url'))
+        instance.url = rawObject.url;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

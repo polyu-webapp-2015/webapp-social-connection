@@ -33,9 +33,18 @@ var stub;
         };
         City_stub.prototype.parseObject = function (rawObject) {
             var instance = new City_stub();
-            instance.city_id = rawObject.city_id;
-            instance.country_id = rawObject.country_id;
-            instance.city_name = rawObject.city_name;
+            if (rawObject.hasOwnProperty('city_id'))
+                instance.city_id = rawObject.city_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('country_id'))
+                instance.country_id = rawObject.country_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('city_name'))
+                instance.city_name = rawObject.city_name;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         City_stub.prototype.toObject = function (instance) {

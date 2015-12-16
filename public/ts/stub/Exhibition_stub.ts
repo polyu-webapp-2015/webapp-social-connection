@@ -24,7 +24,10 @@ module stub {
     
     parseObject(rawObject:any):Exhibition_stub {
       var instance = new Exhibition_stub();
-      instance.event_id = rawObject.event_id;
+      if(rawObject.hasOwnProperty('event_id'))
+        instance.event_id = rawObject.event_id;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

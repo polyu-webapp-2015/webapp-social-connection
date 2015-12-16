@@ -98,6 +98,19 @@ var lang;
             return arrays.reduce(function (a, c) { return a.concat(c); });
         }
         ArrayHelper.flatten = flatten;
+        function zip(arrays) {
+            if (arrays.length == 0)
+                return [];
+            var result = [];
+            var N = arrays.map(function (e) { return e.length; })
+                .reduce(function (a, c) { return Math.min(a, c); });
+            for (var i = 0; i < N; i++) {
+                var tuple = arrays.map(function (array) { return array[i]; });
+                result.push(tuple);
+            }
+            return result;
+        }
+        ArrayHelper.zip = zip;
     })(ArrayHelper = lang.ArrayHelper || (lang.ArrayHelper = {}));
     var async;
     (function (async) {
@@ -105,16 +118,16 @@ var lang;
          * @param process_array array : async functions to execute,
          *  each 'process' should consume the loadOne exactly once when it has finish the life cycle,
          *  typical example are a bunch of http request
-         * @param callback Function : this function will be called when all process has finished
+         * @param callback SimpleFunction : this function will be called when all process has finished
          * */
         function fork_and_join(process_array, callback) {
             var done = 0;
             var total = process_array.length;
-            function doneOne() {
+            var doneOne = function () {
                 done++;
                 if (done == total)
                     callback();
-            }
+            };
             if (total == 0)
                 callback();
             else

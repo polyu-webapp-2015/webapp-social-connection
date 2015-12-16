@@ -28,8 +28,14 @@ module stub {
     
     parseObject(rawObject:any):Venus_stub {
       var instance = new Venus_stub();
-      instance.venue_id = rawObject.venue_id;
-      instance.floor_id = rawObject.floor_id;
+      if(rawObject.hasOwnProperty('venue_id'))
+        instance.venue_id = rawObject.venue_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('floor_id'))
+        instance.floor_id = rawObject.floor_id;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

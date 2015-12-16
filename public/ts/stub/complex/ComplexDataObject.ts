@@ -12,78 +12,130 @@ module stub {
   import APIParseResultError = debug.APIParseResultError;
   import KeyValue = lang.KeyValue;
   import use_all_row = api.use_all_row;
+  import SimpleFunction = lang.SimpleFunction;
+
+  export class ComplexDataObjectParseError extends DataObjectError {
+    public name = "ComplexDataObjectParseError";
+
+    constructor(public dataObject:DataObject, public message:string = "ComplexDataObject does not support parsing") {
+      super(dataObject, message);
+    }
+  }
   export abstract class ComplexDataObject extends stub.DataObject {
 
+    /**
+     * @define list of base instance that hold the underlying data
+     * @remark nested implement of ComplexDataObject using ComplexDataObject as base instance is not supported
+     * */
     abstract baseInstances():DataObject[];
 
-    abstract parseBaseObjects(rawObjects:any[]):ComplexDataObject ;
+    /**
+     * @define the master base instance is the 'leaf table'
+     *   all other base instance are referenced by this instances' foreign key
+     *
+     * @return DataObject : the empty instance of dataObject
+     *   that release access to logically static methods
+     * */
+    abstract masterBaseInstance():DataObject;
 
-    abstract toBaseObjects():any[];
+    /**
+     * @return DataObject : the concrete instance of dataObject that has data;
+     * */
+    abstract masterDataObject():DataObject;
 
-    toObject(instance:ComplexDataObject):any {
-      if (instance == null)
-        instance = this;
-      var rawObjects:any[] = this.toBaseObjects();
-      var complexObject = {};
-      type objectKeyValue=[string,any];
-      var consumer:Consumer<objectKeyValue> = function (keyValue:objectKeyValue) {
-        complexObject[keyValue[0]] = keyValue[1];
-      };
-      rawObjects.forEach(rawObject=>lang.DictionaryHelper.forEach<string,any>(rawObject, consumer));
-      return complexObject;
+    /**
+     * @throw stub.DataObjectParseError
+     * */
+    //abstract parseBaseObjects(rawObjects:any[]):ComplexDataObject ;
+
+    abstract buildFromMasterDataObject(masterDataObject:DataObject, consumer:Consumer<ComplexDataObject>):ComplexDataObject;
+
+    public isComplex():boolean {
+      return true;
+    }
+
+    /**
+     * @deprecated in subclass, only used in super class to compute 'isSame'
+     * @return object of master instance
+     * */
+    toObject(instance:ComplexDataObject = this):any {
+      return instance.masterDataObject().toObject();
     }
 
     parseObject(rawObject:any):ComplexDataObject {
-      return this.parseBaseObjects(this.baseInstances().map(baseInstance=>baseInstance.parseObject(rawObject)));
+      //return this.parseBaseObjects(this.baseInstances().map(baseInstance=>baseInstance.parseObject(rawObject)));
+      throw new stub.ComplexDataObjectParseError(this);
     }
 
     uniqueKeyList():string[] {
-      return this.baseInstances()
-        .map(baseInstance=>baseInstance.uniqueKeyList())
-        .reduce((a, c)=>a.concat(c));
+      //return this.baseInstances()
+      //  .map(baseInstance=>baseInstance.uniqueKeyList())
+      //  .reduce((a, c)=>a.concat(c));
+      return this.masterBaseInstance().uniqueKeyList();
     }
 
+    /**
+     * parse the target base object from a list of un-ordered rawObject
+     * */
+    parseTargetBaseObject(rawObjects:any[], instance:DataObject) {
+      var targetBaseObject = null;
+      rawObjects.forEach(rawObject=> {
+          try {
+            targetBaseObject = instance.parseObject(rawObject);
+          } catch (exception) {
+          }
+        }
+      );
+      if (targetBaseObject == null)
+        throw new stub.DataObjectParseError(this);
+      else
+        return targetBaseObject;
+    }
 
+    /**
+     * @remark security leak
+     * */
     public isEditSupport():boolean {
-      return this.uniqueKeyList().length > 0;
+      return this.baseInstances().some(e=>e.isEditSupport());
     }
 
     public isSame(another:ComplexDataObject):boolean {
-      var keys = this.uniqueKeyList();
-      if (keys.length <= 0)
-        return false;
-      else {
-        var thisO = this.toObject(this);
-        var anotherO = another.toObject(another);
-        return keys.every(key=>thisO[key] == anotherO[key]);
-      }
+      return this.masterDataObject().isSame(another.masterDataObject());
     }
 
     public hashCode():string {
-      var keys = this.uniqueKeyList();
-      var o = this.toObject(this);
-      if (keys.length > 0) {
-        return JSON.stringify(keys.map(key=>o[key]));
-      } else {
-        console.log("Warning : this hashCode might lead to collision");
-        return JSON.stringify(o);
-      }
+      return this.masterDataObject().hashCode();
     }
 
     public use_all_instance_list(consumer:Consumer<ComplexDataObject[]>) {
-      var instance = this;
-      var producer:Producer<APIResult,ComplexDataObject[]> = function (apiResult:APIResult) {
-        var resultCode:string = apiResult[0];
-        var data:any = apiResult[1];
-        if (resultCode == ResultCode.Success) {
-          var all_row = data[APIField.element_array];
-          return all_row.map(instance.parseObject);
-        } else {
-          throw new APIParseResultError(resultCode);
-        }
+      var complexInstance:ComplexDataObject = this;
+
+      /* build all complex instance from all master instance */
+      var master_dataObjects_consumer:Consumer<DataObject[]> = function (master_dataObject_array) {
+        /* fork and build all complex instance */
+        var complexDataObject_array:ComplexDataObject[] = [];
+        /*   build pool */
+        var pool:Consumer<SimpleFunction>[] = [];
+        master_dataObject_array.forEach(master_dataObject=> {
+          pool.push(function (reportDone) {
+            /* save instance to collector (array) */
+            var consumer:Consumer<ComplexDataObject> =
+              (complexDataObject:ComplexDataObject)=> {
+                complexDataObject_array.push(complexDataObject);
+                reportDone();
+              };
+            complexInstance.buildFromMasterDataObject(master_dataObject, consumer);
+          });
+        });
+        /* pass the complex instance list to consumer */
+        var allDone:SimpleFunction = function () {
+          consumer(complexDataObject_array);
+        };
+        lang.async.fork_and_join(pool, allDone);
       };
-      var handler:APIResultHandler<ComplexDataObject[]> = [producer, consumer];
-      api.use_all_row<ComplexDataObject[]>(this.tableName(), handler);
+
+      /* get all master instance */
+      complexInstance.masterBaseInstance().use_all_instance_list(master_dataObjects_consumer);
     }
 
     //TODO to implement the filter logic on server (php)

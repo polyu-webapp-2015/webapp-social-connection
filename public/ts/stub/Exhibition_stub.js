@@ -26,7 +26,10 @@ var stub;
         };
         Exhibition_stub.prototype.parseObject = function (rawObject) {
             var instance = new Exhibition_stub();
-            instance.event_id = rawObject.event_id;
+            if (rawObject.hasOwnProperty('event_id'))
+                instance.event_id = rawObject.event_id;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Exhibition_stub.prototype.toObject = function (instance) {

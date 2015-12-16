@@ -60,16 +60,46 @@ module stub {
     
     parseObject(rawObject:any):Event_stub {
       var instance = new Event_stub();
-      instance.event_id = rawObject.event_id;
-      instance.create_time = rawObject.create_time;
-      instance.edit_time = rawObject.edit_time;
-      instance.event_type = rawObject.event_type;
-      instance.venue_id = rawObject.venue_id;
-      instance.event_time = rawObject.event_time;
-      instance.creator_account_id = rawObject.creator_account_id;
-      instance.editor_account_id = rawObject.editor_account_id;
-      instance.subject = rawObject.subject;
-      instance.description = rawObject.description;
+      if(rawObject.hasOwnProperty('event_id'))
+        instance.event_id = rawObject.event_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('create_time'))
+        instance.create_time = rawObject.create_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('edit_time'))
+        instance.edit_time = rawObject.edit_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('event_type'))
+        instance.event_type = rawObject.event_type;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('venue_id'))
+        instance.venue_id = rawObject.venue_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('event_time'))
+        instance.event_time = rawObject.event_time;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('creator_account_id'))
+        instance.creator_account_id = rawObject.creator_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('editor_account_id'))
+        instance.editor_account_id = rawObject.editor_account_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('subject'))
+        instance.subject = rawObject.subject;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('description'))
+        instance.description = rawObject.description;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

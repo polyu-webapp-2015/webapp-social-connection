@@ -29,8 +29,14 @@ module stub {
     
     parseObject(rawObject:any):Friendship_Tag_stub {
       var instance = new Friendship_Tag_stub();
-      instance.friendship_id = rawObject.friendship_id;
-      instance.tag_id = rawObject.tag_id;
+      if(rawObject.hasOwnProperty('friendship_id'))
+        instance.friendship_id = rawObject.friendship_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('tag_id'))
+        instance.tag_id = rawObject.tag_id;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     

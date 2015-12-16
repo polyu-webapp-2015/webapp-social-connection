@@ -38,11 +38,26 @@ var stub;
         };
         Announcement_stub.prototype.parseObject = function (rawObject) {
             var instance = new Announcement_stub();
-            instance.announcement_id = rawObject.announcement_id;
-            instance.subject = rawObject.subject;
-            instance.description = rawObject.description;
-            instance.create_time = rawObject.create_time;
-            instance.creator_account_id = rawObject.creator_account_id;
+            if (rawObject.hasOwnProperty('announcement_id'))
+                instance.announcement_id = rawObject.announcement_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('subject'))
+                instance.subject = rawObject.subject;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('description'))
+                instance.description = rawObject.description;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('create_time'))
+                instance.create_time = rawObject.create_time;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('creator_account_id'))
+                instance.creator_account_id = rawObject.creator_account_id;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Announcement_stub.prototype.toObject = function (instance) {

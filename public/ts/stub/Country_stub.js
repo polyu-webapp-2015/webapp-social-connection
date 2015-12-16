@@ -30,8 +30,14 @@ var stub;
         };
         Country_stub.prototype.parseObject = function (rawObject) {
             var instance = new Country_stub();
-            instance.country_id = rawObject.country_id;
-            instance.country_name = rawObject.country_name;
+            if (rawObject.hasOwnProperty('country_id'))
+                instance.country_id = rawObject.country_id;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('country_name'))
+                instance.country_name = rawObject.country_name;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Country_stub.prototype.toObject = function (instance) {

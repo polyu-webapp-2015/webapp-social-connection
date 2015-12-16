@@ -28,8 +28,14 @@ module stub {
     
     parseObject(rawObject:any):Session_stub {
       var instance = new Session_stub();
-      instance.event_id = rawObject.event_id;
-      instance.quota = rawObject.quota;
+      if(rawObject.hasOwnProperty('event_id'))
+        instance.event_id = rawObject.event_id;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('quota'))
+        instance.quota = rawObject.quota;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
