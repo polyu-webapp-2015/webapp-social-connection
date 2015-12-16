@@ -25,28 +25,13 @@
   <!-- main scripts -->
   <script src="js/enum/APIFieldEnum.js"></script>
   <script src="js/enum/ResultCodeEnum.js"></script>
-  <script src="js/api_list.js"></script>
-  <script src="ts/lang.js"></script>
-  <script src="ts/debug.js"></script>
-  <script src="ts/utils.js"></script>
-  <script src="ts/api.js"></script>
-  <script src="ts/stub/DataObject.js"></script>
-  <script src="ts/stub/complex/package.js"></script>
-  <script src="ts/stub/package.js"></script>
-  <script src="ts/DataObjectManager.js"></script>
-  <script src="ts/social_connection.js"></script>
 
   <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/common.css">
 
-  <script>
-    function init() {
-      load_all_stub_script(main_init);
-    }
-  </script>
 </head>
 
-<body id="client_nav_page" ng-controller="MainCtrl" class="ng-scope" onload="init()">
+<body id="client_nav_page" ng-controller="MainCtrl" class="ng-scope">
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -61,10 +46,8 @@
     </div>
     <div class="collapse navbar-collapse" id="client_navbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#conference">Conferences</a></li>
         <li><a href="#announcement">Announcements</a></li>
         <li><a href="#exhibition">Exhibitions</a></li>
-        <li><a href="#forum">Forum</a></li>
         <li><a href="#reward">Rewards</a></li>
         <li><a href="#discover">Discover</a></li>
         <li ng-click="logoff()"><a href="index.html">Log off</a></li>
@@ -75,30 +58,6 @@
 <div class="jumbotron text-center">
   <h2>School of Hotel and Tourism Management</h2>
   <h3>Client </h3>
-</div>
-<div id="conference" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>Conferences</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-list-alt logo"></span>
-    </div>
-  </div>
-</div>
-<div id="announcement" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-bullhorn logo"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Announcements</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-    </div>
-  </div>
 </div>
 <div id="exhibition" class="container-fluid">
   <div class="row">
@@ -112,37 +71,15 @@
     </div>
   </div>
 </div>
-<div id="forum" class="container-fluid bg-grey">
+<div id="announcement" class="container-fluid bg-grey">
   <div class="row">
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-refresh logo"></span>
+      <span class="glyphicon glyphicon-bullhorn logo"></span>
     </div>
     <div class="col-sm-8">
-      <h2>Forum</h2>
-      <h4>Discussion Boards</h4>
-
-        <!-- begin to gen -->
-        <div class="well well-lg">
-          <div class="list-group"
-               ng-init="loadElements('GetProfileList')">
-            <button class="list-group-item"
-                    ng-repeat="elem in elems"
-                    ng-class="rowClass(elem, elems)"
-                    ng-click="openDetailModal('/pages/user_detail.html', elem)">
-              <h4 class="list-item-title">
-                {{ elem.first_name + ' ' + elem.last_name }}
-              </h4>
-              <p class="list-item-remarks"
-                 style="margin-top: 0px; font-size: 12px">
-                {{ elem.organization_name }}
-              </p>
-            </button>
-          </div>
-        </div>
-        <!-- end to gen -->
-
-      <button class="btn btn-ln my-btn" ng-click="openDiscussBoardsModal()">Show More</button>
-
+      <h2>Announcements</h2>
+      <h4>Lorem ipsum ...</h4>
+      <div class="well well-lg"></div>
     </div>
   </div>
 </div>

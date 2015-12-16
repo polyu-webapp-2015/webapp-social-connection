@@ -183,7 +183,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       return;
     }
     //$.get("/pages/forum.html", {}, function (data, status, headers, config) {
-    $.get("/pages/discussboard_list.html", {}, function (data, status, headers, config) {
+    $.get("/pages/forum.html", {}, function (data, status, headers, config) {
       $("#content").html($compile(data)($scope));
     });
     $scope.selectedAnchor.removeClass("selected");
