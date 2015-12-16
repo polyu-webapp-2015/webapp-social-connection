@@ -89,7 +89,7 @@ var stub;
                 return JSON.stringify(keys.map(function (key) { return o[key]; }));
             }
             else {
-                console.log("Warning : this hashCode might lead to collision");
+                utils.log("Warning : this hashCode might lead to collision (" + this.tableName() + ")");
                 return JSON.stringify(o);
             }
         };
@@ -147,5 +147,11 @@ var stub;
             stub_instance_list.push(instance);
     }
     stub.add_stub_instance = add_stub_instance;
+    function match_by_tableName(table_name, prefix) {
+        if (prefix === void 0) { prefix = ""; }
+        var target = table_name.toLowerCase();
+        return stub_instance_list.filter(function (e) { return (prefix + e.tableName()).toLowerCase() == target; });
+    }
+    stub.match_by_tableName = match_by_tableName;
 })(stub || (stub = {}));
 //# sourceMappingURL=DataObject.js.map

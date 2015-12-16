@@ -2,12 +2,12 @@
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
   <h4 class="modal-title" ng-bind="modal_title"></h4>
 </div>
-<div ng-controller="PostCtrl">
+<div ng-controller="ListCtrl">
   <div class="modal-body">
     <div class="well well-lg">
       <span ng-bind="text_before_list"></span>
       <div class="list-group"
-           ng-init="loadElements()">
+           ng-init="loadElements('Post')">
         <button class="list-group-item"
                 ng-repeat="elem in elems"
                 ng-class="rowClass(elem, elems)"

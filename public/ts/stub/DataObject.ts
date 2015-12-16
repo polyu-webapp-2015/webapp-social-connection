@@ -102,7 +102,7 @@ module stub {
       if (keys.length > 0) {
         return JSON.stringify(keys.map(key=>o[key]));
       } else {
-        console.log("Warning : this hashCode might lead to collision");
+        utils.log("Warning : this hashCode might lead to collision ("+this.tableName()+")");
         return JSON.stringify(o);
       }
     }
@@ -160,5 +160,10 @@ module stub {
     //utils.log("adding " + instance.tableName());
     if (!stub_instance_list.some(e=>e.tableName() == instance.tableName()))
       stub_instance_list.push(instance);
+  }
+
+  export function match_by_tableName(table_name:string, prefix:string = ""):DataObject[] {
+    var target = table_name.toLowerCase();
+    return stub_instance_list.filter(e=>(prefix + e.tableName()).toLowerCase() == target);
   }
 }
