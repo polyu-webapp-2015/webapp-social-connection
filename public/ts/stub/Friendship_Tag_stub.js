@@ -73,5 +73,6 @@ var stub;
         return Friendship_Tag_stub;
     })(stub.DataObject);
     stub.Friendship_Tag_stub = Friendship_Tag_stub;
+    stub.add_stub_instance(new Friendship_Tag_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Friendship_Tag_stub.js.map

@@ -186,5 +186,6 @@ var stub;
         return DiscussBoard_stub;
     })(stub.DataObject);
     stub.DiscussBoard_stub = DiscussBoard_stub;
+    stub.add_stub_instance(new DiscussBoard_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=DiscussBoard_stub.js.map

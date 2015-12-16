@@ -110,5 +110,6 @@ var stub;
         return Organization_stub;
     })(stub.DataObject);
     stub.Organization_stub = Organization_stub;
+    stub.add_stub_instance(new Organization_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Organization_stub.js.map

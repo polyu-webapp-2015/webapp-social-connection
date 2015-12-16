@@ -3,15 +3,7 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
   /**
    * This is stack of param to exchange data across multi-layer of modal
    * */
-  if ($scope.myParamStack == null) {
-    $scope.myParamStack = [];
-  }
-  var myParamStackOffset = $scope.myParamStack.length;
-  var myParam = {};
-  myParam.list = [];
-  myParam.index = null;
-  $scope.myParamStack.push(myParam);
-  var parentParam = $scope.myParamStack[myParamStackOffset - 1];
+  $scope.myParam={list:[],index:null};
 
   /**
    * This function cannot be replaced by constant,
@@ -100,7 +92,7 @@ app.controller("DiscussBoardCtrl", function ($scope, $http, $global, $uibModal) 
     };
     var forceUpdate = false;
     DataObjectManager.request(instance(), filter, onDataObjectsReceived, forceUpdate);
-  }
+  };
 
   $scope.closeModal = function () {
     $scope.modalItem.close();

@@ -73,5 +73,6 @@ var stub;
         return Tag_stub;
     })(stub.DataObject);
     stub.Tag_stub = Tag_stub;
+    stub.add_stub_instance(new Tag_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Tag_stub.js.map

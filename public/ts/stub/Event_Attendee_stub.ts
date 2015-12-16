@@ -77,4 +77,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Event_Attendee_stub());
 }

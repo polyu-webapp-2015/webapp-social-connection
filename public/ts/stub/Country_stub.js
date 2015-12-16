@@ -73,5 +73,6 @@ var stub;
         return Country_stub;
     })(stub.DataObject);
     stub.Country_stub = Country_stub;
+    stub.add_stub_instance(new Country_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Country_stub.js.map

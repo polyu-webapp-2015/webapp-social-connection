@@ -186,5 +186,6 @@ var stub;
         return Reply_stub;
     })(stub.DataObject);
     stub.Reply_stub = Reply_stub;
+    stub.add_stub_instance(new Reply_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Reply_stub.js.map

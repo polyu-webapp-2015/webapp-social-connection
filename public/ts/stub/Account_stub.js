@@ -131,5 +131,6 @@ var stub;
         return Account_stub;
     })(stub.DataObject);
     stub.Account_stub = Account_stub;
+    stub.add_stub_instance(new Account_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Account_stub.js.map

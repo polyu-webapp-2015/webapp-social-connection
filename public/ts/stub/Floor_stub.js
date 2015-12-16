@@ -72,5 +72,6 @@ var stub;
         return Floor_stub;
     })(stub.DataObject);
     stub.Floor_stub = Floor_stub;
+    stub.add_stub_instance(new Floor_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Floor_stub.js.map

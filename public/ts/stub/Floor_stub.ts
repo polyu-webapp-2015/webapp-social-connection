@@ -76,4 +76,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Floor_stub());
 }

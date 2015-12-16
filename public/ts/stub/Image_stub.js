@@ -72,5 +72,6 @@ var stub;
         return Image_stub;
     })(stub.DataObject);
     stub.Image_stub = Image_stub;
+    stub.add_stub_instance(new Image_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Image_stub.js.map

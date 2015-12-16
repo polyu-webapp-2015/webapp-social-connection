@@ -154,5 +154,11 @@ module stub {
       throw new TypeError("Operation not support yet");
     }
   }
+  var stub_instance_list:DataObject[] = [];
 
+  export function add_stub_instance(instance:DataObject) {
+    //utils.log("adding " + instance.tableName());
+    if (!stub_instance_list.some(e=>e.tableName() == instance.tableName()))
+      stub_instance_list.push(instance);
+  }
 }

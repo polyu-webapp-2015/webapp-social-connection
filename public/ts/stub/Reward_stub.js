@@ -167,5 +167,6 @@ var stub;
         return Reward_stub;
     })(stub.DataObject);
     stub.Reward_stub = Reward_stub;
+    stub.add_stub_instance(new Reward_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Reward_stub.js.map

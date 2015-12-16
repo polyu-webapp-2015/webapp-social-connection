@@ -61,4 +61,5 @@ module stub {
       return this.user.get_account_id();
     }
   }
+  stub.add_stub_instance(new Username());
 }

@@ -73,5 +73,6 @@ var stub;
         return Title_stub;
     })(stub.DataObject);
     stub.Title_stub = Title_stub;
+    stub.add_stub_instance(new Title_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Title_stub.js.map

@@ -53,5 +53,6 @@ var stub;
         return Exhibition_stub;
     })(stub.DataObject);
     stub.Exhibition_stub = Exhibition_stub;
+    stub.add_stub_instance(new Exhibition_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Exhibition_stub.js.map

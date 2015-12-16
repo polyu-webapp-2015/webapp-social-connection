@@ -140,5 +140,12 @@ var stub;
         return DataObject;
     })();
     stub.DataObject = DataObject;
+    var stub_instance_list = [];
+    function add_stub_instance(instance) {
+        //utils.log("adding " + instance.tableName());
+        if (!stub_instance_list.some(function (e) { return e.tableName() == instance.tableName(); }))
+            stub_instance_list.push(instance);
+    }
+    stub.add_stub_instance = add_stub_instance;
 })(stub || (stub = {}));
 //# sourceMappingURL=DataObject.js.map

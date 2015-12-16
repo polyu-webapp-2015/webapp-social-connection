@@ -129,5 +129,6 @@ var stub;
         return Message_stub;
     })(stub.DataObject);
     stub.Message_stub = Message_stub;
+    stub.add_stub_instance(new Message_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Message_stub.js.map

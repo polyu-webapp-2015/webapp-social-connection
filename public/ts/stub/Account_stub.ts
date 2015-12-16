@@ -144,4 +144,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Account_stub());
 }

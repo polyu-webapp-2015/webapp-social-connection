@@ -54,4 +54,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Exhibition_stub());
 }

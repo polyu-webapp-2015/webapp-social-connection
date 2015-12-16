@@ -77,17 +77,6 @@ var social_connection;
             DataObjectManager.request(instance, filter, consumer, forceUpdate);
         }
     })(ui || (ui = {}));
-    var model;
-    (function (model) {
-        var Profile = (function () {
-            function Profile(first_name, last_name) {
-                this.first_name = first_name;
-                this.last_name = last_name;
-            }
-            return Profile;
-        })();
-        model.Profile = Profile;
-    })(model = social_connection.model || (social_connection.model = {}));
     var asynchronous_logic;
     (function (asynchronous_logic) {
         var Account = stub.Account_stub;
@@ -143,10 +132,10 @@ var social_connection;
     })(asynchronous_logic = social_connection.asynchronous_logic || (social_connection.asynchronous_logic = {}));
 })(social_connection || (social_connection = {}));
 function main_init() {
-    //utils.log("main_init:start");
+    utils.log("main_init:start");
     //var id = "98765432";
     //var password = "123456";
     //social_connection.asynchronous_logic.login(id, password);
-    //utils.log("main_init:end");
+    utils.log("main_init:end");
 }
 //# sourceMappingURL=social_connection.js.map

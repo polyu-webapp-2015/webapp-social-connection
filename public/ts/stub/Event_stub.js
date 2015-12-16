@@ -224,5 +224,6 @@ var stub;
         return Event_stub;
     })(stub.DataObject);
     stub.Event_stub = Event_stub;
+    stub.add_stub_instance(new Event_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Event_stub.js.map

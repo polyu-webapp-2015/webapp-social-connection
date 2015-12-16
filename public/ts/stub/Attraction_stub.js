@@ -53,5 +53,6 @@ var stub;
         return Attraction_stub;
     })(stub.DataObject);
     stub.Attraction_stub = Attraction_stub;
+    stub.add_stub_instance(new Attraction_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Attraction_stub.js.map

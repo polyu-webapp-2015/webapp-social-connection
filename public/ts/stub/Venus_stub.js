@@ -72,5 +72,6 @@ var stub;
         return Venus_stub;
     })(stub.DataObject);
     stub.Venus_stub = Venus_stub;
+    stub.add_stub_instance(new Venus_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Venus_stub.js.map

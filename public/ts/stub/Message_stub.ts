@@ -142,4 +142,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Message_stub());
 }

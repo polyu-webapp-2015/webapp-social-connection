@@ -129,5 +129,6 @@ var stub;
         return Announcement_stub;
     })(stub.DataObject);
     stub.Announcement_stub = Announcement_stub;
+    stub.add_stub_instance(new Announcement_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Announcement_stub.js.map

@@ -230,4 +230,5 @@ module stub {
     }
 
   }
+  stub.add_stub_instance(new Post_stub());
 }

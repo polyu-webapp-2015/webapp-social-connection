@@ -112,5 +112,6 @@ var stub;
         return Friendship_stub;
     })(stub.DataObject);
     stub.Friendship_stub = Friendship_stub;
+    stub.add_stub_instance(new Friendship_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Friendship_stub.js.map

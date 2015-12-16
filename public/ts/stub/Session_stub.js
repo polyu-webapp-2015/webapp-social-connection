@@ -72,5 +72,6 @@ var stub;
         return Session_stub;
     })(stub.DataObject);
     stub.Session_stub = Session_stub;
+    stub.add_stub_instance(new Session_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Session_stub.js.map

@@ -205,5 +205,6 @@ var stub;
         return Post_stub;
     })(stub.DataObject);
     stub.Post_stub = Post_stub;
+    stub.add_stub_instance(new Post_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Post_stub.js.map

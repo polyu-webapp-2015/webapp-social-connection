@@ -59,5 +59,6 @@ var stub;
         return Username;
     })(stub.ComplexDataObject);
     stub.Username = Username;
+    stub.add_stub_instance(new Username());
 })(stub || (stub = {}));
 //# sourceMappingURL=Username.js.map

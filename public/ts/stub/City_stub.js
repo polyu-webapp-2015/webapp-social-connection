@@ -92,5 +92,6 @@ var stub;
         return City_stub;
     })(stub.DataObject);
     stub.City_stub = City_stub;
+    stub.add_stub_instance(new City_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=City_stub.js.map

@@ -464,6 +464,7 @@ class DatabaseHelper
 
 //        $code = $code . "\n";
         $code = "$code\n  }";
+        $code = "$code\n  stub.add_stub_instance(new $stub_name());";
         $code = "$code\n}";
 
         return [
@@ -476,8 +477,7 @@ class DatabaseHelper
      * @param string $db_type
      * @return string
      */
-    public
-    static function db_type_to_typescript_type($db_type)
+    public static function db_type_to_typescript_type($db_type)
     {
         if (preg_match("/^char/", $db_type))
             $dest_type = "string";
@@ -499,8 +499,7 @@ class DatabaseHelper
         return $dest_type;
     }
 
-    public
-    static function generate_enum_stub_array(array $field_array)
+    public static function generate_enum_stub_array(array $field_array)
     {
         $enum_stub_array = [];
         foreach ($field_array as $field) {
@@ -524,8 +523,7 @@ class DatabaseHelper
         return $enum_stub_array;
     }
 
-    public
-    static function generate_enum_javascript_array(array $field_array)
+    public static function generate_enum_javascript_array(array $field_array)
     {
         $enum_stub_array = [];
         foreach ($field_array as $field) {
@@ -553,8 +551,7 @@ class DatabaseHelper
 //    const backtick = "`";
     const backtick = "";
 
-    public
-    static function generate_prepared_statement($table_name, array $field_array)
+    public static function generate_prepared_statement($table_name, array $field_array)
     {
         $bt = self::backtick;
         $file_name = $table_name . "_insert.sql";
@@ -575,8 +572,7 @@ class DatabaseHelper
         ];
     }
 
-    public
-    static function write_php_class_array_to_directory($directory, $class_array)
+    public static function write_php_class_array_to_directory($directory, $class_array)
     {
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
@@ -601,8 +597,7 @@ class DatabaseHelper
         return preg_replace('(ts$)', 'js', $filename);
     }
 
-    public
-    static function write_typescript_stub_array_to_directory($directory, $class_array)
+    public static function write_typescript_stub_array_to_directory($directory, $class_array)
     {
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
@@ -641,8 +636,7 @@ class DatabaseHelper
         echo "<br> written to $directory/ <hr>";
     }
 
-    public
-    static function write_script_array_to_directory($directory, $script_array)
+    public static function write_script_array_to_directory($directory, $script_array)
     {
         if (!file_exists($directory)) {
             mkdir($directory, 0755, true);
@@ -656,8 +650,7 @@ class DatabaseHelper
         echo "<br> written to $directory/ <hr>";
     }
 
-    public
-    static function generate_all_table_stub()
+    public static function generate_all_table_stub()
     {
         $table_class_php_array = [];
         $table_class_typescript_array = [];

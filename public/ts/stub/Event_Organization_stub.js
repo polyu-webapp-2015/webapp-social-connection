@@ -73,5 +73,6 @@ var stub;
         return Event_Organization_stub;
     })(stub.DataObject);
     stub.Event_Organization_stub = Event_Organization_stub;
+    stub.add_stub_instance(new Event_Organization_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=Event_Organization_stub.js.map

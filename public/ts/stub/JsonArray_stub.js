@@ -72,5 +72,6 @@ var stub;
         return JsonArray_stub;
     })(stub.DataObject);
     stub.JsonArray_stub = JsonArray_stub;
+    stub.add_stub_instance(new JsonArray_stub());
 })(stub || (stub = {}));
 //# sourceMappingURL=JsonArray_stub.js.map
