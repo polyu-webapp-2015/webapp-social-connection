@@ -112,7 +112,7 @@ var stub;
         };
         /* getter and setter */
         Event_stub.prototype.get_event_id = function () {
-            return this.event_id;
+            return this.event_id * 1;
         };
         Event_stub.prototype.set_event_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -156,7 +156,7 @@ var stub;
             }
         };
         Event_stub.prototype.get_venue_id = function () {
-            return this.venue_id;
+            return this.venue_id * 1;
         };
         Event_stub.prototype.set_venue_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -178,7 +178,7 @@ var stub;
             }
         };
         Event_stub.prototype.get_creator_account_id = function () {
-            return this.creator_account_id;
+            return this.creator_account_id * 1;
         };
         Event_stub.prototype.set_creator_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -189,7 +189,7 @@ var stub;
             }
         };
         Event_stub.prototype.get_editor_account_id = function () {
-            return this.editor_account_id;
+            return this.editor_account_id * 1;
         };
         Event_stub.prototype.set_editor_account_id = function (newValue) {
             if (this.isEditSupport()) {

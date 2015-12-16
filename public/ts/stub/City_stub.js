@@ -57,7 +57,7 @@ var stub;
         };
         /* getter and setter */
         City_stub.prototype.get_city_id = function () {
-            return this.city_id;
+            return this.city_id * 1;
         };
         City_stub.prototype.set_city_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -68,7 +68,7 @@ var stub;
             }
         };
         City_stub.prototype.get_country_id = function () {
-            return this.country_id;
+            return this.country_id * 1;
         };
         City_stub.prototype.set_country_id = function (newValue) {
             if (this.isEditSupport()) {

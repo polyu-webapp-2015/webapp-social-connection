@@ -96,7 +96,7 @@ var stub;
         };
         /* getter and setter */
         User_stub.prototype.get_account_id = function () {
-            return this.account_id;
+            return this.account_id * 1;
         };
         User_stub.prototype.set_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -140,7 +140,7 @@ var stub;
             }
         };
         User_stub.prototype.get_organization_id = function () {
-            return this.organization_id;
+            return this.organization_id * 1;
         };
         User_stub.prototype.set_organization_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -151,7 +151,7 @@ var stub;
             }
         };
         User_stub.prototype.get_title_id = function () {
-            return this.title_id;
+            return this.title_id * 1;
         };
         User_stub.prototype.set_title_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -162,7 +162,7 @@ var stub;
             }
         };
         User_stub.prototype.get_city_id = function () {
-            return this.city_id;
+            return this.city_id * 1;
         };
         User_stub.prototype.set_city_id = function (newValue) {
             if (this.isEditSupport()) {

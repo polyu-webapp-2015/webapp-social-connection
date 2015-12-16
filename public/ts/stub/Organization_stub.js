@@ -64,7 +64,7 @@ var stub;
         };
         /* getter and setter */
         Organization_stub.prototype.get_organization_id = function () {
-            return this.organization_id;
+            return this.organization_id * 1;
         };
         Organization_stub.prototype.set_organization_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -97,7 +97,7 @@ var stub;
             }
         };
         Organization_stub.prototype.get_main_country = function () {
-            return this.main_country;
+            return this.main_country * 1;
         };
         Organization_stub.prototype.set_main_country = function (newValue) {
             if (this.isEditSupport()) {

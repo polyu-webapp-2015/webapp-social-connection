@@ -48,7 +48,7 @@ var stub;
         };
         /* getter and setter */
         Floor_stub.prototype.get_floor_id = function () {
-            return this.floor_id;
+            return this.floor_id * 1;
         };
         Floor_stub.prototype.set_floor_id = function (newValue) {
             if (this.isEditSupport()) {

@@ -448,9 +448,14 @@ class DatabaseHelper
         foreach ($field_array as $field) {
             $field_name = $field[self::__field_name];
             $field_type = self::db_type_to_typescript_type($field[self::__field_type]);
+            if ($field_type == "number")
+                /* this will removed the leading zero */
+                $trick = "* 1";
+            else
+                $trick = "";
             $code = $code . "
     public get_$field_name():$field_type {
-      return this.$field_name;
+      return this.$field_name $trick;
     }\n";
             $code = "$code
     public set_$field_name(newValue:$field_type) {

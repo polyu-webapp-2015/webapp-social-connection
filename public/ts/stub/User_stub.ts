@@ -112,7 +112,7 @@ module stub {
 
     /* getter and setter */
     public get_account_id():number {
-      return this.account_id;
+      return this.account_id * 1;
     }
 
     public set_account_id(newValue:number) {
@@ -124,7 +124,7 @@ module stub {
     }
 
     public get_sex():string {
-      return this.sex;
+      return this.sex ;
     }
 
     public set_sex(newValue:string) {
@@ -136,7 +136,7 @@ module stub {
     }
 
     public get_first_name():string {
-      return this.first_name;
+      return this.first_name ;
     }
 
     public set_first_name(newValue:string) {
@@ -148,7 +148,7 @@ module stub {
     }
 
     public get_last_name():string {
-      return this.last_name;
+      return this.last_name ;
     }
 
     public set_last_name(newValue:string) {
@@ -160,7 +160,7 @@ module stub {
     }
 
     public get_organization_id():number {
-      return this.organization_id;
+      return this.organization_id * 1;
     }
 
     public set_organization_id(newValue:number) {
@@ -172,7 +172,7 @@ module stub {
     }
 
     public get_title_id():number {
-      return this.title_id;
+      return this.title_id * 1;
     }
 
     public set_title_id(newValue:number) {
@@ -184,7 +184,7 @@ module stub {
     }
 
     public get_city_id():number {
-      return this.city_id;
+      return this.city_id * 1;
     }
 
     public set_city_id(newValue:number) {
@@ -196,7 +196,7 @@ module stub {
     }
 
     public get_last_announcement_datetime():string {
-      return this.last_announcement_datetime;
+      return this.last_announcement_datetime ;
     }
 
     public set_last_announcement_datetime(newValue:string) {

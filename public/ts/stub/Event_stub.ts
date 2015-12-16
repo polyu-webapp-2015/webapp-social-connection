@@ -132,7 +132,7 @@ module stub {
 
     /* getter and setter */
     public get_event_id():number {
-      return this.event_id;
+      return this.event_id * 1;
     }
 
     public set_event_id(newValue:number) {
@@ -144,7 +144,7 @@ module stub {
     }
 
     public get_create_time():string {
-      return this.create_time;
+      return this.create_time ;
     }
 
     public set_create_time(newValue:string) {
@@ -156,7 +156,7 @@ module stub {
     }
 
     public get_edit_time():string {
-      return this.edit_time;
+      return this.edit_time ;
     }
 
     public set_edit_time(newValue:string) {
@@ -168,7 +168,7 @@ module stub {
     }
 
     public get_event_type():string {
-      return this.event_type;
+      return this.event_type ;
     }
 
     public set_event_type(newValue:string) {
@@ -180,7 +180,7 @@ module stub {
     }
 
     public get_venue_id():number {
-      return this.venue_id;
+      return this.venue_id * 1;
     }
 
     public set_venue_id(newValue:number) {
@@ -192,7 +192,7 @@ module stub {
     }
 
     public get_event_time():string {
-      return this.event_time;
+      return this.event_time ;
     }
 
     public set_event_time(newValue:string) {
@@ -204,7 +204,7 @@ module stub {
     }
 
     public get_creator_account_id():number {
-      return this.creator_account_id;
+      return this.creator_account_id * 1;
     }
 
     public set_creator_account_id(newValue:number) {
@@ -216,7 +216,7 @@ module stub {
     }
 
     public get_editor_account_id():number {
-      return this.editor_account_id;
+      return this.editor_account_id * 1;
     }
 
     public set_editor_account_id(newValue:number) {
@@ -228,7 +228,7 @@ module stub {
     }
 
     public get_subject():string {
-      return this.subject;
+      return this.subject ;
     }
 
     public set_subject(newValue:string) {
@@ -240,7 +240,7 @@ module stub {
     }
 
     public get_description():string {
-      return this.description;
+      return this.description ;
     }
 
     public set_description(newValue:string) {

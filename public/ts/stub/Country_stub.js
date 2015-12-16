@@ -49,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Country_stub.prototype.get_country_id = function () {
-            return this.country_id;
+            return this.country_id * 1;
         };
         Country_stub.prototype.set_country_id = function (newValue) {
             if (this.isEditSupport()) {

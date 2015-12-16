@@ -84,7 +84,7 @@ module stub {
 
     /* getter and setter */
     public get_account_id():number {
-      return this.account_id;
+      return this.account_id * 1;
     }
 
     public set_account_id(newValue:number) {
@@ -96,7 +96,7 @@ module stub {
     }
 
     public get_password():string {
-      return this.password;
+      return this.password ;
     }
 
     public set_password(newValue:string) {
@@ -108,7 +108,7 @@ module stub {
     }
 
     public get_account_type():string {
-      return this.account_type;
+      return this.account_type ;
     }
 
     public set_account_type(newValue:string) {
@@ -120,7 +120,7 @@ module stub {
     }
 
     public get_email():string {
-      return this.email;
+      return this.email ;
     }
 
     public set_email(newValue:string) {
@@ -132,7 +132,7 @@ module stub {
     }
 
     public get_phone_num():string {
-      return this.phone_num;
+      return this.phone_num ;
     }
 
     public set_phone_num(newValue:string) {

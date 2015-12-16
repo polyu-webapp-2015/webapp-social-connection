@@ -63,7 +63,7 @@ module stub {
 
     /* getter and setter */
     public get_city_id():number {
-      return this.city_id;
+      return this.city_id * 1;
     }
 
     public set_city_id(newValue:number) {
@@ -75,7 +75,7 @@ module stub {
     }
 
     public get_country_id():number {
-      return this.country_id;
+      return this.country_id * 1;
     }
 
     public set_country_id(newValue:number) {
@@ -87,7 +87,7 @@ module stub {
     }
 
     public get_city_name():string {
-      return this.city_name;
+      return this.city_name ;
     }
 
     public set_city_name(newValue:string) {

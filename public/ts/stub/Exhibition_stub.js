@@ -40,7 +40,7 @@ var stub;
         };
         /* getter and setter */
         Exhibition_stub.prototype.get_event_id = function () {
-            return this.event_id;
+            return this.event_id * 1;
         };
         Exhibition_stub.prototype.set_event_id = function (newValue) {
             if (this.isEditSupport()) {

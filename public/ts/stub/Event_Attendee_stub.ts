@@ -53,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_event_id():number {
-      return this.event_id;
+      return this.event_id * 1;
     }
 
     public set_event_id(newValue:number) {
@@ -65,7 +65,7 @@ module stub {
     }
 
     public get_account_id():number {
-      return this.account_id;
+      return this.account_id * 1;
     }
 
     public set_account_id(newValue:number) {

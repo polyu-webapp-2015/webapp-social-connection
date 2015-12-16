@@ -52,7 +52,7 @@ module stub {
 
     /* getter and setter */
     public get_event_id():number {
-      return this.event_id;
+      return this.event_id * 1;
     }
 
     public set_event_id(newValue:number) {
@@ -64,7 +64,7 @@ module stub {
     }
 
     public get_quota():number {
-      return this.quota;
+      return this.quota * 1;
     }
 
     public set_quota(newValue:number) {

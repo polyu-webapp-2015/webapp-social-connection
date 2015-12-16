@@ -74,7 +74,7 @@ var stub;
         };
         /* getter and setter */
         Account_stub.prototype.get_account_id = function () {
-            return this.account_id;
+            return this.account_id * 1;
         };
         Account_stub.prototype.set_account_id = function (newValue) {
             if (this.isEditSupport()) {

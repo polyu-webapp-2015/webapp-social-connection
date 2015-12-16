@@ -52,7 +52,7 @@ module stub {
 
     /* getter and setter */
     public get_JsonArray_id():number {
-      return this.JsonArray_id;
+      return this.JsonArray_id * 1;
     }
 
     public set_JsonArray_id(newValue:number) {
@@ -64,7 +64,7 @@ module stub {
     }
 
     public get_JsonArray_content():string {
-      return this.JsonArray_content;
+      return this.JsonArray_content ;
     }
 
     public set_JsonArray_content(newValue:string) {

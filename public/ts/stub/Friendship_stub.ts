@@ -74,7 +74,7 @@ module stub {
 
     /* getter and setter */
     public get_friendship_id():number {
-      return this.friendship_id;
+      return this.friendship_id * 1;
     }
 
     public set_friendship_id(newValue:number) {
@@ -86,7 +86,7 @@ module stub {
     }
 
     public get_host_id():number {
-      return this.host_id;
+      return this.host_id * 1;
     }
 
     public set_host_id(newValue:number) {
@@ -98,7 +98,7 @@ module stub {
     }
 
     public get_guest_id():number {
-      return this.guest_id;
+      return this.guest_id * 1;
     }
 
     public set_guest_id(newValue:number) {
@@ -110,7 +110,7 @@ module stub {
     }
 
     public get_remark():string {
-      return this.remark;
+      return this.remark ;
     }
 
     public set_remark(newValue:string) {

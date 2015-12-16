@@ -88,7 +88,7 @@ var stub;
         };
         /* getter and setter */
         Reward_stub.prototype.get_reward_id = function () {
-            return this.reward_id;
+            return this.reward_id * 1;
         };
         Reward_stub.prototype.set_reward_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -121,7 +121,7 @@ var stub;
             }
         };
         Reward_stub.prototype.get_collection_venue = function () {
-            return this.collection_venue;
+            return this.collection_venue * 1;
         };
         Reward_stub.prototype.set_collection_venue = function (newValue) {
             if (this.isEditSupport()) {
@@ -143,7 +143,7 @@ var stub;
             }
         };
         Reward_stub.prototype.get_receiver_id = function () {
-            return this.receiver_id;
+            return this.receiver_id * 1;
         };
         Reward_stub.prototype.set_receiver_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -154,7 +154,7 @@ var stub;
             }
         };
         Reward_stub.prototype.get_sender_id = function () {
-            return this.sender_id;
+            return this.sender_id * 1;
         };
         Reward_stub.prototype.set_sender_id = function (newValue) {
             if (this.isEditSupport()) {

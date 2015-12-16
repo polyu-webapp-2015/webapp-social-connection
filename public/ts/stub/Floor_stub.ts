@@ -52,7 +52,7 @@ module stub {
 
     /* getter and setter */
     public get_floor_id():number {
-      return this.floor_id;
+      return this.floor_id * 1;
     }
 
     public set_floor_id(newValue:number) {
@@ -64,7 +64,7 @@ module stub {
     }
 
     public get_name():string {
-      return this.name;
+      return this.name ;
     }
 
     public set_name(newValue:string) {

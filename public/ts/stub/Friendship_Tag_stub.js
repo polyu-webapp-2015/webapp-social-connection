@@ -49,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Friendship_Tag_stub.prototype.get_friendship_id = function () {
-            return this.friendship_id;
+            return this.friendship_id * 1;
         };
         Friendship_Tag_stub.prototype.set_friendship_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -60,7 +60,7 @@ var stub;
             }
         };
         Friendship_Tag_stub.prototype.get_tag_id = function () {
-            return this.tag_id;
+            return this.tag_id * 1;
         };
         Friendship_Tag_stub.prototype.set_tag_id = function (newValue) {
             if (this.isEditSupport()) {

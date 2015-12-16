@@ -49,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Tag_stub.prototype.get_tag_id = function () {
-            return this.tag_id;
+            return this.tag_id * 1;
         };
         Tag_stub.prototype.set_tag_id = function (newValue) {
             if (this.isEditSupport()) {

@@ -82,7 +82,7 @@ module stub {
 
     /* getter and setter */
     public get_msg_id():number {
-      return this.msg_id;
+      return this.msg_id * 1;
     }
 
     public set_msg_id(newValue:number) {
@@ -94,7 +94,7 @@ module stub {
     }
 
     public get_from_account_id():number {
-      return this.from_account_id;
+      return this.from_account_id * 1;
     }
 
     public set_from_account_id(newValue:number) {
@@ -106,7 +106,7 @@ module stub {
     }
 
     public get_to_account_id():number {
-      return this.to_account_id;
+      return this.to_account_id * 1;
     }
 
     public set_to_account_id(newValue:number) {
@@ -118,7 +118,7 @@ module stub {
     }
 
     public get_create_time():string {
-      return this.create_time;
+      return this.create_time ;
     }
 
     public set_create_time(newValue:string) {
@@ -130,7 +130,7 @@ module stub {
     }
 
     public get_read_time():string {
-      return this.read_time;
+      return this.read_time ;
     }
 
     public set_read_time(newValue:string) {

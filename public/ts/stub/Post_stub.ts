@@ -122,7 +122,7 @@ module stub {
 
     /* getter and setter */
     public get_post_Id():number {
-      return this.post_Id;
+      return this.post_Id * 1;
     }
 
     public set_post_Id(newValue:number) {
@@ -134,7 +134,7 @@ module stub {
     }
 
     public get_subject():string {
-      return this.subject;
+      return this.subject ;
     }
 
     public set_subject(newValue:string) {
@@ -146,7 +146,7 @@ module stub {
     }
 
     public get_description():string {
-      return this.description;
+      return this.description ;
     }
 
     public set_description(newValue:string) {
@@ -158,7 +158,7 @@ module stub {
     }
 
     public get_discussboard_id():number {
-      return this.discussboard_id;
+      return this.discussboard_id * 1;
     }
 
     public set_discussboard_id(newValue:number) {
@@ -170,7 +170,7 @@ module stub {
     }
 
     public get_creator_account_id():number {
-      return this.creator_account_id;
+      return this.creator_account_id * 1;
     }
 
     public set_creator_account_id(newValue:number) {
@@ -182,7 +182,7 @@ module stub {
     }
 
     public get_editor_account_id():number {
-      return this.editor_account_id;
+      return this.editor_account_id * 1;
     }
 
     public set_editor_account_id(newValue:number) {
@@ -194,7 +194,7 @@ module stub {
     }
 
     public get_create_time():string {
-      return this.create_time;
+      return this.create_time ;
     }
 
     public set_create_time(newValue:string) {
@@ -206,7 +206,7 @@ module stub {
     }
 
     public get_edit_time():string {
-      return this.edit_time;
+      return this.edit_time ;
     }
 
     public set_edit_time(newValue:string) {
@@ -218,7 +218,7 @@ module stub {
     }
 
     public get_deleted():any {
-      return this.deleted;
+      return this.deleted ;
     }
 
     public set_deleted(newValue:any) {

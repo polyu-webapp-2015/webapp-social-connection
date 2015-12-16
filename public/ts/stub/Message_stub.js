@@ -72,7 +72,7 @@ var stub;
         };
         /* getter and setter */
         Message_stub.prototype.get_msg_id = function () {
-            return this.msg_id;
+            return this.msg_id * 1;
         };
         Message_stub.prototype.set_msg_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -83,7 +83,7 @@ var stub;
             }
         };
         Message_stub.prototype.get_from_account_id = function () {
-            return this.from_account_id;
+            return this.from_account_id * 1;
         };
         Message_stub.prototype.set_from_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -94,7 +94,7 @@ var stub;
             }
         };
         Message_stub.prototype.get_to_account_id = function () {
-            return this.to_account_id;
+            return this.to_account_id * 1;
         };
         Message_stub.prototype.set_to_account_id = function (newValue) {
             if (this.isEditSupport()) {

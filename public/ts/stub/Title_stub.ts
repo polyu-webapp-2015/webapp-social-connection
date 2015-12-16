@@ -53,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_title_id():number {
-      return this.title_id;
+      return this.title_id * 1;
     }
 
     public set_title_id(newValue:number) {
@@ -65,7 +65,7 @@ module stub {
     }
 
     public get_title_text():string {
-      return this.title_text;
+      return this.title_text ;
     }
 
     public set_title_text(newValue:string) {

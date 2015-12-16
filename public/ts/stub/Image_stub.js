@@ -48,7 +48,7 @@ var stub;
         };
         /* getter and setter */
         Image_stub.prototype.get_image_id = function () {
-            return this.image_id;
+            return this.image_id * 1;
         };
         Image_stub.prototype.set_image_id = function (newValue) {
             if (this.isEditSupport()) {

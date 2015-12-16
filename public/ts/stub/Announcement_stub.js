@@ -72,7 +72,7 @@ var stub;
         };
         /* getter and setter */
         Announcement_stub.prototype.get_announcement_id = function () {
-            return this.announcement_id;
+            return this.announcement_id * 1;
         };
         Announcement_stub.prototype.set_announcement_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -116,7 +116,7 @@ var stub;
             }
         };
         Announcement_stub.prototype.get_creator_account_id = function () {
-            return this.creator_account_id;
+            return this.creator_account_id * 1;
         };
         Announcement_stub.prototype.set_creator_account_id = function (newValue) {
             if (this.isEditSupport()) {

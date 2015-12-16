@@ -66,7 +66,7 @@ var stub;
         };
         /* getter and setter */
         Friendship_stub.prototype.get_friendship_id = function () {
-            return this.friendship_id;
+            return this.friendship_id * 1;
         };
         Friendship_stub.prototype.set_friendship_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -77,7 +77,7 @@ var stub;
             }
         };
         Friendship_stub.prototype.get_host_id = function () {
-            return this.host_id;
+            return this.host_id * 1;
         };
         Friendship_stub.prototype.set_host_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -88,7 +88,7 @@ var stub;
             }
         };
         Friendship_stub.prototype.get_guest_id = function () {
-            return this.guest_id;
+            return this.guest_id * 1;
         };
         Friendship_stub.prototype.set_guest_id = function (newValue) {
             if (this.isEditSupport()) {

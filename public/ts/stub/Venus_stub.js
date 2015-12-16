@@ -48,7 +48,7 @@ var stub;
         };
         /* getter and setter */
         Venus_stub.prototype.get_venue_id = function () {
-            return this.venue_id;
+            return this.venue_id * 1;
         };
         Venus_stub.prototype.set_venue_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -59,7 +59,7 @@ var stub;
             }
         };
         Venus_stub.prototype.get_floor_id = function () {
-            return this.floor_id;
+            return this.floor_id * 1;
         };
         Venus_stub.prototype.set_floor_id = function (newValue) {
             if (this.isEditSupport()) {

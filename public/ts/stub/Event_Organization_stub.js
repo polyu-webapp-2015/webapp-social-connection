@@ -49,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Event_Organization_stub.prototype.get_event_id = function () {
-            return this.event_id;
+            return this.event_id * 1;
         };
         Event_Organization_stub.prototype.set_event_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -60,7 +60,7 @@ var stub;
             }
         };
         Event_Organization_stub.prototype.get_organization_id = function () {
-            return this.organization_id;
+            return this.organization_id * 1;
         };
         Event_Organization_stub.prototype.set_organization_id = function (newValue) {
             if (this.isEditSupport()) {

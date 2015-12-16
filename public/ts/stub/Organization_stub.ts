@@ -72,7 +72,7 @@ module stub {
 
     /* getter and setter */
     public get_organization_id():number {
-      return this.organization_id;
+      return this.organization_id * 1;
     }
 
     public set_organization_id(newValue:number) {
@@ -84,7 +84,7 @@ module stub {
     }
 
     public get_organization_type():string {
-      return this.organization_type;
+      return this.organization_type ;
     }
 
     public set_organization_type(newValue:string) {
@@ -96,7 +96,7 @@ module stub {
     }
 
     public get_name():string {
-      return this.name;
+      return this.name ;
     }
 
     public set_name(newValue:string) {
@@ -108,7 +108,7 @@ module stub {
     }
 
     public get_main_country():number {
-      return this.main_country;
+      return this.main_country * 1;
     }
 
     public set_main_country(newValue:number) {

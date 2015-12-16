@@ -53,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_friendship_id():number {
-      return this.friendship_id;
+      return this.friendship_id * 1;
     }
 
     public set_friendship_id(newValue:number) {
@@ -65,7 +65,7 @@ module stub {
     }
 
     public get_tag_id():number {
-      return this.tag_id;
+      return this.tag_id * 1;
     }
 
     public set_tag_id(newValue:number) {

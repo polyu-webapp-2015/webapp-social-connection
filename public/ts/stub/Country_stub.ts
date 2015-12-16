@@ -53,7 +53,7 @@ module stub {
 
     /* getter and setter */
     public get_country_id():number {
-      return this.country_id;
+      return this.country_id * 1;
     }
 
     public set_country_id(newValue:number) {
@@ -65,7 +65,7 @@ module stub {
     }
 
     public get_country_name():string {
-      return this.country_name;
+      return this.country_name ;
     }
 
     public set_country_name(newValue:string) {

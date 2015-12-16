@@ -52,7 +52,7 @@ module stub {
 
     /* getter and setter */
     public get_image_id():number {
-      return this.image_id;
+      return this.image_id * 1;
     }
 
     public set_image_id(newValue:number) {
@@ -64,7 +64,7 @@ module stub {
     }
 
     public get_url():string {
-      return this.url;
+      return this.url ;
     }
 
     public set_url(newValue:string) {

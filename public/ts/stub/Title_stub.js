@@ -49,7 +49,7 @@ var stub;
         };
         /* getter and setter */
         Title_stub.prototype.get_title_id = function () {
-            return this.title_id;
+            return this.title_id * 1;
         };
         Title_stub.prototype.set_title_id = function (newValue) {
             if (this.isEditSupport()) {

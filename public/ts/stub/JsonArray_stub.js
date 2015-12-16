@@ -48,7 +48,7 @@ var stub;
         };
         /* getter and setter */
         JsonArray_stub.prototype.get_JsonArray_id = function () {
-            return this.JsonArray_id;
+            return this.JsonArray_id * 1;
         };
         JsonArray_stub.prototype.set_JsonArray_id = function (newValue) {
             if (this.isEditSupport()) {

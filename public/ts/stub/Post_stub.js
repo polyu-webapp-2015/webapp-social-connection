@@ -104,7 +104,7 @@ var stub;
         };
         /* getter and setter */
         Post_stub.prototype.get_post_Id = function () {
-            return this.post_Id;
+            return this.post_Id * 1;
         };
         Post_stub.prototype.set_post_Id = function (newValue) {
             if (this.isEditSupport()) {
@@ -137,7 +137,7 @@ var stub;
             }
         };
         Post_stub.prototype.get_discussboard_id = function () {
-            return this.discussboard_id;
+            return this.discussboard_id * 1;
         };
         Post_stub.prototype.set_discussboard_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -148,7 +148,7 @@ var stub;
             }
         };
         Post_stub.prototype.get_creator_account_id = function () {
-            return this.creator_account_id;
+            return this.creator_account_id * 1;
         };
         Post_stub.prototype.set_creator_account_id = function (newValue) {
             if (this.isEditSupport()) {
@@ -159,7 +159,7 @@ var stub;
             }
         };
         Post_stub.prototype.get_editor_account_id = function () {
-            return this.editor_account_id;
+            return this.editor_account_id * 1;
         };
         Post_stub.prototype.set_editor_account_id = function (newValue) {
             if (this.isEditSupport()) {

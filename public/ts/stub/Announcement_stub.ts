@@ -82,7 +82,7 @@ module stub {
 
     /* getter and setter */
     public get_announcement_id():number {
-      return this.announcement_id;
+      return this.announcement_id * 1;
     }
 
     public set_announcement_id(newValue:number) {
@@ -94,7 +94,7 @@ module stub {
     }
 
     public get_subject():string {
-      return this.subject;
+      return this.subject ;
     }
 
     public set_subject(newValue:string) {
@@ -106,7 +106,7 @@ module stub {
     }
 
     public get_description():string {
-      return this.description;
+      return this.description ;
     }
 
     public set_description(newValue:string) {
@@ -118,7 +118,7 @@ module stub {
     }
 
     public get_create_time():string {
-      return this.create_time;
+      return this.create_time ;
     }
 
     public set_create_time(newValue:string) {
@@ -130,7 +130,7 @@ module stub {
     }
 
     public get_creator_account_id():number {
-      return this.creator_account_id;
+      return this.creator_account_id * 1;
     }
 
     public set_creator_account_id(newValue:number) {

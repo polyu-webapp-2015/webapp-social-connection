@@ -102,7 +102,7 @@ module stub {
 
     /* getter and setter */
     public get_reward_id():number {
-      return this.reward_id;
+      return this.reward_id * 1;
     }
 
     public set_reward_id(newValue:number) {
@@ -114,7 +114,7 @@ module stub {
     }
 
     public get_reward_type():string {
-      return this.reward_type;
+      return this.reward_type ;
     }
 
     public set_reward_type(newValue:string) {
@@ -126,7 +126,7 @@ module stub {
     }
 
     public get_amount():any {
-      return this.amount;
+      return this.amount ;
     }
 
     public set_amount(newValue:any) {
@@ -138,7 +138,7 @@ module stub {
     }
 
     public get_collection_venue():number {
-      return this.collection_venue;
+      return this.collection_venue * 1;
     }
 
     public set_collection_venue(newValue:number) {
@@ -150,7 +150,7 @@ module stub {
     }
 
     public get_status():string {
-      return this.status;
+      return this.status ;
     }
 
     public set_status(newValue:string) {
@@ -162,7 +162,7 @@ module stub {
     }
 
     public get_receiver_id():number {
-      return this.receiver_id;
+      return this.receiver_id * 1;
     }
 
     public set_receiver_id(newValue:number) {
@@ -174,7 +174,7 @@ module stub {
     }
 
     public get_sender_id():number {
-      return this.sender_id;
+      return this.sender_id * 1;
     }
 
     public set_sender_id(newValue:number) {
