@@ -8,13 +8,6 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
    $uibModal: take a brief look at http://angular-ui.github.io/bootstrap/, documentation about $uibModal service
    */
 
-  $.get("/pages/console.html", {}, function (data, status, headers, config) {
-    $("#content").html($compile(data)($scope));
-  });
-
-  $scope.selectedAnchor = $("#bottom-console-anchor");
-  $scope.selectedAnchor.addClass("selected");
-
   $scope.closeModal = function () {
     console.log($scope);
     console.log($scope.modalItem);
@@ -106,6 +99,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
           $global.setUser(data.profile);
           $global.setSessionId(session_id);
           $global.setUserAttr('isAnonymous', false);
+
+          $.get("/pages/console.html", {}, function (data, status, headers, config) {
+            $("#content").html($compile(data)($scope));
+          });
+
         }
         else $scope.openLoginModal();
       })
@@ -142,6 +140,12 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     }
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html', $scope));
   };
+
+  $scope.openAddExhibitionModal = function () {
+    if ($global.loggedIn() === false) {$scope.openLoginModal(); return; }
+
+    $scope.modalItem = $uibModal.open(new Modal('/pages/add_exhibition.html', $scope));
+  }
 
   $scope.openUsersModal = function () {
     if ($global.loggedIn() === false) {
@@ -190,8 +194,6 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $scope.selectedAnchor = $("#bottom-forum-anchor");
     $scope.selectedAnchor.addClass("selected");
   };
-  var session_id = sessionStorage.getItem('session_id');
-  $scope.whoami(session_id);
 
   /* add more modal function here ? */
   $scope.openDiscussBoardsModal = function () {
@@ -201,5 +203,10 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     }
     $scope.modalItem = $uibModal.open(new Modal('/pages/discussboard_list.html', $scope));
   };
+
+  var session_id = sessionStorage.getItem('session_id');
+  $scope.whoami(session_id);
+  $scope.selectedAnchor = $("#bottom-console-anchor");
+  $scope.selectedAnchor.addClass("selected");
 
 });
