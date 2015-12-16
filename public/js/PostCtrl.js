@@ -12,6 +12,7 @@ app.controller("PostCtrl", function ($scope, $http, $global, $uibModal) {
   myParam.index = null;
   $scope.myParamStack.push(myParam);
   var parentParam = $scope.myParamStack[myParamStackOffset - 1];
+  $scope.myParam=myParam;
 
 
   /**

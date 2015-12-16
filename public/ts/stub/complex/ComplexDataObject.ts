@@ -6,12 +6,11 @@
 
 module stub {
   import Consumer = lang.Consumer;
-  import Producer = lang.Producer;
-  import APIResultHandler = api.APIResultHandler;
-  import APIResult = api.APIResult;
-  import APIParseResultError = debug.APIParseResultError;
+  //import Producer = lang.Producer;
+  //import APIResultHandler = api.APIResultHandler;
+  //import APIResult = api.APIResult;
   import KeyValue = lang.KeyValue;
-  import use_all_row = api.use_all_row;
+  //import use_all_row = api.use_all_row;
   import SimpleFunction = lang.SimpleFunction;
 
   export class ComplexDataObjectParseError extends DataObjectError {

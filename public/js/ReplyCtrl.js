@@ -13,6 +13,7 @@ app.controller("ReplyCtrl", function ($scope, $http, $global, $uibModal) {
   myParam.index = null;
   $scope.myParamStack.push(myParam);
   var parentParam = $scope.myParamStack[myParamStackOffset - 1];
+  parentParam=$scope.getParent().myParam;
 
   /**
    * This function cannot be replaced by constant,

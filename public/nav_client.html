@@ -4,10 +4,14 @@
   <title>Client</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- libraries -->
   <script src="lib/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="lib/node_modules/angular/angular.js"></script>
   <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
+
+
+  <!-- UI scripts -->
   <!-- Order is Important -->
 
   <script src="js/app.js"></script>
@@ -25,13 +29,30 @@
   <!-- main scripts -->
   <script src="js/enum/APIFieldEnum.js"></script>
   <script src="js/enum/ResultCodeEnum.js"></script>
+  <script src="js/api_list.js"></script>
+  <script src="ts/lang.js"></script>
+  <script src="ts/debug.js"></script>
+  <script src="ts/utils.js"></script>
+  <script src="ts/api.js"></script>
+  <script src="ts/stub/DataObject.js"></script>
+  <script src="ts/stub/complex/ComplexDataObject.js"></script>
+  <script src="ts/stub/complex/package.js"></script>
+  <script src="ts/stub/package.js"></script>
+  <script src="ts/DataObjectManager.js"></script>
+  <script src="ts/social_connection.js"></script>
 
   <link rel="stylesheet" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/common.css">
 
+  <script>
+    function init() {
+      load_all_stub_script(main_init);
+//      utils.log("right after call for init script");
+    }
+  </script>
 </head>
 
-<body id="client_nav_page" ng-controller="MainCtrl" class="ng-scope">
+<body id="client_nav_page" ng-controller="MainCtrl" class="ng-scope" onload="init()">
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">

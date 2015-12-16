@@ -1,4 +1,3 @@
-///<reference path="utils.ts"/>
 module debug {
   export class APIError extends Error {
     public name = "APIError";
