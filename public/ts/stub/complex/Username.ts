@@ -1,7 +1,13 @@
 ///<reference path="ComplexDataObject.ts"/>
 ///<reference path="../User_stub.ts"/>
 ///<reference path="../Title_stub.ts"/>
+///<reference path="../../lang.ts"/>
+///<reference path="../../DataObjectManager.ts"/>
+
+
 module stub {
+  import Consumer = lang.Consumer;
+  import Producer = lang.Producer;
   export class Username extends stub.ComplexDataObject {
     tableName():string {
       return "Username";
@@ -10,6 +16,9 @@ module stub {
     private _user_stub = new stub.User_stub();
     private _title_stub = new stub.Title_stub();
 
+    private user:stub.User_stub;
+    private title:stub.Title_stub;
+
     baseInstances():DataObject[] {
       var list = [];
       list.push(this._user_stub);
@@ -17,21 +26,30 @@ module stub {
       return list;
     }
 
-    parseBaseObjects(rawObjects:any[]):Username {
-      var instance:Username = new Username();
-      instance.user=this.parseTargetBaseObject(rawObjects,this._user_stub);
-      instance.title=this.parseTargetBaseObject(rawObjects,this._title_stub);
-      return instance;
+    masterStubInstance():DataObject {
+      return this._user_stub;
     }
 
-    toBaseObjects():any[] {
-      var user = this.user.toObject();
-      var title = this.title.toObject();
-      return [user, title];
+    masterDataObject():DataObject {
+      return this.user;
     }
 
-    private user:stub.User_stub;
-    private title:stub.Title_stub;
+    buildFromMasterDataObject(user:User_stub, consumer:Consumer<Username>) {
+      var instance = new Username();
+      instance.user = user;
+      var titleFilter:Producer<Title_stub,boolean> = function (title) {
+        return title.get_title_id() == user.get_title_id();
+      };
+      var titleConsumer:Consumer<Title_stub[]> = function (titles) {
+        if (titles.length == 0)
+          throw new ComplexDataObjectMissingBaseStubError(instance, instance._title_stub);
+        else {
+          instance.title = titles[0];
+          consumer(instance);
+        }
+      };
+      DataObjectManager.request(this._title_stub, titleFilter, titleConsumer);
+    }
 
     public getDisplayName():string {
       return this.title.get_title_text()

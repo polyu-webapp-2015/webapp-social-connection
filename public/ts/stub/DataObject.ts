@@ -23,7 +23,7 @@ module stub {
   export class DataObjectEditError extends DataObjectError {
     public name = "DataObjectEditError";
 
-    constructor(public dataObject:DataObject, public message:string = "This Object can not be edited") {
+    constructor(public dataObject:DataObject, public message:string = "This Object (" + dataObject.tableName() + ") can not be edited") {
       super(dataObject, message);
     }
   }
@@ -31,14 +31,15 @@ module stub {
   export class DataObjectSaveError extends DataObjectError {
     public name = "DataObjectSaveError";
 
-    constructor(public dataObject:DataObject, public message:string = "Failed to save this object") {
+    constructor(public dataObject:DataObject, public message:string = "Failed to save this object (" + dataObject.tableName() + ")") {
       super(dataObject, message);
     }
   }
 
   export class DataObjectParseError extends DataObjectError {
     public name = "DataObjectParseError";
-    constructor(public dataObject:DataObject, public message:string = "Failed to save this object") {
+
+    constructor(public dataObject:DataObject, public message:string = "Failed to parse this object (" + dataObject.tableName() + ")") {
       super(dataObject, message);
     }
   }
@@ -75,7 +76,7 @@ module stub {
     //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
     //}
 
-    public isComplex():boolean{
+    public isComplex():boolean {
       return false;
     }
 

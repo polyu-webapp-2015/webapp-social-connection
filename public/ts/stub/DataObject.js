@@ -23,7 +23,7 @@ var stub;
     var DataObjectEditError = (function (_super) {
         __extends(DataObjectEditError, _super);
         function DataObjectEditError(dataObject, message) {
-            if (message === void 0) { message = "This Object can not be edited"; }
+            if (message === void 0) { message = "This Object (" + dataObject.tableName() + ") can not be edited"; }
             _super.call(this, dataObject, message);
             this.dataObject = dataObject;
             this.message = message;
@@ -35,7 +35,7 @@ var stub;
     var DataObjectSaveError = (function (_super) {
         __extends(DataObjectSaveError, _super);
         function DataObjectSaveError(dataObject, message) {
-            if (message === void 0) { message = "Failed to save this object"; }
+            if (message === void 0) { message = "Failed to save this object (" + dataObject.tableName() + ")"; }
             _super.call(this, dataObject, message);
             this.dataObject = dataObject;
             this.message = message;
@@ -47,7 +47,7 @@ var stub;
     var DataObjectParseError = (function (_super) {
         __extends(DataObjectParseError, _super);
         function DataObjectParseError(dataObject, message) {
-            if (message === void 0) { message = "Failed to save this object"; }
+            if (message === void 0) { message = "Failed to parse this object (" + dataObject.tableName() + ")"; }
             _super.call(this, dataObject, message);
             this.dataObject = dataObject;
             this.message = message;

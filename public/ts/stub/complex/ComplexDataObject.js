@@ -12,7 +12,7 @@ var stub;
     var ComplexDataObjectParseError = (function (_super) {
         __extends(ComplexDataObjectParseError, _super);
         function ComplexDataObjectParseError(dataObject, message) {
-            if (message === void 0) { message = "ComplexDataObject does not support parsing"; }
+            if (message === void 0) { message = "ComplexDataObject (" + dataObject.tableName() + ") does not support parsing"; }
             _super.call(this, dataObject, message);
             this.dataObject = dataObject;
             this.message = message;
@@ -21,6 +21,19 @@ var stub;
         return ComplexDataObjectParseError;
     })(stub.DataObjectError);
     stub.ComplexDataObjectParseError = ComplexDataObjectParseError;
+    var ComplexDataObjectMissingBaseStubError = (function (_super) {
+        __extends(ComplexDataObjectMissingBaseStubError, _super);
+        function ComplexDataObjectMissingBaseStubError(dataObject, baseDataObjectStub, message) {
+            if (message === void 0) { message = "ComplexDataObject (" + dataObject.tableName() + ") Failed to get required base stub (" + baseDataObjectStub.tableName() + ")"; }
+            _super.call(this, dataObject, message);
+            this.dataObject = dataObject;
+            this.baseDataObjectStub = baseDataObjectStub;
+            this.message = message;
+            this.name = "ComplexDataObjectParseError";
+        }
+        return ComplexDataObjectMissingBaseStubError;
+    })(stub.DataObjectError);
+    stub.ComplexDataObjectMissingBaseStubError = ComplexDataObjectMissingBaseStubError;
     var ComplexDataObject = (function (_super) {
         __extends(ComplexDataObject, _super);
         function ComplexDataObject() {
@@ -45,7 +58,7 @@ var stub;
             //return this.baseInstances()
             //  .map(baseInstance=>baseInstance.uniqueKeyList())
             //  .reduce((a, c)=>a.concat(c));
-            return this.masterBaseInstance().uniqueKeyList();
+            return this.masterStubInstance().uniqueKeyList();
         };
         /**
          * parse the target base object from a list of un-ordered rawObject
@@ -101,7 +114,7 @@ var stub;
                 lang.async.fork_and_join(pool, allDone);
             };
             /* get all master instance */
-            complexInstance.masterBaseInstance().use_all_instance_list(master_dataObjects_consumer);
+            complexInstance.masterStubInstance().use_all_instance_list(master_dataObjects_consumer);
         };
         //TODO to implement the filter logic on server (php)
         ComplexDataObject.prototype.use_fully_matched_instance_list = function (queryKeyValues, consumer) {

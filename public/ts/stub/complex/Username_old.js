@@ -1,13 +1,11 @@
-///<reference path="ComplexDataObject.ts"/>
-///<reference path="../User_stub.ts"/>
-///<reference path="../Title_stub.ts"/>
-///<reference path="../../lang.ts"/>
-///<reference path="../../DataObjectManager.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
+///<reference path="ComplexDataObject.ts"/>
+///<reference path="../User_stub.ts"/>
+///<reference path="../Title_stub.ts"/>
 var stub;
 (function (stub) {
     var Username = (function (_super) {
@@ -26,27 +24,16 @@ var stub;
             list.push(this._title_stub);
             return list;
         };
-        Username.prototype.masterStubInstance = function () {
-            return this._user_stub;
-        };
-        Username.prototype.masterDataObject = function () {
-            return this.user;
-        };
-        Username.prototype.buildFromMasterDataObject = function (user, consumer) {
+        Username.prototype.parseBaseObjects = function (rawObjects) {
             var instance = new Username();
-            instance.user = user;
-            var titleFilter = function (title) {
-                return title.get_title_id() == user.get_title_id();
-            };
-            var titleConsumer = function (titles) {
-                if (titles.length == 0)
-                    throw new stub.ComplexDataObjectMissingBaseStubError(instance, instance._title_stub);
-                else {
-                    instance.title = titles[0];
-                    consumer(instance);
-                }
-            };
-            DataObjectManager.request(this._title_stub, titleFilter, titleConsumer);
+            instance.user = this.parseTargetBaseObject(rawObjects, this._user_stub);
+            instance.title = this.parseTargetBaseObject(rawObjects, this._title_stub);
+            return instance;
+        };
+        Username.prototype.toBaseObjects = function () {
+            var user = this.user.toObject();
+            var title = this.title.toObject();
+            return [user, title];
         };
         Username.prototype.getDisplayName = function () {
             return this.title.get_title_text()
@@ -57,4 +44,4 @@ var stub;
     })(stub.ComplexDataObject);
     stub.Username = Username;
 })(stub || (stub = {}));
-//# sourceMappingURL=Username.js.map
+//# sourceMappingURL=Username_old.js.map

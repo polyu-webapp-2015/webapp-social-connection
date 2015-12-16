@@ -17,7 +17,15 @@ module stub {
   export class ComplexDataObjectParseError extends DataObjectError {
     public name = "ComplexDataObjectParseError";
 
-    constructor(public dataObject:DataObject, public message:string = "ComplexDataObject does not support parsing") {
+    constructor(public dataObject:ComplexDataObject, public message:string = "ComplexDataObject ("+dataObject.tableName()+") does not support parsing") {
+      super(dataObject, message);
+    }
+  }
+
+  export class ComplexDataObjectMissingBaseStubError extends DataObjectError {
+    public name = "ComplexDataObjectParseError";
+
+    constructor(public dataObject:ComplexDataObject,public baseDataObjectStub:DataObject, public message:string = "ComplexDataObject ("+dataObject.tableName()+") Failed to get required base stub ("+baseDataObjectStub.tableName()+")") {
       super(dataObject, message);
     }
   }
@@ -36,7 +44,7 @@ module stub {
      * @return DataObject : the empty instance of dataObject
      *   that release access to logically static methods
      * */
-    abstract masterBaseInstance():DataObject;
+    abstract masterStubInstance():DataObject;
 
     /**
      * @return DataObject : the concrete instance of dataObject that has data;
@@ -48,7 +56,7 @@ module stub {
      * */
     //abstract parseBaseObjects(rawObjects:any[]):ComplexDataObject ;
 
-    abstract buildFromMasterDataObject(masterDataObject:DataObject, consumer:Consumer<ComplexDataObject>):ComplexDataObject;
+    abstract buildFromMasterDataObject(masterDataObject:DataObject, consumer:Consumer<ComplexDataObject>);
 
     public isComplex():boolean {
       return true;
@@ -71,7 +79,7 @@ module stub {
       //return this.baseInstances()
       //  .map(baseInstance=>baseInstance.uniqueKeyList())
       //  .reduce((a, c)=>a.concat(c));
-      return this.masterBaseInstance().uniqueKeyList();
+      return this.masterStubInstance().uniqueKeyList();
     }
 
     /**
@@ -135,7 +143,7 @@ module stub {
       };
 
       /* get all master instance */
-      complexInstance.masterBaseInstance().use_all_instance_list(master_dataObjects_consumer);
+      complexInstance.masterStubInstance().use_all_instance_list(master_dataObjects_consumer);
     }
 
     //TODO to implement the filter logic on server (php)
