@@ -27,14 +27,15 @@
                 ng-repeat="elem in elems"
                 ng-class="rowClass(elem, elems)"
                 ng-click="openDetailModal('/pages/user_detail.html', elem)">
-          <h4 class="list-item-title">
-            {{ 'Subject : ' }}
-            {{ elem.subject }}
-          </h4>
           <p class="list-item-remarks"
-             style="margin-top: 0px; font-size: 12px">
-            {{ elem.description }}
+             style="margin-top: 0px; font-size: 12px"
+             ng-init="loadExtraSubElements('Reply',elem)"
+          >
+            {{ elem.replierName }}
           </p>
+          <h4 class="list-item-title">
+            {{ elem.message }}
+          </h4>
         </button>
       </div>
     </div>
