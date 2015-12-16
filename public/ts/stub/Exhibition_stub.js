@@ -30,8 +30,7 @@ var stub;
             return instance;
         };
         Exhibition_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Exhibition_stub.__event_id()] = instance.event_id;
             return rawObject;

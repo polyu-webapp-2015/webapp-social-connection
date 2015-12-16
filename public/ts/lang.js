@@ -1,46 +1,25 @@
 var lang;
 (function (lang) {
-    var Dictionary;
-    (function (Dictionary) {
-        /** @deprecated does not work */
+    var DictionaryHelper;
+    (function (DictionaryHelper) {
+        /** @deprecated the created object will have functions being looped, the consumer need to skip function items */
         function create() {
             var o = {};
             inject(o);
             return o;
         }
-        Dictionary.create = create;
-        /** @deprecated does not work */
+        DictionaryHelper.create = create;
+        /** @deprecated the injected function will be looped */
         function inject(dict) {
-            //dict.reduce = (producer)=>reduce(dict, producer);
-            //dict.fold = (p, initial)=>fold(dict, p, initial);
-            //dict.map = (producer)=>map(dict, producer);
-            //dict.filter = (producer)=>filter(dict, producer);
-            //dict.some = (producer)=>some(dict, producer);
-            //dict.every = (producer)=>every(dict, producer);
-            //dict.forEach = (producer)=>forEach(dict, producer);
-            dict.reduce = function (producer) {
-                return reduce(dict, producer);
-            };
-            dict.fold = function (p, initial) {
-                return fold(dict, p, initial);
-            };
-            dict.map = function (producer) {
-                return map(dict, producer);
-            };
-            dict.filter = function (producer) {
-                return filter(dict, producer);
-            };
-            dict.some = function (producer) {
-                return some(dict, producer);
-            };
-            dict.every = function (producer) {
-                return every(dict, producer);
-            };
-            dict.forEach = function (producer) {
-                return forEach(dict, producer);
-            };
+            dict.reduce = function (producer) { return reduce(dict, producer); };
+            dict.fold = function (p, initial) { return fold(dict, p, initial); };
+            dict.map = function (producer) { return map(dict, producer); };
+            dict.filter = function (producer) { return filter(dict, producer); };
+            dict.some = function (producer) { return some(dict, producer); };
+            dict.every = function (producer) { return every(dict, producer); };
+            dict.forEach = function (producer) { return forEach(dict, producer); };
         }
-        Dictionary.inject = inject;
+        DictionaryHelper.inject = inject;
         function reduce(dict, producer) {
             var result = null;
             var initialized = false;
@@ -56,7 +35,7 @@ var lang;
             else
                 throw new TypeError("The input dict is empty!");
         }
-        Dictionary.reduce = reduce;
+        DictionaryHelper.reduce = reduce;
         function fold(dict, producer, initial) {
             var result = initial;
             for (var key in dict) {
@@ -65,7 +44,7 @@ var lang;
             }
             return result;
         }
-        Dictionary.fold = fold;
+        DictionaryHelper.fold = fold;
         function map(dict, producer) {
             var result = [];
             for (var key in dict) {
@@ -74,7 +53,7 @@ var lang;
             }
             return result;
         }
-        Dictionary.map = map;
+        DictionaryHelper.map = map;
         function filter(dict, producer) {
             var result = {};
             //var result = create();
@@ -86,7 +65,7 @@ var lang;
             //inject(result);
             return result;
         }
-        Dictionary.filter = filter;
+        DictionaryHelper.filter = filter;
         function some(dict, producer) {
             for (var key in dict) {
                 if (dict.hasOwnProperty(key))
@@ -95,7 +74,7 @@ var lang;
             }
             return false;
         }
-        Dictionary.some = some;
+        DictionaryHelper.some = some;
         function every(dict, producer) {
             for (var key in dict) {
                 if (dict.hasOwnProperty(key))
@@ -104,15 +83,22 @@ var lang;
             }
             return true;
         }
-        Dictionary.every = every;
+        DictionaryHelper.every = every;
         function forEach(dict, consumer) {
             for (var key in dict) {
                 if (dict.hasOwnProperty(key))
                     consumer([key, dict[key]]);
             }
         }
-        Dictionary.forEach = forEach;
-    })(Dictionary = lang.Dictionary || (lang.Dictionary = {}));
+        DictionaryHelper.forEach = forEach;
+    })(DictionaryHelper = lang.DictionaryHelper || (lang.DictionaryHelper = {}));
+    var ArrayHelper;
+    (function (ArrayHelper) {
+        function flatten(arrays) {
+            return arrays.reduce(function (a, c) { return a.concat(c); });
+        }
+        ArrayHelper.flatten = flatten;
+    })(ArrayHelper = lang.ArrayHelper || (lang.ArrayHelper = {}));
     var async;
     (function (async) {
         /**

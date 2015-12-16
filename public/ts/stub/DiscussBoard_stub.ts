@@ -63,8 +63,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:DiscussBoard_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:DiscussBoard_stub=this):any {
       var rawObject = {};
       rawObject[DiscussBoard_stub.__discussboard_id()] = instance.discussboard_id;
       rawObject[DiscussBoard_stub.__subject()] = instance.subject;

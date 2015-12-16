@@ -68,8 +68,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Post_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Post_stub=this):any {
       var rawObject = {};
       rawObject[Post_stub.__post_Id()] = instance.post_Id;
       rawObject[Post_stub.__subject()] = instance.subject;

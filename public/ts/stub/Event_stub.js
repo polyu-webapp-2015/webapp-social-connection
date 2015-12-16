@@ -66,8 +66,7 @@ var stub;
             return instance;
         };
         Event_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Event_stub.__event_id()] = instance.event_id;
             rawObject[Event_stub.__create_time()] = instance.create_time;

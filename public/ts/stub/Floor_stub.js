@@ -34,8 +34,7 @@ var stub;
             return instance;
         };
         Floor_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Floor_stub.__floor_id()] = instance.floor_id;
             rawObject[Floor_stub.__name()] = instance.name;

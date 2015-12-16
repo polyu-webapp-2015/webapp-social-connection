@@ -34,8 +34,7 @@ var stub;
             return instance;
         };
         Image_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Image_stub.__image_id()] = instance.image_id;
             rawObject[Image_stub.__url()] = instance.url;

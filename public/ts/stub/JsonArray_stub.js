@@ -34,8 +34,7 @@ var stub;
             return instance;
         };
         JsonArray_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[JsonArray_stub.__JsonArray_id()] = instance.JsonArray_id;
             rawObject[JsonArray_stub.__JsonArray_content()] = instance.JsonArray_content;

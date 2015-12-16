@@ -422,8 +422,8 @@ class DatabaseHelper
         $code = $code . "\n      return instance;";
         $code = $code . "\n    }";
         $code = $code . "\n    ";
-        $code = $code . "\n    toObject(instance:$stub_name):any {";
-        $code = $code . "\n      if (instance == null) instance = this;";
+        $code = $code . "\n    toObject(instance:$stub_name=this):any {";
+//        $code = $code . "\n      if (instance == null) instance = this;";
         $code = $code . "\n      var rawObject = {};";
         foreach ($field_array as $field) {
             $field_name = $field[self::__field_name];

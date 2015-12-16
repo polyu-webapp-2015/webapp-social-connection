@@ -73,8 +73,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Event_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Event_stub=this):any {
       var rawObject = {};
       rawObject[Event_stub.__event_id()] = instance.event_id;
       rawObject[Event_stub.__create_time()] = instance.create_time;

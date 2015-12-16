@@ -58,8 +58,7 @@ var stub;
             return instance;
         };
         DiscussBoard_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[DiscussBoard_stub.__discussboard_id()] = instance.discussboard_id;
             rawObject[DiscussBoard_stub.__subject()] = instance.subject;

@@ -48,8 +48,7 @@ var stub;
             return instance;
         };
         Account_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Account_stub.__account_id()] = instance.account_id;
             rawObject[Account_stub.__password()] = instance.password;

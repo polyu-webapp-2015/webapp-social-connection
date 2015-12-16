@@ -34,8 +34,7 @@ var stub;
             return instance;
         };
         Venus_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Venus_stub.__venue_id()] = instance.venue_id;
             rawObject[Venus_stub.__floor_id()] = instance.floor_id;

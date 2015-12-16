@@ -26,7 +26,7 @@ var DataObjectManager;
         //  function (keyValue:KeyValue<string,CachedObject>):boolean {
         //    return !newDataObjects.some(newDataObject=>newDataObject.hashCode() == keyValue[0]);
         //  };
-        //cachedTables[tableName] = lang.Dictionary.filter(cachedTables[tableName], uniqueFilter);
+        //cachedTables[tableName] = lang.DictionaryHelper.filter(cachedTables[tableName], uniqueFilter);
         /* store new objects */
         //newDataObjects.forEach(e=>cachedTables[tableName].push([invalidTime, e]));
         newDataObjects.forEach(function (e) { return cachedTables[tableName][e.hashCode()] = ([invalidTime, e]); });
@@ -46,7 +46,7 @@ var DataObjectManager;
         //else
         // removeOutDatedObjects(tableName);
         //var matchedList:T[] = cachedTables[tableName].map(e=><T>e[1]).filter(filter);
-        var matchedList = lang.Dictionary.map(cachedTables[tableName], (function (cachedObjectItem) {
+        var matchedList = lang.DictionaryHelper.map(cachedTables[tableName], (function (cachedObjectItem) {
             var cachedObject = cachedObjectItem[1];
             var dataObject = cachedObject[1];
             return dataObject;

@@ -48,8 +48,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Announcement_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Announcement_stub=this):any {
       var rawObject = {};
       rawObject[Announcement_stub.__announcement_id()] = instance.announcement_id;
       rawObject[Announcement_stub.__subject()] = instance.subject;

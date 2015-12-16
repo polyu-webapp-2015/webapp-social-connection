@@ -34,8 +34,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Tag_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Tag_stub=this):any {
       var rawObject = {};
       rawObject[Tag_stub.__tag_id()] = instance.tag_id;
       rawObject[Tag_stub.__tag_content()] = instance.tag_content;

@@ -42,7 +42,7 @@ module DataObjectManager {
     //  function (keyValue:KeyValue<string,CachedObject>):boolean {
     //    return !newDataObjects.some(newDataObject=>newDataObject.hashCode() == keyValue[0]);
     //  };
-    //cachedTables[tableName] = lang.Dictionary.filter(cachedTables[tableName], uniqueFilter);
+    //cachedTables[tableName] = lang.DictionaryHelper.filter(cachedTables[tableName], uniqueFilter);
     /* store new objects */
     //newDataObjects.forEach(e=>cachedTables[tableName].push([invalidTime, e]));
     newDataObjects.forEach(e=>cachedTables[tableName][e.hashCode()] = ([invalidTime, e]));
@@ -63,7 +63,7 @@ module DataObjectManager {
     //else
     // removeOutDatedObjects(tableName);
     //var matchedList:T[] = cachedTables[tableName].map(e=><T>e[1]).filter(filter);
-    var matchedList:T[] = lang.Dictionary.map(cachedTables[tableName], (cachedObjectItem=> {
+    var matchedList:T[] = lang.DictionaryHelper.map(cachedTables[tableName], (cachedObjectItem=> {
       var cachedObject = cachedObjectItem[1];
       var dataObject = cachedObject[1];
       return <T> dataObject;

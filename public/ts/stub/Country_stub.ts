@@ -34,8 +34,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Country_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Country_stub=this):any {
       var rawObject = {};
       rawObject[Country_stub.__country_id()] = instance.country_id;
       rawObject[Country_stub.__country_name()] = instance.country_name;

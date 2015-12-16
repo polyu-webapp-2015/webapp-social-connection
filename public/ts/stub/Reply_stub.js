@@ -58,8 +58,7 @@ var stub;
             return instance;
         };
         Reply_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Reply_stub.__reply_id()] = instance.reply_id;
             rawObject[Reply_stub.__post_Id()] = instance.post_Id;

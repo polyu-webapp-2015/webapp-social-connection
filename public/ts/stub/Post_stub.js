@@ -62,8 +62,7 @@ var stub;
             return instance;
         };
         Post_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Post_stub.__post_Id()] = instance.post_Id;
             rawObject[Post_stub.__subject()] = instance.subject;

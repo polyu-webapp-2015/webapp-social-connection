@@ -44,8 +44,7 @@ var stub;
             return instance;
         };
         Friendship_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Friendship_stub.__friendship_id()] = instance.friendship_id;
             rawObject[Friendship_stub.__host_id()] = instance.host_id;

@@ -41,7 +41,7 @@ module stub {
 
     //abstract getValueByKey(key:string):any;
 
-    abstract toObject(instant:DataObject):any;
+    abstract toObject(instance?:DataObject):any;
 
     abstract parseObject(rawObject:any):DataObject ;
 
@@ -111,7 +111,7 @@ module stub {
       api.use_all_row<DataObject[]>(this.tableName(), handler);
     }
 
-    //TODO to implment the filter logic on server (php)
+    //TODO to implement the filter logic on server (php)
     public use_fully_matched_instance_list(queryKeyValues:KeyValue<string,any>[], consumer:Consumer<DataObject[]>) {
       throw new TypeError("Operation not support yet");
       //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {

@@ -108,7 +108,7 @@ var stub;
             var handler = [producer, consumer];
             api.use_all_row(this.tableName(), handler);
         };
-        //TODO to implment the filter logic on server (php)
+        //TODO to implement the filter logic on server (php)
         DataObject.prototype.use_fully_matched_instance_list = function (queryKeyValues, consumer) {
             throw new TypeError("Operation not support yet");
             //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {

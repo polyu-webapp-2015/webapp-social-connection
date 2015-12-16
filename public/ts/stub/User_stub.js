@@ -58,8 +58,7 @@ var stub;
             return instance;
         };
         User_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[User_stub.__account_id()] = instance.account_id;
             rawObject[User_stub.__sex()] = instance.sex;

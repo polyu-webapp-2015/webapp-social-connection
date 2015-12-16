@@ -14,15 +14,41 @@ module stub {
   import use_all_row = api.use_all_row;
   export abstract class ComplexDataObject extends stub.DataObject {
 
-    abstract toObject(instant:DataObject):any;
+    abstract baseInstances():DataObject[];
 
-    abstract parseObject(rawObject:any):DataObject ;
+    abstract parseBaseObjects(rawObjects:any[]):ComplexDataObject ;
+
+    abstract toBaseObjects():any[];
+
+    toObject(instance:ComplexDataObject):any {
+      if (instance == null)
+        instance = this;
+      var rawObjects:any[] = this.toBaseObjects();
+      var complexObject = {};
+      type objectKeyValue=[string,any];
+      var consumer:Consumer<objectKeyValue> = function (keyValue:objectKeyValue) {
+        complexObject[keyValue[0]] = keyValue[1];
+      };
+      rawObjects.forEach(rawObject=>lang.DictionaryHelper.forEach<string,any>(rawObject, consumer));
+      return complexObject;
+    }
+
+    parseObject(rawObject:any):ComplexDataObject {
+      return this.parseBaseObjects(this.baseInstances().map(baseInstance=>baseInstance.parseObject(rawObject)));
+    }
+
+    uniqueKeyList():string[] {
+      return this.baseInstances()
+        .map(baseInstance=>baseInstance.uniqueKeyList())
+        .reduce((a, c)=>a.concat(c));
+    }
+
 
     public isEditSupport():boolean {
       return this.uniqueKeyList().length > 0;
     }
 
-    public isSame(another:DataObject):boolean {
+    public isSame(another:ComplexDataObject):boolean {
       var keys = this.uniqueKeyList();
       if (keys.length <= 0)
         return false;
@@ -44,9 +70,9 @@ module stub {
       }
     }
 
-    public use_all_instance_list(consumer:Consumer<DataObject[]>) {
+    public use_all_instance_list(consumer:Consumer<ComplexDataObject[]>) {
       var instance = this;
-      var producer:Producer<APIResult,DataObject[]> = function (apiResult:APIResult) {
+      var producer:Producer<APIResult,ComplexDataObject[]> = function (apiResult:APIResult) {
         var resultCode:string = apiResult[0];
         var data:any = apiResult[1];
         if (resultCode == ResultCode.Success) {
@@ -56,23 +82,17 @@ module stub {
           throw new APIParseResultError(resultCode);
         }
       };
-      var handler:APIResultHandler<DataObject[]> = [producer, consumer];
-      api.use_all_row<DataObject[]>(this.tableName(), handler);
-    }
-
-    //TODO to implment the filter logic on server (php)
-    public use_fully_matched_instance_list(queryKeyValues:KeyValue<string,any>[], consumer:Consumer<DataObject[]>) {
-      throw new TypeError("Operation not support yet");
-      //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {
-      //  consumer(fullList.filter(function (dataObject:DataObject) {
-      //    return dataObject.isEveryMatch(queryKeyValues);
-      //  }));
-      //};
-      //this.use_all_instance_list(applier);
+      var handler:APIResultHandler<ComplexDataObject[]> = [producer, consumer];
+      api.use_all_row<ComplexDataObject[]>(this.tableName(), handler);
     }
 
     //TODO to implement the filter logic on server (php)
-    public use_partially_matched_instance_list(queryKeyValues:KeyValue<string,any>[], consumer:Consumer<DataObject[]>) {
+    public use_fully_matched_instance_list(queryKeyValues:KeyValue<string,any>[], consumer:Consumer<ComplexDataObject[]>) {
+      throw new TypeError("Operation not support yet");
+    }
+
+    //TODO to implement the filter logic on server (php)
+    public use_partially_matched_instance_list(queryKeyValues:KeyValue<string,any>[], consumer:Consumer<ComplexDataObject[]>) {
       throw new TypeError("Operation not support yet");
     }
 

@@ -34,8 +34,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Event_Attendee_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Event_Attendee_stub=this):any {
       var rawObject = {};
       rawObject[Event_Attendee_stub.__event_id()] = instance.event_id;
       rawObject[Event_Attendee_stub.__account_id()] = instance.account_id;

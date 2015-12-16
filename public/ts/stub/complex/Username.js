@@ -4,21 +4,47 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 ///<reference path="ComplexDataObject.ts"/>
+///<reference path="../User_stub.ts"/>
+///<reference path="../Title_stub.ts"/>
 var stub;
 (function (stub) {
     var Username = (function (_super) {
         __extends(Username, _super);
         function Username() {
             _super.apply(this, arguments);
+            this._user_stub = new stub.User_stub();
+            this._title_stub = new stub.Title_stub();
         }
         Username.prototype.tableName = function () {
             return "Username";
         };
-        Username.prototype.isEditSupport = function () {
-            return this.uniqueKeyList().length > 0;
+        Username.prototype.baseInstances = function () {
+            var list = [];
+            list.push(this._user_stub);
+            list.push(this._title_stub);
+            return list;
+        };
+        Username.prototype.parseBaseObjects = function (rawObjects) {
+            var user = rawObjects[0];
+            var title = rawObjects[1];
+            var instance = new Username();
+            var baseInstances = this.baseInstances();
+            instance.user = this._user_stub.parseObject(user);
+            instance.title = this._title_stub.parseObject(title);
+            return instance;
+        };
+        Username.prototype.toBaseObjects = function () {
+            var user = this.user.toObject();
+            var title = this.title.toObject();
+            return [user, title];
+        };
+        Username.prototype.getDisplayName = function () {
+            return this.title.get_title_text()
+                + ' ' + this.user.get_first_name()
+                + ' ' + this.user.get_last_name();
         };
         return Username;
-    })(stub.DataObject);
+    })(stub.ComplexDataObject);
     stub.Username = Username;
 })(stub || (stub = {}));
 //# sourceMappingURL=Username.js.map

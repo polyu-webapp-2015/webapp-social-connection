@@ -33,8 +33,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:JsonArray_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:JsonArray_stub=this):any {
       var rawObject = {};
       rawObject[JsonArray_stub.__JsonArray_id()] = instance.JsonArray_id;
       rawObject[JsonArray_stub.__JsonArray_content()] = instance.JsonArray_content;

@@ -43,8 +43,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Organization_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Organization_stub=this):any {
       var rawObject = {};
       rawObject[Organization_stub.__organization_id()] = instance.organization_id;
       rawObject[Organization_stub.__organization_type()] = instance.organization_type;

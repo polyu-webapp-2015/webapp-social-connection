@@ -34,8 +34,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Title_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Title_stub=this):any {
       var rawObject = {};
       rawObject[Title_stub.__title_id()] = instance.title_id;
       rawObject[Title_stub.__title_text()] = instance.title_text;

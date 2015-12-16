@@ -35,8 +35,7 @@ var stub;
             return instance;
         };
         Tag_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Tag_stub.__tag_id()] = instance.tag_id;
             rawObject[Tag_stub.__tag_content()] = instance.tag_content;

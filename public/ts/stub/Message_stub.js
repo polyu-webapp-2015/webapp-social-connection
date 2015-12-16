@@ -46,8 +46,7 @@ var stub;
             return instance;
         };
         Message_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Message_stub.__msg_id()] = instance.msg_id;
             rawObject[Message_stub.__from_account_id()] = instance.from_account_id;

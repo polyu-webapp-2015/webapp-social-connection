@@ -54,8 +54,7 @@ var stub;
             return instance;
         };
         Reward_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Reward_stub.__reward_id()] = instance.reward_id;
             rawObject[Reward_stub.__reward_type()] = instance.reward_type;

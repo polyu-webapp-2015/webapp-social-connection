@@ -35,8 +35,7 @@ var stub;
             return instance;
         };
         Friendship_Tag_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Friendship_Tag_stub.__friendship_id()] = instance.friendship_id;
             rawObject[Friendship_Tag_stub.__tag_id()] = instance.tag_id;

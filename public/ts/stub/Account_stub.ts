@@ -50,8 +50,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Account_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Account_stub=this):any {
       var rawObject = {};
       rawObject[Account_stub.__account_id()] = instance.account_id;
       rawObject[Account_stub.__password()] = instance.password;

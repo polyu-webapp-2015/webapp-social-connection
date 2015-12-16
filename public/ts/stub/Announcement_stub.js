@@ -46,8 +46,7 @@ var stub;
             return instance;
         };
         Announcement_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Announcement_stub.__announcement_id()] = instance.announcement_id;
             rawObject[Announcement_stub.__subject()] = instance.subject;

@@ -35,8 +35,7 @@ var stub;
             return instance;
         };
         Title_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Title_stub.__title_id()] = instance.title_id;
             rawObject[Title_stub.__title_text()] = instance.title_text;

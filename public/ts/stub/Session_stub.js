@@ -34,8 +34,7 @@ var stub;
             return instance;
         };
         Session_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Session_stub.__event_id()] = instance.event_id;
             rawObject[Session_stub.__quota()] = instance.quota;

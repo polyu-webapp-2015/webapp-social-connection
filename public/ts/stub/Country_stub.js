@@ -35,8 +35,7 @@ var stub;
             return instance;
         };
         Country_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Country_stub.__country_id()] = instance.country_id;
             rawObject[Country_stub.__country_name()] = instance.country_name;

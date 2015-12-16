@@ -58,8 +58,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Reward_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Reward_stub=this):any {
       var rawObject = {};
       rawObject[Reward_stub.__reward_id()] = instance.reward_id;
       rawObject[Reward_stub.__reward_type()] = instance.reward_type;

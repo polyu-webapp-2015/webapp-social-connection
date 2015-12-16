@@ -15,6 +15,25 @@ var stub;
         function ComplexDataObject() {
             _super.apply(this, arguments);
         }
+        ComplexDataObject.prototype.toObject = function (instance) {
+            if (instance == null)
+                instance = this;
+            var rawObjects = this.toBaseObjects();
+            var complexObject = {};
+            var consumer = function (keyValue) {
+                complexObject[keyValue[0]] = keyValue[1];
+            };
+            rawObjects.forEach(function (rawObject) { return lang.DictionaryHelper.forEach(rawObject, consumer); });
+            return complexObject;
+        };
+        ComplexDataObject.prototype.parseObject = function (rawObject) {
+            return this.parseBaseObjects(this.baseInstances().map(function (baseInstance) { return baseInstance.parseObject(rawObject); }));
+        };
+        ComplexDataObject.prototype.uniqueKeyList = function () {
+            return this.baseInstances()
+                .map(function (baseInstance) { return baseInstance.uniqueKeyList(); })
+                .reduce(function (a, c) { return a.concat(c); });
+        };
         ComplexDataObject.prototype.isEditSupport = function () {
             return this.uniqueKeyList().length > 0;
         };
@@ -55,15 +74,9 @@ var stub;
             var handler = [producer, consumer];
             api.use_all_row(this.tableName(), handler);
         };
-        //TODO to implment the filter logic on server (php)
+        //TODO to implement the filter logic on server (php)
         ComplexDataObject.prototype.use_fully_matched_instance_list = function (queryKeyValues, consumer) {
             throw new TypeError("Operation not support yet");
-            //var applier:Consumer<DataObject[]> = function (fullList:DataObject[]) {
-            //  consumer(fullList.filter(function (dataObject:DataObject) {
-            //    return dataObject.isEveryMatch(queryKeyValues);
-            //  }));
-            //};
-            //this.use_all_instance_list(applier);
         };
         //TODO to implement the filter logic on server (php)
         ComplexDataObject.prototype.use_partially_matched_instance_list = function (queryKeyValues, consumer) {

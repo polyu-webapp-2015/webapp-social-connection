@@ -45,8 +45,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Friendship_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Friendship_stub=this):any {
       var rawObject = {};
       rawObject[Friendship_stub.__friendship_id()] = instance.friendship_id;
       rawObject[Friendship_stub.__host_id()] = instance.host_id;

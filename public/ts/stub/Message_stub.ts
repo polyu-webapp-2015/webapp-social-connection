@@ -48,8 +48,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Message_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Message_stub=this):any {
       var rawObject = {};
       rawObject[Message_stub.__msg_id()] = instance.msg_id;
       rawObject[Message_stub.__from_account_id()] = instance.from_account_id;

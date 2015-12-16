@@ -33,8 +33,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Image_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Image_stub=this):any {
       var rawObject = {};
       rawObject[Image_stub.__image_id()] = instance.image_id;
       rawObject[Image_stub.__url()] = instance.url;

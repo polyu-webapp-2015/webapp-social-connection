@@ -39,8 +39,7 @@ var stub;
             return instance;
         };
         City_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[City_stub.__city_id()] = instance.city_id;
             rawObject[City_stub.__country_id()] = instance.country_id;

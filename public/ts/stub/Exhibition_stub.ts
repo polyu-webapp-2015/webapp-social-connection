@@ -28,8 +28,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Exhibition_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Exhibition_stub=this):any {
       var rawObject = {};
       rawObject[Exhibition_stub.__event_id()] = instance.event_id;
       return rawObject;

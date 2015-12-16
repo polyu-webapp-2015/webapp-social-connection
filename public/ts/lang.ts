@@ -12,44 +12,23 @@ module lang {
     ();
   }
   export type KeyValue<K,V> = [K,V];
-  export module Dictionary {
-    /** @deprecated does not work */
+  export module DictionaryHelper {
+    /** @deprecated the created object will have functions being looped, the consumer need to skip function items */
     export function create() {
       var o = {};
       inject(o);
       return o;
     }
 
-    /** @deprecated does not work */
+    /** @deprecated the injected function will be looped */
     export function inject(dict:any) {
-      //dict.reduce = (producer)=>reduce(dict, producer);
-      //dict.fold = (p, initial)=>fold(dict, p, initial);
-      //dict.map = (producer)=>map(dict, producer);
-      //dict.filter = (producer)=>filter(dict, producer);
-      //dict.some = (producer)=>some(dict, producer);
-      //dict.every = (producer)=>every(dict, producer);
-      //dict.forEach = (producer)=>forEach(dict, producer);
-      dict.reduce = function (producer) {
-        return reduce(dict, producer);
-      };
-      dict.fold = function (p, initial) {
-        return fold(dict, p, initial);
-      };
-      dict.map = function (producer) {
-        return map(dict, producer);
-      };
-      dict.filter = function (producer) {
-        return filter(dict, producer);
-      };
-      dict.some = function (producer) {
-        return some(dict, producer);
-      };
-      dict.every = function (producer) {
-        return every(dict, producer);
-      };
-      dict.forEach = function (producer) {
-        return forEach(dict, producer);
-      };
+      dict.reduce = (producer)=>reduce(dict, producer);
+      dict.fold = (p, initial)=>fold(dict, p, initial);
+      dict.map = (producer)=>map(dict, producer);
+      dict.filter = (producer)=>filter(dict, producer);
+      dict.some = (producer)=>some(dict, producer);
+      dict.every = (producer)=>every(dict, producer);
+      dict.forEach = (producer)=>forEach(dict, producer);
     }
 
     export function reduce<K,V>(dict:{}, producer:Producer<KeyValue<KeyValue<K,V>,KeyValue<K,V>> ,KeyValue<K,V>>):KeyValue<K,V> {
@@ -121,6 +100,11 @@ module lang {
         if (dict.hasOwnProperty(key))
           consumer([key, dict[key]])
       }
+    }
+  }
+  export module ArrayHelper {
+    export function flatten<T>(arrays:Array<Array<T>>):T[] {
+      return arrays.reduce((a, c)=>a.concat(c));
     }
   }
   export module async {

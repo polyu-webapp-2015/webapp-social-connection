@@ -33,8 +33,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Session_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Session_stub=this):any {
       var rawObject = {};
       rawObject[Session_stub.__event_id()] = instance.event_id;
       rawObject[Session_stub.__quota()] = instance.quota;

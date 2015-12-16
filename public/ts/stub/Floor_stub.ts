@@ -33,8 +33,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Floor_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Floor_stub=this):any {
       var rawObject = {};
       rawObject[Floor_stub.__floor_id()] = instance.floor_id;
       rawObject[Floor_stub.__name()] = instance.name;

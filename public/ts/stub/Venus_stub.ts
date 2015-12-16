@@ -33,8 +33,7 @@ module stub {
       return instance;
     }
     
-    toObject(instance:Venus_stub):any {
-      if (instance == null) instance = this;
+    toObject(instance:Venus_stub=this):any {
       var rawObject = {};
       rawObject[Venus_stub.__venue_id()] = instance.venue_id;
       rawObject[Venus_stub.__floor_id()] = instance.floor_id;

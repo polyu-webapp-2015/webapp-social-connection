@@ -42,8 +42,7 @@ var stub;
             return instance;
         };
         Organization_stub.prototype.toObject = function (instance) {
-            if (instance == null)
-                instance = this;
+            if (instance === void 0) { instance = this; }
             var rawObject = {};
             rawObject[Organization_stub.__organization_id()] = instance.organization_id;
             rawObject[Organization_stub.__organization_type()] = instance.organization_type;
