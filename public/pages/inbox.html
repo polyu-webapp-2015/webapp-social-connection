@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+  <!--<h4 class="modal-title" ng-bind="modal_title"></h4>-->
+  <h4 class="modal-title">{{$parent.elem.subject}}</h4>
+</div>
+<div ng-controller="ListCtrl">
+  <div class="modal-body" ng-init="loadExtraElements('Reply')">
+    <!--<div class="table-responsive">-->
+    <!--<table class="table" ng-init="loadExtraElements('Reply')">-->
+    <!--<tbody >-->
+    <!--<tr>-->
+    <!--<td><h4> {{ $parent.elem.subject }} </h4></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td>-->
+    <a class="btn btn-xs btn-default"
+       ng-click="openDetailModal('/pages/user_detail.html',$parent.elem.creator_account_id)">
+      {{ myExtra.creator }}</a>    <br>
+    <br>
+    <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td> -->
+    <p> {{ $parent.elem.description }}</p>
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+  </div>
+  <div class="well well-lg">
+    <span ng-bind="text_before_list"></span>
+    <div class="list-group"
+         ng-init="loadElements('Reply')">
+
+      <ul class="list-group-item" ng-repeat="elem in elems" style="list-style-type: none">
+        <!--<button class="list-item-remarks"-->
+        <li style="margin-top: 0px; font-size: 12px"ng-init="loadExtraSubElements('Reply',elem)">
+          <a class="btn btn-sm btn-default" ng-click="openDetailModal('/pages/user_detail.html', elem.creator_account_id)">{{ elem.replierName }}</a> 
+        <button class="close" style="color: #ff0000;" ng-click="deleteSubElement(elem)">&times;</button>
+        </li>
+        <h4 class="list-item-title">
+          <span>
+            {{ elem.message }}
+          </span>
+        </h4>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+</div>

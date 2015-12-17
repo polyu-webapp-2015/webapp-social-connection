@@ -24,6 +24,7 @@
   <script src="js/DiscussBoardCtrl.js"></script>
   <script src="js/PostCtrl.js"></script>
   <script src="js/ReplyCtrl.js"></script>
+  <script src="js/SessionDetailCtrl.js"></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
   <!-- main scripts -->
@@ -80,65 +81,11 @@
   <h2>School of Hotel and Tourism Management</h2>
   <h3>Client </h3>
 </div>
-<div id="exhibition" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>Exhibitions</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-picture logo"></span>
-    </div>
-  </div>
-</div>
-<div id="announcement" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-bullhorn logo"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Announcements</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-    </div>
-  </div>
-</div>
-<div id="reward" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>Coupons</h2>
-      <h4>Reward Policy</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum</p>
-      <div class="well well-lg"></div>
-      <button class="btn btn-ln my-btn" ng-click="openCouponsModal()">View My Coupons</button>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-usd logo"></span>
-    </div>
-  </div>
-</div>
-<div id="discover" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-map-marker logo"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Discover</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
-    </div>
-  </div>
-</div>
-</body>
+<div id="content" ng-bind-html="html_content"></div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <ul class="nav navbar text-center container">
-    <li><a href="#" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewConsole()"
-           id="bottom-console-anchor">Console</a></li>
+    <li><a href="#" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewConsole('client')"
+           id="bottom-console-anchor">Discover</a></li>
     <li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewSessions()"
            id="bottom-sessions-anchor">Sessions</a></li>
     <li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewForum()" id="bottom-forum-anchor">Forum</a>
@@ -147,4 +94,5 @@
     </li>
   </ul>
 </nav>
+</body>
 </html>

@@ -7,6 +7,7 @@ app.controller('AddPostCtrl', function ($scope, $http, $global, $uibModal) {
         "action": "CreatePost",
         "data": {
           session_id: $global.getSessionId(),
+          account_id: $global.getAccountId(),
           subject: $scope.post.subject,
           discussboard_id: $scope.elem.discussboard_id,
           description: $scope.post.description

@@ -110,9 +110,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
           $global.setSessionId(session_id);
           $global.setUserAttr('isAnonymous', false);
 
-          $.get("/pages/console.html", {}, function (data, status, headers, config) {
-            $("#content").html($compile(data)($scope));
-          });
+          $scope.viewConsole($global.getAccountType());
 
         }
         else $scope.openLoginModal();
@@ -168,17 +166,28 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $scope.modalItem = $uibModal.open(new Modal('/pages/user_list.html', $scope));
   };
 
-  $scope.viewConsole = function () {
+  $scope.viewConsole = function (account_type) {
     if ($global.loggedIn() === false) {
       $scope.openLoginModal();
       return;
     }
-    $.get("/pages/console.html", {}, function (data, status, headers, config) {
-      $("#content").html($compile(data)($scope));
-    });
-    $scope.selectedAnchor.removeClass("selected");
-    $scope.selectedAnchor = $("#bottom-console-anchor");
-    $scope.selectedAnchor.addClass("selected");
+    if (account_type === undefined) account_type = 'admin';
+    if (account_type === 'admin') {
+      $.get("/pages/console.html", {}, function (data, status, headers, config) {
+        $("#content").html($compile(data)($scope));
+      });
+      $scope.selectedAnchor.removeClass("selected");
+      $scope.selectedAnchor = $("#bottom-console-anchor");
+      $scope.selectedAnchor.addClass("selected");
+    }
+    else {
+      $.get("/pages/discover.html", {}, function (data, status, headers, config) {
+        $("#content").html($compile(data)($scope));
+      })
+      $scope.selectedAnchor.removeClass("selected");
+      $scope.selectedAnchor = $("#bottom-console-anchor");
+      $scope.selectedAnchor.addClass("selected");
+    }
   };
 
   $scope.viewSessions = function () {
@@ -208,6 +217,20 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $scope.selectedAnchor.addClass("selected");
   };
 
+  $scope.viewInbox = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+    //$.get("/pages/forum.html", {}, function (data, status, headers, config) {
+    $.get("/pages/inbox.html", {}, function (data, status, headers, config) {
+      $("#content").html($compile(data)($scope));
+    });
+    $scope.selectedAnchor.removeClass("selected");
+    $scope.selectedAnchor = $("#bottom-inbox-anchor");
+    $scope.selectedAnchor.addClass("selected");
+  };
+
   /* add more modal function here ? */
   $scope.openDiscussBoardsModal = function () {
     if ($global.loggedIn() === false) {
@@ -224,6 +247,15 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       return;
     }
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_discuss_board.html', $scope));
+  }
+
+  $scope.viewUserEvents = function () {
+
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+    $scope.modalItem = $uibModal.open(new Modal('/pages/user_session_list.html', $scope));
   }
 
   var session_id = sessionStorage.getItem('session_id');

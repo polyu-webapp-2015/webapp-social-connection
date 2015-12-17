@@ -133,6 +133,15 @@ app.factory("$global", function ($uibModal) {
 
     getSessionId: function () {
       return session_id;
+    },
+
+    getAccountId: function () {
+      return user.account_id;
+    },
+
+    getAccountType: function () {
+      console.log(user);
+      return user.account_type;
     }
 
   };

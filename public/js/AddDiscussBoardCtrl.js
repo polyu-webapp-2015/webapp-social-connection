@@ -6,6 +6,7 @@ app.controller('AddDiscussBoardCtrl', function ($scope, $http, $global, $uibModa
         "action": "CreateDiscussBoard",
         "data": {
           session_id: $global.getSessionId(),
+          account_id: $global.getAccountId(),
           subject: $scope.discussboard.subject,
           description: $scope.discussboard.description,
         }
