@@ -39,7 +39,7 @@ module api {
   }
 
   export function api_call<T>(api_action:string, data:any, handler:APIResultHandler<T>, failMessage = "Failed to call api " + api_action) {
-    utils.log("calling api " + api_action);
+    utils.log("calling api " + api_action, true);
     extras.forEach(function (extra) {
       data[extra[0]] = extra[1];
     });

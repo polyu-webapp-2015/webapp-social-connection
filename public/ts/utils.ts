@@ -10,11 +10,11 @@ module utils {
     return indent;
   }
 
-  export function log(message:any = "") {
+  export function log(message:any = "",silent:boolean=false) {
     message = message.toString();
     message = getIndentPrefix() + message;
     console.log(message);
-    if (debug) {
+    if (debug && !silent) {
       var element = document.createElement("span");
       element.innerHTML = "<pre>\n" + message + "</pre>";
       document.body.appendChild(element);

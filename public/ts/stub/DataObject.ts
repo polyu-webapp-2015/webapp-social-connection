@@ -148,10 +148,30 @@ module stub {
 
     /**
      * @remark should be override by subclass (ComplexDataObject)
+     * @deprecated this method does not support N-N relationship middle table (e.g. Event_Attendee)
      * */
-    public create_on_server<T>(dataObjects:DataObject[] = [this], consumer:Consumer<T[]>) {
+    public create_rows_on_server<T>(dataObjects:DataObject[] = [this], consumer:Consumer<T[]>) {
       if (dataObjects.length > 0) {
         var row_array:api.Row[] = dataObjects.map(dataObject=> dataObject.toObjectWithoutUniqueKeys());
+        var producer:Producer<APIResult,T[]> = function (apiResult:APIResult) {
+          var resultCode:string = apiResult[0];
+          var data:any = apiResult[1];
+          if (resultCode == ResultCode.Success) {
+            return data[APIField.id_array];
+          } else {
+            throw new APIParseResultError(resultCode);
+          }
+        };
+        var handler:APIResultHandler<T[]> = [producer, consumer];
+        api.create_all_row<T>(this.tableName(), row_array, handler)
+      } else {
+        consumer([]);
+      }
+    }
+
+    public create_rows_on_server_from_raw<T>(raw_array:any[], consumer:Consumer<T[]>) {
+      if (raw_array.length > 0) {
+        var row_array:api.Row[] = raw_array;
         var producer:Producer<APIResult,T[]> = function (apiResult:APIResult) {
           var resultCode:string = apiResult[0];
           var data:any = apiResult[1];

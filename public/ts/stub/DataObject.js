@@ -133,11 +133,32 @@ var stub;
         };
         /**
          * @remark should be override by subclass (ComplexDataObject)
+         * @deprecated this method does not support N-N relationship middle table (e.g. Event_Attendee)
          * */
-        DataObject.prototype.create_on_server = function (dataObjects, consumer) {
+        DataObject.prototype.create_rows_on_server = function (dataObjects, consumer) {
             if (dataObjects === void 0) { dataObjects = [this]; }
             if (dataObjects.length > 0) {
                 var row_array = dataObjects.map(function (dataObject) { return dataObject.toObjectWithoutUniqueKeys(); });
+                var producer = function (apiResult) {
+                    var resultCode = apiResult[0];
+                    var data = apiResult[1];
+                    if (resultCode == ResultCode.Success) {
+                        return data[APIField.id_array];
+                    }
+                    else {
+                        throw new APIParseResultError(resultCode);
+                    }
+                };
+                var handler = [producer, consumer];
+                api.create_all_row(this.tableName(), row_array, handler);
+            }
+            else {
+                consumer([]);
+            }
+        };
+        DataObject.prototype.create_rows_on_server_from_raw = function (raw_array, consumer) {
+            if (raw_array.length > 0) {
+                var row_array = raw_array;
                 var producer = function (apiResult) {
                     var resultCode = apiResult[0];
                     var data = apiResult[1];

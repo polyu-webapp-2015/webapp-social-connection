@@ -29,7 +29,7 @@ var api;
     api.set_api_url = set_api_url;
     function api_call(api_action, data, handler, failMessage) {
         if (failMessage === void 0) { failMessage = "Failed to call api " + api_action; }
-        utils.log("calling api " + api_action);
+        utils.log("calling api " + api_action, true);
         extras.forEach(function (extra) {
             data[extra[0]] = extra[1];
         });

@@ -9,12 +9,13 @@ var utils;
             indent += indentText;
         return indent;
     }
-    function log(message) {
+    function log(message, silent) {
         if (message === void 0) { message = ""; }
+        if (silent === void 0) { silent = false; }
         message = message.toString();
         message = getIndentPrefix() + message;
         console.log(message);
-        if (utils.debug) {
+        if (utils.debug && !silent) {
             var element = document.createElement("span");
             element.innerHTML = "<pre>\n" + message + "</pre>";
             document.body.appendChild(element);
