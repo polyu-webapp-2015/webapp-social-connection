@@ -109,6 +109,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
           $global.setUser(data.profile);
           $global.setSessionId(session_id);
           $global.setUserAttr('isAnonymous', false);
+          $scope.user = $global.getUser();
 
           $scope.viewConsole($global.getAccountType());
 

@@ -301,5 +301,14 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
       $scope.modalActionItem.close();
     }
 
+    $scope.openCreateReplyModal = function () {
+        if ($global.loggedIn() === false) {
+          $scope.openLoginModal();
+          return;
+        }
+        console.log("Add Reply");
+        $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_reply.html', $scope));
+    }
+
 });
 
