@@ -87,6 +87,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
       }
     }
     else {
+      console.log("hehe");
       var stub_instance = stub_array[0];
       var consumer = function (dataObject_array) {
         utils.log("received elements of " + action);
@@ -101,11 +102,15 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
           $scope.text_before_list = "There is 1 " + displayName;
         else
           $scope.text_before_list = "There are " + n + " " + displayName + "s";
+        console.log(elements);
         $scope.elems = elements;
+        console.log($scope.elems);
       };
       //stub_instance.use_all_instance_list(consumer);
       var filter = getMainDataObjectFilter(stub_instance);
-      DataObjectManager.request(stub_instance, filter, consumer);
+      DataObjectManager.request(stub_instance, filter, consumer, true);
+      console.log($scope.elems);
+      console.log($scope);
     }
   };
 
@@ -190,10 +195,10 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
             $scope.myExtra.creator = usernames[0].getDisplayName();
           }
         };
-        DataObjectManager.request(username_stub, usernameFilter, usernameConsumer);
+        DataObjectManager.request(username_stub, usernameFilter, usernameConsumer, true);
       }
     };
-    DataObjectManager.request(user_stub, userFilter, usersConsumer);
+    DataObjectManager.request(user_stub, userFilter, usersConsumer, true);
   }
 
   function loadReplySubExtra(elem) {
