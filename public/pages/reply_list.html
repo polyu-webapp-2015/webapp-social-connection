@@ -15,8 +15,7 @@
     <!--<td>-->
     <a class="btn btn-xs btn-default"
        ng-click="openDetailModal('/pages/user_detail.html',$parent.elem.creator_account_id)">
-      {{ myExtra.creator }}</a>
-    <br>
+      {{ myExtra.creator }}</a>    <br>
     <br>
     <!--</td>-->
     <!--</tr>-->
@@ -32,24 +31,19 @@
     <span ng-bind="text_before_list"></span>
     <div class="list-group"
          ng-init="loadElements('Reply')">
-      <div class="list-group-item"
-           ng-repeat="elem in elems"
-           ng-class="rowClass(elem, elems)"
-      >
+
+      <ul class="list-group-item" ng-repeat="elem in elems" style="list-style-type: none">
         <!--<button class="list-item-remarks"-->
-        <button class="btn btn-default btn-xs"
-                style="margin-top: 0px; font-size: 12px"
-                ng-init="loadExtraSubElements('Reply',elem)"
-                ng-click="openDetailModal('/pages/user_detail.html', elem.creator_account_id)"
-        >
-          {{ elem.replierName }}
-        </button>
+        <li style="margin-top: 0px; font-size: 12px"ng-init="loadExtraSubElements('Reply',elem)">
+          <a class="btn btn-sm btn-default" ng-click="openDetailModal('/pages/user_detail.html', elem.creator_account_id)">{{ elem.replierName }}</a> 
+        <button class="close" style="color: #ff0000;" ng-click="deleteSubElement(elem)">&times;</button>
+        </li>
         <h4 class="list-item-title">
           <span>
             {{ elem.message }}
           </span>
         </h4>
-      </div>
+      </ul>
     </div>
   </div>
 </div>

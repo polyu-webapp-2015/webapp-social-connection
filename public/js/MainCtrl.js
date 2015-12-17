@@ -11,10 +11,17 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
   $scope.closeModal = function () {
     //console.log($scope);
     //console.log($scope.modalItem);
+    if ($scope.modalActionItem != null) {
+      $scope.modalActionItem.close();
+      return;
+    }
     if ($scope.modalItem != null)
       $scope.modalItem.close();
-    else
+    else {
+      console.log($scope.modalItem);
+      console.log($scope);
       console.log("attempted to close modal, but there is no modal");
+    }
   };
 
   $scope.openRegisterModal = function () {
@@ -209,6 +216,15 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     }
     $scope.modalItem = $uibModal.open(new Modal('/pages/discussboard_list.html', $scope));
   };
+
+  $scope.openAddDiscussBoardModal = function () {
+
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+    $scope.modalItem = $uibModal.open(new Modal('/pages/add_discuss_board.html', $scope));
+  }
 
   var session_id = sessionStorage.getItem('session_id');
   $scope.whoami(session_id);

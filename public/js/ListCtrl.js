@@ -7,6 +7,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     $scope.dataObjects = [];
     $scope.selectedItem = null;
     $scope.myExtra = {};
+    console.log($scope);
 
     $scope.rowClass = function (elem, elems) {
         if (elems.indexOf(elem) % 2 == 0) return 'nor';
@@ -14,6 +15,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     };
 
     $scope.openDetailModal = function (html_path, elem) {
+      console.log("opening detial");
         if (html_path == "/pages/user_detail.html") {
             $scope.target_account_id = elem;
         } else {
@@ -21,9 +23,12 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
             $scope.selectedItem = $scope.dataObjects[$scope.elems.indexOf(elem)];
         }
         $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
+        console.log($scope.modalItem);
         //console.log($scope);
-    };
+    } 
+
     $scope.closeModal = function () {
+        console.log($scope.modalItem);
         $scope.modalItem.close();
     };
 
@@ -279,7 +284,22 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
             utils.log("dummy modal detected");
         }
     }
+    $scope.deleteSubElement = function (elem) {
+      console.log("deleting element");
+    }
 
-    setTimeout(checkDummyModal, 1000);
+    $scope.openCreatePostModal = function () {
+        if ($global.loggedIn() === false) {
+          $scope.openLoginModal();
+          return;
+        }
+        console.log("Add Post");
+        $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_post.html', $scope));
+    };
+
+    $scope.closeActionModal = function () {
+      $scope.modalActionItem.close();
+    }
+
 });
 
