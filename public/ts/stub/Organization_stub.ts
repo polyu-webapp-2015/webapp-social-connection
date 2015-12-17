@@ -34,6 +34,15 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("organization_id");
+      list.push("organization_type");
+      list.push("name");
+      list.push("main_country");
+      return list;
+    }
+    
     parseObject(rawObject:any):Organization_stub {
       var instance = new Organization_stub();
       if(rawObject.hasOwnProperty('organization_id'))

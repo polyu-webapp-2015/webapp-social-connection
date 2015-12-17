@@ -30,6 +30,13 @@ var stub;
             list.push("venue_id");
             return list;
         };
+        Venus_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("venue_id");
+            list.push("floor_id");
+            list.push("venue_name");
+            return list;
+        };
         Venus_stub.prototype.parseObject = function (rawObject) {
             var instance = new Venus_stub();
             if (rawObject.hasOwnProperty('venue_id'))

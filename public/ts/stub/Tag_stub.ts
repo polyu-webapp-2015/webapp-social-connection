@@ -27,6 +27,13 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("tag_id");
+      list.push("tag_content");
+      return list;
+    }
+    
     parseObject(rawObject:any):Tag_stub {
       var instance = new Tag_stub();
       if(rawObject.hasOwnProperty('tag_id'))

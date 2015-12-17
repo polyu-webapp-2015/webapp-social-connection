@@ -26,6 +26,13 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("JsonArray_id");
+      list.push("JsonArray_content");
+      return list;
+    }
+    
     parseObject(rawObject:any):JsonArray_stub {
       var instance = new JsonArray_stub();
       if(rawObject.hasOwnProperty('JsonArray_id'))

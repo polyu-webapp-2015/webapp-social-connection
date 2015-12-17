@@ -28,6 +28,12 @@ var stub;
             list.push("account_id");
             return list;
         };
+        Event_Attendee_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("event_id");
+            list.push("account_id");
+            return list;
+        };
         Event_Attendee_stub.prototype.parseObject = function (rawObject) {
             var instance = new Event_Attendee_stub();
             if (rawObject.hasOwnProperty('event_id'))

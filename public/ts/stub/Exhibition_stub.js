@@ -24,6 +24,11 @@ var stub;
             list.push("event_id");
             return list;
         };
+        Exhibition_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("event_id");
+            return list;
+        };
         Exhibition_stub.prototype.parseObject = function (rawObject) {
             var instance = new Exhibition_stub();
             if (rawObject.hasOwnProperty('event_id'))

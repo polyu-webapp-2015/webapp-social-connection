@@ -36,6 +36,15 @@ var stub;
             list.push("announcement_id");
             return list;
         };
+        Announcement_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("announcement_id");
+            list.push("subject");
+            list.push("description");
+            list.push("create_time");
+            list.push("creator_account_id");
+            return list;
+        };
         Announcement_stub.prototype.parseObject = function (rawObject) {
             var instance = new Announcement_stub();
             if (rawObject.hasOwnProperty('announcement_id'))

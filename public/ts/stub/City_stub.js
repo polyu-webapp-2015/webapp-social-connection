@@ -31,6 +31,13 @@ var stub;
             list.push("city_name");
             return list;
         };
+        City_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("city_id");
+            list.push("country_id");
+            list.push("city_name");
+            return list;
+        };
         City_stub.prototype.parseObject = function (rawObject) {
             var instance = new City_stub();
             if (rawObject.hasOwnProperty('city_id'))

@@ -65,6 +65,14 @@ var stub;
         //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
         //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
         //}
+        DataObject.prototype.toObjectWithoutUniqueKeys = function (instance) {
+            if (instance === void 0) { instance = this; }
+            var fullObject = this.toObject(instance);
+            var resultObject = {};
+            var uniqueKeys = instance.uniqueKeyList();
+            var targetKeys = instance.allKeyList().filter(function (key) { return uniqueKeys.every(function (uniqueKey) { return uniqueKey != key; }); });
+            return lang.DictionaryHelper.filter(fullObject, function (kv) { return targetKeys.some(function (key) { return key == kv[0]; }); });
+        };
         DataObject.prototype.isComplex = function () {
             return false;
         };
@@ -122,6 +130,30 @@ var stub;
             };
             var handler = [producer, consumer];
             api.use_all_row(this.tableName(), handler);
+        };
+        /**
+         * @remark should be override by subclass (ComplexDataObject)
+         * */
+        DataObject.prototype.create_on_server = function (dataObjects, consumer) {
+            if (dataObjects === void 0) { dataObjects = [this]; }
+            if (dataObjects.length > 0) {
+                var row_array = dataObjects.map(function (dataObject) { return dataObject.toObjectWithoutUniqueKeys(); });
+                var producer = function (apiResult) {
+                    var resultCode = apiResult[0];
+                    var data = apiResult[1];
+                    if (resultCode == ResultCode.Success) {
+                        return data[APIField.id_array];
+                    }
+                    else {
+                        throw new APIParseResultError(resultCode);
+                    }
+                };
+                var handler = [producer, consumer];
+                api.create_all_row(this.tableName(), row_array, handler);
+            }
+            else {
+                consumer([]);
+            }
         };
         //TODO to implement the filter logic on server (php)
         DataObject.prototype.use_fully_matched_instance_list = function (queryKeyValues, consumer) {

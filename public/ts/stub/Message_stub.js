@@ -27,6 +27,9 @@ var stub;
         Message_stub.__read_time = function () {
             return "read_time";
         };
+        Message_stub.__msg_content = function () {
+            return "msg_content";
+        };
         /* implement DataObject */
         Message_stub.prototype.tableName = function () {
             return "Message";
@@ -34,6 +37,16 @@ var stub;
         Message_stub.prototype.uniqueKeyList = function () {
             var list = [];
             list.push("msg_id");
+            return list;
+        };
+        Message_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("msg_id");
+            list.push("from_account_id");
+            list.push("to_account_id");
+            list.push("create_time");
+            list.push("read_time");
+            list.push("msg_content");
             return list;
         };
         Message_stub.prototype.parseObject = function (rawObject) {
@@ -58,6 +71,10 @@ var stub;
                 instance.read_time = rawObject.read_time;
             else
                 throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('msg_content'))
+                instance.msg_content = rawObject.msg_content;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Message_stub.prototype.toObject = function (instance) {
@@ -68,6 +85,7 @@ var stub;
             rawObject[Message_stub.__to_account_id()] = instance.to_account_id;
             rawObject[Message_stub.__create_time()] = instance.create_time;
             rawObject[Message_stub.__read_time()] = instance.read_time;
+            rawObject[Message_stub.__msg_content()] = instance.msg_content;
             return rawObject;
         };
         /* getter and setter */
@@ -121,6 +139,17 @@ var stub;
         Message_stub.prototype.set_read_time = function (newValue) {
             if (this.isEditSupport()) {
                 this.read_time = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Message_stub.prototype.get_msg_content = function () {
+            return this.msg_content;
+        };
+        Message_stub.prototype.set_msg_content = function (newValue) {
+            if (this.isEditSupport()) {
+                this.msg_content = newValue;
             }
             else {
                 throw new stub.DataObjectEditError(this);

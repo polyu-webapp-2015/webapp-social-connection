@@ -33,6 +33,14 @@ var stub;
             list.push("organization_id");
             return list;
         };
+        Organization_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("organization_id");
+            list.push("organization_type");
+            list.push("name");
+            list.push("main_country");
+            return list;
+        };
         Organization_stub.prototype.parseObject = function (rawObject) {
             var instance = new Organization_stub();
             if (rawObject.hasOwnProperty('organization_id'))

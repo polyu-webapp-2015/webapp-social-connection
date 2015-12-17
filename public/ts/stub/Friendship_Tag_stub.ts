@@ -27,6 +27,13 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("friendship_id");
+      list.push("tag_id");
+      return list;
+    }
+    
     parseObject(rawObject:any):Friendship_Tag_stub {
       var instance = new Friendship_Tag_stub();
       if(rawObject.hasOwnProperty('friendship_id'))

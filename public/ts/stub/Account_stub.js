@@ -38,6 +38,15 @@ var stub;
             list.push("phone_num");
             return list;
         };
+        Account_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("account_id");
+            list.push("password");
+            list.push("account_type");
+            list.push("email");
+            list.push("phone_num");
+            return list;
+        };
         Account_stub.prototype.parseObject = function (rawObject) {
             var instance = new Account_stub();
             if (rawObject.hasOwnProperty('account_id'))
