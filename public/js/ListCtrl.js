@@ -100,7 +100,19 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
                     $scope.text_before_list = "There is 1 " + displayName;
                 else
                     $scope.text_before_list = "There are " + n + " " + displayName + "s";
+                //$scope.elems=[];
+                //elements.forEach(function (e,i){$scope.elems[i]=e;});
                 $scope.elems = elements;
+                //$scope.elems=angular.copy(elements);
+                //$scope.$parent.closeModal();
+                //$scope.$emit();
+                //try {
+                //    $scope.$apply();
+                //} catch (exception) {
+                //    console.log(exception);
+                //}
+                //$scope.$$ChildScope.$apply();
+                utils.log("received elements of " + action);
             };
             //stub_instance.use_all_instance_list(consumer);
             var filter = getMainDataObjectFilter(stub_instance, p1);
@@ -126,7 +138,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
             case new stub.Event_stub().tableName():
                 var event_type = p1.toUpperCase().charAt(0);
                 return function (event) {
-                    return event.get_event_type()==event_type;
+                    return event.get_event_type() == event_type;
                 };
             default:
                 return function () {

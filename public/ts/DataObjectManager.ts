@@ -71,6 +71,11 @@ module DataObjectManager {
     if (matchedList.length > 0 && !forceUpdate) {
       /* satisfy by the local version */
       consumer(matchedList);
+      /* update in background */
+       var filterFunc:Consumer<T[]> = function (list:T[]) {
+        updateTable(tableName, list);
+      };
+      instance.use_all_instance_list(filterFunc);
     } else {
       /* get from server */
       var filterFunc:Consumer<T[]> = function (list:T[]) {
