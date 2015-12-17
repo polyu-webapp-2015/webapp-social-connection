@@ -10,8 +10,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 //        log_object($_GET);
 //        log_object($_SERVER);
         $url = $_SERVER["HTTP_REFERER"];
-        if ((strpos($url, "db") + 2) == strlen($url)) {
+        if ((strpos($url, "gendbstub") + 9) == strlen($url)) {
             DatabaseHelper::generate_all_table_stub();
+            die("<br><a href='main.php'>Back to API page</a>");
+        } elseif ((strpos($url, "resetdb") + 7) == strlen($url)) {
+            DatabaseHelper::reset_database();
             die("<br><a href='main.php'>Back to API page</a>");
         } else {
             $_API->printAllAPI();
