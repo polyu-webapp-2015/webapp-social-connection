@@ -112,7 +112,19 @@ module api {
   export function use_all_row<T>(table_name:string, handler:APIResultHandler<T>) {
     var data = {};
     data[APIField.table_name] = table_name;
-    api_call<T>(_api_GetTableRowList, data, handler)
+    api_call<T>(_api_GetTableRowList, data, handler);
+  }
+
+  export type Row=Array<[string,any]>;
+
+  /**
+   * @type T the type of id (most likely INT (number))
+   * */
+  export function all_all_row<T>(table_name:string, row_array:Row[], handler:APIResultHandler<T[]>) {
+    var data = {};
+    data[APIField.table_name] = table_name;
+    data[APIField.element_array] = row_array;
+    api_call<T[]>(_api_AddTableRowList, data, handler);
   }
 
   export function set_all_row(table_name:string, rows:any[]) {

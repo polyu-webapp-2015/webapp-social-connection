@@ -123,6 +123,10 @@ var stub;
             var handler = [producer, consumer];
             api.use_all_row(this.tableName(), handler);
         };
+        DataObject.prototype.create_on_server = function (dataObject) {
+            if (dataObject === void 0) { dataObject = this; }
+            //api.use
+        };
         //TODO to implement the filter logic on server (php)
         DataObject.prototype.use_fully_matched_instance_list = function (queryKeyValues, consumer) {
             throw new TypeError("Operation not support yet");

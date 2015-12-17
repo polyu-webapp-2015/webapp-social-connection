@@ -102,7 +102,7 @@ module stub {
       if (keys.length > 0) {
         return JSON.stringify(keys.map(key=>o[key]));
       } else {
-        utils.log("Warning : this hashCode might lead to collision ("+this.tableName()+")");
+        utils.log("Warning : this hashCode might lead to collision (" + this.tableName() + ")");
         return JSON.stringify(o);
       }
     }
@@ -136,6 +136,10 @@ module stub {
       };
       var handler:APIResultHandler<DataObject[]> = [producer, consumer];
       api.use_all_row<DataObject[]>(this.tableName(), handler);
+    }
+
+    public create_on_server(dataObject:DataObject = this) {
+//api.use
     }
 
     //TODO to implement the filter logic on server (php)
