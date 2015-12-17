@@ -1,14 +1,13 @@
-app.controller('AddAttractionCtrl', function ($scope, $http, $global, $uibModal) {
+app.controller('AddDiscussBoardCtrl', function ($scope, $http, $global, $uibModal) {
 
   $scope.submit = function () {
     $http.post(serv_addr, {
         //TODO create attraction (server)
-        "action": "createAttraction",
+        "action": "CreateDiscussBoard",
         "data": {
           session_id: $global.getSessionId(),
-          title: $scope.title,
-          location: $scope.location,
-          intro: $scope.intro
+          subject: $scope.discussboard.subject,
+          description: $scope.discussboard.description,
         }
       })
       .success(function (data, status, headers, config) {

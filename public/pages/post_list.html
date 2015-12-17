@@ -9,10 +9,7 @@
       <span ng-bind="text_before_list"></span>
       <div class="list-group"
            ng-init="loadElements('Post')">
-        <button class="list-group-item"
-                ng-repeat="elem in elems"
-                ng-class="rowClass(elem, elems)"
-                ng-click="openDetailModal('/pages/reply_list.html', elem)">
+        <button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/reply_list.html', elem)">
           <h4 class="list-item-title">
             {{ 'Subject : ' }}
             {{ elem.subject }}
@@ -27,5 +24,6 @@
   </div>
 </div>
 <div class="modal-footer">
+  <a class="btn btn-sm my-btn my-btn-round" ng-click="openCreatePostModal()">Create</a>
   <a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
 </div>

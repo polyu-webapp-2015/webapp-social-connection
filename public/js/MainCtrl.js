@@ -11,6 +11,10 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
   $scope.closeModal = function () {
     //console.log($scope);
     //console.log($scope.modalItem);
+    if ($scope.modalActionItem != null) {
+      $scope.modalActionItem.close();
+      return;
+    }
     if ($scope.modalItem != null)
       $scope.modalItem.close();
     else {
@@ -90,15 +94,6 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     console.log("Add attraction");
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_attraction.html', $scope));
   };
-
-  $scope.openCreatePostModal = function () {
-    if ($global.loggedIn() === false) {
-      $scope.openLoginModal();
-      return;
-    }
-    console.log("Add Post");
-    $scope.modalItem = $uibModal.open(new Modal('/pages/add_post.html', $scope));
-  }
 
   $scope.whoami = function (session_id) {
     $http.post(serv_addr, {
@@ -221,6 +216,15 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     }
     $scope.modalItem = $uibModal.open(new Modal('/pages/discussboard_list.html', $scope));
   };
+
+  $scope.openAddDiscussBoardModal = function () {
+
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+    $scope.modalItem = $uibModal.open(new Modal('/pages/add_discuss_board.html', $scope));
+  }
 
   var session_id = sessionStorage.getItem('session_id');
   $scope.whoami(session_id);
