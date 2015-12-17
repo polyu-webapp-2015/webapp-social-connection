@@ -7,7 +7,7 @@ app.controller('AddDiscussBoardCtrl', function ($scope, $http, $global, $uibModa
             subject: $scope.discussboard.subject,
             description: $scope.discussboard.description
         };
-        var my_account_id=1;
+        var my_account_id=$global.getAccountId();
         var discussBoard = new stub.DiscussBoard_stub();
         discussBoard.set_subject($scope.discussboard.subject);
         discussBoard.set_description($scope.discussboard.description);

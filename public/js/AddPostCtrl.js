@@ -24,10 +24,11 @@ app.controller('AddPostCtrl', function ($scope, $http, $global, $uibModal) {
         var post = new stub.Post_stub();
         post.set_subject($scope.post.subject);
         post.set_discussboard_id($scope.elem.discussboard_id);
+$global.getAccountId()
         post.set_description($scope.post.description);
         var consumer = function (id_array) {
             alert("The new Post is created");
-            $scope.closeModal();
+        $scope.closeActionModal();
         };
         post.create_rows_on_server([post], consumer);
     };
