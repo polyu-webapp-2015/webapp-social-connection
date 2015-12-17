@@ -1,6 +1,7 @@
 ///<reference path="../api.ts"/>
 ///<reference path="../../js/enum/ResultCodeEnum.ts"/>
 ///<reference path="../debug.ts"/>
+///<reference path="../DataObjectManager.ts"/>
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -65,6 +66,7 @@ var stub;
         //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
         //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
         //}
+        /**@deprecated will lead to bug on composited table */
         DataObject.prototype.toObjectWithoutUniqueKeys = function (instance) {
             if (instance === void 0) { instance = this; }
             var fullObject = this.toObject(instance);
@@ -133,30 +135,15 @@ var stub;
         };
         /**
          * @remark should be override by subclass (ComplexDataObject)
-         * @deprecated this method does not support N-N relationship middle table (e.g. Event_Attendee)
+         * @deprecated this method does not support N-N relationship middle table (e.g. Event_Attendee) (composited table)
          * */
         DataObject.prototype.create_rows_on_server = function (dataObjects, consumer) {
             if (dataObjects === void 0) { dataObjects = [this]; }
-            if (dataObjects.length > 0) {
-                var row_array = dataObjects.map(function (dataObject) { return dataObject.toObjectWithoutUniqueKeys(); });
-                var producer = function (apiResult) {
-                    var resultCode = apiResult[0];
-                    var data = apiResult[1];
-                    if (resultCode == ResultCode.Success) {
-                        return data[APIField.id_array];
-                    }
-                    else {
-                        throw new APIParseResultError(resultCode);
-                    }
-                };
-                var handler = [producer, consumer];
-                api.create_all_row(this.tableName(), row_array, handler);
-            }
-            else {
-                consumer([]);
-            }
+            var raw_array = dataObjects.map(function (dataObject) { return dataObject.toObjectWithoutUniqueKeys(); });
+            this.create_rows_on_server_from_raw(raw_array, consumer);
         };
         DataObject.prototype.create_rows_on_server_from_raw = function (raw_array, consumer) {
+            var instance = this;
             if (raw_array.length > 0) {
                 var row_array = raw_array;
                 var producer = function (apiResult) {
@@ -169,7 +156,14 @@ var stub;
                         throw new APIParseResultError(resultCode);
                     }
                 };
-                var handler = [producer, consumer];
+                var postProcess = function (ts) {
+                    consumer(ts);
+                    DataObjectManager.request(this, function () {
+                        return true;
+                    }, function () {
+                    }, true);
+                };
+                var handler = [producer, postProcess];
                 api.create_all_row(this.tableName(), row_array, handler);
             }
             else {

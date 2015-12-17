@@ -20,15 +20,6 @@ var DataObjectManager;
         var invalidTime = nextInvalidTime();
         if (cachedTables[tableName] == null)
             cachedTables[tableName] = {};
-        /* removed duplicated */
-        //cachedTables[tableName] = cachedTables[tableName].filter(old=>!newDataObjects.some(newO=>newO.isSame(old[1])));
-        //var uniqueFilter:Producer<CachedTable,boolean> =
-        //  function (keyValue:KeyValue<string,CachedObject>):boolean {
-        //    return !newDataObjects.some(newDataObject=>newDataObject.hashCode() == keyValue[0]);
-        //  };
-        //cachedTables[tableName] = lang.DictionaryHelper.filter(cachedTables[tableName], uniqueFilter);
-        /* store new objects */
-        //newDataObjects.forEach(e=>cachedTables[tableName].push([invalidTime, e]));
         newDataObjects.forEach(function (e) { return cachedTables[tableName][e.hashCode()] = ([invalidTime, e]); });
     }
     function hasOutDated(tableName) {
@@ -37,6 +28,10 @@ var DataObjectManager;
             cachedTables[tableName] = {};
         cachedTables[tableName].some(function (e) { return (e[0] <= invalidTime); });
     }
+    function add(instance) {
+        updateTable(instance.tableName(), [instance]);
+    }
+    DataObjectManager.add = add;
     function request(instance, filter, consumer, forceUpdate) {
         if (forceUpdate === void 0) { forceUpdate = false; }
         /* try to find local */
