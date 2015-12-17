@@ -69,6 +69,8 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     if (displayName == null)
       displayName = getDisplayNameFromAction(action);
 
+    $scope.text_before_list = "Loading " + displayName + "s...";
+
     /* find stub instance */
     var stub_name = action.toLowerCase();
     var prefix = "";
@@ -254,5 +256,13 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     }
   }
 
+  function checkDummyModal() {
+    if ($scope.text_before_list == "" || $scope.text_before_list == null) {
+      $scope.closeModal();
+      utils.log("dummy modal detected");
+    }
+  }
+
+  setTimeout(checkDummyModal, 1000);
 });
 

@@ -9,9 +9,12 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
    */
 
   $scope.closeModal = function () {
-    console.log($scope);
-    console.log($scope.modalItem);
-    $scope.modalItem.close();
+    //console.log($scope);
+    //console.log($scope.modalItem);
+    if ($scope.modalItem != null)
+      $scope.modalItem.close();
+    else
+      console.log("attempted to close modal, but there is no modal");
   };
 
   $scope.openRegisterModal = function () {
@@ -142,7 +145,10 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
   };
 
   $scope.openAddExhibitionModal = function () {
-    if ($global.loggedIn() === false) {$scope.openLoginModal(); return; }
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
 
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_exhibition.html', $scope));
   };
