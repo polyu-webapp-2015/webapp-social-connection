@@ -27,6 +27,13 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("country_id");
+      list.push("country_name");
+      return list;
+    }
+    
     parseObject(rawObject:any):Country_stub {
       var instance = new Country_stub();
       if(rawObject.hasOwnProperty('country_id'))

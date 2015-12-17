@@ -28,6 +28,12 @@ var stub;
             list.push("tag_id");
             return list;
         };
+        Friendship_Tag_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("friendship_id");
+            list.push("tag_id");
+            return list;
+        };
         Friendship_Tag_stub.prototype.parseObject = function (rawObject) {
             var instance = new Friendship_Tag_stub();
             if (rawObject.hasOwnProperty('friendship_id'))

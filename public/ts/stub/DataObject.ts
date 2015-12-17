@@ -50,7 +50,7 @@ module stub {
 
     abstract uniqueKeyList():string[];
 
-    //abstract fullKeyList():string[];
+    abstract allKeyList():string[];
 
     //abstract getValueByKey(key:string):any;
 
@@ -75,6 +75,14 @@ module stub {
     //public isSomeMatch(patterns:KeyValue[]|KeyValue):boolean {
     //  return patterns.some(pair=>this.getValueByKey(pair[0]) == pair[1]);
     //}
+
+    public toObjectWithoutUniqueKeys(instance:DataObject = this):any {
+      var fullObject = this.toObject(instance);
+      var resultObject = {};
+      var uniqueKeys = instance.uniqueKeyList();
+      var targetKeys = instance.allKeyList().filter(key=>uniqueKeys.every(uniqueKey=>uniqueKey != key));
+      return lang.DictionaryHelper.filter(fullObject, kv=>targetKeys.some(key=>key == kv[0]));
+    }
 
     public isComplex():boolean {
       return false;
@@ -102,7 +110,7 @@ module stub {
       if (keys.length > 0) {
         return JSON.stringify(keys.map(key=>o[key]));
       } else {
-        utils.log("Warning : this hashCode might lead to collision ("+this.tableName()+")");
+        utils.log("Warning : this hashCode might lead to collision (" + this.tableName() + ")");
         return JSON.stringify(o);
       }
     }
@@ -136,6 +144,28 @@ module stub {
       };
       var handler:APIResultHandler<DataObject[]> = [producer, consumer];
       api.use_all_row<DataObject[]>(this.tableName(), handler);
+    }
+
+    /**
+     * @remark should be override by subclass (ComplexDataObject)
+     * */
+    public create_on_server<T>(dataObjects:DataObject[] = [this], consumer:Consumer<T[]>) {
+      if (dataObjects.length > 0) {
+        var row_array:api.Row[] = dataObjects.map(dataObject=> dataObject.toObjectWithoutUniqueKeys());
+        var producer:Producer<APIResult,T[]> = function (apiResult:APIResult) {
+          var resultCode:string = apiResult[0];
+          var data:any = apiResult[1];
+          if (resultCode == ResultCode.Success) {
+            return data[APIField.id_array];
+          } else {
+            throw new APIParseResultError(resultCode);
+          }
+        };
+        var handler:APIResultHandler<T[]> = [producer, consumer];
+        api.create_all_row<T>(this.tableName(), row_array, handler)
+      } else {
+        consumer([]);
+      }
     }
 
     //TODO to implement the filter logic on server (php)

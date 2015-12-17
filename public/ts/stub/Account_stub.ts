@@ -40,6 +40,16 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("account_id");
+      list.push("password");
+      list.push("account_type");
+      list.push("email");
+      list.push("phone_num");
+      return list;
+    }
+    
     parseObject(rawObject:any):Account_stub {
       var instance = new Account_stub();
       if(rawObject.hasOwnProperty('account_id'))

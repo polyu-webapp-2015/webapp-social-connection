@@ -1,7 +1,8 @@
 /**
  * global variables here
  * */
-serv_addr = "http://58.96.176.223:9000/api/main.php";
+//serv_addr = "http://58.96.176.223:9000/api/main.php";
+serv_addr = "http://localhost:8000/api/main.php";
 var _$http;
 var _$global;
 

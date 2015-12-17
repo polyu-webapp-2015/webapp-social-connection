@@ -45,6 +45,18 @@ var stub;
             list.push("account_id");
             return list;
         };
+        User_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("account_id");
+            list.push("sex");
+            list.push("first_name");
+            list.push("last_name");
+            list.push("organization_id");
+            list.push("title_id");
+            list.push("city_id");
+            list.push("last_announcement_datetime");
+            return list;
+        };
         User_stub.prototype.parseObject = function (rawObject) {
             var instance = new User_stub();
             if (rawObject.hasOwnProperty('account_id'))

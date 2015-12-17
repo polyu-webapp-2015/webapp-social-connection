@@ -62,6 +62,22 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("event_id");
+      list.push("create_time");
+      list.push("edit_time");
+      list.push("event_type");
+      list.push("venue_id");
+      list.push("event_time");
+      list.push("creator_account_id");
+      list.push("editor_account_id");
+      list.push("subject");
+      list.push("description");
+      list.push("quota");
+      return list;
+    }
+    
     parseObject(rawObject:any):Event_stub {
       var instance = new Event_stub();
       if(rawObject.hasOwnProperty('event_id'))

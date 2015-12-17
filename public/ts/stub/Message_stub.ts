@@ -27,6 +27,10 @@ module stub {
       return "read_time";
     }
 
+    protected static __msg_content():string {
+      return "msg_content";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "Message";
@@ -35,6 +39,17 @@ module stub {
     uniqueKeyList():string[] {
       var list:string[] = [];
       list.push("msg_id");
+      return list;
+    }
+    
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("msg_id");
+      list.push("from_account_id");
+      list.push("to_account_id");
+      list.push("create_time");
+      list.push("read_time");
+      list.push("msg_content");
       return list;
     }
     
@@ -60,6 +75,10 @@ module stub {
         instance.read_time = rawObject.read_time;
       else
         throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('msg_content'))
+        instance.msg_content = rawObject.msg_content;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
@@ -70,6 +89,7 @@ module stub {
       rawObject[Message_stub.__to_account_id()] = instance.to_account_id;
       rawObject[Message_stub.__create_time()] = instance.create_time;
       rawObject[Message_stub.__read_time()] = instance.read_time;
+      rawObject[Message_stub.__msg_content()] = instance.msg_content;
       return rawObject;
     }
 
@@ -79,6 +99,7 @@ module stub {
     private to_account_id:number;
     private create_time:string;
     private read_time:string;
+    private msg_content:string;
 
     /* getter and setter */
     public get_msg_id():number {
@@ -136,6 +157,18 @@ module stub {
     public set_read_time(newValue:string) {
       if (this.isEditSupport()) {
         this.read_time = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_msg_content():string {
+      return this.msg_content ;
+    }
+
+    public set_msg_content(newValue:string) {
+      if (this.isEditSupport()) {
+        this.msg_content = newValue;
       } else {
         throw new DataObjectEditError(this);
       }

@@ -28,6 +28,12 @@ var stub;
             list.push("country_name");
             return list;
         };
+        Country_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("country_id");
+            list.push("country_name");
+            return list;
+        };
         Country_stub.prototype.parseObject = function (rawObject) {
             var instance = new Country_stub();
             if (rawObject.hasOwnProperty('country_id'))

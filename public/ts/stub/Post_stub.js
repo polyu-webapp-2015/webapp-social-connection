@@ -48,6 +48,19 @@ var stub;
             list.push("post_Id");
             return list;
         };
+        Post_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("post_Id");
+            list.push("subject");
+            list.push("description");
+            list.push("discussboard_id");
+            list.push("creator_account_id");
+            list.push("editor_account_id");
+            list.push("create_time");
+            list.push("edit_time");
+            list.push("deleted");
+            return list;
+        };
         Post_stub.prototype.parseObject = function (rawObject) {
             var instance = new Post_stub();
             if (rawObject.hasOwnProperty('post_Id'))

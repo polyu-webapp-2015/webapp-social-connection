@@ -26,6 +26,13 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("floor_id");
+      list.push("floor_name");
+      return list;
+    }
+    
     parseObject(rawObject:any):Floor_stub {
       var instance = new Floor_stub();
       if(rawObject.hasOwnProperty('floor_id'))

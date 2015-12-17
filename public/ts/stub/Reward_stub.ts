@@ -46,6 +46,18 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("reward_id");
+      list.push("reward_type");
+      list.push("amount");
+      list.push("collection_venue");
+      list.push("status");
+      list.push("receiver_id");
+      list.push("sender_id");
+      return list;
+    }
+    
     parseObject(rawObject:any):Reward_stub {
       var instance = new Reward_stub();
       if(rawObject.hasOwnProperty('reward_id'))

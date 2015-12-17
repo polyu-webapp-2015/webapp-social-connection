@@ -30,6 +30,14 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("venue_id");
+      list.push("floor_id");
+      list.push("venue_name");
+      return list;
+    }
+    
     parseObject(rawObject:any):Venus_stub {
       var instance = new Venus_stub();
       if(rawObject.hasOwnProperty('venue_id'))

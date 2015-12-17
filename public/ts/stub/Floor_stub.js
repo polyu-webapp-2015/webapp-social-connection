@@ -27,6 +27,12 @@ var stub;
             list.push("floor_id");
             return list;
         };
+        Floor_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("floor_id");
+            list.push("floor_name");
+            return list;
+        };
         Floor_stub.prototype.parseObject = function (rawObject) {
             var instance = new Floor_stub();
             if (rawObject.hasOwnProperty('floor_id'))

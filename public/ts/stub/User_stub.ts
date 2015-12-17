@@ -50,6 +50,19 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("account_id");
+      list.push("sex");
+      list.push("first_name");
+      list.push("last_name");
+      list.push("organization_id");
+      list.push("title_id");
+      list.push("city_id");
+      list.push("last_announcement_datetime");
+      return list;
+    }
+    
     parseObject(rawObject:any):User_stub {
       var instance = new User_stub();
       if(rawObject.hasOwnProperty('account_id'))

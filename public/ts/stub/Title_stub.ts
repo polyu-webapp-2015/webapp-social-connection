@@ -27,6 +27,13 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("title_id");
+      list.push("title_text");
+      return list;
+    }
+    
     parseObject(rawObject:any):Title_stub {
       var instance = new Title_stub();
       if(rawObject.hasOwnProperty('title_id'))

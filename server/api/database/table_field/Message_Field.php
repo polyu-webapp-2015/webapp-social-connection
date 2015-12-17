@@ -10,4 +10,5 @@ class Message_Fields {
     const __to_account_id = "to_account_id" ;
     const __create_time = "create_time" ;
     const __read_time = "read_time" ;
+    const __msg_content = "msg_content" ;
 }

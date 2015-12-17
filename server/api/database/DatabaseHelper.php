@@ -413,6 +413,15 @@ class DatabaseHelper
         $code = $code . "\n      return list;";
         $code = $code . "\n    }";
         $code = $code . "\n    ";
+        $code = $code . "\n    allKeyList():string[] {";
+        $code = $code . "\n      var list:string[] = [];";
+        foreach ($field_array as $field) {
+            $field_name = $field[self::__field_name];
+            $code = $code . "\n      list.push(\"$field_name\");";
+        }
+        $code = $code . "\n      return list;";
+        $code = $code . "\n    }";
+        $code = $code . "\n    ";
         $code = $code . "\n    parseObject(rawObject:any):$stub_name {";
         $code = $code . "\n      var instance = new $stub_name();";
         foreach ($field_array as $field) {

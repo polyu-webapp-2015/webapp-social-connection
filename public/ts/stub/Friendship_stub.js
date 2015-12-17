@@ -35,6 +35,14 @@ var stub;
             list.push("guest_id");
             return list;
         };
+        Friendship_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("friendship_id");
+            list.push("host_id");
+            list.push("guest_id");
+            list.push("remark");
+            return list;
+        };
         Friendship_stub.prototype.parseObject = function (rawObject) {
             var instance = new Friendship_stub();
             if (rawObject.hasOwnProperty('friendship_id'))

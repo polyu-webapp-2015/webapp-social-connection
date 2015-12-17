@@ -27,6 +27,12 @@ var stub;
             list.push("JsonArray_id");
             return list;
         };
+        JsonArray_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("JsonArray_id");
+            list.push("JsonArray_content");
+            return list;
+        };
         JsonArray_stub.prototype.parseObject = function (rawObject) {
             var instance = new JsonArray_stub();
             if (rawObject.hasOwnProperty('JsonArray_id'))

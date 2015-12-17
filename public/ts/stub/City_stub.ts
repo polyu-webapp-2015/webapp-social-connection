@@ -31,6 +31,14 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("city_id");
+      list.push("country_id");
+      list.push("city_name");
+      return list;
+    }
+    
     parseObject(rawObject:any):City_stub {
       var instance = new City_stub();
       if(rawObject.hasOwnProperty('city_id'))

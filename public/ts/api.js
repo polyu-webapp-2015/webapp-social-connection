@@ -94,6 +94,16 @@ var api;
         api_call(_api_GetTableRowList, data, handler);
     }
     api.use_all_row = use_all_row;
+    /**
+     * @type T the type of id (most likely INT (number))
+     * */
+    function create_all_row(table_name, row_array, handler) {
+        var data = {};
+        data[APIField.table_name] = table_name;
+        data[APIField.element_array] = row_array;
+        api_call(_api_AddTableRowList, data, handler);
+    }
+    api.create_all_row = create_all_row;
     function set_all_row(table_name, rows) {
     }
     api.set_all_row = set_all_row;
