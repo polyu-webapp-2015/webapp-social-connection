@@ -1,68 +1,81 @@
-app.controller('UserDetailCtrl', function  ($scope, $http, $global, $uibModal) {
+app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
 
-	$scope.loadElements = function (action) {
-		console.log("loading elements");
-		console.log($scope.id_array);
-		$http.post(serv_addr, {
-			'action': action,
-			'data': JSON.stringify({
-				session_id: $global.getSessionId(),
-				id_array: $scope.id_array,
-				field_array: $scope.field_array
-			})
-		})
-		.success(function (data, status, headers, config) {
-			if (data.result_code === "Success") 
-				$scope.elems = data.element_array;
-			else {
-				alert('something wrong happens');
-				console.log(data);
-			}
-			console.log($scope.elems);
-		})
-		.error (function (data, status, headers, config) {
-			alert('internal error');
-		})
-	};
+  function checkInit() {
+    var targetAccountId = $scope.$parent.target_account_id;
+    if (targetAccountId != null && targetAccountId == targetAccountId * 1) {
+      $scope.id_array = [targetAccountId];
+      $scope.loadElements('GetProfileList');
+    }
+  }
 
-	$scope.profileInit = function() {
+  $scope.loadElements = function (action) {
+    console.log("loading elements");
+    console.log($scope.id_array);
+    $http.post(serv_addr, {
+        'action': action,
+        'data': JSON.stringify({
+          session_id: $global.getSessionId(),
+          id_array: $scope.id_array,
+          field_array: $scope.field_array
+        })
+      })
+      .success(function (data, status, headers, config) {
+        if (data.result_code === "Success") {
+          $scope.elems = data.element_array;
+          $scope.elem = data.element_array[0];
+        }
+        else {
+          alert('something wrong happens');
+          console.log(data);
+          throw new Error("failed to get profile info");
+        }
+        console.log($scope.elems);
+      })
+      .error(function (data, status, headers, config) {
+        alert('internal error');
+      })
+  };
 
-		// ask for data and put data into table
-		var inputField;
-		var i;
-		for (i=0; i<profileContent.length; i++) {
-			inputField = document.getElementById(profileContent[i]);
-			inputField.readOnly = true;
-		}
-		document.getElementById('sex').disabled = true;
-		document.getElementById('saveButton').style.display = 'none';
-		document.getElementById('updateButton').style.display = 'block';
-	};
+  $scope.profileInit = function () {
 
-	$scope.profileUpdate = function() {
-		var inputField;
-		var i;
-		for (i=0; i<profileContent.length; i++) {
-			inputField = document.getElementById(profileContent[i]);
-			inputField.readOnly = false;
-		}
+    // ask for data and put data into table
+    var inputField;
+    var i;
+    for (i = 0; i < profileContent.length; i++) {
+      inputField = document.getElementById(profileContent[i]);
+      inputField.readOnly = true;
+    }
+    document.getElementById('sex').disabled = true;
+    document.getElementById('saveButton').style.display = 'none';
+    document.getElementById('updateButton').style.display = 'block';
+  };
 
-		document.getElementById('sex').disabled = false;
-		document.getElementById('updateButton').style.display = 'none';
-		document.getElementById('saveButton').style.display = 'block';
-	};
+  $scope.profileUpdate = function () {
+    var inputField;
+    var i;
+    for (i = 0; i < profileContent.length; i++) {
+      inputField = document.getElementById(profileContent[i]);
+      inputField.readOnly = false;
+    }
 
-	$scope.profileSave = function() {
-		//get data
-		//save data
-		$scope.profileInit();
-	};
+    document.getElementById('sex').disabled = false;
+    document.getElementById('updateButton').style.display = 'none';
+    document.getElementById('saveButton').style.display = 'block';
+  };
 
-	$scope.log = function () {
-		console.log($scope);
-		console.log($scope.elem);
-		console.log("momoda");
-	};
+  $scope.profileSave = function () {
+    //get data
+    //save data
+    $scope.profileInit();
+  };
 
-	$scope.log();
+  $scope.log = function () {
+    console.log($scope);
+    console.log($scope.elem);
+    console.log("momoda");
+  };
+
+  $scope.log();
+
+  checkInit();
 });

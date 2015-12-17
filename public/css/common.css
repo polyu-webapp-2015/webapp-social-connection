@@ -157,7 +157,9 @@ textarea {
 }
 
 .list-group-item {
-	height: 80px;
+	/*height: 80px;*/
+	height: auto;
+	overflow: auto;
 }
 
 .list-group-item:focus {
@@ -195,3 +197,6 @@ textarea {
 	font-weight: thick;
 }
 
+/*.span{*/
+	/*overflow: visible;*/
+/*}*/

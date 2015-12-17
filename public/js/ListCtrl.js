@@ -14,8 +14,12 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
   };
 
   $scope.openDetailModal = function (html_path, elem) {
-    $scope.elem = elem;
-    $scope.selectedItem = $scope.dataObjects[$scope.elems.indexOf(elem)];
+    if (html_path == "/pages/user_detail.html") {
+      $scope.target_account_id = elem;
+    } else {
+      $scope.elem = elem;
+      $scope.selectedItem = $scope.dataObjects[$scope.elems.indexOf(elem)];
+    }
     $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
     //console.log($scope);
   };

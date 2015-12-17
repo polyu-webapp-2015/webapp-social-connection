@@ -10,7 +10,7 @@
         <button class="list-group-item"
                 ng-repeat="elem in elems"
                 ng-class="rowClass(elem, elems)"
-                ng-click="openDetailModal('/pages/user_detail.html', elem)">
+                ng-click="openDetailModal('/pages/user_detail.html', elem.account_id)">
           <h4 class="list-item-title">
             {{ elem.first_name + ' ' + elem.last_name }}
           </h4>
