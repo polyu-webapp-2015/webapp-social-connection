@@ -26,6 +26,13 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("image_id");
+      list.push("url");
+      return list;
+    }
+    
     parseObject(rawObject:any):Image_stub {
       var instance = new Image_stub();
       if(rawObject.hasOwnProperty('image_id'))

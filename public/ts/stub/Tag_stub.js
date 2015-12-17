@@ -28,6 +28,12 @@ var stub;
             list.push("tag_content");
             return list;
         };
+        Tag_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("tag_id");
+            list.push("tag_content");
+            return list;
+        };
         Tag_stub.prototype.parseObject = function (rawObject) {
             var instance = new Tag_stub();
             if (rawObject.hasOwnProperty('tag_id'))

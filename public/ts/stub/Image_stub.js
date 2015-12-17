@@ -27,6 +27,12 @@ var stub;
             list.push("image_id");
             return list;
         };
+        Image_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("image_id");
+            list.push("url");
+            return list;
+        };
         Image_stub.prototype.parseObject = function (rawObject) {
             var instance = new Image_stub();
             if (rawObject.hasOwnProperty('image_id'))

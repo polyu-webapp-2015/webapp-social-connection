@@ -50,6 +50,19 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("discussboard_id");
+      list.push("subject");
+      list.push("description");
+      list.push("creator_account_id");
+      list.push("editor_account_id");
+      list.push("create_time");
+      list.push("edit_time");
+      list.push("deleted");
+      return list;
+    }
+    
     parseObject(rawObject:any):DiscussBoard_stub {
       var instance = new DiscussBoard_stub();
       if(rawObject.hasOwnProperty('discussboard_id'))

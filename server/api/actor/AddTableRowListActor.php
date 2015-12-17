@@ -10,8 +10,16 @@ class AddTableRowListActor extends Actor
     public $params = [
         APIFieldEnum::_table_name => Message_Fields::_,
         APIFieldEnum::_element_array => [
-            Message_Fields::__from_account_id => 123,
-            Message_Fields::__to_account_id => 321
+            [
+                Message_Fields::__from_account_id => 123,
+                Message_Fields::__to_account_id => 321,
+                Message_Fields::__msg_content => "Hi, nice to meet you, let's have lunch together"
+            ],
+            [
+                Message_Fields::__from_account_id => 321,
+                Message_Fields::__to_account_id => 123,
+                Message_Fields::__msg_content => "Sure, see you soon"
+            ]
         ]
     ];
     public $output = [
@@ -27,8 +35,10 @@ class AddTableRowListActor extends Actor
         $table_name = $this->params[APIFieldEnum::_table_name];
         $element_array = $this->params[APIFieldEnum::_element_array];
         $id_array = [];
-        foreach ($element_array as $element) {
-            $result = DatabaseHelper::table_insert($table_name, $element);
+        log_object_from_named("trying to add table rows", get_called_class());
+        foreach ($element_array as $field_value_array) {
+             log_object_from_named($field_value_array, get_called_class()."the field_value_array");
+            $result = DatabaseHelper::table_insert($table_name, $field_value_array);
             $last_id = DatabaseHelper::lastInsertId();
             if (is_string($last_id))
                 $id_array[] = DatabaseHelper::lastInsertId();

@@ -45,6 +45,18 @@ var stub;
             list.push("reply_id");
             return list;
         };
+        Reply_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("reply_id");
+            list.push("post_Id");
+            list.push("message");
+            list.push("creator_account_id");
+            list.push("editor_account_id");
+            list.push("create_time");
+            list.push("edit_time");
+            list.push("deleted");
+            return list;
+        };
         Reply_stub.prototype.parseObject = function (rawObject) {
             var instance = new Reply_stub();
             if (rawObject.hasOwnProperty('reply_id'))

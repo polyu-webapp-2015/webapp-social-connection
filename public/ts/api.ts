@@ -115,12 +115,13 @@ module api {
     api_call<T>(_api_GetTableRowList, data, handler);
   }
 
-  export type Row=Array<[string,any]>;
+  //export type Row=Array<[string,any]>;
+  export type Row=any;
 
   /**
    * @type T the type of id (most likely INT (number))
    * */
-  export function all_all_row<T>(table_name:string, row_array:Row[], handler:APIResultHandler<T[]>) {
+  export function create_all_row<T>(table_name:string, row_array:Row[], handler:APIResultHandler<T[]>) {
     var data = {};
     data[APIField.table_name] = table_name;
     data[APIField.element_array] = row_array;

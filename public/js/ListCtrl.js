@@ -128,6 +128,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
             case new stub.Post_stub().tableName():
                 var discussboardId = $scope.$parent.selectedItem.get_discussboard_id();
                 return function (post) {
+                    //post.create_on_server();
                     return post.get_discussboard_id() == discussboardId;
                 };
             case new stub.Reply_stub().tableName():

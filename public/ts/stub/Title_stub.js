@@ -28,6 +28,12 @@ var stub;
             list.push("title_text");
             return list;
         };
+        Title_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("title_id");
+            list.push("title_text");
+            return list;
+        };
         Title_stub.prototype.parseObject = function (rawObject) {
             var instance = new Title_stub();
             if (rawObject.hasOwnProperty('title_id'))

@@ -27,6 +27,13 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("event_id");
+      list.push("organization_id");
+      return list;
+    }
+    
     parseObject(rawObject:any):Event_Organization_stub {
       var instance = new Event_Organization_stub();
       if(rawObject.hasOwnProperty('event_id'))

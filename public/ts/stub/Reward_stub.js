@@ -42,6 +42,17 @@ var stub;
             list.push("reward_id");
             return list;
         };
+        Reward_stub.prototype.allKeyList = function () {
+            var list = [];
+            list.push("reward_id");
+            list.push("reward_type");
+            list.push("amount");
+            list.push("collection_venue");
+            list.push("status");
+            list.push("receiver_id");
+            list.push("sender_id");
+            return list;
+        };
         Reward_stub.prototype.parseObject = function (rawObject) {
             var instance = new Reward_stub();
             if (rawObject.hasOwnProperty('reward_id'))

@@ -36,6 +36,15 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("friendship_id");
+      list.push("host_id");
+      list.push("guest_id");
+      list.push("remark");
+      return list;
+    }
+    
     parseObject(rawObject:any):Friendship_stub {
       var instance = new Friendship_stub();
       if(rawObject.hasOwnProperty('friendship_id'))

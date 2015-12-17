@@ -22,6 +22,12 @@ module stub {
       return list;
     }
     
+    allKeyList():string[] {
+      var list:string[] = [];
+      list.push("event_id");
+      return list;
+    }
+    
     parseObject(rawObject:any):Attraction_stub {
       var instance = new Attraction_stub();
       if(rawObject.hasOwnProperty('event_id'))
