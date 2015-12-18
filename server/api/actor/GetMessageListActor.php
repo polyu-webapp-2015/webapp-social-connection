@@ -56,7 +56,7 @@ class GetMessageListActor extends Actor
         $opposite_message_map = [];
         foreach ($msg_row_array as $msg_row) {
             $opposite_account_id = $msg_row[Message_Fields::__from_account_id] == $account_id ? $msg_row[Message_Fields::__to_account_id] : $msg_row[Message_Fields::__from_account_id];
-            $opposite_account_id=ltrim($opposite_account_id,'0');
+            $opposite_account_id = ltrim($opposite_account_id, '0');
             $account_id_array[] = $opposite_account_id;
             if (array_key_exists($opposite_account_id, $opposite_message_map))
                 $opposite_message_map[$opposite_account_id][] = $msg_row;
@@ -77,13 +77,13 @@ class GetMessageListActor extends Actor
             $profile_array = $pass_result[APIFieldEnum::_element_array];
             foreach ($profile_array as $profile) {
                 $opposite_account_id = $profile[Account_Fields::__account_id];
-                $opposite_account_id=ltrim($opposite_account_id,'0');
+                $opposite_account_id = ltrim($opposite_account_id, '0');
                 $opposite_profile_and_message_array[] = [
                     APIFieldEnum::_profile => $profile,
-                    APIFieldEnum::_element_array => $opposite_message_map[$opposite_account_id]
+                    APIFieldEnum::_element_array => array_reverse($opposite_message_map[$opposite_account_id])
                 ];
-                log_object_from_named($opposite_message_map,"full map");
-                log_object_from_named($opposite_message_map[$opposite_account_id],"map value of $opposite_account_id");
+                log_object_from_named($opposite_message_map, "full map");
+                log_object_from_named($opposite_message_map[$opposite_account_id], "map value of $opposite_account_id");
             }
         }
 
