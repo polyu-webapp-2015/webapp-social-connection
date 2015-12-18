@@ -4,9 +4,9 @@
  * Created by IntelliJ IDEA.
  * User: beenotung
  */
-class GetAttractionListActor extends Actor
+class GetExhibitionListActor extends Actor
 {
-    public $name = "GetAttractionList";
+    public $name = "GetExhibitionList";
     public $params = [
         APIFieldEnum::_id_array => [1, 2, 3, 4, 5]
     ];
@@ -14,7 +14,7 @@ class GetAttractionListActor extends Actor
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         APIFieldEnum::_element_array => [],
     ];
-    public $desc = "Get list of attraction specified by client, used when scrolling or click 'show more' to avoid downloading too many (large) attraction";
+    public $desc = "Get list of Exhibition specified by client, used when scrolling or click 'show more' to avoid downloading too many (large) Exhibition";
 
     public function handle($data)
     {
@@ -32,4 +32,4 @@ class GetAttractionListActor extends Actor
     }
 }
 
-addAPI(new GetAttractionListActor());
+addAPI(new GetExhibitionListActor());
