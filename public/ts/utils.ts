@@ -1,7 +1,7 @@
 module utils {
   var indentText = " ";
   var indentCount = 0;
-  export var debug = true;
+  export var debug = false;
 
   function getIndentPrefix():string {
     var indent = "";
