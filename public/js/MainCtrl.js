@@ -93,7 +93,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       .success(function (data, status, headers, config) {
         if (data.result_code !== 'Session_Expired') {
           console.log(data);
-          $global.setUser(data.profile);
+          $global.setUser(data.element_array[0]);
           $global.setSessionId(session_id);
           $global.setUserAttr('isAnonymous', false);
           $scope.user = $global.getUser();

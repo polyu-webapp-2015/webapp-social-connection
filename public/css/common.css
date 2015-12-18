@@ -194,9 +194,16 @@ textarea {
 .list-item-remarks {
 	font-size: 12px;
 	color: #737373;
+	display: block;
+	white-space: nowrap;
 	font-weight: thick;
+	text-overflow: ellipsis;
+	overflow: hidden;
 }
 
+.sent-out-msg {
+	background-color: #eeeeee;
+}
 /*.span{*/
 	/*overflow: visible;*/
 /*}*/
