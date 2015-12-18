@@ -4,15 +4,15 @@
  * Created by IntelliJ IDEA.
  * User: beenotung
  */
-class GetFollowedListActor extends Actor
+class GetFollowerListActor extends Actor
 {
-    public $name = "GetFollowedList";
+    public $name = "GetFollowerList";
     public $params = [];
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         APIFieldEnum::_element_array => [],
     ];
-    public $desc = "Get list of user that followed by the requester";
+    public $desc = "Get list of user that following the requester";
 
     public function handle($data)
     {
@@ -27,8 +27,8 @@ class GetFollowedListActor extends Actor
         $account_id_array = [];
         {
             $table_name = Follow_Fields::_;
-            $selected_field = Follow_Fields::__followed_account_id;
-            $matched_field = Follow_Fields::__follower_account_id;
+            $matched_field = Follow_Fields::__followed_account_id;
+            $selected_field = Follow_Fields::__follower_account_id;
             $sql = "SELECT $selected_field FROM $table_name WHERE $matched_field=$account_id";
             $rows = DatabaseHelper::query($sql);
             foreach ($rows as $row) {
@@ -49,4 +49,4 @@ class GetFollowedListActor extends Actor
     }
 }
 
-addAPI(new GetFollowedListActor());
+addAPI(new GetFollowerListActor());

@@ -35,3 +35,5 @@ require_once 'GetAttractionListActor.php';
 require_once 'GetSessionListActor.php';
 require_once 'GetExhibitionListActor.php';
 require_once 'CreateMessageActor.php';
+require_once 'GetFollowedListActor.php';
+require_once 'GetFollowerListActor.php';

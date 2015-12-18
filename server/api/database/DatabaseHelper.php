@@ -724,9 +724,6 @@ class DatabaseHelper
         } catch (Exception $exception) {
             print_object("Failed to reset the database\n");
             print_object($exception);
-//            print_r("<pre>");
-//            print_r($exception);
-//            print_r("</pre>");
             print_object("\n");
         }
     }
