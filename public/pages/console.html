@@ -21,7 +21,7 @@
 			<h4>Lorem ipsum ...</h4>
 			<div class="well well-lg">
         <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements('GetAnnouncementList')">
-          <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/user_detail.html', elem)"> 
+          <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/user_detail.html', elem)">
           <h4 class="list-item-title"> {{ elem.first_name + ' ' + elem.last_name }} </h4>
             <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.organization_name }} </p>
           </button>
@@ -37,7 +37,6 @@
       <h2>Rewards</h2>
       <h4>Rewards</h4>
       <div class="well well-lg"></div>
-      <button class="btn btn-sm my-btn" ng-click="openAddRewardModal()">Add Reward</button>
       <button class="btn btn-sm my-btn" ng-click="openViewRewardsModal()">View Rewards History</button>
     </div>
     <div class="col-sm-4">

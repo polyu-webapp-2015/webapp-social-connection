@@ -65,19 +65,6 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_announce.html', $scope));
   };
 
-  $scope.openAddRewardModal = function () {
-    if ($global.loggedIn() === false) {
-      $scope.openLoginModal();
-      return;
-    }
-    if ($global.getUser().isAnonymous === false) {
-      openLoginModal();
-      return;
-    }
-    console.log("add reward");
-    $scope.modalItem = $uibModal.open(new Modal('/pages/add_reward.html', $scope));
-  };
-
   $scope.openAddDiscussionModal = function () {
     if ($global.loggedIn() === false) {
       $scope.openLoginModal();
@@ -148,15 +135,6 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     }
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html', $scope));
   };
-
-  $scope.openAddRewardModal = function () {
-      if ($global.loggedIn() === false) {
-        $scope.openLoginModal();
-        return;
-      }
-      console.log("add reward");
-      $scope.modalItem = $uibModal.open(new Modal('/pages/add_reward.html', $scope));
-    };
 
     $scope.openViewRewardsModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}

@@ -1,12 +1,12 @@
 <div ng-controller="ProfileCtrl">
+	<!-- the scope of "ProfileCtrl" should be a child of the scope of "MainCtrl" -->
 	<div class="modal-header">
   		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+			<!-- method "closeModal()" inheritated from its parent scope -->
 		<h4 class="modal-title">Profile</h4>
 	</div>
-
+	<form  name="profileForm" role="form" ng-init="profileInit()" autocomplete="off">
 	<div class="modal-body">
-			<form  name="profileForm" role="form" ng-init="profileInit()" autocomplete="off">
-
 				<div class="form-group">
 	    		<label  for="firstName">First Name:</label>
 	    			<input class="form-control" type="text" ng-model="firstName" id='firstName'>
@@ -54,14 +54,13 @@
 	    		<label for="organizationCountry">Organization Country:</label>
 	    			<input class="form-control" type="text" ng-model="organizationCountry" id='organizationCountry'>
 	    	</div>
-		</form>
-	</div>
-
+			</div>			<!-- /modal-body -->
 	<div class="modal-footer">
 		<div>
-			<a id='updateButton' class='col-sm-2 btn btn-sm btn-primary' ng-click='profileUpdate()'>Update</a>
-			<a id='saveButton' class='col-sm-2 btn btn-sm btn-success' ng-click='profileSave()'>Save</a>
+			<a id='updateButton' class='col-sm-2 btn btn-sm my-btn my-btn-round' ng-click='profileUpdate()'>Update</a>
+			<a id='saveButton' class='col-sm-2 btn btn-sm my-btn-round btn-success' ng-click='profileSave()'>Save</a>
 			<a class="col-sm-2 btn btn-sm btn-default" ng-click="closeModal()">Close</a>
 		</div>
 	</div>
+</form>
 </div>
