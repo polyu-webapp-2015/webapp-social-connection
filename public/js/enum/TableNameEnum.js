@@ -13,7 +13,7 @@ var TableNameEnum = function (){
     this.Event_Organization = "Event_Organization" ;
     this.Exhibition = "Exhibition" ;
     this.Floor = "Floor" ;
-    this.Friendship = "Friendship" ;
+    this.Follow = "Follow" ;
     this.Friendship_Tag = "Friendship_Tag" ;
     this.Image = "Image" ;
     this.JsonArray = "JsonArray" ;
@@ -26,6 +26,6 @@ var TableNameEnum = function (){
     this.Tag = "Tag" ;
     this.Title = "Title" ;
     this.User = "User" ;
-    this.Venus = "Venus" ;
+    this.Venue = "Venue" ;
 };
 var TableName = new TableNameEnum();

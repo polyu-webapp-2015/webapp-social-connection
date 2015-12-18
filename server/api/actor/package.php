@@ -14,7 +14,6 @@ require_once 'LoginActor.php';
 require_once 'GetUserListInfoActor.php';
 require_once 'EditProfileActor.php';
 require_once 'GetProfileListActor.php';
-require_once 'GetProfileActor.php';
 require_once 'FollowActor.php';
 require_once 'CreateAnnouncementActor.php';
 require_once 'GetNewAnnouncementActor.php';

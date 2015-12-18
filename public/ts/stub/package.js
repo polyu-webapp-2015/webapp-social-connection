@@ -37,7 +37,7 @@ function load_all_stub_script(callback) {
     //  total++;
     utils.loadModel('ts/stub/Floor_stub.js', loadOne);
     //  total++;
-    utils.loadModel('ts/stub/Friendship_stub.js', loadOne);
+    utils.loadModel('ts/stub/Follow_stub.js', loadOne);
     //  total++;
     utils.loadModel('ts/stub/Friendship_Tag_stub.js', loadOne);
     //  total++;
@@ -63,7 +63,7 @@ function load_all_stub_script(callback) {
     //  total++;
     utils.loadModel('ts/stub/User_stub.js', loadOne);
     //  total++;
-    utils.loadModel('ts/stub/Venus_stub.js', loadOne);
+    utils.loadModel('ts/stub/Venue_stub.js', loadOne);
     lastFired = true;
 }
 //# sourceMappingURL=package.js.map
