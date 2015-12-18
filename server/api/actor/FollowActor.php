@@ -23,11 +23,13 @@ class FollowActor extends Actor
         $dest_user_id = $this->params[Account_Fields::__account_id];
         if ($dest_user_id == $source_account_id)
             throw new Exception("User following it's self", ResultCodeEnum::_Logic_Error);
-        $field_value_array = [
-            Follow_Fields::__follower_account_id => $source_account_id,
-            Follow_Fields::__followed_account_id => $dest_user_id
-        ];
-        DatabaseHelper::table_insert(Follow_Fields::_, $field_value_array);
+        if (!DatabaseOperator::isFollowing($source_account_id,$dest_user_id)) {
+            $field_value_array = [
+                Follow_Fields::__follower_account_id => $source_account_id,
+                Follow_Fields::__followed_account_id => $dest_user_id
+            ];
+            DatabaseHelper::table_insert(Follow_Fields::_, $field_value_array);
+        }
         $this->output[APIFieldEnum::_latest_id] = DatabaseHelper::lastInsertId();
         return $this->output;
     }
