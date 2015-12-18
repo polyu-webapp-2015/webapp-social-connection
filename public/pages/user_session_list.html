@@ -1,0 +1,25 @@
+<div ng-controller="ListCtrl">
+  <div class="modal-body">
+    <div class="well well-lg">
+      <span ng-bind="text_before_list"></span>
+      <div class="list-group"
+           ng-init="loadElements('Event','Session')">
+        <button class="list-group-item"
+                ng-repeat="elem in elems"
+                ng-class="rowClass(elem, elems)"
+                ng-click="openDetailModal('/pages/session_detail.html', elem)">
+          <h4 class="list-item-title">
+            {{ elem.subject }}
+          </h4>
+          <p class="list-item-remarks"
+             style="margin-top: 0px; font-size: 12px">
+            {{ elem.event_time }}
+          </p>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-sm my-btn" ng-click="closeModal()">Close</a>
+</div>

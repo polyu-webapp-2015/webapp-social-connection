@@ -2,8 +2,11 @@
 <div ng-controller="UserDetailCtrl">
   <!-- the scope of "AddAnnounceCtrl" should be a child of the scope of "MainCtrl" -->
   <div class="modal-header text-center">
+    <span class="glyphicon glyphicon-plus detail-action-toggle" style="margin-right: 30px"></span>
     <img src="img/default_icon.jpeg" class="img-circle detail-avatar" alt="icon"/>
-  	<h3 class="modal-title" style="margin-top: 6px">{{ elem.title + ' ' + elem.first_name + ' ' + elem.last_name }}</h3>
+    <span class="glyphicon glyphicon-envelope detail-action-toggle" ng-click="openSendMessageModal()" style="margin-left: 30px"></span>
+
+        <h3 class="modal-title" style="margin-top: 6px">{{ elem.title + ' ' + elem.first_name + ' ' + elem.last_name }}</h3>
   </div>
     <div class="modal-body">
       <div class="table-responsive">

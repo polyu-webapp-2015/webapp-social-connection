@@ -9,4 +9,5 @@ class Announcement_Fields {
     const __subject = "subject" ;
     const __description = "description" ;
     const __create_time = "create_time" ;
+    const __creator_account_id = "creator_account_id" ;
 }

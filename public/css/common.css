@@ -25,8 +25,18 @@
 }
 
 .navbar-fixed-bottom {
-	background-color: #fefefe;
+	background-color: #fafafa;
 	height: 30px !important;
+	margin-bottom: 0;
+}
+
+.navbar-fixed-bottom li {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.navbar-fixed-bottom li a {
+	padding-top: 15px;
+	color: #6f6f6f !important;
 }
 
 .navbar-fixed-bottom ul {
@@ -40,6 +50,10 @@
 .navbar-fixed-top li a:hover {
 	background-color: #ffffff !important;
 	color: #2288ee !important;
+}
+
+.bottom-anchor.selected {
+	background-color: #eeeeee;
 }
 
 .modal-header {
@@ -104,7 +118,11 @@ textarea {
 .detail-avatar {
 	width: 150px;
 	height: 150px;	
-	color: #aaaaaa;
+}
+
+.detail-action-toggle {
+	font-size: 20px;
+	color: #777777;
 }
 
 .navbar-brand {
@@ -139,7 +157,9 @@ textarea {
 }
 
 .list-group-item {
-	height: 80px;
+	/*height: 80px;*/
+	height: auto;
+	overflow: auto;
 }
 
 .list-group-item:focus {
@@ -177,3 +197,6 @@ textarea {
 	font-weight: thick;
 }
 
+/*.span{*/
+	/*overflow: visible;*/
+/*}*/

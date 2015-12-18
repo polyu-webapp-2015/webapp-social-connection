@@ -1,0 +1,31 @@
+<div ng-controller="AddDiscussBoardCtrl">
+	<div class="modal-header">
+  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+		<h4 class="modal-title">Create Discussion Board</h4>
+	</div>
+
+	<div class="modal-body">
+  			<form class="form-horizontal" name="addAttractionForm" role="form" autocomplete="off">
+  				<div class="form-group">
+		    		<label class="control-label col-sm-2"  for="subject">Subject: </label>
+		    		<div class="col-sm-10">
+		    			<input class="form-control" type="text" name="subject" ng-model='discussboard.subject' required>
+		    		</div>
+    			</div>
+
+		    	<div class="form-group">
+					<label class='control-label col-sm-2 text-left' for="desc">Description: </label>
+		    		<div class="col-sm-10">
+    					<textarea class="form-control" rows='4' type="text" name="desc" ng-model="discussboard.description" required></textarea>
+					</div>
+				</div>
+		    </form>
+	</div>
+
+	<div class="modal-footer">
+		<div>
+			<a class='col-sm-2 btn btn-sm my-btn my-btn-round' ng-click='submit()'>Create</a>
+			<a class="col-sm-2 btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+		</div>
+	</div>
+</div>

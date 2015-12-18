@@ -5,7 +5,10 @@ var APIFieldEnum = function () {
     this._ = "APIField";
     this.action = "action";
     this.result_code = "result_code";
+    this.data = "data";
     this.reason = "reason";
+    this.emailOrPhoneNum = "emailOrPhoneNum";
+    this.password = "password";
     this.session_id = "session_id";
     this.element_array = "element_array";
     this.profile = "profile";
@@ -18,3 +21,4 @@ var APIFieldEnum = function () {
     this.field_array = "field_array";
 };
 var APIField = new APIFieldEnum();
+//# sourceMappingURL=APIFieldEnum.js.map

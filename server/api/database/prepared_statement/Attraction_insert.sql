@@ -1,0 +1,1 @@
+INSERT INTO Attraction (event_id) VALUES (:event_id);

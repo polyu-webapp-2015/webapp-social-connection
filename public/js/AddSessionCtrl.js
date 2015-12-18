@@ -30,11 +30,14 @@ app.controller("AddSessionCtrl", function ($scope, $http, $global) {
         $scope.session.dateTime = new Date(yyyy, mm, dd, HH, MM).toString();
         console.log($scope.session.dateTime);
         $http.post(serv_addr, {
-            action: "AddSession",
+            action: "CreateSession",
             data: {
                 session_id: $global.getSessionId(),
-                subject: $scope.session.title,
-                description: $scope.session.content,
+                subject: $scope.session.subject,
+                venue_id: $scope.session.venue,
+                quota: $scope.session.quota,
+                description: $scope.session.description,
+                event_time: $scope.session.dateTime,
             }
         })
         .success(function (data, status, headers, config) {

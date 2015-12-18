@@ -1,0 +1,1 @@
+INSERT INTO Reply (reply_id, post_Id, message, creator_account_id, editor_account_id, create_time, edit_time, deleted) VALUES (:reply_id, :post_Id, :message, :creator_account_id, :editor_account_id, :create_time, :edit_time, :deleted);

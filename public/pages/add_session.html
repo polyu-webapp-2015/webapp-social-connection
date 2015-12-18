@@ -13,8 +13,16 @@
         <input type="text" class="form-control" name="subject" id="subject" ng-model="session.subject" placeholder="Enter the title here..." required/>
       </div>
       <div class="form-group">
-        <label for="content">Content</label>
-        <textarea class="form-control" rows="7" name="content" id="content" ng-model="session.content" placeholder="Enter the content here..." required></textarea>
+        <label for="subject">Venue</label>
+        <input type="text" class="form-control" name="venue" id="venue" ng-model="session.venue" placeholder="Enter the venue here..." required/>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" rows="5" name="description" id="description" ng-model="session.description" placeholder="Enter the description here..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="quota"> Quota</label>
+        <input type="number" name="quota" id="quota" min="1" max="100000" ng-model="session.quota" required/>
       </div>
       <div class="form-group">
         <label for="time"> Time</label>

@@ -25,11 +25,19 @@
     	<input type="password" class="form-control" id="re_pwd" name="re_pwd" ng-model="re_password" ng-blur="checkPassword()" placeholder="Retype your password" ng-change="onChangeRePwd()" required/>
     	<span class="form-control-feedback" ng-class="{'glyphicon glyphicon-ok': re_password_valid, 'glyphicon glyphicon-remove': !re_password_valid}" ng-show="registerForm.re_pwd.$touched && registerForm.re_pwd.$dirty && registerForm.pwd.$dirty"></span>
     </div>
+    <div class="form-group">
+    <label for="first_name">First Name: </label>
+    <input type="text" class="form-control" id="first_name" name="first_name" ng-model="first_name" placeholder="Enter the user's first name here..." required/>
+    </div>
+    <div class="form-group">
+    <label for="last_name">Last Name: </label>
+    <input type="text" class="form-control" id="last_name" name="last_name" ng-model="last_name" placeholder="Enter the user's last name here..." required/>
+    </div>
 
     <div class="form-group">
       <label for="account_type">Account Type:</label>
       <select class="form-control" name="account_type" id="account_type" ng-model="account_type">
-        <option value="admin" selected>Administrator</option>
+        <option value="admin">Administrator</option>
         <option value="attendee">Attendee </option>
         <option value="speaker">Speaker</option>
       </select>

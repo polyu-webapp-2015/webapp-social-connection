@@ -4,6 +4,9 @@
  * */
 SELECT
   `User`.`account_id`,
+  `Account`.`account_type`,
+  `Account`.`email`,
+  `Account`.`phone_num`,
   `User`.`sex`,
   `User`.`first_name`,
   `User`.`last_name`,
@@ -13,6 +16,9 @@ SELECT
   `organization_type`,
   `country_name`        AS `organization_country`
 FROM `social_connection`.`User`
+  INNER JOIN `social_connection`.`Account`
+    ON `User`.`account_id` = `Account`.`account_id`
+    
   INNER JOIN `social_connection`.`Organization`
     ON `User`.`organization_id` = `Organization`.`organization_id`
 

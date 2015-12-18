@@ -28,3 +28,7 @@ require_once 'GetCityListActor.php';
 require_once 'EditOrganizationActor.php';
 require_once 'GetLatestIdListActor.php';
 require_once 'GetExhibitionActor.php';
+require_once 'CreateAttractionActor.php';
+require_once 'GetAttractionListActor.php';
+require_once 'GetTableRowListActor.php';
+require_once 'AddTableRowListActor.php';

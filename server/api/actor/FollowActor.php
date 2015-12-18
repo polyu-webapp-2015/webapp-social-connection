@@ -33,7 +33,7 @@ class FollowActor extends Actor
             Friendship_Fields::__host_id => $source_account_id,
             Friendship_Fields::__guest_id => $dest_user_id
         ];
-        //TODO
+        //TODO to test
         DatabaseHelper::table_insert(Friendship_Fields::_, $field_value_array);
         return $this->output;
     }

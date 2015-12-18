@@ -28,6 +28,7 @@ class GetProfileActor extends Actor
 
     public function handle($data)
     {
+        log_object_from_named($data, "get profile actor, data");
         $account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
         $target_account_id = $this->params[User_Fields::__account_id];
