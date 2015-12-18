@@ -5,70 +5,54 @@
 	</div>
 
 	<div class="modal-body">
-			<form class="form-horizontal" name="profileForm" role="form" ng-init="profileInit()" autocomplete="off">
+			<form  name="profileForm" role="form" ng-init="profileInit()" autocomplete="off">
 
 				<div class="form-group">
-	    		<label class="control-label col-sm-4"  for="firstName">First Name:</label>
-	    		<div class="col-sm-8">
+	    		<label  for="firstName">First Name:</label>
 	    			<input class="form-control" type="text" ng-model="firstName" id='firstName'>
-	    		</div>
 			</div>
 
 	  		<div class="form-group">
-	    		<label class="control-label col-sm-4"  for="lastName">Last Name: </label>
-	    		<div class="col-sm-8">
+	    		<label for="lastName">Last Name: </label>
 	    			<input class="form-control" type="text" ng-model="lastName" id='lastName'>
-	    		</div>
 	    	</div>
 
 	    	<div class="form-group">
-				<label class='control-label col-sm-4' for="sex">Gender:</label>
-	    		<div class="col-sm-8">
+				<label for="sex">Gender:</label>
 					<select class="form-control" id='sex' ng-model='sex'>
 						<option value="M" id='maleOption'>Male</option>
 						<option value="F" id='femaleOption'>Female</option>
 					</select>
-				</div>
 			</div>
 
 	    	<div class="form-group">
-				<label class='control-label col-sm-4' for="title">Title:</label>
-	    		<div class="col-sm-8">
+				<label for="title">Title:</label>
 					<select class="form-control" id='title' ng-model='title'>
 						<option value="Mr.">Mr.</option>
 						<option value="Ms.">Ms.</option>
 						<option value="Dr.">Dr.</option>
 						<option value="Prof.">Prof.</option>
 					</select>
-				</div>
 			</div>
 
 	  		<div class="form-group">
-	    		<label class="control-label col-sm-4"  for="userCity">User City: </label>
-	    		<div class="col-sm-8">
+	    		<label for="userCity">User City: </label>
 	    			<input class="form-control" type="text" ng-model="userCity" id='userCity'>
-	    		</div>
 	    	</div>
 
 	  		<div class="form-group">
-	    		<label class="control-label col-sm-4"  for="organizationName">Organization Name:</label>
-	    		<div class="col-sm-8">
+	    		<label for="organizationName">Organization Name:</label>
 	    			<input class="form-control" type="text" ng-model="organizationName" id='organizationName'>
-	    		</div>
 	    	</div>
 
 	  		<div class="form-group">
-	    		<label class="control-label col-sm-4"  for="organizationType">Organization Type:</label>
-	    		<div class="col-sm-8">
+	    		<label  for="organizationType">Organization Type:</label>
 	    			<input class="form-control" type="text" ng-model="organizationType" id='organizationType'>
-	    		</div>
 	    	</div>
 
 	  		<div class="form-group">
-	    		<label class="control-label col-sm-4"  for="organizationCountry">Organization Country:</label>
-	    		<div class="col-sm-8">
+	    		<label for="organizationCountry">Organization Country:</label>
 	    			<input class="form-control" type="text" ng-model="organizationCountry" id='organizationCountry'>
-	    		</div>
 	    	</div>
 		</form>
 	</div>
