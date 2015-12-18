@@ -22,6 +22,7 @@ class CreateMessageActor extends Actor
     public function handle($data)
     {
         $sender_account_id = ActorUtil::check_session_valid($data);
+        put_all_into($data,$this->params);
         $receiver_account_id = $this->params[Message_Fields::__to_account_id];
         if ($sender_account_id == $receiver_account_id)
             throw new Exception("The message receiver is the sender", ResultCodeEnum::_Logic_Error);
