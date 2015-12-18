@@ -36,15 +36,6 @@ module DataObjectManager {
     var invalidTime = nextInvalidTime();
     if (cachedTables[tableName] == null)
       cachedTables[tableName] = {};
-    /* removed duplicated */
-    //cachedTables[tableName] = cachedTables[tableName].filter(old=>!newDataObjects.some(newO=>newO.isSame(old[1])));
-    //var uniqueFilter:Producer<CachedTable,boolean> =
-    //  function (keyValue:KeyValue<string,CachedObject>):boolean {
-    //    return !newDataObjects.some(newDataObject=>newDataObject.hashCode() == keyValue[0]);
-    //  };
-    //cachedTables[tableName] = lang.DictionaryHelper.filter(cachedTables[tableName], uniqueFilter);
-    /* store new objects */
-    //newDataObjects.forEach(e=>cachedTables[tableName].push([invalidTime, e]));
     newDataObjects.forEach(e=>cachedTables[tableName][e.hashCode()] = ([invalidTime, e]));
   }
 
@@ -53,6 +44,10 @@ module DataObjectManager {
     if (cachedTables[tableName] == null)
       cachedTables[tableName] = {};
     cachedTables[tableName].some(e=> (e[0] <= invalidTime));
+  }
+
+  export function add<T extends stub.DataObject>(instance:T) {
+    updateTable(instance.tableName(), [instance]);
   }
 
   export function request<T extends stub.DataObject>(instance:T, filter:Producer<T,boolean>, consumer:Consumer<T[]>, forceUpdate:boolean = false) {
@@ -72,7 +67,7 @@ module DataObjectManager {
       /* satisfy by the local version */
       consumer(matchedList);
       /* update in background */
-       var filterFunc:Consumer<T[]> = function (list:T[]) {
+      var filterFunc:Consumer<T[]> = function (list:T[]) {
         updateTable(tableName, list);
       };
       instance.use_all_instance_list(filterFunc);

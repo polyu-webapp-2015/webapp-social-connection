@@ -29,12 +29,18 @@
   <script src="js/ProfileCtrl.js"></script>
   <script src="js/AddAttractionCtrl.js"></script>
   <script src="js/UserDetailCtrl.js"></script>
+<<<<<<< HEAD
+=======
   <script src="js/SessionDetailCtrl.js"></script>
+  <script src="js/AddDiscussionCtrl.js"></script>
+>>>>>>> origin/client
   <script src="js/AddPostCtrl.js"></script>
   <script src="js/AddDiscussBoardCtrl.js"></script>
   <script src="js/AddReplyCtrl.js"></script>
 
 
+  <!--<script src='js/ForumCtrl.js'></script>-->
+  <script src="js/DiscussBoardCtrl.js"></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
   <!-- main scripts -->
