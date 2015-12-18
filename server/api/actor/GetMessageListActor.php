@@ -78,7 +78,7 @@ class GetMessageListActor extends Actor
             foreach ($profile_array as $profile) {
                 $opposite_account_id = $profile[Account_Fields::__account_id];
                 $opposite_account_id=ltrim($opposite_account_id,'0');
-                $opposite_profile_and_message_array[$opposite_account_id] = [
+                $opposite_profile_and_message_array[] = [
                     APIFieldEnum::_profile => $profile,
                     APIFieldEnum::_element_array => $opposite_message_map[$opposite_account_id]
                 ];
