@@ -21,6 +21,12 @@ class GetProfileListActor extends Actor
         log_object_from_named($data, "get profile list actor, data");
         $account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
+
+        /* get rich profile list */
+        /* 1. get joint table info of profile */
+        /* 2. get following relationship for each profile against the requester */
+
+        /* step 1 */
         $account_id_array = $this->params[APIFieldEnum::_id_array];
         $sql = DatabaseHelper::get_prepared_statement('get_profile.sql');
         if (count($account_id_array) > 0) {
@@ -31,8 +37,16 @@ class GetProfileListActor extends Actor
             $where_statement = DatabaseHelper::where_statement_join_OR($field_value_array);
             $sql = "$sql $where_statement";
         }
-        $result = DatabaseHelper::query($sql);
-        $this->output[APIFieldEnum::_element_array] = $result;
+        $profile_array = DatabaseHelper::query($sql);
+
+        /* step 2 */
+//        $result=[];
+//        foreach($profile_array as $profile){
+//            $profile[]
+//         $result[]=$profile;
+//        }
+
+        $this->output[APIFieldEnum::_element_array] = $profile_array;
         return $this->output;
     }
 }
