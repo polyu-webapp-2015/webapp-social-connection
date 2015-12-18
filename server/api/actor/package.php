@@ -33,3 +33,4 @@ require_once 'GetAttractionListActor.php';
 require_once 'GetTableRowListActor.php';
 require_once 'AddTableRowListActor.php';
 require_once 'GetMessageListActor.php';
+require_once 'GetEventListActor.php';
