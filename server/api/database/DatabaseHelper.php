@@ -711,4 +711,23 @@ class DatabaseHelper
         self::check_connection();
         return self::$_pdo->lastInsertId($name);
     }
+
+    public static function reset_database()
+    {
+        print_object("Going to reset Database\n");
+        try {
+            $sql = file_get_contents("../../database/create.sql");
+            if($sql==false)
+                throw new Exception("Failed to load create database sql file", ResultCodeEnum::_Server_File_Missing);
+            self::query($sql);
+            print_object("The Database has been reset\n");
+        } catch (Exception $exception) {
+            print_object("Failed to reset the database\n");
+            print_object($exception);
+//            print_r("<pre>");
+//            print_r($exception);
+//            print_r("</pre>");
+            print_object("\n");
+        }
+    }
 }
