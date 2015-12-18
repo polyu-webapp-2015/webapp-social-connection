@@ -112,7 +112,6 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
           $scope.user = $global.getUser();
 
           $scope.viewConsole($global.getAccountType());
-
         }
         else $scope.openLoginModal();
       })
@@ -149,6 +148,27 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     }
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_session.html', $scope));
   };
+
+  $scope.openAddRewardModal = function () {
+      if ($global.loggedIn() === false) {
+        $scope.openLoginModal();
+        return;
+      }
+      console.log("add reward");
+      $scope.modalItem = $uibModal.open(new Modal('/pages/add_reward.html', $scope));
+    };
+
+    $scope.openViewRewardsModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        console.log("view rewards");
+        $scope.modalItem = $uibModal.open(new Modal('/pages/view_rewards_admin.html', $scope));
+    }
+
+    $scope.openAddDiscussionModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        console.log("Add Discussion");
+        $scope.modalItem = $uibModal.open(new Modal('/pages/add_discussion.html', $scope));
+      }
 
   $scope.openAddExhibitionModal = function () {
     if ($global.loggedIn() === false) {

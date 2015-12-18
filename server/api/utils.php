@@ -10,12 +10,23 @@
  * print the object recursively to response (client)
  * @param array|string $o
  */
-function print_object($o)
+function print_object($o){
+    if(empty($o))
+        echo"empmty\n";
+    else{
+        print_r("<pre>");
+        print_r($o);
+        print_r("</pre>");
+    }
+}
+function print_object_old($o)
 {
     if (empty($o)) {
         echo "empty\n";
     } elseif (is_array($o)) {
+        print_r("<pre>");
         print_r($o);
+        print_r("</pre>");
     } elseif (is_string($o)) {
         echo $o . "\n";
     } else {
