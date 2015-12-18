@@ -43,6 +43,9 @@ class GetMessageListActor extends Actor
         }
         $msg_row_array = DatabaseHelper::select_from_table(Message_Fields::_, [], $where_statement);
 
+        if (count($msg_row_array) == 0)
+            return $this->output;
+
         /* convert the message to client required format */
         /* 1. resolve opposite account id */
         /* 2. group message by opposite account id */
@@ -80,7 +83,7 @@ class GetMessageListActor extends Actor
                 $opposite_account_id = ltrim($opposite_account_id, '0');
                 $opposite_profile_and_message_array[] = [
                     APIFieldEnum::_profile => $profile,
-                    APIFieldEnum::_element_array => array_reverse($opposite_message_map[$opposite_account_id])
+                    APIFieldEnum::_element_array => $opposite_message_map[$opposite_account_id]
                 ];
                 log_object_from_named($opposite_message_map, "full map");
                 log_object_from_named($opposite_message_map[$opposite_account_id], "map value of $opposite_account_id");
