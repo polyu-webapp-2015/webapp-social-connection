@@ -45,7 +45,7 @@ class GetEventListActor extends Actor
         $sql = "$sql $where_statement";
         $result = DatabaseHelper::query($sql);
 
-        $this->output[APIFieldEnum::_element_array] = $result;
+        $this->output[APIFieldEnum::_element_array] = array_reverse($result);
         return $this->output;
     }
 }

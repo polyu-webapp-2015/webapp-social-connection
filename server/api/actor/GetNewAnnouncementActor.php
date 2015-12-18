@@ -27,7 +27,7 @@ class GetNewAnnouncementActor extends Actor
         ];
         $result1 = DatabaseHelper::execute($statement1, $param_array);
         $result2 = DatabaseHelper::execute($statement2, $param_array);
-        $this->output[APIFieldEnum::_element_array] = $result1;
+        $this->output[APIFieldEnum::_element_array] = array_reverse($result1);
         return $this->output;
     }
 }
