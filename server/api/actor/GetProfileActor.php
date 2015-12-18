@@ -8,7 +8,6 @@ class GetProfileActor extends Actor
 {
     public $name = "GetProfile";
     public $params = array(
-        APIFieldEnum::_id_array => []
     );
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
