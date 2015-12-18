@@ -259,6 +259,25 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $scope.modalItem = $uibModal.open(new Modal('/pages/user_session_list.html', $scope));
   }
 
+  $scope.openUserModal = function (account_id) {
+      $scope.elem = {}; // todo
+      $http.post(serv_addr, {
+        action: 'GetProfileList',
+        data: {
+          session_id: $global.getSessionId(),
+          id_array: [account_id],
+        }
+      })
+      .success(function (data, status, headers, config) {
+        console.log(data);
+        $scope.elem = data.element_array[0];
+        $scope.modalItem = $uibModal.open(new Modal('pages/user_detail.html', $scope));
+      })
+      .error(function (data, status, headers, config) {
+        alert("Please check your network");
+      });
+  }
+
   var session_id = sessionStorage.getItem('session_id');
   $scope.whoami(session_id);
   $scope.selectedAnchor = $("#bottom-console-anchor");
