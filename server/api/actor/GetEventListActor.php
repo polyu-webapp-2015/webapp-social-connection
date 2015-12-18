@@ -4,36 +4,37 @@
  * Created by IntelliJ IDEA.
  * User: beenotung
  */
-class GetAttractionListActor extends Actor
+class GetEventListActor extends Actor
 {
-    public $name = "GetAttractionList";
+    public $name = "GetEventList";
     public $params = [
-        APIFieldEnum::_id_array => [1, 2, 3, 4, 5]
+        APIFieldEnum::_id_array => [1, 2, 3, 4, 5],
+        Event_Fields::__event_type=>event_type_Enum::__A
     ];
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         APIFieldEnum::_element_array => [],
     ];
-    public $desc = "Get list of attraction specified by client, used when scrolling or click 'show more' to avoid downloading too many (large) attraction";
+    public $desc = "Get list of event of given event type, this is internal API";
 
     public function handle($data)
     {
         $account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
-        $message_id_array = $this->params[APIFieldEnum::_id_array];
+        $event_id_array = $this->params[APIFieldEnum::_id_array];
 
         $where_statement = "";
         {
             $field=Event_Fields::__event_type;
-            $value=event_type_Enum::__A;
+            $value=$this->params[Event_Fields::__event_type];
             $where_statement = "WHERE ( $field = $value )";
         }
 
-        $N_msg_id = count($message_id_array);
-        if ($N_msg_id > 0) {
-            $extra_where_statement = Message_Fields::_ . '.' . Message_Fields::__msg_id . "=" . $message_id_array[0];
-            for ($i = 1; $i < $N_msg_id; $i++) {
-                $extra_where_statement .= " OR " . Message_Fields::_ . '.' . Message_Fields::__msg_id . '=' . $message_id_array[$i];
+        $N_event_id = count($event_id_array);
+        if ($N_event_id > 0) {
+            $extra_where_statement = Message_Fields::_ . '.' . Message_Fields::__msg_id . "=" . $event_id_array[0];
+            for ($i = 1; $i < $N_event_id; $i++) {
+                $extra_where_statement .= " OR " . Message_Fields::_ . '.' . Message_Fields::__msg_id . '=' . $event_id_array[$i];
             }
             $where_statement = "$where_statement AND ($extra_where_statement)";
         }
@@ -110,7 +111,7 @@ class GetAttractionListActor extends Actor
             $field_value_array = [];
             foreach ($id_array as $id) {
                 $field_value_array[] = [
-                    Attraction_Fields::__event_id => $id
+                    Event_Fields::__event_id => $id
                 ];
             }
             $where_statement = DatabaseHelper::where_statement_join_OR($field_value_array);
@@ -122,4 +123,4 @@ class GetAttractionListActor extends Actor
     }
 }
 
-addAPI(new GetAttractionListActor());
+addAPI(new GetEventListActor());
