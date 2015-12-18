@@ -15,6 +15,24 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
 
   $scope.closeModal = function () {
     $scope.modalItem.close();
+    $scope.modalItem = $scope.$parent.modalItem;
+  }
+
+  $scope.follow = function () {
+    $http.post(serv_addr, {
+      session_id: $global.getSessionId(),
+    })
+    .success(function (data, status, headers, config) {
+      if (data.result_code === 'Success') {
+
+      }
+      else {
+        alert("Sorry! Something went wrong T_T");
+      }
+    })
+    .error(function (data, status, headers, config) {
+      alert('Please check your network.');
+    })
   }
 
   $scope.profileInit = function () {

@@ -20,10 +20,11 @@
 			<h2>Announcements</h2>
 			<h4>Lorem ipsum ...</h4>
 			<div class="well well-lg">
-        <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements('GetAnnouncementList')">
+        <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements_legacy('GetAnnouncementList')">
           <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/user_detail.html', elem)"> 
-          <h4 class="list-item-title"> {{ elem.first_name + ' ' + elem.last_name }} </h4>
-            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.organization_name }} </p>
+          <h4 class="list-item-title"> {{ elem.subject }} </h4>
+            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.description }} </p>
+            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.create_time }} </p>
           </button>
         </div>
       </div>
