@@ -259,6 +259,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $scope.modalItem = $uibModal.open(new Modal('/pages/user_session_list.html', $scope));
   }
 
+  $scope.openUserModal = function (account_id) {
+      $scope.elem = {}; // todo
+      $scope.modalItem = $uibModal.open(new Modal('pages/user_detail.html', $scope));
+  }
+
   var session_id = sessionStorage.getItem('session_id');
   $scope.whoami(session_id);
   $scope.selectedAnchor = $("#bottom-console-anchor");
