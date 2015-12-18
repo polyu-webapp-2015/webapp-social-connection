@@ -35,3 +35,4 @@ require_once 'GetEventListActor.php';
 require_once 'GetAttractionListActor.php';
 require_once 'GetSessionListActor.php';
 require_once 'GetExhibitionListActor.php';
+require_once 'CreateMessageActor.php';
