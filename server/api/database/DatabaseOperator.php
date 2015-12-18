@@ -89,4 +89,22 @@ class DatabaseOperator
             throw new Exception($msg, ResultCodeEnum::_Failed_To_Query_On_Database);
         }
     }
+
+    /**
+     * @param int $source_account_id
+     * @param int $dest_account_id
+     * @return boolean true if $source_account_id is following the $dest_account_id, false otherwise
+     * @remark will ignore deleted relationships
+     */
+    public static function isFollowing($source_account_id, $dest_account_id)
+    {
+        $table_name = Follow_Fields::_;
+        $follower = Follow_Fields::__follower_account_id;
+        $followed = Follow_Fields::__followed_account_id;
+        $deleted = Follow_Fields::__deleted;
+        $sql = "SELECT COUNT(*) AS result FROM $table_name WHERE $follower = $source_account_id AND $followed = $dest_account_id AND $deleted = FALSE ";
+        $result = DatabaseHelper::query($sql);
+        log_object_from_named($result, "is following result");
+        return $result[0][0] != 0;
+    }
 }

@@ -22,4 +22,6 @@ class APIFieldEnum
     const _id = "id";
     const _field_array = "field_array";
     const _message = "message";
+    const _followed = "followed";
+    const _following = "following";
 }

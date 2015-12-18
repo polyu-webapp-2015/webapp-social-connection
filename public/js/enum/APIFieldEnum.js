@@ -19,6 +19,8 @@ var APIFieldEnum = function () {
     this.id = "id";
     this.field_array = "field_array";
     this.message = "message";
+    this.followed = "followed";
+    this.following = "following";
 };
 var APIField = new APIFieldEnum();
 //# sourceMappingURL=APIFieldEnum.js.map

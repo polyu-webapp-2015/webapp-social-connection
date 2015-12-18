@@ -30,3 +30,6 @@ var _api_GetAttractionList = "GetAttractionList";
 var _api_GetSessionList = "GetSessionList";
 var _api_GetExhibitionList = "GetExhibitionList";
 var _api_CreateMessage = "CreateMessage";
+var _api_GetFollowedList = "GetFollowedList";
+var _api_GetFollowerList = "GetFollowerList";
+var _api_GetProfile = "GetProfile";
