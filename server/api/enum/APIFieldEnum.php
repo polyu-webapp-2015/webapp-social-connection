@@ -21,5 +21,7 @@ class APIFieldEnum
     const _table_name = "table_name";
     const _latest_id = "latest_id";
     const _id_array = "id_array";
+    const _id = "id";
     const _field_array = "field_array";
+    const _message = "message";
 }

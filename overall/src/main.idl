@@ -55,7 +55,9 @@ module social_connection{
     table_name,
     latest_id,
     id_array,
-    field_array
+    id,
+    field_array,
+    message
   };
   exception GeneralException{
     long resultCode;

@@ -18,7 +18,9 @@ var APIFieldEnum = function () {
     this.table_name = "table_name";
     this.latest_id = "latest_id";
     this.id_array = "id_array";
+    this.id = "id";
     this.field_array = "field_array";
+    this.message = "message";
 };
 var APIField = new APIFieldEnum();
 //# sourceMappingURL=APIFieldEnum.js.map
