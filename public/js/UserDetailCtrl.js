@@ -3,8 +3,9 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
   function checkInit() {
     var targetAccountId = $scope.$parent.target_account_id;
     if (targetAccountId != null && targetAccountId == targetAccountId * 1) {
-      $scope.id_array = [targetAccountId];
-      $scope.loadElements('GetProfileList');
+      //$scope.id_array = [targetAccountId];
+      //$scope.$parent.id_array = [targetAccountId];
+      $scope.loadElements('GetProfileList','Profile',targetAccountId);
     }
   }
 

@@ -15,7 +15,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     };
 
     $scope.openDetailModal = function (html_path, elem) {
-      console.log("opening detial");
+        console.log("opening detial");
         if (html_path == "/pages/user_detail.html") {
             $scope.target_account_id = elem;
         } else {
@@ -25,15 +25,20 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
         console.log($scope.modalItem);
         //console.log($scope);
-    } 
+    }
 
     $scope.closeModal = function () {
         console.log($scope.modalItem);
         $scope.modalItem.close();
     };
 
-    $scope.loadElements_legacy = function (action) {
+    $scope.loadElements_legacy = function (action, p1, p2) {
         console.log("loading elements");
+        if (p1)
+            if (isArray(p1))
+                $scope.id_array = p1;
+            else
+                $scope.id_array = [p1];
         console.log($scope.id_array);
         $http.post(serv_addr, {
                 'action': action,
@@ -83,7 +88,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         var stub_array = stub.match_by_tableName(stub_name);
         if (stub_array.length == 0) {
             if (isLegacy(action)) {
-                $scope.loadElements_legacy(action);
+                $scope.loadElements_legacy(action, p1, p2);
             } else {
                 var message = "this is not supported by ListCtrl (" + action + ")";
                 utils.log(message);
@@ -284,27 +289,28 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
             utils.log("dummy modal detected");
         }
     }
+
     $scope.deleteSubElement = function (elem) {
-      console.log("deleting element");
+        console.log("deleting element");
     }
 
     $scope.openCreatePostModal = function () {
         if ($global.loggedIn() === false) {
-          $scope.openLoginModal();
-          return;
+            $scope.openLoginModal();
+            return;
         }
         console.log("Add Post");
         $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_post.html', $scope));
     };
 
     $scope.closeActionModal = function () {
-      $scope.modalActionItem.close();
+        $scope.modalActionItem.close();
     }
 
     $scope.openCreateReplyModal = function () {
         if ($global.loggedIn() === false) {
-          $scope.openLoginModal();
-          return;
+            $scope.openLoginModal();
+            return;
         }
         console.log("Add Reply");
         $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_reply.html', $scope));
