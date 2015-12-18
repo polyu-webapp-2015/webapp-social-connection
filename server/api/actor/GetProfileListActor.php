@@ -18,7 +18,7 @@ class GetProfileListActor extends Actor
 
     public function handle($data)
     {
-        log_object_from_named($data, "get profile list actor, data");
+//        log_object_from_named($data, "get profile list actor, data");
         $requester_account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
 
@@ -40,15 +40,18 @@ class GetProfileListActor extends Actor
         $profile_array = DatabaseHelper::query($sql);
 
         /* if getting self profile, skip following relationship info */
-        if (count($profile_array) > 1 && $profile_array[0][Account_Fields::__account_id] != $requester_account_id) {
+        if (!(count($profile_array) == 1 && $profile_array[0][Account_Fields::__account_id] == $requester_account_id)) {
             /* step 2 */
             foreach ($profile_array as &$profile) {
                 $opposite_account_id = $profile[Account_Fields::__account_id];
-                $followed = DatabaseOperator::isFollowing($requester_account_id, $opposite_account_id) ? 1 : 0;
-                $following = DatabaseOperator::isFollowing($opposite_account_id, $requester_account_id) ? 1 : 0;
-                $profile[APIFieldEnum::_followed]=$followed;
-                $profile[APIFieldEnum::_following]=$following;
+                $followed = DatabaseOperator::isFollowing($requester_account_id, $opposite_account_id) ;
+                $following = DatabaseOperator::isFollowing($opposite_account_id, $requester_account_id);
+                $profile[APIFieldEnum::_followed] = $followed;
+                $profile[APIFieldEnum::_following] = $following;
             }
+        } else {
+            log_object_from_named("skipped", "get profile list (follow)");
+            log_object_from_named(count($profile_array), "profile length");
         }
 
         $this->output[APIFieldEnum::_element_array] = $profile_array;

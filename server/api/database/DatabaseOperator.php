@@ -105,6 +105,6 @@ class DatabaseOperator
         $sql = "SELECT COUNT(*) AS result FROM $table_name WHERE $follower = $source_account_id AND $followed = $dest_account_id AND $deleted = FALSE ";
         $result = DatabaseHelper::query($sql);
         log_object_from_named($result, "is following result");
-        return $result[0][0] != 0;
+        return $result[0]['result'] != 0;
     }
 }
