@@ -8,6 +8,15 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
     }
   }
 
+  $scope.openSendMessageModal = function () {
+    console.log($scope.elem);
+    $scope.modalItem = $uibModal.open(new Modal('/pages/edit_message.html', $scope));
+  }
+
+  $scope.closeModal = function () {
+    $scope.modalItem.close();
+  }
+
   $scope.profileInit = function () {
 
     // ask for data and put data into table

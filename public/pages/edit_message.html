@@ -1,0 +1,21 @@
+<div ng-controller="SendMessageCtrl">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+		<h4 class="modal-title">To {{ elem.first_name + ' ' + elem.last_name }}</h4>
+	</div>
+  <form id="addReplyForm" name="add" role="form" ng-submit="submit()" autocomplete="off">
+	  <div class="modal-body">
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea class="form-control" rows="5" name="content" id="content" ng-model="content" placeholder="Enter the content here..." required></textarea>
+      </div>
+    </div>			<!-- /modal-body -->
+  </form>
+
+	<div class="modal-footer">
+		<div>
+			<a class='col-sm-2 btn btn-sm my-btn my-btn-round' ng-click='submit()'>Send</a>
+			<a class="col-sm-2 btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+		</div>
+	</div>
+</div>
