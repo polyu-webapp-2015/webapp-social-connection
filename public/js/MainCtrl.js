@@ -56,12 +56,14 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
 
     $scope.openAddRewardModal = function () {
         if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
-        if ($global.getUser().isAnonymous === false) {
-            openLoginModal();
-            return;
-        }
         console.log("add reward");
         $scope.modalItem = $uibModal.open(new Modal('/pages/add_reward.html', $scope));
+    }
+
+    $scope.openViewRewardsModal = function () {
+        if ($global.loggedIn() === false) {$scope.openLoginModal(); return;}
+        console.log("view rewards");
+        $scope.modalItem = $uibModal.open(new Modal('/pages/view_rewards_admin.html', $scope));
     }
 
     $scope.openAddDiscussionModal = function () {
