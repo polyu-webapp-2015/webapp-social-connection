@@ -14,7 +14,7 @@
     <!--<tr>-->
     <!--<td>-->
     <a class="btn btn-xs btn-default"
-       ng-click="openDetailModal('/pages/user_detail.html',$parent.elem.creator_account_id)">
+       ng-click="openUserModal($parent.elem.creator_account_id)">
       {{ myExtra.creator }}</a>    <br>
     <br>
     <!--</td>-->
@@ -28,14 +28,14 @@
     <!--</table>-->
   </div>
   <div class="well well-lg">
-    <span ng-bind="text_before_list"></span>
+    <span ng-bind"text_before_list"></span>
     <div class="list-group"
          ng-init="loadElements('Reply')">
 
       <ul class="list-group-item" ng-repeat="elem in elems" style="list-style-type: none">
         <!--<button class="list-item-remarks"-->
         <li style="margin-top: 0px; font-size: 12px"ng-init="loadExtraSubElements('Reply',elem)">
-          <a class="btn btn-sm btn-default" ng-click="openDetailModal('/pages/user_detail.html', elem.creator_account_id)">{{ elem.replierName }}</a> 
+          <a class="btn btn-sm btn-default" ng-click="openUserModal(elem.creator_account_id)">{{ elem.replierName }}</a> 
         <button class="close" style="color: #ff0000;" ng-click="deleteSubElement(elem)">&times;</button>
         </li>
         <h4 class="list-item-title">

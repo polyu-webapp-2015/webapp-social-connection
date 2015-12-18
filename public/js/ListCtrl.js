@@ -17,11 +17,13 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     $scope.openDetailModal = function (html_path, elem) {
         console.log("opening detial");
         if (html_path == "/pages/user_detail.html") {
+            $scope.elem = elem; 
             $scope.target_account_id = elem;
         } else {
             $scope.elem = elem;
             $scope.selectedItem = $scope.dataObjects[$scope.elems.indexOf(elem)];
         }
+        console.log($scope.elem);
         $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
         console.log($scope.modalItem);
         //console.log($scope);
