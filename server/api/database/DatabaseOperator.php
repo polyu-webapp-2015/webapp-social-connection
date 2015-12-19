@@ -104,7 +104,6 @@ class DatabaseOperator
         $deleted = Follow_Fields::__deleted;
         $sql = "SELECT COUNT(*) AS result FROM $table_name WHERE $follower = $source_account_id AND $followed = $dest_account_id AND $deleted = FALSE ";
         $result = DatabaseHelper::query($sql);
-        log_object_from_named($result, "is following result");
         return $result[0]['result'] != 0;
     }
 
@@ -115,7 +114,6 @@ class DatabaseOperator
         $account_id_field = Event_Attendee_Fields::__account_id;
         $sql = "SELECT COUNT(*) AS result FROM $table_name WHERE $event_id_field = $event_id AND $account_id_field = $account_id";
         $result = DatabaseHelper::query($sql);
-        log_object_from_named($result, "is following result");
         return $result[0]['result'] != 0;
     }
 }
