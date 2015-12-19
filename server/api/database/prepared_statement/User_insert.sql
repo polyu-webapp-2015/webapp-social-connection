@@ -1,1 +1,1 @@
-INSERT INTO User (account_id, sex, first_name, last_name, organization_id, title_id, city_id, last_announcement_datetime) VALUES (:account_id, :sex, :first_name, :last_name, :organization_id, :title_id, :city_id, :last_announcement_datetime);
+INSERT INTO User (account_id, sex, first_name, last_name, organization_id, title_id, city_id, last_announcement_datetime, organization, city, country, title) VALUES (:account_id, :sex, :first_name, :last_name, :organization_id, :title_id, :city_id, :last_announcement_datetime, :organization, :city, :country, :title);
