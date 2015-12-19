@@ -2,11 +2,11 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     $scope.id_array = [];
     $scope.field_array = [];
     /*selected elem in elems*/
-    $scope.elem = null;
     $scope.elems = []; // get output from server
     $scope.dataObjects = [];
     $scope.selectedItem = null;
     $scope.myExtra = {};
+    $scope.isEmpty = false;
     console.log($scope);
 
     $scope.rowClass = function (elem, elems) {
@@ -58,6 +58,9 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
                     console.log(data);
                 }
                 console.log($scope.elems);
+                if ($scope.elems.length === 0) {
+                    $scope.isEmpty = true;
+                }
             })
             .error(function (data, status, headers, config) {
                 alert('internal error');
@@ -316,6 +319,13 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         }
         console.log("Add Reply");
         $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_reply.html', $scope));
+    }
+
+    $scope.logii = function (elem) {
+        console.log("logii in ListCtrl");
+        console.log($scope.user);
+        console.log('hahah');
+        console.log(elem);
     }
 
 });
