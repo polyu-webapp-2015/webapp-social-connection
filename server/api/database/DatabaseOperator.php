@@ -116,4 +116,25 @@ class DatabaseOperator
         $result = DatabaseHelper::query($sql);
         return $result[0]['result'] != 0;
     }
+
+    /**
+     * @param $account_id
+     * @param $event_id
+     * @return string|bool if the join time is found, return the join time
+     *   return false if the user has not join the event
+     * @throws Exception
+     */
+    public static function getUserJoinEventTime($account_id, $event_id)
+    {
+        $table_name = Event_Attendee_Fields::_;
+        $event_id_field = Event_Attendee_Fields::__event_id;
+        $account_id_field = Event_Attendee_Fields::__account_id;
+        $select_field = Event_Fields::__create_time;
+        $sql = "SELECT $select_field FROM $table_name WHERE $event_id_field = $event_id AND $account_id_field = $account_id";
+        $result = DatabaseHelper::query($sql);
+        if (count($result) > 0)
+            return $result[0][$select_field];
+        else
+            return false;
+    }
 }

@@ -24,4 +24,6 @@ class APIFieldEnum
     const _message = "message";
     const _followed = "followed";
     const _following = "following";
+    const _joined = "joined";
+    const _join_time = "join_time";
 }

@@ -39,9 +39,7 @@ function handle_upload_file()
 
         $hash = md5_file($file["tmp_name"]);
         $ext = end(explode('.', $file["name"]));
-        if ($ext == false)
-            $ext = '';
-        $filename = "$hash.$ext";
+        $filename = $ext == false ? $hash : "$hash.$ext";
 
         move_uploaded_file($file["tmp_name"], "$directory/$filename");
 

@@ -23,15 +23,20 @@ class GetEventListActor extends Actor
         put_all_into($data, $this->params);
         $event_id_array = $this->params[APIFieldEnum::_id_array];
 
+        /* get rich event list */
+        /* 1. get event list with joined venue and floor */
+        /* 2. add flag to indicate if the requester has join the event */
+
+        /* step 1 */
+
         $sql = DatabaseHelper::get_prepared_statement('get_event.sql');
         $where_statement = "";
         {
             $field = Event_Fields::__event_type;
             $value = $this->params[Event_Fields::__event_type];
-            $value=DatabaseHelper::quote($value);
+            $value = DatabaseHelper::quote($value);
             $where_statement = "WHERE ( $field = $value )";
         }
-
         $N_event_id = count($event_id_array);
         if ($N_event_id > 0) {
             $field = Event_Fields::__event_id;
@@ -41,11 +46,18 @@ class GetEventListActor extends Actor
             }
             $where_statement = "$where_statement AND ($extra_where_statement)";
         }
-
         $sql = "$sql $where_statement";
-        $result = DatabaseHelper::query($sql);
+        $event_array = DatabaseHelper::query($sql);
 
-        $this->output[APIFieldEnum::_element_array] = array_reverse($result);
+        /* step 2*/
+        foreach ($event_array as &$event) {
+            $event_id = $event[Event_Fields::__event_id];
+            $join_time = DatabaseOperator::getUserJoinEventTime($account_id, $event_id);
+            $event[APIFieldEnum::_joined] = $join_time != false;
+            $event[APIFieldEnum::_join_time] = $join_time;
+        }
+
+        $this->output[APIFieldEnum::_element_array] = array_reverse($event_array);
         return $this->output;
     }
 }
