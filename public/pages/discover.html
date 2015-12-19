@@ -3,7 +3,15 @@
     <div class="col-sm-8">
       <h2>Exhibitions</h2>
       <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
+      <div class="well well-lg">
+        <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements_legacy('GetExhibitionList')">
+          <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/session_detail.html', elem)"> 
+          <h4 class="list-item-title"> {{ elem.subject }} </h4>
+            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.description }} </p>
+            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.create_time }} </p>
+          </button>
+        </div>
+      </div>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-picture logo"></span>

@@ -98,6 +98,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
           $global.setSessionId(session_id);
           $global.setUserAttr('isAnonymous', false);
           $scope.user = $global.getUser();
+          console.log($scope.user);
 
           $scope.viewConsole($global.getAccountType());
         }
@@ -204,6 +205,20 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $("#content").scrollTop($("#content")[0].scrollHeight);
   };
 
+  $scope.viewDiscover = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+    $.get("/pages/discover.html", {}, function (data, status, headers, config) {
+      $("#content").html($compile(data)($scope));
+    });
+    $scope.selectedAnchor.removeClass("selected");
+    $scope.selectedAnchor = $("#bottom-console-anchor");
+    $scope.selectedAnchor.addClass("selected");
+    $("#content").scrollTop($("#content")[0].scrollHeight);
+  };
+
   $scope.viewForum = function () {
     if ($global.loggedIn() === false) {
       $scope.openLoginModal();
@@ -283,7 +298,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       $scope.openLoginModal();
       return;
     }
-    
+    $scope.modalItem = $uibModal.open(new Modal('pages/search.html', $scope));
   }
 
   $scope.showFollowed = function () {
