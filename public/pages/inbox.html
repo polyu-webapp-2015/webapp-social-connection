@@ -1,20 +1,22 @@
 <div class="modal-header">
-  <!--<h4 class="modal-title" ng-bind="modal_title"></h4>-->
-  <a class="btn btn-sm my-btn my-btn-round" ng-click="showFollowed()">My Followed Friends</a>
-  <a class="btn btn-sm my-btn my-btn-round" style="float: right" ng-click="showFollower()">Who is Following Me</a>
+  <h4 class="modal-title">Inbox</h4>
 </div>
-<div ng-controller="ListCtrl">
-  <div class="well well-lg">
-    <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements_legacy('GetMessageList')">
-    <div class="alert alert-info" ng-show="isEmpty">
-      There is no message regarding to you.
+<div class="modal-body">
+    <div class="alert alert-info" ng-show="isempty">
+      there is no message regarding to you.
     </div> 
-    <button class="list-group-item" ng-repeat="elem in elems" ng-click="openDetailModal('/pages/user_messages.html', elem)"> 
-    <h4 class="list-item-title"> {{ elem.profile.first_name + ' ' + elem.profile.last_name }} </h4>
-      <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.element_array[elem.element_array.length-1].msg_content }} </p>
-    </button>
+  <div ng-controller="ListCtrl">
+    <a class="btn btn-sm my-btn my-btn-round" ng-click="showFollowed()">My Followed Friends</a>
+    <a class="btn btn-sm my-btn my-btn-round" style="float: right" ng-click="showFollower()">Who is Following Me</a>
+    <div class="well well-lg" style="margin-top: 10px">
+      <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements_legacy('GetMessageList')">
+        <button class="list-group-item" ng-repeat="elem in elems" ng-click="openDetailModal('/pages/user_messages.html', elem)"> 
+        <h4 class="list-item-title"> {{ elem.profile.first_name + ' ' + elem.profile.last_name }} </h4>
+          <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.element_array[elem.element_array.length-1].msg_content }} </p>
+        </button>
+      </div>
+    </div>
   </div>
-</div>
 </div>
 <div class="modal-footer">
 </div>

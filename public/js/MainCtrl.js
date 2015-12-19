@@ -181,11 +181,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       $scope.selectedAnchor.addClass("selected");
     }
     else {
-      $.get("/pages/discover.html", {}, function (data, status, headers, config) {
+      $.get("/pages/sessions.html", {}, function (data, status, headers, config) {
         $("#content").html($compile(data)($scope));
       })
       $scope.selectedAnchor.removeClass("selected");
-      $scope.selectedAnchor = $("#bottom-console-anchor");
+      $scope.selectedAnchor = $("#bottom-sessions-anchor");
       $scope.selectedAnchor.addClass("selected");
     }
   };
@@ -278,13 +278,29 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       });
   }
 
-  $scope.showFollowed = function (account_id) {
+  $scope.openSearchModal = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+    
+  }
+
+  $scope.showFollowed = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
 
     $scope.modalItem = $uibModal.open(new Modal('pages/followed_list.html', $scope));
 
   }
-  
-  $scope.showFollower = function (account_id) {
+
+  $scope.showFollower = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
 
     $scope.modalItem = $uibModal.open(new Modal('pages/follower_list.html', $scope));
 
