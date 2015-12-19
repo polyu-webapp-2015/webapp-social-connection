@@ -27,4 +27,6 @@ class APIFieldEnum
     const _joined = "joined";
     const _join_time = "join_time";
     const _user_count = "user_count";
+    const _search_text = "search_text";
+    const _name = "name";
 }

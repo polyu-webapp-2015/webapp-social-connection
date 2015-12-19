@@ -62,7 +62,9 @@ module social_connection{
     following,
     joined,
     join_time,
-    user_count
+    user_count,
+    search_text,
+    name
   };
   exception GeneralException{
     long resultCode;

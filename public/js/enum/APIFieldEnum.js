@@ -24,6 +24,8 @@ var APIFieldEnum = function () {
     this.joined = "joined";
     this.join_time = "join_time";
     this.user_count = "user_count";
+    this.search_text = "search_text";
+    this.name = "name";
 };
 var APIField = new APIFieldEnum();
 //# sourceMappingURL=APIFieldEnum.js.map

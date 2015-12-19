@@ -38,4 +38,5 @@ var _api_JoinEvent = "JoinEvent";
 var _api_UnJoinEvent = "UnJoinEvent";
 var _api_GetProfileListByEvent = "GetProfileListByEvent";
 var _api_GetEventListByAccountId = "GetEventListByAccountId";
+var _api_SearchProfileList = "SearchProfileList";
 //# sourceMappingURL=api_list.js.map

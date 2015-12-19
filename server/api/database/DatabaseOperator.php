@@ -98,6 +98,8 @@ class DatabaseOperator
      */
     public static function isFollowing($source_account_id, $dest_account_id)
     {
+        if ($source_account_id == $dest_account_id)
+            return false;
         $table_name = Follow_Fields::_;
         $follower = Follow_Fields::__follower_account_id;
         $followed = Follow_Fields::__followed_account_id;
