@@ -1,4 +1,3 @@
-
 <div ng-controller="AddRewardCtrl">
   <!-- the scope of "AddRewardsCtrl" should be a child of the scope of "MainCtrl" -->
   <div class="modal-header">
@@ -9,12 +8,15 @@
     <form id="addRewardForm" name="addRewardForm" role="form" ng-submit="submit()" autocomplete="off">
     <div class="modal-body">
       <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" id="username" ng-model="reward.username" placeholder="Enter email or phone"/>
+        <label for="rewardType">Type</label>
+        <select class="form-control" id='rewardType' ng-model='reward.rewardType'>
+          <option value="coupon">Coupon</option>
+          <option value="cash">Cash</option>
+        </select>
       </div>
       <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" name="title" id="title" ng-model="rewards.title" placeholder="Enter the title here..."/>
+        <label for="description">Description</label>
+        <input type="text" class="form-control" name="description" id="description" ng-model="rewards.description" placeholder="Enter the description here..."/>
       </div>
       <div class="form-group">
         <label for="amount">Amount</label>
