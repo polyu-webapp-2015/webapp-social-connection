@@ -40,3 +40,4 @@ require_once 'GetFollowerListActor.php';
 require_once 'GetProfileActor.php';
 require_once 'UnFollowActor.php';
 require_once 'JoinEventActor.php';
+require_once 'UnJoinEventActor.php';
