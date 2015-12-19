@@ -1,5 +1,5 @@
 <?php
-require('models.php');
+require('models.php.bk');
 
 User::createTable();
 Message::createTable();
