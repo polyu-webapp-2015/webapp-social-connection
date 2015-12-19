@@ -63,6 +63,10 @@
 	color: #404040;
 }
 
+.modal-title {
+	color: #575757;
+}
+
 .modal-footer {
 	background-color: #fbfbfb;
 	border-top-left-radius: 4px;
@@ -202,7 +206,21 @@ textarea {
 }
 
 .sent-out-msg {
-	background-color: #eeeeee;
+	background-color: #fafafa;
+	text-align: right;
+}
+
+p.create_time {
+	color: #777777;
+	font-size: 12px;
+}
+
+p.description {
+	color: #606060;
+}
+
+.user-name-title {
+	color: #3399d6; 
 }
 /*.span{*/
 	/*overflow: visible;*/

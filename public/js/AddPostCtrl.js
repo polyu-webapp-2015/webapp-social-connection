@@ -30,7 +30,6 @@ app.controller('AddPostCtrl', function ($scope, $http, $global, $uibModal) {
         var consumer = function (id_array) {
             alert("The new Post is created");
             $scope.closeActionModal();
-            $scope.closeModal();
         };
         post.create_rows_on_server([post], consumer);
     };
