@@ -3,11 +3,16 @@
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
 		<h4 class="modal-title">To {{ elem.first_name + ' ' + elem.last_name }}</h4>
 	</div>
-  <form id="addReplyForm" name="add" role="form" ng-submit="submit()" autocomplete="off">
+  <form id="sendMessageForm" name="add" role="form" ng-submit="submit()" autocomplete="off">
 	  <div class="modal-body">
       <div class="form-group">
-        <label for="content">Content</label>
-        <textarea class="form-control" rows="5" name="content" id="content" ng-model="content" placeholder="Enter the content here..." required></textarea>
+      	<div class="alert alert-danger" ng-show="showAlert" role="alert">
+				  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				  <span class="sr-only">Error:</span>
+				  You can't send a empty message.
+				</div>
+        <label for="content">Message</label>
+        <textarea class="form-control" rows="5" name="content" id="content" ng-model="msg.content" placeholder="Enter the content here..." required></textarea>
       </div>
     </div>			<!-- /modal-body -->
   </form>

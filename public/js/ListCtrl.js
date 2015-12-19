@@ -25,16 +25,50 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         }
         console.log($scope.elem);
         $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
-        console.log($scope.modalItem);
         //console.log($scope);
     }
 
     $scope.closeModal = function () {
         console.log($scope.modalItem);
         $scope.modalItem.close();
+        $scope.modalItem = $scope.$parent.modalItem;
     };
 
-    $scope.loadElements_legacy = function (action, p1, p2) {
+    $scope.loadElements_legacy = function (action, args) {
+        console.log("loading elements");
+        console.log($scope.id_array);
+        var req = {
+                action: action,
+                data: {
+                    session_id: $global.getSessionId(),
+                    id_array: $scope.id_array,
+                    field_array: $scope.field_array
+                }
+        };
+        for (var key in args) {
+            req.data[key] = args[key];
+        }
+        req.data = JSON.stringify(req.data);
+
+        $http.post(serv_addr, req)
+        .success(function (data, status, headers, config) {
+            if (data.result_code === "Success")
+                $scope.elems = data.element_array;
+            else {
+                alert('something wrong happens');
+                console.log(data);
+            }
+            console.log($scope.elems);
+            if ($scope.elems.length === 0) {
+                $scope.isEmpty = true;
+            }
+        })
+        .error(function (data, status, headers, config) {
+            alert('internal error');
+        })
+    };
+
+    $scope.loadElements_legacy1 = function (action, p1, p2) {
         console.log("loading elements");
         if (p1)
             if (isArray(p1))
@@ -93,7 +127,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         var stub_array = stub.match_by_tableName(stub_name);
         if (stub_array.length == 0) {
             if (isLegacy(action)) {
-                $scope.loadElements_legacy(action, p1, p2);
+                $scope.loadElements_legacy1(action, p1, p2);
             } else {
                 var message = "this is not supported by ListCtrl (" + action + ")";
                 utils.log(message);
@@ -300,13 +334,15 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     }
 
     $scope.openCreatePostModal = function () {
+    };
+
+    $scope.openActionModal = function (html_path) {
         if ($global.loggedIn() === false) {
             $scope.openLoginModal();
             return;
         }
-        console.log("Add Post");
-        $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_post.html', $scope));
-    };
+        $scope.modalActionItem = $uibModal.open(new Modal(html_path, $scope));
+    }
 
     $scope.closeActionModal = function () {
         $scope.modalActionItem.close();

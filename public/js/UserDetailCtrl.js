@@ -1,5 +1,7 @@
 app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
 
+  $scope.followLock = false;
+
   function checkInit() {
     var targetAccountId = $scope.$parent.target_account_id;
     if (targetAccountId != null && targetAccountId == targetAccountId * 1) {
@@ -20,12 +22,18 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
   }
 
   $scope.follow = function () {
+    $scope.followLock = true;
     $http.post(serv_addr, {
-      session_id: $global.getSessionId(),
+      action: 'Follow',
+      data: {
+        session_id: $global.getSessionId(),
+        account_id: $scope.elem.account_id
+      }
     })
     .success(function (data, status, headers, config) {
       if (data.result_code === 'Success') {
-
+        $scope.elem.followed = true;
+        $scope.followLock = false;
       }
       else {
         alert("Sorry! Something went wrong T_T");
@@ -34,6 +42,39 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
     .error(function (data, status, headers, config) {
       alert('Please check your network.');
     })
+  }
+
+  $scope.unfollow = function () {
+    $scope.followLock = true;
+    $http.post(serv_addr, {
+      action: 'Unfollow',
+      data: {
+        session_id: $global.getSessionId(),
+        account_id: $scope.elem.account_id
+      }
+    })
+    .success(function (data, status, headers, config) {
+      if (data.result_code === 'Success') {
+        $scope.elem.followed = false;
+        $scope.followLock = false;
+      }
+      else {
+        alert("Sorry! Something went wrong T_T");
+      }
+    })
+    .error(function (data, status, headers, config) {
+      alert('Please check your network.');
+    })
+  }
+
+  $scope.followOrUnfollow = function () {
+    if ($scope.followLock) return;
+    if ($scope.elem.followed) {
+      $scope.unfollow();
+    }
+    else {
+      $scope.follow();
+    }
   }
 
   $scope.profileInit = function () {
