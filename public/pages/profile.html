@@ -1,25 +1,25 @@
 <div ng-controller="ProfileCtrl">
 	<!-- the scope of "ProfileCtrl" should be a child of the scope of "MainCtrl" -->
 	<div class="modal-header">
-  		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
 			<!-- method "closeModal()" inheritated from its parent scope -->
 		<h4 class="modal-title">Profile</h4>
 	</div>
-	<form  name="profileForm" role="form" ng-init="profileInit()" autocomplete="off">
-	<div class="modal-body">
+	<form  name="profileForm" role="form" ng-init="profileInit()" method="post" enctype="multipart/form-data" autocomplete="off">
+		<div class="modal-body">
 				<div class="form-group">
-	    		<label  for="firstName">First Name:</label>
-	    			<input class="form-control" type="text" ng-model="firstName" id='firstName'>
-			</div>
+	    		<label for="firstname">First Name:</label>
+	    			<input class="form-control" name="firstname" type="text" ng-model="firstname" id='firstname'>
+				</div>
 
 	  		<div class="form-group">
-	    		<label for="lastName">Last Name: </label>
-	    			<input class="form-control" type="text" ng-model="lastName" id='lastName'>
+	    		<label for="lastname">Last Name: </label>
+	    			<input class="form-control" type="text" ng-model="lastname" id='lastname'>
 	    	</div>
 
 	    	<div class="form-group">
 				<label for="sex">Gender:</label>
-					<select class="form-control" id='sex' ng-model='sex'>
+					<select class="form-control" id='sex' name="sex" ng-model='sex'>
 						<option value="M" id='maleOption'>Male</option>
 						<option value="F" id='femaleOption'>Female</option>
 					</select>
@@ -27,7 +27,7 @@
 
 	    	<div class="form-group">
 				<label for="title">Title:</label>
-					<select class="form-control" id='title' ng-model='title'>
+					<select class="form-control" id='title' name="title" ng-model='title'>
 						<option value="Mr.">Mr.</option>
 						<option value="Ms.">Ms.</option>
 						<option value="Dr.">Dr.</option>
@@ -36,29 +36,28 @@
 			</div>
 
 	  		<div class="form-group">
-	    		<label for="userCity">User City: </label>
-	    			<input class="form-control" type="text" ng-model="userCity" id='userCity'>
+	    		<label for="city">City: </label>
+	    			<input class="form-control" type="text" name="city" ng-model="city" id='city'>
 	    	</div>
 
 	  		<div class="form-group">
-	    		<label for="organizationName">Organization Name:</label>
-	    			<input class="form-control" type="text" ng-model="organizationName" id='organizationName'>
+	    		<label for="country">Country:</label>
+	    			<input class="form-control" type="text" name="country" ng-model="country" id='country'>
 	    	</div>
 
 	  		<div class="form-group">
-	    		<label  for="organizationType">Organization Type:</label>
-	    			<input class="form-control" type="text" ng-model="organizationType" id='organizationType'>
+	    		<label for="organization">Organization:</label>
+	    			<input class="form-control" type="text" name="organization" ng-model="organization" id='organization'>
 	    	</div>
+				<div class="form-group">
+					<label for="file">Avatar: </label>
+					<input type="file" name="file" id='uploadButton' ng-click='profileUpdate()'>
+				</div>
 
-	  		<div class="form-group">
-	    		<label for="organizationCountry">Organization Country:</label>
-	    			<input class="form-control" type="text" ng-model="organizationCountry" id='organizationCountry'>
-	    	</div>
-			</div>			<!-- /modal-body -->
+		</div>			<!-- /modal-body -->
 	<div class="modal-footer">
 		<div>
-			<a id='updateButton' class='col-sm-2 btn btn-sm my-btn my-btn-round' ng-click='profileUpdate()'>Update</a>
-			<a id='saveButton' class='col-sm-2 btn btn-sm my-btn-round btn-success' ng-click='profileSave()'>Save</a>
+			<a id='saveButton' name="submit" onclick="submit()" class='col-sm-2 btn btn-sm my-btn-round btn-success' value="submit">submit</a>
 			<a class="col-sm-2 btn btn-sm btn-default" ng-click="closeModal()">Close</a>
 		</div>
 	</div>

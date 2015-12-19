@@ -278,6 +278,18 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       });
   }
 
+  $scope.showFollowed = function (account_id) {
+
+    $scope.modalItem = $uibModal.open(new Modal('pages/followed_list.html', $scope));
+
+  }
+  
+  $scope.showFollower = function (account_id) {
+
+    $scope.modalItem = $uibModal.open(new Modal('pages/follower_list.html', $scope));
+
+  }
+
   var session_id = sessionStorage.getItem('session_id');
   $scope.whoami(session_id);
   $scope.selectedAnchor = $("#bottom-console-anchor");

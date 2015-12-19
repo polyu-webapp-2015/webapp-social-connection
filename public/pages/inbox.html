@@ -1,12 +1,13 @@
 <div class="modal-header">
   <!--<h4 class="modal-title" ng-bind="modal_title"></h4>-->
-  <h4 class="modal-title">{{$parent.elem.subject}}</h4>
+  <a class="btn btn-sm my-btn my-btn-round" ng-click="showFollowed()">My Followed Friends</a>
+  <a class="btn btn-sm my-btn my-btn-round" style="float: right" ng-click="showFollower()">Who is Following Me</a>
 </div>
 <div ng-controller="ListCtrl">
   <div class="well well-lg">
     <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements_legacy('GetMessageList')">
     <div class="alert alert-info" ng-show="isEmpty">
-      There is no message regarding to you yet.
+      There is no message regarding to you.
     </div> 
     <button class="list-group-item" ng-repeat="elem in elems" ng-click="openDetailModal('/pages/user_messages.html', elem)"> 
     <h4 class="list-item-title"> {{ elem.profile.first_name + ' ' + elem.profile.last_name }} </h4>
