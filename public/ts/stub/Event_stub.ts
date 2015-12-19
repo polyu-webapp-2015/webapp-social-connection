@@ -51,6 +51,10 @@ module stub {
       return "quota";
     }
 
+    protected static __venue():string {
+      return "venue";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "Event";
@@ -75,6 +79,7 @@ module stub {
       list.push("subject");
       list.push("description");
       list.push("quota");
+      list.push("venue");
       return list;
     }
     
@@ -124,6 +129,10 @@ module stub {
         instance.quota = rawObject.quota;
       else
         throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('venue'))
+        instance.venue = rawObject.venue;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
@@ -140,6 +149,7 @@ module stub {
       rawObject[Event_stub.__subject()] = instance.subject;
       rawObject[Event_stub.__description()] = instance.description;
       rawObject[Event_stub.__quota()] = instance.quota;
+      rawObject[Event_stub.__venue()] = instance.venue;
       return rawObject;
     }
 
@@ -155,6 +165,7 @@ module stub {
     private subject:string;
     private description:string;
     private quota:number;
+    private venue:string;
 
     /* getter and setter */
     public get_event_id():number {
@@ -284,6 +295,18 @@ module stub {
     public set_quota(newValue:number) {
       if (this.isEditSupport()) {
         this.quota = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_venue():string {
+      return this.venue ;
+    }
+
+    public set_venue(newValue:string) {
+      if (this.isEditSupport()) {
+        this.venue = newValue;
       } else {
         throw new DataObjectEditError(this);
       }

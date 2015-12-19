@@ -7,8 +7,12 @@ module stub {
   export class Friendship_Tag_stub extends stub.DataObject {
 
     /* key */
-    protected static __friendship_id():string {
-      return "friendship_id";
+    protected static __friendship_id1():string {
+      return "friendship_id1";
+    }
+
+    protected static __friendship_id2():string {
+      return "friendship_id2";
     }
 
     protected static __tag_id():string {
@@ -22,22 +26,27 @@ module stub {
     
     uniqueKeyList():string[] {
       var list:string[] = [];
-      list.push("friendship_id");
-      list.push("tag_id");
+      list.push("friendship_id1");
+      list.push("friendship_id2");
       return list;
     }
     
     allKeyList():string[] {
       var list:string[] = [];
-      list.push("friendship_id");
+      list.push("friendship_id1");
+      list.push("friendship_id2");
       list.push("tag_id");
       return list;
     }
     
     parseObject(rawObject:any):Friendship_Tag_stub {
       var instance = new Friendship_Tag_stub();
-      if(rawObject.hasOwnProperty('friendship_id'))
-        instance.friendship_id = rawObject.friendship_id;
+      if(rawObject.hasOwnProperty('friendship_id1'))
+        instance.friendship_id1 = rawObject.friendship_id1;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('friendship_id2'))
+        instance.friendship_id2 = rawObject.friendship_id2;
       else
         throw new stub.DataObjectParseError(this);
       if(rawObject.hasOwnProperty('tag_id'))
@@ -49,23 +58,37 @@ module stub {
     
     toObject(instance:Friendship_Tag_stub=this):any {
       var rawObject = {};
-      rawObject[Friendship_Tag_stub.__friendship_id()] = instance.friendship_id;
+      rawObject[Friendship_Tag_stub.__friendship_id1()] = instance.friendship_id1;
+      rawObject[Friendship_Tag_stub.__friendship_id2()] = instance.friendship_id2;
       rawObject[Friendship_Tag_stub.__tag_id()] = instance.tag_id;
       return rawObject;
     }
 
     /* variable */
-    private friendship_id:number;
+    private friendship_id1:number;
+    private friendship_id2:number;
     private tag_id:number;
 
     /* getter and setter */
-    public get_friendship_id():number {
-      return this.friendship_id * 1;
+    public get_friendship_id1():number {
+      return this.friendship_id1 * 1;
     }
 
-    public set_friendship_id(newValue:number) {
+    public set_friendship_id1(newValue:number) {
       if (this.isEditSupport()) {
-        this.friendship_id = newValue;
+        this.friendship_id1 = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_friendship_id2():number {
+      return this.friendship_id2 * 1;
+    }
+
+    public set_friendship_id2(newValue:number) {
+      if (this.isEditSupport()) {
+        this.friendship_id2 = newValue;
       } else {
         throw new DataObjectEditError(this);
       }

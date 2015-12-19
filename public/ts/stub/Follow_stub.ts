@@ -43,8 +43,6 @@ module stub {
     uniqueKeyList():string[] {
       var list:string[] = [];
       list.push("follow_id");
-      list.push("follower_account_id");
-      list.push("followed_account_id");
       return list;
     }
     

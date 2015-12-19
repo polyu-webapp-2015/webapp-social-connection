@@ -45,6 +45,9 @@ var stub;
         Event_stub.__quota = function () {
             return "quota";
         };
+        Event_stub.__venue = function () {
+            return "venue";
+        };
         /* implement DataObject */
         Event_stub.prototype.tableName = function () {
             return "Event";
@@ -67,6 +70,7 @@ var stub;
             list.push("subject");
             list.push("description");
             list.push("quota");
+            list.push("venue");
             return list;
         };
         Event_stub.prototype.parseObject = function (rawObject) {
@@ -115,6 +119,10 @@ var stub;
                 instance.quota = rawObject.quota;
             else
                 throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('venue'))
+                instance.venue = rawObject.venue;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Event_stub.prototype.toObject = function (instance) {
@@ -131,6 +139,7 @@ var stub;
             rawObject[Event_stub.__subject()] = instance.subject;
             rawObject[Event_stub.__description()] = instance.description;
             rawObject[Event_stub.__quota()] = instance.quota;
+            rawObject[Event_stub.__venue()] = instance.venue;
             return rawObject;
         };
         /* getter and setter */
@@ -250,6 +259,17 @@ var stub;
         Event_stub.prototype.set_quota = function (newValue) {
             if (this.isEditSupport()) {
                 this.quota = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Event_stub.prototype.get_venue = function () {
+            return this.venue;
+        };
+        Event_stub.prototype.set_venue = function (newValue) {
+            if (this.isEditSupport()) {
+                this.venue = newValue;
             }
             else {
                 throw new stub.DataObjectEditError(this);

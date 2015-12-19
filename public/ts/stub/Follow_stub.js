@@ -40,8 +40,6 @@ var stub;
         Follow_stub.prototype.uniqueKeyList = function () {
             var list = [];
             list.push("follow_id");
-            list.push("follower_account_id");
-            list.push("followed_account_id");
             return list;
         };
         Follow_stub.prototype.allKeyList = function () {

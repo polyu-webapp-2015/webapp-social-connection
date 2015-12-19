@@ -22,6 +22,8 @@ class GetEventListByAccountIdActor extends Actor
         put_all_into($data, $this->params);
 
         $target_account_id = $this->params[Account_Fields::__account_id];
+        if ($target_account_id == -1)
+            $target_account_id = $account_id;
 
         $param_array = [
             ':' . Account_Fields::__account_id => $target_account_id

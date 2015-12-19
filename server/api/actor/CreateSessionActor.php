@@ -29,10 +29,11 @@ class CreateSessionActor extends Actor
             throw new Exception("This user ($account_type) cannot create Session", ResultCodeEnum::_No_Permission);
         /* create Event */
         $field_array = array_filter_by_keys($data, [
-            Event_Fields::__venue_id,
+//            Event_Fields::__venue_id,
             Event_Fields::__event_time,
             Event_Fields::__subject,
-            Event_Fields::__description
+            Event_Fields::__description,
+            Event_Fields::__venue
         ]);
         $field_array[Event_Fields::__event_type] = event_type_Enum::__S;
         $field_array[Event_Fields::__creator_account_id] = $account_id;
