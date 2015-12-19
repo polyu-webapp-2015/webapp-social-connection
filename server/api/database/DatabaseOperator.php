@@ -107,4 +107,15 @@ class DatabaseOperator
         log_object_from_named($result, "is following result");
         return $result[0]['result'] != 0;
     }
+
+    public static function isUserJoinEvent($account_id, $event_id)
+    {
+        $table_name = Event_Attendee_Fields::_;
+        $event_id_field = Event_Attendee_Fields::__event_id;
+        $account_id_field = Event_Attendee_Fields::__account_id;
+        $sql = "SELECT COUNT(*) AS result FROM $table_name WHERE $event_id_field = $event_id AND $account_id_field = $account_id";
+        $result = DatabaseHelper::query($sql);
+        log_object_from_named($result, "is following result");
+        return $result[0]['result'] != 0;
+    }
 }
