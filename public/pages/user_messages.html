@@ -1,18 +1,38 @@
+<div ng-controller="SendMessageCtrl">
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
-  <h4 class="modal-title">Messsages From <a style="color: #2288ee" ng-click="openUserModal(elem.profile.account_id)">{{ elem.profile.first_name + ' ' + elem.profile.last_name }}</a></h4>
+  <h4 class="modal-title">Messsages With <a class="user-name-title" ng-click="openUserModal(elem.profile.account_id)">{{ elem.profile.first_name + ' ' + elem.profile.last_name }}</a></h4>
+</div>
+<div class="alert alert-danger" ng-show="showAlert" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Error:</span>
+  You can't send a empty message.
 </div>
 <div ng-controller="ListCtrl">
   <div class="modal-body">
+  <a class="user-name-title" style="text-align: right" ng-click="showAll=showAll==true? false: true">{{ showAll==true? 'Collapse': 'History' }}</a>
     <div class="well well-lg">
       <ul class="list-group" style="list-style-type: none" ng-init="logii(elem)">
-        <li class="list-group-item" ng-repeat="ele in elem.element_array" ng-class="{'sent-out-msg': user.account_id*1 === ele.from_account_id*1}" ng-click="logii(ele)">
-            <b>{{ elem.profile.first_name + ' ' + elem.profile.last_name }}</b>: {{ ele.msg_content }}
+        <li class="list-group-item" ng-repeat="ele in elem.element_array | last: 7" ng-show="!showAll" ng-class="{'sent-out-msg': user.account_id*1 === ele.from_account_id*1}" ng-click="logii(ele)">
+            <span ng-show="user.account_id*1 !== ele.from_account_id*1"><b>{{ elem.profile.first_name + ' ' + elem.profile.last_name }}</b>: {{ ele.msg_content }}</span>
+            <span ng-show="user.account_id*1 === ele.from_account_id*1">{{ ele.msg_content }}</span>
+        </li>
+        <li class="list-group-item" ng-repeat="ele in elem.element_array" ng-show="showAll" ng-class="{'sent-out-msg': user.account_id*1 === ele.from_account_id*1}" ng-click="logii(ele)">
+            <span ng-show="user.account_id*1 !== ele.from_account_id*1"><b>{{ elem.profile.first_name + ' ' + elem.profile.last_name }}</b>: {{ ele.msg_content }}</span>
+            <span ng-show="user.account_id*1 === ele.from_account_id*1">{{ ele.msg_content }}</span>
         </li>
       </ul>
     </div>
   </div>
 </div>
 <div class="modal-footer">
+  <form id="sendMessageForm" name="add" role="form" ng-submit="submit(elem.profile.account_id, false)" autocomplete="off">
+    <div class="form-group">
+      <textarea class="form-control" rows="2" name="content" id="msg_content" ng-model="msg.content" placeholder="Enter your message here..." required></textarea>
+    </div>
+  </form>
+  <a class="btn btn-sm my-btn my-btn-round" ng-click="submit(elem.profile.account_id, false)">Send</a>
   <a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
 </div>
+</div>
+

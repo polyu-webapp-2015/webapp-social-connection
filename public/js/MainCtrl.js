@@ -73,6 +73,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     console.log("Add Discussion");
     $scope.modalItem = $uibModal.open(new Modal('/pages/add_discussion.html', $scope));
   };
+
   $scope.openAddAttractionModal = function () {
     if ($global.loggedIn() === false) {
       $scope.openLoginModal();
@@ -200,6 +201,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     $scope.selectedAnchor.removeClass("selected");
     $scope.selectedAnchor = $("#bottom-sessions-anchor");
     $scope.selectedAnchor.addClass("selected");
+    $("#content").scrollTop($("#content")[0].scrollHeight);
   };
 
   $scope.viewForum = function () {
@@ -254,7 +256,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       $scope.openLoginModal();
       return;
     }
-    $scope.modalItem = $uibModal.open(new Modal('/pages/user_session_list.html', $scope));
+    $scope.modalItem = $uibModal.open(new Modal('/pages/attended_session_list.html', $scope));
   }
 
   $scope.openUserModal = function (account_id) {

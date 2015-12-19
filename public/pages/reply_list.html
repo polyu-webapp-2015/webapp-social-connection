@@ -5,27 +5,9 @@
 </div>
 <div ng-controller="ListCtrl">
   <div class="modal-body" ng-init="loadExtraElements('Reply')">
-    <!--<div class="table-responsive">-->
-    <!--<table class="table" ng-init="loadExtraElements('Reply')">-->
-    <!--<tbody >-->
-    <!--<tr>-->
-    <!--<td><h4> {{ $parent.elem.subject }} </h4></td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<td>-->
-    <a class="btn btn-xs btn-default"
-       ng-click="openUserModal($parent.elem.creator_account_id)">
-      {{ myExtra.creator }}</a>    <br>
-    <br>
-    <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<td> -->
+    <a class="user-name-title" ng-click="openUserModal($parent.elem.creator_account_id)"> {{ myExtra.creator }}</a>    
+    <br> <br>
     <p> {{ $parent.elem.description }}</p>
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</tbody>-->
-    <!--</table>-->
   </div>
   <div class="well well-lg">
     <span ng-bind"text_before_list"></span>
@@ -34,15 +16,15 @@
 
       <ul class="list-group-item" ng-repeat="elem in elems" style="list-style-type: none">
         <!--<button class="list-item-remarks"-->
-        <li style="margin-top: 0px; font-size: 12px"ng-init="loadExtraSubElements('Reply',elem)">
-          <a class="btn btn-sm btn-default" ng-click="openUserModal(elem.creator_account_id)">{{ elem.replierName }}</a> 
+        <li style="margin-top: 0px;" ng-init="loadExtraSubElements('Reply',elem)">
+          <a class="user-name-title" ng-click="openUserModal(elem.creator_account_id)">{{ elem.replierName }}</a> 
         <button class="close" style="color: #ff0000;" ng-click="deleteSubElement(elem)">&times;</button>
         </li>
-        <h4 class="list-item-title">
+        <p class="description">
           <span>
             {{ elem.message }}
           </span>
-        </h4>
+        </p>
       </ul>
     </div>
   </div>

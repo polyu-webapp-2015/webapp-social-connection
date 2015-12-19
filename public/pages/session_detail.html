@@ -3,7 +3,7 @@
   <!-- the scope of "AddAnnounceCtrl" should be a child of the scope of "MainCtrl" -->
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
-    <h3 class="modal-title" style="margin-top: 6px">{{ elem.subject }}</h3>
+    <h4 class="modal-title" style="margin-top: 6px">{{ elem.subject }}</h4>
   </div>
   <div class="modal-body">
     <div class="table-responsive">
@@ -27,8 +27,7 @@
       <p> {{ elem.description }}</p>
   </div>
   <div class="modal-footer">
-    <a class="btn btn-sm my-btn my-btn-round" ng-click="joinSession()" ng-show="!elem.joined">Join</a>
-    <a class="btn btn-sm my-btn my-btn-round" ng-click="exitSession()" ng-show="elem.joined">Exit</a>
+    <a class="btn btn-sm my-btn my-btn-round" ng-click="joinSession()" ng-class="{'disabled': elem.joined}">{{ elem.joined? 'Joined': 'Join' }}</a>
     <a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
   </div>
 </div>

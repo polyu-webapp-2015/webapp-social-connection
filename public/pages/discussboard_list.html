@@ -2,6 +2,9 @@
   <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>-->
   <!--<h4 class="modal-title" ng-bind="modal_title"></h4>-->
 <!--</div>-->
+<div class="modal-header">
+  <a class="btn btn-sm my-btn my-btn-round" ng-click="openAddDiscussBoardModal()">New Board</a>
+</div>
 <div ng-controller="ListCtrl">
   <div class="modal-body">
     <div class="well well-lg">
@@ -23,7 +26,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="modal-footer">
-  <a class="btn btn-sm my-btn" ng-click="openAddDiscussBoardModal()">Create</a>
 </div>

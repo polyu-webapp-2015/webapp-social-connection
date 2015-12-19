@@ -80,6 +80,12 @@ app.config(['$httpProvider', function ($httpProvider) {
 }
 ]);
 
+app.filter('last', function () {
+  return function (input, quantity) {
+    quantity = +quantity;
+    return input.slice(input.length-quantity);
+  }
+});
 
 app.factory("$global", function ($uibModal) {
   _$global = this;
