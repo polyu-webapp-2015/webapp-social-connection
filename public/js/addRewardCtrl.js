@@ -1,4 +1,3 @@
-
 app.controller("AddRewardCtrl", function ($scope, $http, $global) {
 
     $scope.submit = function () {
