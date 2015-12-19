@@ -25,6 +25,10 @@ class GetEventListByAccountIdActor extends Actor
         if ($target_account_id == -1)
             $target_account_id = $account_id;
 
+        /* get rich event list */
+        /* 1. get matched event list */
+        /* 2. get number of user joined that event */
+
         $param_array = [
             ':' . Account_Fields::__account_id => $target_account_id
         ];

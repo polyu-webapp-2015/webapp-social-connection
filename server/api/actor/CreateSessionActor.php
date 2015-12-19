@@ -8,7 +8,7 @@ class CreateSessionActor extends Actor
 {
     public $name = "CreateSession";
     public $params = array(
-        Event_Fields::__venue_id => 123,
+        Event_Fields::__venue => 123,
         Event_Fields::__event_time => '2015-12-09 20:25:21',
         Event_Fields::__subject => "Eco-friendly Hotel in Asia",
         Event_Fields::__description => "This session discuss about the eco-friendly hotels in Asia. ...",

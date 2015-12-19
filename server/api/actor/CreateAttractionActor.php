@@ -8,7 +8,7 @@ class CreateAttractionActor extends Actor
 {
     public $name = "CreateAttraction";
     public $params = array(
-        Event_Fields::__venue_id => 123,
+        Event_Fields::__venue => 123,
         Event_Fields::__event_time => '2015-12-09 20:25:21',
         Event_Fields::__subject => "Free Ice Cream!",
         Event_Fields::__description => "This event is sponsored by G&G Hotel"
@@ -28,7 +28,7 @@ class CreateAttractionActor extends Actor
             throw new Exception("This user ($account_type) cannot create Attraction", ResultCodeEnum::_No_Permission);
         /* create Event */
         $field_array = array_filter_by_keys($data, [
-            Event_Fields::__venue_id,
+            Event_Fields::__venue,
             Event_Fields::__event_time,
             Event_Fields::__subject,
             Event_Fields::__description

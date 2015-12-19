@@ -137,4 +137,6 @@ class DatabaseOperator
         else
             return false;
     }
+
+//    public static function getNumberOf
 }

@@ -26,6 +26,7 @@ class GetEventListActor extends Actor
         /* get rich event list */
         /* 1. get event list with joined venue and floor */
         /* 2. add flag to indicate if the requester has join the event */
+        /* 3. add number of user joined the event */
 
         /* step 1 */
 
