@@ -27,7 +27,7 @@ class GetAttractionListActor extends Actor
         $actor = new GetEventListActor();
         $result = $actor->handle($pass_data);
 
-        $this->output[APIFieldEnum::_element_array] = $result;
+        $this->output[APIFieldEnum::_element_array] = $result[APIFieldEnum::_element_array];
         return $this->output;
     }
 }
