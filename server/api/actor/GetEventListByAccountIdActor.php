@@ -29,16 +29,19 @@ class GetEventListByAccountIdActor extends Actor
         /* 1. get matched event list */
         /* 2. get number of user joined that event */
 
+        /* step 1 */
         $param_array = [
             ':' . Account_Fields::__account_id => $target_account_id
         ];
         $event_array = DatabaseHelper::get_prepare_and_execute('get_event_by_account_id.sql', $param_array);
 
+        /* step 2 */
         foreach ($event_array as &$event) {
             $event_id = $event[Event_Fields::__event_id];
             $join_time = DatabaseOperator::getUserJoinEventTime($account_id, $event_id);
             $event[APIFieldEnum::_joined] = $join_time != false;
             $event[APIFieldEnum::_join_time] = $join_time;
+            $event[APIFieldEnum::_user_count]=DatabaseOperator::getEventUserCount($event_id);
         }
 
         $this->output[APIFieldEnum::_element_array] = $event_array;

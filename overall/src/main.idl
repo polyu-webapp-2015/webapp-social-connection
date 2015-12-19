@@ -61,7 +61,8 @@ module social_connection{
     /* if the requester is being followed by the opposite */
     following,
     joined,
-    join_time
+    join_time,
+    user_count
   };
   exception GeneralException{
     long resultCode;

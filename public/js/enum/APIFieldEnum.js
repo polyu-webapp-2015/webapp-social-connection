@@ -23,6 +23,7 @@ var APIFieldEnum = function () {
     this.following = "following";
     this.joined = "joined";
     this.join_time = "join_time";
+    this.user_count = "user_count";
 };
 var APIField = new APIFieldEnum();
 //# sourceMappingURL=APIFieldEnum.js.map

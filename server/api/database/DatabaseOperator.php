@@ -140,6 +140,13 @@ class DatabaseOperator
 
     public static function getEventUserCount($event_id)
     {
-//DatabaseHelper::get_prepare_and_execute('get_event_user_count.sql',)
+        $param_array = [
+            Event_Fields::__event_id => $event_id
+        ];
+        $result = DatabaseHelper::get_prepare_and_execute('get_event_user_count.sql', $param_array);
+        if (count($result) == 0)
+            throw new Exception("Failed to get number of user on an event", ResultCodeEnum::_Failed_To_Query_On_Database);
+        else
+            return $result[0]['result'];
     }
 }

@@ -47,13 +47,15 @@ class GetEventListActor extends Actor
         $sql = "$sql $where_statement";
         $event_array = DatabaseHelper::query($sql);
 
-        /* step 2*/
+        /* step 2+3 */
         foreach ($event_array as &$event) {
             $event_id = $event[Event_Fields::__event_id];
             $join_time = DatabaseOperator::getUserJoinEventTime($account_id, $event_id);
             $event[APIFieldEnum::_joined] = $join_time != false;
             $event[APIFieldEnum::_join_time] = $join_time;
+            $event[APIFieldEnum::_user_count]=DatabaseOperator::getEventUserCount($event_id);
         }
+
 
         $this->output[APIFieldEnum::_element_array] = array_reverse($event_array);
         return $this->output;
