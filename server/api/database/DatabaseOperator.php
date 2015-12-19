@@ -138,5 +138,8 @@ class DatabaseOperator
             return false;
     }
 
-//    public static function getNumberOf
+    public static function getEventUserCount($event_id)
+    {
+//DatabaseHelper::get_prepare_and_execute('get_event_user_count.sql',)
+    }
 }

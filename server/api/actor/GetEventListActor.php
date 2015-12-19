@@ -31,13 +31,10 @@ class GetEventListActor extends Actor
         /* step 1 */
 
         $sql = DatabaseHelper::get_prepared_statement('get_event.sql');
-        $where_statement = "";
-        {
-            $field = Event_Fields::__event_type;
-            $value = $this->params[Event_Fields::__event_type];
-            $value = DatabaseHelper::quote($value);
-            $where_statement = "WHERE ( $field = $value )";
-        }
+        $field = Event_Fields::__event_type;
+        $value = $this->params[Event_Fields::__event_type];
+        $value = DatabaseHelper::quote($value);
+        $where_statement = "WHERE ( $field = $value )";
         $N_event_id = count($event_id_array);
         if ($N_event_id > 0) {
             $field = Event_Fields::__event_id;

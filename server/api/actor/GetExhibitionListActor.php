@@ -23,7 +23,7 @@ class GetExhibitionListActor extends Actor
 
         $pass_data = $data;
         $pass_data[APIFieldEnum::_id_array] = $this->params[APIFieldEnum::_id_array];
-        $pass_data[Event_Fields::__event_type] = event_type_Enum::__A;
+        $pass_data[Event_Fields::__event_type] = event_type_Enum::__E;
         $actor = new GetEventListActor();
         $result = $actor->handle($pass_data);
 
