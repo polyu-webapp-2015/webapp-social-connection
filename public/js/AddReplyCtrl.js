@@ -1,6 +1,12 @@
 app.controller('AddReplyCtrl', function ($scope, $http, $global, $uibModal) {
+    $scope.showAlert = false;
 
     $scope.submit = function () {
+        if (!$scope.comment) {
+            $scope.showAlert = true;
+            return;
+        }
+
         var data = {
             session_id: $global.getSessionId(),
             account_id: $global.getAccountId(),

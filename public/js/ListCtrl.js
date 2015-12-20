@@ -330,7 +330,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
     }
 
     $scope.deleteSubElement = function (elem) {
-        console.log("deleting element");
+        event.stopPropagation();
     }
 
     $scope.openCreatePostModal = function () {

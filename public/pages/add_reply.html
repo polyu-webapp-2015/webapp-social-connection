@@ -5,6 +5,11 @@
 	</div>
   <form id="addReplyForm" name="add" role="form" ng-submit="submit()" autocomplete="off">
 	  <div class="modal-body">
+	  <div class="alert alert-danger" ng-show="showAlert" role="alert">
+		  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+		  <span class="sr-only">Error:</span>
+		  Do not send an empty message.
+		</div>
       <div class="form-group">
         <label for="comment">Comment</label>
         <textarea class="form-control" rows="5" name="comment" id="comment" ng-model="comment" placeholder="Enter the comment here..." required></textarea>

@@ -1,6 +1,11 @@
 app.controller('AddSessionReplyCtrl', function ($scope, $http, $global, $uibModal) {
+    $scope.showAlert = false;
 
     $scope.submit = function () {
+        if (!$scope.comment) {
+            $scope.showAlert = true;
+            return;
+        }
         $http.post(serv_addr, {
             action: 'CreateSessionReply',
             data: {
@@ -12,6 +17,7 @@ app.controller('AddSessionReplyCtrl', function ($scope, $http, $global, $uibModa
         .success(function (data, status, headers, config) {
             if (data.result_code === 'Success') {
                 $scope.elems.push(data.field_array);
+                console.log(elems);
                 $scope.closeActionModal();
             }
             else {

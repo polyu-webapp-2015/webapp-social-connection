@@ -3,7 +3,7 @@ app.controller('SessionDetailCtrl', function ($scope, $http, $global, $uibModal)
   var modalItem;
   $scope.buttonText = $scope.elem.joined? 'Who Also Attends': 'Join';
 
-  if ($scope.elem.user_count >= $scope.elem.quota) $scope.buttonText = 'Full';
+  if ($scope.elem.user_count*1 >= $scope.elem.quota*1) $scope.buttonText = 'Full';
 
   $scope.actionButtonClick = function () {
     if ($scope.buttonText === 'Who Also Attends') {
