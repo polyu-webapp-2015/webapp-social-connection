@@ -18,7 +18,7 @@
 		</div>
 		<div class="col-sm-8">
 			<h2>Announcements</h2>
-			<div class="well well-lg">
+      <div class="well well-lg" style="margin-top:20px">
         <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements_legacy('GetAnnouncementList')">
           <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/announcement_detail.html', elem)"> 
           <h4 class="list-item-title"> {{ elem.subject }} </h4>
@@ -36,7 +36,7 @@
   <div class="row">
     <div class="col-sm-8" ng-controller="AnalysisCtrl">
       <h2>Analytics</h2>
-      <button class="btn btn-ln my-btn" ng-click="showMainModal()">Show More</button>
+      <button class="btn btn-ln my-btn" style="margin-top: 10px" ng-click="showMainModal()">Show More</button>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-signal logo"></span>
