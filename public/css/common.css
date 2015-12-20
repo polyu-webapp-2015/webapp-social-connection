@@ -12,6 +12,14 @@
   margin-top: 10px;
 }
 
+.my-close {
+	opacity: .4 !important;
+}
+
+.my-close:hover {
+	opacity: .6 !important;
+}
+
 .jumbotron {
 	background-color: #2288ee;
 	color: #ffffff;
