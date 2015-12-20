@@ -29,7 +29,7 @@ class GetSessionReplyListActor extends Actor
         /* step 1 */
         $target_event_id = $this->params[Event_Fields::__event_id];
         $field_value_array = [
-            SessionReply_Fields::__event_Id => $target_event_id
+            SessionReply_Fields::__event_id => $target_event_id
         ];
         $where_statement = DatabaseHelper::where_statement_join_AND($field_value_array);
         $reply_array = DatabaseHelper::select_from_table(SessionReply_Fields::_, [], $where_statement);
