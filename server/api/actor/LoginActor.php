@@ -33,11 +33,11 @@ class LoginActor extends Actor
                 $_SESSION[Account_Fields::__account_id] = $account_id;
                 log_object_from_named("New Session ID = $session_id", get_called_class());
                 $this->output[Account_Fields::__account_id] = $account_id;
-                $actor = new GetProfileActor();
+                $actor = new GetProfileListActor();
                 $pass_data = $data;
-                $pass_data[User_Fields::__account_id] = $account_id;
+                $pass_data[APIFieldEnum::_id_array] = [$account_id];
                 $pass_output = $actor->handle($pass_data);
-                $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_profile];
+                $this->output[APIFieldEnum::_profile] = $pass_output[APIFieldEnum::_element_array][0];
                 $this->output[APIFieldEnum::_session_id] = $session_id;
             } else {
                 $this->output[APIFieldEnum::_result_code] = ResultCodeEnum::_Server_Unknown_Error;

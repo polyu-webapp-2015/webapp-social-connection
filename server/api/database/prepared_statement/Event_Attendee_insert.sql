@@ -1,1 +1,1 @@
-INSERT INTO Event_Attendee (event_id, account_id) VALUES (:event_id, :account_id);
+INSERT INTO Event_Attendee (event_id, account_id, create_time) VALUES (:event_id, :account_id, :create_time);

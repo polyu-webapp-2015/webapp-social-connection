@@ -49,13 +49,22 @@ module social_connection{
     session_id,
     element_array,
     profile,
-    follower_user_id,
-    followed_user_id,
     table_name_array,
     table_name,
     latest_id,
     id_array,
-    field_array
+    id,
+    field_array,
+    message,
+    /* if the requester has followed the opposite */
+    followed,
+    /* if the requester is being followed by the opposite */
+    following,
+    joined,
+    join_time,
+    user_count,
+    search_text,
+    name
   };
   exception GeneralException{
     long resultCode;

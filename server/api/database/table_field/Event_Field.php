@@ -16,4 +16,5 @@ class Event_Fields {
     const __subject = "subject" ;
     const __description = "description" ;
     const __quota = "quota" ;
+    const __venue = "venue" ;
 }

@@ -1,0 +1,1 @@
+INSERT INTO SessionReply (reply_id, event_Id, message, creator_account_id, editor_account_id, create_time, edit_time, deleted) VALUES (:reply_id, :event_Id, :message, :creator_account_id, :editor_account_id, :create_time, :edit_time, :deleted);

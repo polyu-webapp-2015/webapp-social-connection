@@ -15,11 +15,18 @@ class APIFieldEnum
     const _session_id = "session_id";
     const _element_array = "element_array";
     const _profile = "profile";
-    const _follower_user_id = "follower_user_id";
-    const _followed_user_id = "followed_user_id";
     const _table_name_array = "table_name_array";
     const _table_name = "table_name";
     const _latest_id = "latest_id";
     const _id_array = "id_array";
+    const _id = "id";
     const _field_array = "field_array";
+    const _message = "message";
+    const _followed = "followed";
+    const _following = "following";
+    const _joined = "joined";
+    const _join_time = "join_time";
+    const _user_count = "user_count";
+    const _search_text = "search_text";
+    const _name = "name";
 }

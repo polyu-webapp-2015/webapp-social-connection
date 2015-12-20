@@ -12,8 +12,11 @@ var stub;
             _super.apply(this, arguments);
         }
         /* key */
-        Friendship_Tag_stub.__friendship_id = function () {
-            return "friendship_id";
+        Friendship_Tag_stub.__friendship_id1 = function () {
+            return "friendship_id1";
+        };
+        Friendship_Tag_stub.__friendship_id2 = function () {
+            return "friendship_id2";
         };
         Friendship_Tag_stub.__tag_id = function () {
             return "tag_id";
@@ -24,20 +27,25 @@ var stub;
         };
         Friendship_Tag_stub.prototype.uniqueKeyList = function () {
             var list = [];
-            list.push("friendship_id");
-            list.push("tag_id");
+            list.push("friendship_id1");
+            list.push("friendship_id2");
             return list;
         };
         Friendship_Tag_stub.prototype.allKeyList = function () {
             var list = [];
-            list.push("friendship_id");
+            list.push("friendship_id1");
+            list.push("friendship_id2");
             list.push("tag_id");
             return list;
         };
         Friendship_Tag_stub.prototype.parseObject = function (rawObject) {
             var instance = new Friendship_Tag_stub();
-            if (rawObject.hasOwnProperty('friendship_id'))
-                instance.friendship_id = rawObject.friendship_id;
+            if (rawObject.hasOwnProperty('friendship_id1'))
+                instance.friendship_id1 = rawObject.friendship_id1;
+            else
+                throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('friendship_id2'))
+                instance.friendship_id2 = rawObject.friendship_id2;
             else
                 throw new stub.DataObjectParseError(this);
             if (rawObject.hasOwnProperty('tag_id'))
@@ -49,17 +57,29 @@ var stub;
         Friendship_Tag_stub.prototype.toObject = function (instance) {
             if (instance === void 0) { instance = this; }
             var rawObject = {};
-            rawObject[Friendship_Tag_stub.__friendship_id()] = instance.friendship_id;
+            rawObject[Friendship_Tag_stub.__friendship_id1()] = instance.friendship_id1;
+            rawObject[Friendship_Tag_stub.__friendship_id2()] = instance.friendship_id2;
             rawObject[Friendship_Tag_stub.__tag_id()] = instance.tag_id;
             return rawObject;
         };
         /* getter and setter */
-        Friendship_Tag_stub.prototype.get_friendship_id = function () {
-            return this.friendship_id * 1;
+        Friendship_Tag_stub.prototype.get_friendship_id1 = function () {
+            return this.friendship_id1 * 1;
         };
-        Friendship_Tag_stub.prototype.set_friendship_id = function (newValue) {
+        Friendship_Tag_stub.prototype.set_friendship_id1 = function (newValue) {
             if (this.isEditSupport()) {
-                this.friendship_id = newValue;
+                this.friendship_id1 = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Friendship_Tag_stub.prototype.get_friendship_id2 = function () {
+            return this.friendship_id2 * 1;
+        };
+        Friendship_Tag_stub.prototype.set_friendship_id2 = function (newValue) {
+            if (this.isEditSupport()) {
+                this.friendship_id2 = newValue;
             }
             else {
                 throw new stub.DataObjectEditError(this);

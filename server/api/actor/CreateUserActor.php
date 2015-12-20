@@ -12,6 +12,8 @@ class CreateUserActor extends Actor
     public $params = array(
         DatabaseOperator::__emailOrPhoneNum => "98765432",
         Account_Fields::__password => "ThePass123",
+        User_Fields::__first_name=>"Peter",
+        User_Fields::__last_name=>"Wong",
         Account_Fields::__account_type => account_type_Enum::__attendee,
         User_Fields::__sex => sex_Enum::__F
     );
@@ -30,6 +32,8 @@ class CreateUserActor extends Actor
         put_all_into($data, $this->params);
         $emailOrPhoneNum = $this->params[DatabaseOperator::__emailOrPhoneNum];
         $password = $this->params[Account_Fields::__password];
+        $first_name=$this->params[User_Fields::__first_name];
+        $last_name=$this->params[User_Fields::__last_name];
         $account_type = $this->params[Account_Fields::__account_type];
         $sex = $this->params[User_Fields::__sex];
         if (DatabaseOperator::findAccountId($emailOrPhoneNum) == false) {
@@ -46,6 +50,8 @@ class CreateUserActor extends Actor
             $field_value_array = [
                 User_Fields::__account_id => $account_id,
                 User_Fields::__sex => $sex,
+                User_Fields::__first_name=>$first_name,
+                User_Fields::__last_name=>$last_name,
             ];
             DatabaseHelper::table_insert(User_Fields::_, $field_value_array);
             $this->output[Account_Fields::__account_id] = $account_id;

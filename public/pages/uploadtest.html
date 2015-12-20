@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UploadTest</title>
+    <script>
+        function init() {
+            var form = document.getElementsByName('fileform');
+        }
+        var upload_php = "http://localhost:8000/api/upload.php";
+        function upload_file(event) {
+            if (event != null)
+                event.preventDefault();
+            var button = document.getElementsByName('upload_button');
+            button.innerHTML = 'Uploading...';
+            var file = document.getElementsByName('file');
+            var formData = new FormData();
+            formData.append('file', file);
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open('POST', upload_php, true);
+            xmlHttp.onload = function () {
+                if (xmlHttp.status == 200) {
+                    button.innerHTML = "Uploaded";
+                } else {
+                    alert("failed to upload");
+                }
+            };
+            xmlHttp.send(formData);
+        }
+    </script>
+</head>
+<body onload="init()">
+<!--<form action="http://58.96.176.223:9000/api/upload.php" method="post"-->
+<form action="http://localhost:8000/api/upload.php" method="post"
+      enctype="multipart/form-data"
+      id="fileform"
+      name="fileform"
+      onsubmit="upload_file()">
+    <label for="file">Filename : </label>
+    <input type="file" name="file" id="file"><br>
+    <!--<input type="submit" name="submit" value="submit">-->
+    <input type="button"
+           name="upload_button" id="upload_button"
+           onclick="upload_file()"
+           value="Upload">
+</form>
+
+</body>
+</html>

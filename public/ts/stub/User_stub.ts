@@ -39,6 +39,22 @@ module stub {
       return "last_announcement_datetime";
     }
 
+    protected static __organization():string {
+      return "organization";
+    }
+
+    protected static __city():string {
+      return "city";
+    }
+
+    protected static __country():string {
+      return "country";
+    }
+
+    protected static __title():string {
+      return "title";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "User";
@@ -60,6 +76,10 @@ module stub {
       list.push("title_id");
       list.push("city_id");
       list.push("last_announcement_datetime");
+      list.push("organization");
+      list.push("city");
+      list.push("country");
+      list.push("title");
       return list;
     }
     
@@ -97,6 +117,22 @@ module stub {
         instance.last_announcement_datetime = rawObject.last_announcement_datetime;
       else
         throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('organization'))
+        instance.organization = rawObject.organization;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('city'))
+        instance.city = rawObject.city;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('country'))
+        instance.country = rawObject.country;
+      else
+        throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('title'))
+        instance.title = rawObject.title;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
@@ -110,6 +146,10 @@ module stub {
       rawObject[User_stub.__title_id()] = instance.title_id;
       rawObject[User_stub.__city_id()] = instance.city_id;
       rawObject[User_stub.__last_announcement_datetime()] = instance.last_announcement_datetime;
+      rawObject[User_stub.__organization()] = instance.organization;
+      rawObject[User_stub.__city()] = instance.city;
+      rawObject[User_stub.__country()] = instance.country;
+      rawObject[User_stub.__title()] = instance.title;
       return rawObject;
     }
 
@@ -122,6 +162,10 @@ module stub {
     private title_id:number;
     private city_id:number;
     private last_announcement_datetime:string;
+    private organization:string;
+    private city:string;
+    private country:string;
+    private title:string;
 
     /* getter and setter */
     public get_account_id():number {
@@ -215,6 +259,54 @@ module stub {
     public set_last_announcement_datetime(newValue:string) {
       if (this.isEditSupport()) {
         this.last_announcement_datetime = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_organization():string {
+      return this.organization ;
+    }
+
+    public set_organization(newValue:string) {
+      if (this.isEditSupport()) {
+        this.organization = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_city():string {
+      return this.city ;
+    }
+
+    public set_city(newValue:string) {
+      if (this.isEditSupport()) {
+        this.city = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_country():string {
+      return this.country ;
+    }
+
+    public set_country(newValue:string) {
+      if (this.isEditSupport()) {
+        this.country = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_title():string {
+      return this.title ;
+    }
+
+    public set_title(newValue:string) {
+      if (this.isEditSupport()) {
+        this.title = newValue;
       } else {
         throw new DataObjectEditError(this);
       }

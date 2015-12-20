@@ -6,7 +6,7 @@
 ///<reference path="complex/package.ts"/>
 function load_all_stub_script(callback) {
   var done = 0;
-  var total = 25;
+  var total = 26;
   //deprecated flag
   var lastFired = false;
 
@@ -50,7 +50,7 @@ function load_all_stub_script(callback) {
   utils.loadModel('ts/stub/Floor_stub.js',loadOne);
 
 //  total++;
-  utils.loadModel('ts/stub/Friendship_stub.js',loadOne);
+  utils.loadModel('ts/stub/Follow_stub.js',loadOne);
 
 //  total++;
   utils.loadModel('ts/stub/Friendship_Tag_stub.js',loadOne);
@@ -80,6 +80,9 @@ function load_all_stub_script(callback) {
   utils.loadModel('ts/stub/Session_stub.js',loadOne);
 
 //  total++;
+  utils.loadModel('ts/stub/SessionReply_stub.js',loadOne);
+
+//  total++;
   utils.loadModel('ts/stub/Tag_stub.js',loadOne);
 
 //  total++;
@@ -89,7 +92,7 @@ function load_all_stub_script(callback) {
   utils.loadModel('ts/stub/User_stub.js',loadOne);
 
 //  total++;
-  utils.loadModel('ts/stub/Venus_stub.js',loadOne);
+  utils.loadModel('ts/stub/Venue_stub.js',loadOne);
 
   lastFired = true;
 }

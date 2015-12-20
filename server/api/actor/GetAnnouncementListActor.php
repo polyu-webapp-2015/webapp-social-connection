@@ -33,7 +33,7 @@ class GetAnnouncementListActor extends Actor
             $where_statement = "";
         }
         $result = DatabaseHelper::select_from_table(Announcement_Fields::_, [], $where_statement);
-        $this->output[APIFieldEnum::_element_array] = $result;
+        $this->output[APIFieldEnum::_element_array] = array_reverse($result);
         return $this->output;
     }
 }

@@ -8,7 +8,7 @@ class CreateSessionActor extends Actor
 {
     public $name = "CreateSession";
     public $params = array(
-        Event_Fields::__venue_id => 123,
+        Event_Fields::__venue => 123,
         Event_Fields::__event_time => '2015-12-09 20:25:21',
         Event_Fields::__subject => "Eco-friendly Hotel in Asia",
         Event_Fields::__description => "This session discuss about the eco-friendly hotels in Asia. ...",
@@ -29,10 +29,11 @@ class CreateSessionActor extends Actor
             throw new Exception("This user ($account_type) cannot create Session", ResultCodeEnum::_No_Permission);
         /* create Event */
         $field_array = array_filter_by_keys($data, [
-            Event_Fields::__venue_id,
+//            Event_Fields::__venue_id,
             Event_Fields::__event_time,
             Event_Fields::__subject,
-            Event_Fields::__description
+            Event_Fields::__description,
+            Event_Fields::__venue
         ]);
         $field_array[Event_Fields::__event_type] = event_type_Enum::__S;
         $field_array[Event_Fields::__creator_account_id] = $account_id;

@@ -1,0 +1,1 @@
+INSERT INTO Venue (venue_id, floor_id, venue_name) VALUES (:venue_id, :floor_id, :venue_name);

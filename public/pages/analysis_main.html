@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+    <h4 class="modal-title">Analysis Main Menu</h4>
+</div>
+<!--<div class="modal-header">-->
+<!--<a class="btn btn-sm my-btn my-btn-round" ng-click="openAddDiscussBoardModal()">New Board</a>-->
+<!--</div>-->
+<div ng-controller="AnalysisCtrl">
+    <div class="modal-body">
+        <div class="well well-lg">
+            <span ng-bind="text_before_list"></span>
+            <div class="list-group">
+                <button class="list-group-item nor"
+                        ng-click="openDetailModal('/pages/event_by_user_count.html',title_event_by_user)">
+                    <h4 class="list-item-title">
+                        <span ng-bind="title_event_by_user"></span>
+                    </h4>
+                    <p class="list-item-remarks"
+                       style="margin-top: 0px; font-size: 12px">
+                        Statistic on Event against number of participant
+                    </p>
+                </button>
+                <button class="list-group-item alt"
+                        ng-click="openDetailModal('/pages/post_list.html', elem)">
+                    <h4 class="list-item-title">
+                        Show Event by User Count
+                    </h4>
+                    <p class="list-item-remarks"
+                       style="margin-top: 0px; font-size: 12px">
+                        Statistic on Event against number of participant
+                    </p>
+                </button>
+                <button class="list-group-item nor"
+                        ng-click="openDetailModal('/pages/post_list.html', elem)">
+                    <h4 class="list-item-title">
+                        Show Event by User Count
+                    </h4>
+                    <p class="list-item-remarks"
+                       style="margin-top: 0px; font-size: 12px">
+                        Statistic on Event against number of participant
+                    </p>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

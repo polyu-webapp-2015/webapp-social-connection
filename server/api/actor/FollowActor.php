@@ -8,33 +8,29 @@ class FollowActor extends Actor
 {
     public $name = "Follow";
     public $params = array(
-        APIFieldEnum::_follower_user_id => "123",
-        APIFieldEnum::_followed_user_id => "124"
+        Account_Fields::__account_id => "124"
     );
     public $output = [
-        APIFieldEnum::_result_code => ResultCodeEnum::_Success
+        APIFieldEnum::_result_code => ResultCodeEnum::_Success,
+        APIFieldEnum::_latest_id => 123
     ];
     public $desc = "mono-directionally follow another user. 'Follower' follows 'Followed'";
 
     public function handle($data)
     {
-        $account_id = ActorUtil::check_session_valid($data);
+        $source_account_id = ActorUtil::check_session_valid($data);
         put_all_into($data, $this->params);
-        $source_account_id = $this->params[APIFieldEnum::_follower_user_id];
-        if ($account_id != $source_account_id) {
-            $account_type = DatabaseOperator::getAccountType($account_id);
-            if ($account_type != account_type_Enum::__admin && $account_type != account_type_Enum::__helper)
-                throw new Exception("This user ($account_type) cannot set other user's following relationship", ResultCodeEnum::_No_Permission);
-        }
-        $dest_user_id = $this->params[APIFieldEnum::_followed_user_id];
+        $dest_user_id = $this->params[Account_Fields::__account_id];
         if ($dest_user_id == $source_account_id)
             throw new Exception("User following it's self", ResultCodeEnum::_Logic_Error);
-        $field_value_array = [
-            Friendship_Fields::__host_id => $source_account_id,
-            Friendship_Fields::__guest_id => $dest_user_id
-        ];
-        //TODO to test
-        DatabaseHelper::table_insert(Friendship_Fields::_, $field_value_array);
+        if (!DatabaseOperator::isFollowing($source_account_id,$dest_user_id)) {
+            $field_value_array = [
+                Follow_Fields::__follower_account_id => $source_account_id,
+                Follow_Fields::__followed_account_id => $dest_user_id
+            ];
+            DatabaseHelper::table_insert(Follow_Fields::_, $field_value_array);
+        }
+        $this->output[APIFieldEnum::_latest_id] = DatabaseHelper::lastInsertId();
         return $this->output;
     }
 }

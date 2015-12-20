@@ -8,7 +8,7 @@ class CreateExhibitionActor extends Actor
 {
     public $name = "CreateExhibition";
     public $params = array(
-        Event_Fields::__venue_id => 123,
+        Event_Fields::__venue => 123,
         Event_Fields::__event_time => '2015-12-09 20:25:21',
         Event_Fields::__subject => "Eco-friendly Hotel in Asia",
         Event_Fields::__description => "This Exhibition display about the eco-friendly hotels in Asia. ...",
@@ -28,7 +28,7 @@ class CreateExhibitionActor extends Actor
             throw new Exception("This user ($account_type) cannot create Exhibition", ResultCodeEnum::_No_Permission);
         /* create Event */
         $field_array = array_filter_by_keys($data, [
-            Event_Fields::__venue_id,
+            Event_Fields::__venue,
             Event_Fields::__event_time,
             Event_Fields::__subject,
             Event_Fields::__description

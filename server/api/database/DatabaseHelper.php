@@ -224,14 +224,14 @@ class DatabaseHelper
         return "WHERE " . implode('', $collection);
     }
 
-    public static function where_statement_join_OR(array $where_statement_array)
+    public static function where_statement_join_OR(array $field_value_array)
     {
-        return self::where_statement_join_generic($where_statement_array, self::__OR);
+        return self::where_statement_join_generic($field_value_array, self::__OR);
     }
 
-    public static function where_statement_join_AND(array $where_statement_array)
+    public static function where_statement_join_AND(array $field_value_array)
     {
-        return self::where_statement_join_generic($where_statement_array, self::__AND);
+        return self::where_statement_join_generic($field_value_array, self::__AND);
     }
 
     public static function where_statement_join_generic(array $field_value_array, $conjunction)
@@ -255,13 +255,17 @@ class DatabaseHelper
         if ($N_select == 0)
             $select_statement = "*";
         else {
-//            $select_statement = $select_array[0];
-//            for ($i = 1; $i < $N_select; $i++) {
-//                $select_statement = "$select_statement,{$select_array[$i]}";
-//            }
             $select_statement = implode(',', $select_array);
         }
         $sql = "SELECT $select_statement from $table_name $where_statement ;";
+        return self::query($sql, $skip_clean);
+    }
+
+    public static function delete_from_table($table_name, $where_statement, $skip_clean = false)
+    {
+        if ($where_statement == "")
+            throw new Exception("Attempt to delete row in table without Where Statement!", ResultCodeEnum::_Logic_Error);
+        $sql = "DELETE FROM $table_name $where_statement ;";
         return self::query($sql, $skip_clean);
     }
 
@@ -717,16 +721,13 @@ class DatabaseHelper
         print_object("Going to reset Database\n");
         try {
             $sql = file_get_contents("../../database/create.sql");
-            if($sql==false)
+            if ($sql == false)
                 throw new Exception("Failed to load create database sql file", ResultCodeEnum::_Server_File_Missing);
             self::query($sql);
             print_object("The Database has been reset\n");
         } catch (Exception $exception) {
             print_object("Failed to reset the database\n");
             print_object($exception);
-//            print_r("<pre>");
-//            print_r($exception);
-//            print_r("</pre>");
             print_object("\n");
         }
     }

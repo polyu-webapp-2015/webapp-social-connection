@@ -89,4 +89,66 @@ class DatabaseOperator
             throw new Exception($msg, ResultCodeEnum::_Failed_To_Query_On_Database);
         }
     }
+
+    /**
+     * @param int $source_account_id
+     * @param int $dest_account_id
+     * @return boolean true if $source_account_id is following the $dest_account_id, false otherwise
+     * @remark will ignore deleted relationships
+     */
+    public static function isFollowing($source_account_id, $dest_account_id)
+    {
+        if ($source_account_id == $dest_account_id)
+            return false;
+        $table_name = Follow_Fields::_;
+        $follower = Follow_Fields::__follower_account_id;
+        $followed = Follow_Fields::__followed_account_id;
+        $deleted = Follow_Fields::__deleted;
+        $sql = "SELECT COUNT(*) AS result FROM $table_name WHERE $follower = $source_account_id AND $followed = $dest_account_id AND $deleted = FALSE ";
+        $result = DatabaseHelper::query($sql);
+        return $result[0]['result'] != 0;
+    }
+
+    public static function isUserJoinEvent($account_id, $event_id)
+    {
+        $table_name = Event_Attendee_Fields::_;
+        $event_id_field = Event_Attendee_Fields::__event_id;
+        $account_id_field = Event_Attendee_Fields::__account_id;
+        $sql = "SELECT COUNT(*) AS result FROM $table_name WHERE $event_id_field = $event_id AND $account_id_field = $account_id";
+        $result = DatabaseHelper::query($sql);
+        return $result[0]['result'] != 0;
+    }
+
+    /**
+     * @param $account_id
+     * @param $event_id
+     * @return string|bool if the join time is found, return the join time
+     *   return false if the user has not join the event
+     * @throws Exception
+     */
+    public static function getUserJoinEventTime($account_id, $event_id)
+    {
+        $table_name = Event_Attendee_Fields::_;
+        $event_id_field = Event_Attendee_Fields::__event_id;
+        $account_id_field = Event_Attendee_Fields::__account_id;
+        $select_field = Event_Fields::__create_time;
+        $sql = "SELECT $select_field FROM $table_name WHERE $event_id_field = $event_id AND $account_id_field = $account_id";
+        $result = DatabaseHelper::query($sql);
+        if (count($result) > 0)
+            return $result[0][$select_field];
+        else
+            return false;
+    }
+
+    public static function getEventUserCount($event_id)
+    {
+        $param_array = [
+            Event_Fields::__event_id => $event_id
+        ];
+        $result = DatabaseHelper::get_prepare_and_execute('get_event_user_count.sql', $param_array);
+        if (count($result) == 0)
+            throw new Exception("Failed to get number of user on an event", ResultCodeEnum::_Failed_To_Query_On_Database);
+        else
+            return $result[0]['result'];
+    }
 }

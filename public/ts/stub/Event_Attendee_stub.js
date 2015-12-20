@@ -18,6 +18,9 @@ var stub;
         Event_Attendee_stub.__account_id = function () {
             return "account_id";
         };
+        Event_Attendee_stub.__create_time = function () {
+            return "create_time";
+        };
         /* implement DataObject */
         Event_Attendee_stub.prototype.tableName = function () {
             return "Event_Attendee";
@@ -32,6 +35,7 @@ var stub;
             var list = [];
             list.push("event_id");
             list.push("account_id");
+            list.push("create_time");
             return list;
         };
         Event_Attendee_stub.prototype.parseObject = function (rawObject) {
@@ -44,6 +48,10 @@ var stub;
                 instance.account_id = rawObject.account_id;
             else
                 throw new stub.DataObjectParseError(this);
+            if (rawObject.hasOwnProperty('create_time'))
+                instance.create_time = rawObject.create_time;
+            else
+                throw new stub.DataObjectParseError(this);
             return instance;
         };
         Event_Attendee_stub.prototype.toObject = function (instance) {
@@ -51,6 +59,7 @@ var stub;
             var rawObject = {};
             rawObject[Event_Attendee_stub.__event_id()] = instance.event_id;
             rawObject[Event_Attendee_stub.__account_id()] = instance.account_id;
+            rawObject[Event_Attendee_stub.__create_time()] = instance.create_time;
             return rawObject;
         };
         /* getter and setter */
@@ -71,6 +80,17 @@ var stub;
         Event_Attendee_stub.prototype.set_account_id = function (newValue) {
             if (this.isEditSupport()) {
                 this.account_id = newValue;
+            }
+            else {
+                throw new stub.DataObjectEditError(this);
+            }
+        };
+        Event_Attendee_stub.prototype.get_create_time = function () {
+            return this.create_time;
+        };
+        Event_Attendee_stub.prototype.set_create_time = function (newValue) {
+            if (this.isEditSupport()) {
+                this.create_time = newValue;
             }
             else {
                 throw new stub.DataObjectEditError(this);

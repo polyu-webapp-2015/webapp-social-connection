@@ -15,6 +15,10 @@ module stub {
       return "account_id";
     }
 
+    protected static __create_time():string {
+      return "create_time";
+    }
+
     /* implement DataObject */
     tableName():string {
       return "Event_Attendee";
@@ -31,6 +35,7 @@ module stub {
       var list:string[] = [];
       list.push("event_id");
       list.push("account_id");
+      list.push("create_time");
       return list;
     }
     
@@ -44,6 +49,10 @@ module stub {
         instance.account_id = rawObject.account_id;
       else
         throw new stub.DataObjectParseError(this);
+      if(rawObject.hasOwnProperty('create_time'))
+        instance.create_time = rawObject.create_time;
+      else
+        throw new stub.DataObjectParseError(this);
       return instance;
     }
     
@@ -51,12 +60,14 @@ module stub {
       var rawObject = {};
       rawObject[Event_Attendee_stub.__event_id()] = instance.event_id;
       rawObject[Event_Attendee_stub.__account_id()] = instance.account_id;
+      rawObject[Event_Attendee_stub.__create_time()] = instance.create_time;
       return rawObject;
     }
 
     /* variable */
     private event_id:number;
     private account_id:number;
+    private create_time:string;
 
     /* getter and setter */
     public get_event_id():number {
@@ -78,6 +89,18 @@ module stub {
     public set_account_id(newValue:number) {
       if (this.isEditSupport()) {
         this.account_id = newValue;
+      } else {
+        throw new DataObjectEditError(this);
+      }
+    }
+
+    public get_create_time():string {
+      return this.create_time ;
+    }
+
+    public set_create_time(newValue:string) {
+      if (this.isEditSupport()) {
+        this.create_time = newValue;
       } else {
         throw new DataObjectEditError(this);
       }
