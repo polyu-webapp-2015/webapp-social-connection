@@ -10,7 +10,7 @@ class CreateSessionReplyActor extends Actor
 {
     public $name = "CreateSessionReply";
     public $params = array(
-        SessionReply_Fields::__event_Id => 123,
+        SessionReply_Fields::__event_id => 123,
         SessionReply_Fields::__message => "What is great session"
     );
     public $output = [
@@ -27,11 +27,13 @@ class CreateSessionReplyActor extends Actor
         $field_value_array = [
             SessionReply_Fields::__creator_account_id => $account_id,
             SessionReply_Fields::__editor_account_id => $account_id,
-            SessionReply_Fields::__event_Id => $this->params[SessionReply_Fields::__event_Id],
+            SessionReply_Fields::__event_id => $this->params[SessionReply_Fields::__event_id],
             SessionReply_Fields::__message => $this->params[SessionReply_Fields::__message]
         ];
         DatabaseHelper::table_insert(SessionReply_Fields::_, $field_value_array);
         $this->output[APIFieldEnum::_latest_id] = DatabaseHelper::lastInsertId();
+
+
 
         return $this->output;
     }

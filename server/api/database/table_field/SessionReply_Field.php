@@ -6,7 +6,7 @@ class SessionReply_Fields {
     const _ = "SessionReply" ;
     const _insert_sql = "database/prepared_statement/SessionReply_insert.sql" ;
     const __reply_id = "reply_id" ;
-    const __event_Id = "event_Id" ;
+    const __event_id = "event_id" ;
     const __message = "message" ;
     const __creator_account_id = "creator_account_id" ;
     const __editor_account_id = "editor_account_id" ;
