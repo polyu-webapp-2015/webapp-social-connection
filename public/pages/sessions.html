@@ -3,12 +3,12 @@
   <!--<h4 class="modal-title">All Users</h4>-->
 <!--</div>-->
   <div class="modal-header">
-    <h3 class="modal-title">All the Sessions are listed here.</h3>
+    <h3 class="modal-title">All Conferences are listed here.</h3>
   </div>
 <div ng-controller="ListCtrl">
   <div class="modal-body">
     <a class="btn btn-sm my-btn my-btn-round" ng-click="viewUserEvents()">My Events</a>
-    <a class="btn btn-sm my-btn my-btn-round" ng-click="openAddSessionModal()" ng-show="user.account_type==='admin'">Add Session</a>
+    <a class="btn btn-sm my-btn my-btn-round" ng-click="openAddSessionModal()" ng-show="user.account_type==='admin'">Add Conference</a>
     <div class="well well-lg" style="margin-top: 10px">
       <span ng-bind="text_before_list"></span>
       <div class="list-group"

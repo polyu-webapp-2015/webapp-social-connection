@@ -1,23 +1,16 @@
-<div id="exhibition" class="container-fluid">
+<div id="users" class="container-fluid">
   <div class="row">
     <div class="col-sm-8">
-      <h2>Exhibitions</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg">
-        <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements_legacy('GetExhibitionList')">
-          <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/session_detail.html', elem)"> 
-          <h4 class="list-item-title"> {{ elem.subject }} </h4>
-            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.description }} </p>
-            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.create_time }} </p>
-          </button>
-        </div>
-      </div>
+      <h2>User Information</h2>
+      <br/>
+      <button class="btn btn-ln my-btn" ng-click="showFollowed()">My Friends</button>
+      <button class="btn btn-ln my-btn" ng-click="openAdminListModal()">Contact Us</button>
     </div>
     <div class="col-sm-4">
-      <span class="glyphicon glyphicon-picture logo"></span>
+      <span class="glyphicon glyphicon-user logo"></span>
     </div>
   </div>
-</div>
+</div>        
 <div id="announcement" class="container-fluid bg-grey">
   <div class="row">
     <div class="col-sm-4">
@@ -35,36 +28,6 @@
           </button>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<div id="reward" class="container-fluid">
-  <div class="row">
-    <div class="col-sm-8">
-      <h2>Coupons</h2>
-      <h4>Reward Policy</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum</p>
-      <div class="well well-lg"></div>
-      <button class="btn btn-ln my-btn" ng-click="openCouponsModal()">View My Coupons</button>
-    </div>
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-usd logo"></span>
-    </div>
-  </div>
-</div>
-<div id="discover" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-map-marker logo"></span>
-    </div>
-    <div class="col-sm-8">
-      <h2>Attractions</h2>
-      <h4>Lorem ipsum ...</h4>
-      <div class="well well-lg"></div>
     </div>
   </div>
 </div>
