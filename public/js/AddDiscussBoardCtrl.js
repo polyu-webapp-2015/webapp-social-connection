@@ -15,7 +15,6 @@ app.controller('AddDiscussBoardCtrl', function ($scope, $http, $global, $uibModa
         discussBoard.set_editor_account_id(my_account_id);
         var consumer = function (id_array) {
             //alert("new id is " + id_array[0]);
-            alert("The new Discuss Board is created");
             $scope.closeModal();
         };
         discussBoard.create_rows_on_server([discussBoard], consumer);

@@ -1,5 +1,5 @@
 
-app.controller("SearchCtrl", function ($scope, $http, $global) {
+app.controller("SearchCtrl", function ($scope, $http, $global, $uibModal) {
     $scope.search = {};
 
     $scope.submit = function () {
@@ -16,13 +16,33 @@ app.controller("SearchCtrl", function ($scope, $http, $global) {
             }
         })
         .success(function (data, status, headers, config) {
-            alert("success!");
+            $scope.elems = data.element_array;
+            $scope.listItem = $uibModal.open(new Modal("/pages/search_user_list.html", $scope));
         })
         .error(function (data, status, header, config) {
             console.log(status);
             alert(status);
         });
     };
+
+    $scope.openDetailModal = function (html_path, elem) {
+
+        console.log("opening detial");
+        $scope.elem = elem; 
+        $scope.target_account_id = elem;
+        
+        console.log($scope.elem);
+        $scope.modalItem = $uibModal.open(new Modal(html_path, $scope));
+    }
+
+    $scope.closeItem = function () {
+        $scope.listItem.close();
+    }
+
+    $scope.closeModal = function () {
+        $scope.modalItem.close();
+        $scope.modalItem = $scope.$parent.modalItem;
+    }
 
     $scope.log = function () {
         // for debug use
