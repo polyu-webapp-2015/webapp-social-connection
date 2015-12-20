@@ -1,9 +1,12 @@
 
 app.controller("AddAnnounceCtrl", function ($scope, $http, $global) {
 
+    $scope.lock = false;
     $scope.submit = function () {
         //$scope.gender = parseInt($scope.gender);
+        if ($scope.lock) return;
         console.log($scope.announce);
+        $scope.lock = true;
 
         $http.post(serv_addr, {
             action: "CreateAnnouncement",
@@ -14,6 +17,7 @@ app.controller("AddAnnounceCtrl", function ($scope, $http, $global) {
             }
         })
         .success(function (data, status, headers, config) {
+            $scope.lock = false;
             if (data.result_code === 'Success') {
                 alert("success!");
                 console.log(data);
@@ -25,6 +29,7 @@ app.controller("AddAnnounceCtrl", function ($scope, $http, $global) {
             }
         })
         .error(function (data, status, header, config) {
+            $scope.lock = false;
             console.log(status);
             alert('internal error');
         });

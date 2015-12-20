@@ -1,0 +1,21 @@
+<div ng-controller="AddSessionReplyCtrl">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeActionModal()">&times;</button>
+		<h4 class="modal-title">Comment</h4>
+	</div>
+  <form id="addReplyForm" name="add" role="form" ng-submit="submit()" autocomplete="off">
+	  <div class="modal-body">
+      <div class="form-group">
+        <label for="comment">Comment</label>
+        <textarea class="form-control" rows="5" name="comment" id="comment" ng-model="comment" placeholder="Enter the comment here..." required></textarea>
+      </div>
+    </div>			<!-- /modal-body -->
+  </form>
+
+	<div class="modal-footer">
+		<div>
+			<a class='col-sm-2 btn btn-sm my-btn my-btn-round' ng-click='submit()'>Send</a>
+			<a class="col-sm-2 btn btn-sm btn-default" ng-click="closeActionModal()">Close</a>
+		</div>
+	</div>
+</div>

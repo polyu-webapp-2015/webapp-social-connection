@@ -1,5 +1,6 @@
 // controller of index.html
 app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global) {
+  utils.log('mainctrl is loading')
   _$http = $http;
   /*
    $global: self-defined global variables, look at app.js, app.factory for reference
@@ -319,6 +320,15 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
 
     $scope.modalItem = $uibModal.open(new Modal('pages/follower_list.html', $scope));
 
+  }
+
+  $scope.openAdminListModal = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+
+    $scope.modalItem = $uibModal.open(new Modal('pages/admin_list.html', $scope));
   }
 
   utils.log('pre');

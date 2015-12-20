@@ -357,6 +357,14 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_reply.html', $scope));
     }
 
+    $scope.openCreateSessionReplyModal = function () {
+        if ($global.loggedIn() === false) {
+            $scope.openLoginModal();
+            return;
+        }
+        console.log("Add Session Reply");
+        $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_session_reply.html', $scope));
+    }
     $scope.logii = function (elem) {
         console.log("logii in ListCtrl");
         console.log($scope.user);

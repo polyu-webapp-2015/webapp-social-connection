@@ -1,12 +1,11 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
-  <h4 class="modal-title">Administrators</h4>
+  <h4 class="modal-title">Attendees</h4>
 </div>
 <div ng-controller="ListCtrl">
   <div class="modal-body">
     <div class="well well-lg">
-      <div class="list-group"
-           ng-init="loadElements_legacy('GetAdminList')">
+      <div class="list-group" ng-init="loadElements_legacy('GetProfileListByEvent', {'event_id': elem.event_id})">
         <button class="list-group-item"
                 ng-repeat="elem in elems"
                 ng-class="rowClass(elem, elems)"

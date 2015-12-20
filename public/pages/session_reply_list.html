@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
+  <h4 class="modal-title">Discussion Board For Session {{ elem.subject }}</h4>
+</div>
+<div ng-controller="ListCtrl">
+  <a class="user-name-title" style="text-align: right; margin-top: 10px" ng-click="showAll=showAll==true? false: true">{{ showAll==true? 'Collapse': 'History' }}</a>
+  <div class="well well-lg">
+    <div class="list-group" ng-init="loadElements_legacy('GetSessionReplyList', {'event_id': elem.event_id})">
+
+      <ul class="list-group-item" ng-show="!showAll" ng-repeat="ele in elems | last: 4" style="list-style-type: none">
+        <!--<button class="list-item-remarks"-->
+        <li style="margin-top: 0px; margin-bottom: 0px">
+          <a class="user-name-title" ng-click="openUserModal(elem.creator_account_id)">{{ ele.profile.first_name + ' ' + ele.profile.last_name }}</a> 
+          <p class='create_time'>{{ ele.create_time }}</p>
+        </li>
+        <p class="description">
+          <span>
+            {{ ele.message }}
+          </span>
+        </p>
+      </ul>
+      <ul class="list-group-item" ng-show="showAll" ng-repeat="ele in elems" style="list-style-type: none">
+        <!--<button class="list-item-remarks"-->
+        <li style="margin-top: 0px; margin-bottom: 0px">
+          <a class="user-name-title" ng-click="openUserModal(elem.creator_account_id)">{{ ele.profile.first_name + ' ' + ele.profile.last_name }}</a> 
+          <p class='create_time'>{{ ele.create_time }}</p>
+        </li>
+        <p class="description">
+          <span>
+            {{ ele.message }}
+          </span>
+        </p>
+      </ul>
+    </div>
+  </div>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-sm my-btn my-btn-round" ng-click="openCreateSessionReplyModal()">Say Something</a>
+  <a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
+</div>
