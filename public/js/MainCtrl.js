@@ -321,7 +321,9 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
 
   }
 
+  utils.log('pre');
   var session_id = sessionStorage.getItem('session_id');
+  utils.log('post');
   $scope.whoami(session_id);
   $scope.selectedAnchor = $("#bottom-console-anchor");
   $scope.selectedAnchor.addClass("selected");
