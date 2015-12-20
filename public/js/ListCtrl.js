@@ -391,7 +391,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         $scope.modalReplyItem = $uibModal.open(new Modal('/pages/add_session_reply.html', $scope));
     }
 
-    $scope.closeAddSeesionReplyModal = function () {
+    $scope.closeAddSessionReplyModal = function () {
         console.log("hehe");
         $scope.modalReplyItem.close();
 

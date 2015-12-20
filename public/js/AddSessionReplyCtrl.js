@@ -21,7 +21,10 @@ app.controller('AddSessionReplyCtrl', function ($scope, $http, $global, $uibModa
                 console.log($scope.elems);
                 console.log($scope);
                 $scope.elems.push(data.field_array);
-                $scope.closeActionModal();
+                console.log($scope);
+                console.log($scope.$parent);
+                console.log($scope.$parent.$parent);
+                $scope.closeAddSessionReplyModal();
             }
             else {
                 alert('something went wrong');
