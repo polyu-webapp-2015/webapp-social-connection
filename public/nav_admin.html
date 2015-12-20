@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 <head>
   <title>Administration</title>
@@ -25,6 +25,8 @@
   <script src="js/LoginCtrl.js"></script>
   <script src="js/AddAnnounceCtrl.js"></script>
   <script src="js/AddRewardCtrl.js"></script>
+  <script src="js/AddExhibitionCtrl.js"></script>
+  <script src="js/SearchCtrl.js"></script>
   <script src="js/ViewRewardsAdminCtrl.js"></script>
   <script src="js/ListCtrl.js"></script>
   <script src="js/AddSessionCtrl.js"></script>
@@ -79,8 +81,8 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#admin_nav_page"><span class="glyphicon glyphicon-home nav_logo"></span></a>
-      <a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openProfileModal()"><span
-          class="glyphicon glyphicon-user nav_logo"></span></a>
+      <a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openProfileModal()"><span class="glyphicon glyphicon-user nav_logo"></span></a>
+      <a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openSearchModal()"><span class="glyphicon glyphicon-search nav_logo"></span></a>
     </div>
     <div class="collapse navbar-collapse" id="client_navbar">
       <ul ng-click="closeNavbar()" class="nav navbar-nav navbar-right">

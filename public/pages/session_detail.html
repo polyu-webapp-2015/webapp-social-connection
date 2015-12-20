@@ -13,13 +13,13 @@
             <td> <b>Time: </b></td>
             <td> {{ elem.event_time }} </td>
           </tr>
-          <tr>
+          <tr ng-show="elem.type==='E'">
             <td> <b>Quota: </b></td>
             <td> {{ elem.quota }}</td>
           </tr>
           <tr>
             <td> <b>Venue: </b></td>
-            <td> {{ elem.venue_id }}</td>
+            <td> {{ elem.venue }}</td>
           </tr>
         </tbody>
       </table>
@@ -27,7 +27,7 @@
       <p> {{ elem.description }}</p>
   </div>
   <div class="modal-footer">
-    <a class="btn btn-sm my-btn my-btn-round" ng-click="joinSession()" ng-class="{'disabled': elem.joined}">{{ elem.joined? 'Joined': 'Join' }}</a>
+    <a class="btn btn-sm my-btn my-btn-round" ng-click="joinSession()" ng-class="{'disabled': elem.joined || +elem.quota == elem.user_count}">{{ elem.joined? 'Joined': 'Join' }}</a>
     <a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
   </div>
 </div>

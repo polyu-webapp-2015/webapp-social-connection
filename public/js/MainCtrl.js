@@ -98,6 +98,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
           $global.setSessionId(session_id);
           $global.setUserAttr('isAnonymous', false);
           $scope.user = $global.getUser();
+          console.log($scope.user);
 
           $scope.viewConsole($global.getAccountType());
         }
@@ -181,11 +182,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       $scope.selectedAnchor.addClass("selected");
     }
     else {
-      $.get("/pages/discover.html", {}, function (data, status, headers, config) {
+      $.get("/pages/sessions.html", {}, function (data, status, headers, config) {
         $("#content").html($compile(data)($scope));
       })
       $scope.selectedAnchor.removeClass("selected");
-      $scope.selectedAnchor = $("#bottom-console-anchor");
+      $scope.selectedAnchor = $("#bottom-sessions-anchor");
       $scope.selectedAnchor.addClass("selected");
     }
   };
@@ -200,6 +201,20 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
     });
     $scope.selectedAnchor.removeClass("selected");
     $scope.selectedAnchor = $("#bottom-sessions-anchor");
+    $scope.selectedAnchor.addClass("selected");
+    $("#content").scrollTop($("#content")[0].scrollHeight);
+  };
+
+  $scope.viewDiscover = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+    $.get("/pages/discover.html", {}, function (data, status, headers, config) {
+      $("#content").html($compile(data)($scope));
+    });
+    $scope.selectedAnchor.removeClass("selected");
+    $scope.selectedAnchor = $("#bottom-console-anchor");
     $scope.selectedAnchor.addClass("selected");
     $("#content").scrollTop($("#content")[0].scrollHeight);
   };
@@ -276,6 +291,34 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       .error(function (data, status, headers, config) {
         alert("Please check your network");
       });
+  }
+
+  $scope.openSearchModal = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+    $scope.modalItem = $uibModal.open(new Modal('pages/search.html', $scope));
+  }
+
+  $scope.showFollowed = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+
+    $scope.modalItem = $uibModal.open(new Modal('pages/followed_list.html', $scope));
+
+  }
+
+  $scope.showFollower = function () {
+    if ($global.loggedIn() === false) {
+      $scope.openLoginModal();
+      return;
+    }
+
+    $scope.modalItem = $uibModal.open(new Modal('pages/follower_list.html', $scope));
+
   }
 
   var session_id = sessionStorage.getItem('session_id');

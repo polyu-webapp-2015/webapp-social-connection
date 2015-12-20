@@ -1,19 +1,18 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="closeModal()">&times;</button>
-  <h4 class="modal-title">All Users</h4>
+  <h4 class="modal-title">Your Events</h4>
 </div>
 <div ng-controller="ListCtrl">
   <div class="modal-body">
     <div class="well well-lg">
-      <div class="list-group" ng-init="loadElements_legacy('GetEventByAccountId', {'account_id': -1})">
-        <button class="list-group-item" ng-repeat="elem in elems" ng-class="rowClass(elem, elems)" ng-click="openDetailModal('/pages/user_detail.html', elem)">
-          <h4 class="list-item-title">
-            {{ elem.first_name + ' ' + elem.last_name }}
-          </h4>
-          <p class="list-item-remarks"
-             style="margin-top: 0px; font-size: 12px">
-            {{ elem.organization_name }}
-          </p>
+      <div class="list-group" ng-init="loadElements_legacy('GetEventListByAccountId', {'account_id': -1})">
+        <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/session_detail.html', elem)">
+        <h4 class="list-item-title">
+            {{ elem.subject }}
+        </h4>
+        <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px">
+          {{ elem.event_time }}
+        </p>
         </button>
       </div>
     </div>
@@ -22,3 +21,4 @@
 <div class="modal-footer">
   <a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>
 </div>
+

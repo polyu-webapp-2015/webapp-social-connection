@@ -1,13 +1,17 @@
 
 app.controller("SearchCtrl", function ($scope, $http, $global) {
+    $scope.search = {};
 
     $scope.submit = function () {
+
         $http.post(serv_addr, {
-            "action": "search user",
+            "action": "SearchProfileList",
             "data": {
-                name: $scope.username,
-                password: $scope.password,
-                sex: parseInt($scope.sex)
+                session_id: $global.getSessionId(),
+                name: $scope.search.name !== undefined? $scope.search.name: '',
+                city: $scope.search.city !== undefined? $scope.search.city: '',
+                country: $scope.search.country !== undefined? $scope.search.country: '',
+                organization: $scope.search.organization !== undefined? $scope.search.organization: '',
                 // need revised .........
             }
         })

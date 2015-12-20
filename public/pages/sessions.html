@@ -3,15 +3,16 @@
   <!--<h4 class="modal-title">All Users</h4>-->
 <!--</div>-->
   <div class="modal-header">
-    <a class="btn btn-sm my-btn my-btn-round" ng-click="openAddSessionModal()" ng-show="user.account_type==='admin'">Add Session</a>
-    <a class="btn btn-sm my-btn my-btn-round" ng-click="viewUserEvents()">My Events</a>
+    <h3 class="modal-title">All the Sessions are listed here.</h3>
   </div>
 <div ng-controller="ListCtrl">
   <div class="modal-body">
-    <div class="well well-lg">
+    <a class="btn btn-sm my-btn my-btn-round" ng-click="viewUserEvents()">My Events</a>
+    <a class="btn btn-sm my-btn my-btn-round" ng-click="openAddSessionModal()" ng-show="user.account_type==='admin'">Add Session</a>
+    <div class="well well-lg" style="margin-top: 10px">
       <span ng-bind="text_before_list"></span>
       <div class="list-group"
-           ng-init="loadElements('Event','Session')">
+           ng-init="loadElements_legacy('GetSessionList')">
         <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/session_detail.html', elem)">
           <h4 class="list-item-title">
             {{ elem.subject }}

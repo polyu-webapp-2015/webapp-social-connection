@@ -23,10 +23,13 @@
   <script src="js/AddPostCtrl.js"></script>
   <script src="js/AddReplyCtrl.js"></script>
   <script src="js/AddDiscussBoardCtrl.js"></script>
+  <script src="js/AddExhibitionCtrl.js"></script>
   <script src="js/ListCtrl.js"></script>
   <script src="js/SessionDetailCtrl.js"></script>
   <script src="js/UserDetailCtrl.js"></script>
   <script src="js/SendMessageCtrl.js"></script>
+  <script src="js/SearchCtrl.js"></script>
+  <script src="js/ProfileCtrl.js"></script>
   <!-- be reminded that newly created .js files should be loaded here -->
 
   <!-- main scripts -->
@@ -66,7 +69,8 @@
       </button>
       <a class="navbar-brand" href="#client_nav_page"><span class="glyphicon glyphicon-home nav_logo"></span></a>
       <a class="navbar-brand" style="margin-left: 3px" href="#client_nav_page"><span
-          class="glyphicon glyphicon-user nav_logo" ng-click="openLoginModal()"></span></a>
+          class="glyphicon glyphicon-user nav_logo" ng-click="openProfileModal()"></span></a>
+      <a class="navbar-brand" href="#admin_nav_page" style="margin-left: 3px" ng-click="openSearchModal()"><span class="glyphicon glyphicon-search nav_logo"></span></a>
     </div>
     <div class="collapse navbar-collapse" id="client_navbar">
       <ul class="nav navbar-nav navbar-right">
@@ -86,10 +90,9 @@
 <div id="content" ng-bind-html="html_content"></div>
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <ul class="nav navbar text-center container">
-    <li><a href="#" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewConsole('client')"
-           id="bottom-console-anchor">Discover</a></li>
     <li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewSessions()"
            id="bottom-sessions-anchor">Sessions</a></li>
+    <li><a href="#" class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewDiscover()"id="bottom-console-anchor">Discover</a></li>
     <li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewForum()" id="bottom-forum-anchor">Forum</a>
     </li>
     <li><a class="col-xs-3 col-sm-3 col-md-3 col-lg-3 bottom-anchor" ng-click="viewInbox()" id="bottom-inbox-anchor">Inbox</a>

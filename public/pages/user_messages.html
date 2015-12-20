@@ -15,11 +15,11 @@
       <ul class="list-group" style="list-style-type: none" ng-init="logii(elem)">
         <li class="list-group-item" ng-repeat="ele in elem.element_array | last: 7" ng-show="!showAll" ng-class="{'sent-out-msg': user.account_id*1 === ele.from_account_id*1}" ng-click="logii(ele)">
             <span ng-show="user.account_id*1 !== ele.from_account_id*1"><b>{{ elem.profile.first_name + ' ' + elem.profile.last_name }}</b>: {{ ele.msg_content }}</span>
-            <span ng-show="user.account_id*1 === ele.from_account_id*1">{{ ele.msg_content }}</span>
+            <span ng-show="user.account_id*1 === ele.from_account_id*1">{{ ele.msg_content }}: <b>{{ user.first_name + ' ' + user.last_name }}</b></span>
         </li>
         <li class="list-group-item" ng-repeat="ele in elem.element_array" ng-show="showAll" ng-class="{'sent-out-msg': user.account_id*1 === ele.from_account_id*1}" ng-click="logii(ele)">
-            <span ng-show="user.account_id*1 !== ele.from_account_id*1"><b>{{ elem.profile.first_name + ' ' + elem.profile.last_name }}</b>: {{ ele.msg_content }}</span>
-            <span ng-show="user.account_id*1 === ele.from_account_id*1">{{ ele.msg_content }}</span>
+            <span ng-show="user.account_id*1 !== ele.from_account_id*1"><b>{{ user.profile.first_name + ' ' + user.profile.last_name }}</b>: {{ ele.msg_content }}</span>
+            <span ng-show="user.account_id*1 === ele.from_account_id*1">{{ ele.msg_content }}: <b>{{ user.first_name + ' ' + user.last_name }}</b></span>
         </li>
       </ul>
     </div>
