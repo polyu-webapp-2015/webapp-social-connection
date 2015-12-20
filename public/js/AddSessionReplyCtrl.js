@@ -16,8 +16,11 @@ app.controller('AddSessionReplyCtrl', function ($scope, $http, $global, $uibModa
         })
         .success(function (data, status, headers, config) {
             if (data.result_code === 'Success') {
+                data.field_array['profile'] = $global.getUser();
+                console.log(data.field_array);
+                console.log($scope.elems);
+                console.log($scope);
                 $scope.elems.push(data.field_array);
-                console.log(elems);
                 $scope.closeActionModal();
             }
             else {
