@@ -36,6 +36,9 @@ app.controller('SessionDetailCtrl', function ($scope, $http, $global, $uibModal)
     .success (function (data, status, headers, config) {
       if (data.result_code === 'Success') {
         $scope.elem.joined = true;
+        $scope.buttonText = $scope.elem.joined? 'Who Also Attends': 'Join';
+        $scope.elem.user_count = $scope.elem.user_count*1 + 1;
+        if ($scope.elem.user_count*1 >= $scope.elem.quota*1) $scope.buttonText = 'Full';
       }
       else alert('Sorry! Something went wrong T_T');
     })

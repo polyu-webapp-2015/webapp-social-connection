@@ -342,6 +342,7 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
             if (data.result_code === 'Success') {
                 for (var i = 0; i < $scope.elems.length; ++i) {
                     console.log(elem[id]);
+                    elem.joined = false;
                     if ($scope.elems[i][id] === elem[id]) {
                         $scope.elems.splice(i, 1);
                         return;
