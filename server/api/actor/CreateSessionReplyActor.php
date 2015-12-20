@@ -16,6 +16,7 @@ class CreateSessionReplyActor extends Actor
     public $output = [
         APIFieldEnum::_result_code => ResultCodeEnum::_Success,
         APIFieldEnum::_latest_id => 123,
+        APIFieldEnum::_field_array => "the new message"
     ];
     public $desc = "create reply on the given session";
 
@@ -31,10 +32,11 @@ class CreateSessionReplyActor extends Actor
             SessionReply_Fields::__message => $this->params[SessionReply_Fields::__message]
         ];
         DatabaseHelper::table_insert(SessionReply_Fields::_, $field_value_array);
-        $this->output[APIFieldEnum::_latest_id] = DatabaseHelper::lastInsertId();
-
-
-
+        $lastInsertId = DatabaseHelper::lastInsertId();
+        $this->output[APIFieldEnum::_latest_id] = $lastInsertId;
+        $this->output[SessionReply_Fields::__message];
+        $key = SessionReply_Fields::__reply_id;
+        $this->output[APIFieldEnum::_field_array] = DatabaseHelper::select_from_table(SessionReply_Fields::_, [], "WHERE $key = $lastInsertId")[0];
         return $this->output;
     }
 }
