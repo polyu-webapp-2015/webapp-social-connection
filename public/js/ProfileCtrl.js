@@ -31,12 +31,6 @@ app.controller('ProfileCtrl', function  ($scope, $http, $global, $uibModal) {
 
 	}
 
-	$scope.submit = function () {
-		console.log(new FormData);
-		var fromData = new FormData(document.getElementById('#profileForm'));
-		console.log(formData);
-	}
-
 	$scope.profileSave = function() {
 		//TODO edit profile (server)
 		$http.post(serv_addr, {

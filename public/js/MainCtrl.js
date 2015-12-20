@@ -182,11 +182,11 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
       $scope.selectedAnchor.addClass("selected");
     }
     else {
-      $.get("/pages/sessions.html", {}, function (data, status, headers, config) {
+      $.get("/pages/discover.html", {}, function (data, status, headers, config) {
         $("#content").html($compile(data)($scope));
       })
       $scope.selectedAnchor.removeClass("selected");
-      $scope.selectedAnchor = $("#bottom-sessions-anchor");
+      $scope.selectedAnchor = $("#bottom-console-anchor");
       $scope.selectedAnchor.addClass("selected");
     }
   };

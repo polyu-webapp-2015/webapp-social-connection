@@ -20,10 +20,21 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
           $global.setUserAttr('isAnonymous', false);
           sessionStorage.setItem('session_id', data.session_id);
           if (data.profile.account_type == "attendee" || data.profile.account_type == "speaker") {
+            console.log(window.location);
+            if (window.location.pathname.indexOf("nav_client") > 0) {
+              $scope.closeModal();
+              $scope.viewDiscover();
+              return;
+            }
             window.location.replace("nav_client.html");
           }
           else if (data.profile.account_type == "admin") {
-            window.location.replace("nav_admin.html");
+            if (window.location.pathname.indexOf("nav_admin") > 0) {
+              $scope.closeModal();
+              $scope.viewConsole();
+              return;
+            }
+              window.location.replace("nav_admin.html");
           }
         }
         else if (data.result_code == "Password_Wrong") {
