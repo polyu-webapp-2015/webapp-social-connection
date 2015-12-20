@@ -100,6 +100,7 @@ app.controller('MainCtrl', function ($scope, $http, $uibModal, $compile, $global
           $global.setUserAttr('isAnonymous', false);
           $scope.user = $global.getUser();
           console.log($scope.user);
+          console.log($scope.user);
 
           $scope.viewConsole($global.getAccountType());
         }

@@ -13,9 +13,9 @@ app.controller('ProfileCtrl', function  ($scope, $http, $global, $uibModal) {
 		$scope.lastname = user.last_name;
 		$scope.sex = user.sex;
 		$scope.title = user.title;
-		$scope.city = user.user_city;
-		$scope.country = user.organization_country;
-		$scope.organization = user.organization_name;
+		$scope.city = user.city;
+		$scope.country = user.country;
+		$scope.organization = user.organization;
 
 		var inputField;
 		var i;
@@ -29,6 +29,41 @@ app.controller('ProfileCtrl', function  ($scope, $http, $global, $uibModal) {
 			inputField.readOnly = false;
 		}
 
+	}
+
+	$scope.submit = function () {
+		$scope.title = $scope.title === undefined? '':$scope.title;
+		$scope.firstname = $scope.firstname === undefined? '':$scope.firstname;
+		$scope.lastname = $scope.lastname === undefined? '':$scope.lastname;
+		$scope.organization = $scope.organization === undefined? '':$scope.organization;
+		$scope.sex = $scope.sex === undefined? '':$scope.sex;
+		$scope.country = $scope.country === undefined? '':$scope.country;
+		$scope.city = $scope.city === undefined? '':$scope.city;
+		$http.post(serv_addr, {
+			action: 'EditProfile',
+			data: JSON.stringify({
+				session_id: $global.getSessionId(),
+				account_id: $global.getAccountId(),
+				field_array: {
+					first_name: $scope.firstname,
+					last_name: $scope.lastname,
+					title: $scope.title,
+					organization: $scope.organization,
+					sex: $scope.sex,
+					country: $scope.country,
+					city: $scope.city
+				}	
+			})
+		})
+		.success(function (data) {
+			if (data.result_code === 'Success') {
+				$scope.whoami($global.getSessionId());
+			}
+			else alert('Something wrong happens');
+		})
+		.error(function (){
+			alert('Please check your network');
+		})
 	}
 
 	$scope.profileSave = function() {
