@@ -39,26 +39,34 @@ class GetSessionReplyListActor extends Actor
         $account_array = [];
         foreach ($reply_array as $reply) {
             $account_id = $reply[SessionReply_Fields::__creator_account_id];
+            $account_id=ltrim($account_id,'0');
             $account_array[$account_id] = [];
         }
         $account_id_array = [];
         foreach ($account_array as $account_id => $value) {
             $account_id_array[] = $account_id;
         }
+//        log_object_from_named($account_id_array,"account id array");
         /* request account info */
         $pass_data = $data;
         $pass_data[APIFieldEnum::_id_array] = $account_id_array;
         $actor = new GetProfileListActor();
         $pass_result = $actor->handle($pass_data);
+//        log_object_from_named($pass_result,"pass_result");
         /* fill the profile into reply list */
         foreach ($pass_result[APIFieldEnum::_element_array] as $profile) {
+//            log_object_from_named($profile,"profile");
             $account_id = $profile[Account_Fields::__account_id];
+            $account_id=ltrim($account_id,'0');
             $account_array[$account_id] = $profile;
         }
 
         /* step 3 */
         foreach ($reply_array as &$reply) {
             $account_id = $reply[SessionReply_Fields::__creator_account_id];
+            $account_id=ltrim($account_id,'0');
+//            log_object_from_named($account_id,"target account id");
+//            log_object_from_named($account_array[$account_id],"target account");
             $reply[APIFieldEnum::_profile] = $account_array[$account_id];
         }
 
