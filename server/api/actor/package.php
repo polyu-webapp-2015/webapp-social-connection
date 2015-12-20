@@ -46,3 +46,4 @@ require_once 'GetEventListByAccountIdActor.php';
 require_once 'SearchProfileListActor.php';
 require_once 'GetSessionReplyListActor.php';
 require_once 'CreateSessionReplyActor.php';
+require_once 'GetAdminListActor.php';
