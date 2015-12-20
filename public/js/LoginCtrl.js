@@ -4,6 +4,7 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
   $scope.login = function () {
     $scope.userNotExist = false;
     $scope.wrongPassword = false;
+    utils.log("try to login");
     $http.post(serv_addr, {
         "action": "Login",
         "data": JSON.stringify({
@@ -13,6 +14,7 @@ app.controller("LoginCtrl", function ($scope, $http, $global) {
       })
       .success(function (data, status, headers, config) {
         console.log(data);
+        utils.log("login success")
         if (data.result_code == "Success") {
           $scope.loginFail = false;
           $global.setUser(data.profile);
