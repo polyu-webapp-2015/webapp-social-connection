@@ -2,7 +2,7 @@ var utils;
 (function (utils) {
     var indentText = " ";
     var indentCount = 0;
-    utils.debug = true;
+    utils.debug = false;
     function getIndentPrefix() {
         var indent = "";
         for (var i = 0; i < indentCount; i++)

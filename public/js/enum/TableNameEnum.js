@@ -23,6 +23,7 @@ var TableNameEnum = function (){
     this.Reply = "Reply" ;
     this.Reward = "Reward" ;
     this.Session = "Session" ;
+    this.SessionReply = "SessionReply" ;
     this.Tag = "Tag" ;
     this.Title = "Title" ;
     this.User = "User" ;

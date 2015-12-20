@@ -23,6 +23,7 @@ include_once 'Post_Field.php';
 include_once 'Reply_Field.php';
 include_once 'Reward_Field.php';
 include_once 'Session_Field.php';
+include_once 'SessionReply_Field.php';
 include_once 'Tag_Field.php';
 include_once 'Title_Field.php';
 include_once 'User_Field.php';

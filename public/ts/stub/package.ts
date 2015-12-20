@@ -6,7 +6,7 @@
 ///<reference path="complex/package.ts"/>
 function load_all_stub_script(callback) {
   var done = 0;
-  var total = 25;
+  var total = 26;
   //deprecated flag
   var lastFired = false;
 
@@ -78,6 +78,9 @@ function load_all_stub_script(callback) {
 
 //  total++;
   utils.loadModel('ts/stub/Session_stub.js',loadOne);
+
+//  total++;
+  utils.loadModel('ts/stub/SessionReply_stub.js',loadOne);
 
 //  total++;
   utils.loadModel('ts/stub/Tag_stub.js',loadOne);
