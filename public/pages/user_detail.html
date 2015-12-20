@@ -27,7 +27,13 @@
         </tbody>
       </table>
     </div>
-    <button class="btn btn-sm my-btn" ng-show="elem.account_type!=='admin'" ng-click="openDetailModal('/pages/add_reward.html', elem)">Add Reward</button>
+    <div class="alert alert-success" ng-show="followAction">
+      <strong>You have already followed the user.</strong>
+    </div>
+    <div class="alert alert-success" ng-show="unfollowAction">
+      <strong>You have unfollowed the user.</strong>
+    </div>
+    <!--<button class="btn btn-sm my-btn" ng-show="elem.account_type!=='admin'" ng-click="openDetailModal('/pages/add_reward.html', elem)">Add Reward</button>-->
   </div>
   <div class="modal-footer">
     <a class="btn btn-sm btn-default" ng-click="closeModal()">Close</a>

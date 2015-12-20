@@ -1,6 +1,8 @@
 app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
 
   $scope.followLock = false;
+  $scope.followAction = false;
+  $scope.unfollowAction = false;
 
   function checkInit() {
     var targetAccountId = $scope.$parent.target_account_id;
@@ -12,6 +14,8 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
   }
 
   $scope.openSendMessageModal = function () {
+    $scope.followAction = false;
+    $scope.unfollowAction = false;
     console.log($scope.elem);
     $scope.modalItem = $uibModal.open(new Modal('/pages/edit_message.html', $scope));
   }
@@ -22,6 +26,8 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
   }
 
   $scope.follow = function () {
+    $scope.followAction = false;
+    $scope.unfollowAction = false;
     $scope.followLock = true;
     $http.post(serv_addr, {
       action: 'Follow',
@@ -34,6 +40,7 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
       if (data.result_code === 'Success') {
         $scope.elem.followed = true;
         $scope.followLock = false;
+        $scope.followAction = true;
       }
       else {
         alert("Sorry! Something went wrong T_T");
@@ -45,6 +52,8 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
   }
 
   $scope.unfollow = function () {
+    $scope.followAction = false;
+    $scope.unfollowAction = false;
     $scope.followLock = true;
     $http.post(serv_addr, {
       action: 'Unfollow',
@@ -57,6 +66,7 @@ app.controller('UserDetailCtrl', function ($scope, $http, $global, $uibModal) {
       if (data.result_code === 'Success') {
         $scope.elem.followed = false;
         $scope.followLock = false;
+        $scope.unfollowAction = true;
       }
       else {
         alert("Sorry! Something went wrong T_T");
