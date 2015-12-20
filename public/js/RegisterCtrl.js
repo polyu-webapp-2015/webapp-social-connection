@@ -79,6 +79,8 @@ app.controller("RegisterCtrl", function ($scope, $http, $global) {
             "data": {
                 session_id: $global.getSessionId(),
                 emailOrPhoneNum: $scope.username,
+                first_name: $scope.first_name,
+                last_name: $scope.last_name,
                 password: $scope.password,
                 sex: $scope.sex,
                 account_type: $scope.account_type,

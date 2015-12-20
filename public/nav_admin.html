@@ -87,12 +87,13 @@
     </div>
     <div class="collapse navbar-collapse" id="client_navbar">
       <ul ng-click="closeNavbar()" class="nav navbar-nav navbar-right">
-        <li><a href="#users">Users</a></li>
-        <li><a href="#announcements">Announcements</a></li>
-        <li><a href="#rewards">Rewards</a></li>
-        <li><a href="#analytics">Analytics</a></li>
-        <li><a href="#attractions">Attractions</a></li>
-        <li ng-click="logoff()"><a href="index.html">Log off</a></li>
+        <li><a ng-click="viewConsole()" href="#users">Users</a></li>
+        <li><a ng-click="viewConsole()" href="#announcements">Announcements</a></li>
+        <li><a ng-click="viewConsole()" href="#analytics">Analytics</a></li>
+        <li><a ng-click="viewSessions()" href="">Meetings</a></li>
+        <li><a ng-click="viewForum()" href="">Forum</a></li>
+        <li><a ng-click="viewInbox()" href="">Inbox</a></li>
+        <li ng-click="logoff()" href=""><a href="index.html">Log off</a></li>
       </ul>
     </div>
   </div>

@@ -3,9 +3,10 @@
   <!--<h4 class="modal-title" ng-bind="modal_title"></h4>-->
 <!--</div>-->
 <div class="modal-header">
-  <a class="btn btn-sm my-btn my-btn-round" ng-click="openAddDiscussBoardModal()">New Board</a>
+  <h4 class="modal-title">Discussion Board</h4>
 </div>
 <div ng-controller="ListCtrl">
+  <a class="btn btn-sm my-btn my-btn-round" style="margin-top: 10px" ng-click="openAddDiscussBoardModal()">New Board</a>
   <div class="modal-body">
     <div class="well well-lg">
       <span ng-bind="text_before_list"></span>
@@ -25,5 +26,6 @@
         </button>
       </div>
     </div>
+    <div style="height:45px"></div>
   </div>
 </div>
