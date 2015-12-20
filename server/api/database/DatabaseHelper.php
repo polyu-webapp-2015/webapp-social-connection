@@ -269,7 +269,7 @@ class DatabaseHelper
         return self::query($sql, $skip_clean);
     }
 
-    public static function update_on_table($table_name, array $set_field_value_array = [], $where_statement)
+    public static function update_on_table_old($table_name, array $set_field_value_array = [], $where_statement)
     {
         $set_statement_array = array_map(function ($set_field_value) {
             $field = array_keys($set_field_value)[0];
@@ -278,9 +278,13 @@ class DatabaseHelper
         $set_statement = implode(',', $set_statement_array);
         $sql = "UPDATE $table_name SET $set_statement WHERE $where_statement ;";
         $statement = self::prepare($sql);
-        foreach ($set_field_value_array as $set_field_value) {
-            $field = array_keys($set_field_value)[0];
-            $value = array_values($set_field_value)[0];
+        log_object_from_named($sql, "sql for update table");
+        log_object_from_named($set_field_value_array, "set_field_value_array");
+        foreach ($set_field_value_array as $field => $value) {
+//            $field = array_keys($set_field_value)[0];
+//            $value = array_values($set_field_value)[0];
+//            log_object_from_named($set_field_value,"set_field_value");
+            log_object_from_named("binding $field = $value", "update table");
             $statement->bindValue(":$field", $value);
         }
         if ($statement->execute()) {
@@ -292,6 +296,33 @@ class DatabaseHelper
             $msg = ErrorResponse::generate_pdo_error_msg("Failed to update on table");
             throw new Exception($msg, ResultCodeEnum::_Failed_To_Update_On_Database);
         }
+    }
+
+    /** @remark unsafe */
+    public static function update_on_table($table_name, array $set_field_value_array = [], $where_statement)
+    {
+        $set_statement = "";
+        foreach ($set_field_value_array as $field => $value) {
+//            $value=DatabaseHelper::quote($value);
+            if ($set_statement != "")
+                $set_statement = "$set_statement , $field = '$value'";
+            else
+                $set_statement = "$field = '$value'";
+        }
+        $sql = "UPDATE $table_name SET $set_statement WHERE $where_statement";
+//        $sql="UPDATE User SET first_name = 'Mary' , last_name = 'Wu' , title = 'Miss.' , sex = 'F' , country = 'China' WHERE account_id = 0000000003";
+        $result = DatabaseHelper::query($sql);
+        return $result;
+//        if ($result != false) {
+//            return $result;
+//        } else {
+//            log_object_from_named("_---------------------_",get_called_class());
+//            log_object_from_named("Failed to update table", "DatabaseHelper::update_on_table");
+//            log_object_from_named($set_field_value_array, "set field value array");
+//            log_object_from_named($sql, "queryString");
+//            $msg = ErrorResponse::generate_pdo_error_msg("Failed to update on table");
+//            throw new Exception($msg, ResultCodeEnum::_Failed_To_Update_On_Database);
+//        }
     }
 
     public static function select_all_from_table($table_name, $skip_clean = false)
