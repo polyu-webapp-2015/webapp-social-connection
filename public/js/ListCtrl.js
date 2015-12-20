@@ -388,8 +388,15 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
             return;
         }
         console.log("Add Session Reply");
-        $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_session_reply.html', $scope));
+        $scope.modalReplyItem = $uibModal.open(new Modal('/pages/add_session_reply.html', $scope));
     }
+
+    $scope.closeAddSeesionReplyModal = function () {
+        console.log("hehe");
+        $scope.modalReplyItem.close();
+
+    }
+
     $scope.logii = function (elem) {
         console.log("logii in ListCtrl");
         console.log($scope.user);

@@ -48,7 +48,11 @@ app.controller('SessionDetailCtrl', function ($scope, $http, $global, $uibModal)
   }
 
   $scope.openDiscussionBoard = function () {
-    modalItem = $uibModal.open(new Modal('/pages/session_reply_list.html', $scope));
+    modalItem0 = $uibModal.open(new Modal('/pages/session_reply_list.html', $scope));
+  }
+
+  $scope.closeDiscussionBoard = function () {
+    modalItem0.close();
   }
 
   $scope.exitSession = function () {
