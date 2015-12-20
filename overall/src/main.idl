@@ -64,7 +64,12 @@ module social_connection{
     join_time,
     user_count,
     search_text,
-    name
+    name,
+  };
+
+  struct Analytic{
+    string key;
+    string value;
   };
   exception GeneralException{
     long resultCode;
