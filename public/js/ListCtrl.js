@@ -329,8 +329,32 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         }
     }
 
-    $scope.deleteSubElement = function (elem) {
-        console.log("deleting element");
+    $scope.deleteSubElement = function (elem, id) {
+        event.stopPropagation();
+        $http.post(serv_addr, {
+            action: 'UnJoinEvent',
+            data: {
+                session_id: $global.getSessionId(),
+                event_id: elem.event_id
+            }
+        })
+        .success(function (data, status, headers, config) {
+            if (data.result_code === 'Success') {
+                for (var i = 0; i < $scope.elems.length; ++i) {
+                    console.log(elem[id]);
+                    if ($scope.elems[i][id] === elem[id]) {
+                        $scope.elems.splice(i, 1);
+                        return;
+                    }
+                } 
+            }
+            else {
+                alert('Something wrong happens');
+            }
+        })
+        .error(function (data, status, headers, config) {
+            alert('Please check your network.');
+        });
     }
 
     $scope.openCreatePostModal = function () {
@@ -357,6 +381,14 @@ app.controller("ListCtrl", function ($scope, $http, $global, $uibModal) {
         $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_reply.html', $scope));
     }
 
+    $scope.openCreateSessionReplyModal = function () {
+        if ($global.loggedIn() === false) {
+            $scope.openLoginModal();
+            return;
+        }
+        console.log("Add Session Reply");
+        $scope.modalActionItem = $uibModal.open(new Modal('/pages/add_session_reply.html', $scope));
+    }
     $scope.logii = function (elem) {
         console.log("logii in ListCtrl");
         console.log($scope.user);

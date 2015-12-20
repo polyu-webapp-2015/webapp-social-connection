@@ -45,29 +45,7 @@
     </div>
   </div>
 </div>
-<div id="exhibitions" class="container-fluid bg-grey">
-	<div class="row">
-		<div class="col-sm-4">
-			<span class="glyphicon glyphicon-picture logo"></span>
-		</div>
-		<div class="col-sm-8">
-			<h2>Exhibitions</h2>
-			<h4>Lorem ipsum ...</h4>
-			<div class="well well-lg">
-        <div class="list-group" ng-controller="ListCtrl" ng-init="loadElements_legacy('GetExhibitionList')">
-          <button class="list-group-item"ng-repeat="elem in elems"ng-class="rowClass(elem, elems)"ng-click="openDetailModal('/pages/session_detail.html', elem)"> 
-          <h4 class="list-item-title"> {{ elem.subject }} </h4>
-            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.description }} </p>
-            <p class="list-item-remarks"style="margin-top: 0px; font-size: 12px"> {{ elem.create_time }} </p>
-          </button>
-        </div>
-      </div>
-			<button class="btn btn-ln my-btn" ng-click="openAddExhibitionModal()">Create</button>
-		</div>
-	</div>
-
-</div>
-<div id="analytics" class="container-fluid">
+<div id="analytics" class="container-fluid bg-grey">
   <div class="row">
     <div class="col-sm-8" ng-controller="AnalysisCtrl">
       <h2>Analytics</h2>
@@ -78,18 +56,11 @@
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-signal logo"></span>
     </div>
-  </div>
-</div>
-<div id="attractions" class="container-fluid bg-grey">
-  <div class="row">
-    <div class="col-sm-4">
-      <span class="glyphicon glyphicon-road logo"></span>
-    </div>
     <div class="col-sm-8">
-      <h2>Attractions</h2>
+      <h2>Analytics</h2>
       <h4>Lorem ipsum ...</h4>
       <div class="well well-lg"></div>
-      <button class="btn btn-ln my-btn" ng-click='openAddAttractionModal()'>Add Attractions</button>
+      <button class="btn btn-ln my-btn">Show More</button>
     </div>
   </div>
 </div>
